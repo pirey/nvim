@@ -7,3 +7,5 @@ vim.keymap.set({ "n", "v" }, "E", "20l")
 vim.keymap.set({ "n", "v" }, "B", "20h")
 vim.keymap.set({ "n", "v" }, "J", "15gj")
 vim.keymap.set({ "n", "v" }, "K", "15gk")
+
+vim.keymap.set("v", "<c-c>", '"*y')
