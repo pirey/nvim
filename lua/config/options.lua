@@ -18,3 +18,7 @@ if vim.fn.has("wsl") then
 end
 
 vim.o.splitright = true
+
+if vim.fn.has("nvim") and vim.fn.executable("nvr") == 1 then
+  vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
+end
