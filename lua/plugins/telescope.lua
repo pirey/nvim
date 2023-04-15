@@ -1,9 +1,12 @@
-return {}
--- return {
---   {
---     "nvim-telescope/telescope.nvim",
---     config = function()
---       require("telescope").load_extension("notify")
---     end,
---   },
--- }
+return {
+  {
+    "nvim-telescope/telescope.nvim",
+    keys = {
+      { "<leader>gs", false },
+      { "<leader>gc", false },
+    },
+    -- config = function()
+    --   require("telescope").load_extension("notify")
+    -- end,
+  },
+}

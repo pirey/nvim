@@ -9,3 +9,6 @@ vim.keymap.set({ "n", "v" }, "J", "15gj")
 vim.keymap.set({ "n", "v" }, "K", "15gk")
 
 vim.keymap.set("v", "<c-c>", '"*y')
+
+vim.keymap.del("n", "<leader>gg")
+vim.keymap.del("n", "<leader>gG")
