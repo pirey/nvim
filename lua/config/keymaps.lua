@@ -16,9 +16,6 @@ vim.keymap.set("n", "gp", "`[v`]") -- select last pasted text
 vim.keymap.set("n", "yp", "yyp")
 vim.keymap.set("n", "yP", "yyP")
 
-vim.keymap.del("n", "<leader>gg")
-vim.keymap.del("n", "<leader>gG")
-
 -- window
 vim.keymap.set("n", "<Up>", "5<c-w>+", { silent = true })
 vim.keymap.set("n", "<Right>", "5<c-w>>", { silent = true })
