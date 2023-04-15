@@ -3,12 +3,24 @@
 -- Add any additional keymaps here
 
 vim.keymap.set({ "n", "v" }, ";", ":")
+
+-- movements
 vim.keymap.set({ "n", "v" }, "E", "20l")
 vim.keymap.set({ "n", "v" }, "B", "20h")
 vim.keymap.set({ "n", "v" }, "J", "15gj")
 vim.keymap.set({ "n", "v" }, "K", "15gk")
 
+-- clipboard / copy paste
 vim.keymap.set("v", "<c-c>", '"*y')
+vim.keymap.set("n", "gp", "`[v`]") -- select last pasted text
+vim.keymap.set("n", "yp", "yyp")
+vim.keymap.set("n", "yP", "yyP")
 
 vim.keymap.del("n", "<leader>gg")
 vim.keymap.del("n", "<leader>gG")
+
+-- window
+vim.keymap.set("n", "<Up>", "5<c-w>+", { silent = true })
+vim.keymap.set("n", "<Right>", "5<c-w>>", { silent = true })
+vim.keymap.set("n", "<Down>", "5<c-w>-", { silent = true })
+vim.keymap.set("n", "<Left>", "5<c-w><", { silent = true })
