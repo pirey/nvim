@@ -21,3 +21,5 @@ vim.keymap.set("n", "<Up>", "5<c-w>+", { silent = true })
 vim.keymap.set("n", "<Right>", "5<c-w>>", { silent = true })
 vim.keymap.set("n", "<Down>", "5<c-w>-", { silent = true })
 vim.keymap.set("n", "<Left>", "5<c-w><", { silent = true })
+
+vim.keymap.set("v", "$", "$h")
