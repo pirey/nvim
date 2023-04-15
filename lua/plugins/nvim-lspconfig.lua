@@ -10,5 +10,8 @@ return {
       -- add a keymap
       keys[#keys + 1] = { "<c-k>", vim.lsp.buf.hover }
     end,
+    opts = {
+      autoformat = false,
+    },
   },
 }
