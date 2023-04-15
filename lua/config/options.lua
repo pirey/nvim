@@ -16,3 +16,5 @@ if vim.fn.has("wsl") then
     cache_enable = 0,
   }
 end
+
+vim.o.splitright = true
