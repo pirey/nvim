@@ -22,3 +22,8 @@ vim.o.splitright = true
 if vim.fn.has("nvim") and vim.fn.executable("nvr") == 1 then
   vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
 end
+
+if vim.fn.has('gui_running') == 1 then
+  -- vim.api.nvim_win_set_option(0, "guifont", "JetBrainsMono Nerd Font Mono:10")
+  vim.o.guifont = "JetBrainsMono Nerd Font Mono:10"
+end

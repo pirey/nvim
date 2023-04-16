@@ -4,6 +4,7 @@ return {
     keys = {
       { "<leader>gs", false },
       { "<leader>gc", false },
+      { "<leader>gS", "<cmd>Telescope git_status<cr>", desc = "Git status with preview" },
     },
     opts = {
       defaults = {
