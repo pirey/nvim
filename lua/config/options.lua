@@ -23,7 +23,13 @@ if vim.fn.has("nvim") and vim.fn.executable("nvr") == 1 then
   vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
 end
 
-if vim.fn.has('gui_running') == 1 then
+if vim.fn.has("gui_running") == 1 then
+  vim.g.GuiWindowFullScreen = 1
+  vim.g.GuiFont = "JetBrainsMono NF:10"
   -- vim.api.nvim_win_set_option(0, "guifont", "JetBrainsMono Nerd Font Mono:10")
-  vim.o.guifont = "JetBrainsMono Nerd Font Mono:10"
+  -- vim.o.guifont = "JetBrainsMono NF:10"
+end
+
+if vim.fn.has("win64") or vim.fn.has("win32") then
+  vim.o.shell = "powershell.exe"
 end
