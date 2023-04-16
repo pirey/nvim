@@ -1,12 +1,16 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    config = function()
-      require("telescope").load_extension("notify")
-    end,
     keys = {
       { "<leader>gs", false },
       { "<leader>gc", false },
+    },
+    opts = {
+      defaults = {
+        layout_config = { prompt_position = "top" },
+        sorting_strategy = "ascending",
+        winblend = 0,
+      },
     },
   },
 }
