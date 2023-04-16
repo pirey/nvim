@@ -18,6 +18,7 @@ vim.keymap.set("n", "gp", "`[v`]", { desc = "Select last pasted text" })
 vim.keymap.set("n", "yp", "yyp")
 vim.keymap.set("n", "yP", "yyP")
 vim.keymap.set("i", "<c-v>", "<c-r>+", { desc = "Paste properly" })
+vim.api.nvim_set_keymap("c", "<c-v>", "<c-r>+", { desc = "Paste" })
 
 -- window
 vim.keymap.set("n", "<Up>", "5<c-w>+", { silent = true })
