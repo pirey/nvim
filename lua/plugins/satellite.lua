@@ -1,6 +1,8 @@
+-- cool feature but slow, disable it for now
 return {
   {
     "lewis6991/satellite.nvim",
-    config = true
+    enabled = false,
+    config = true,
   }
 }

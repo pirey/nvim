@@ -33,3 +33,5 @@ end
 if vim.fn.has("win64") or vim.fn.has("win32") then
   vim.o.shell = "powershell.exe"
 end
+
+vim.o.clipboard = "unnamed"
