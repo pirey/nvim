@@ -50,5 +50,5 @@
   "vim-repeat": { "branch": "master", "commit": "24afe922e6a05891756ecf331f39a1f6743d3d5a" },
   "vim-startuptime": { "branch": "master", "commit": "c9da356b59eb30dfca6cd573b63d0e81c0a24ff9" },
   "vim-wakatime": { "branch": "master", "commit": "515dbcc2278a9279a19de838fa29fc5078e34e56" },
-  "which-key.nvim": { "branch": "main", "commit": "7daa8ca2a5acf11731c40c624635d501dd708933" }
+  "which-key.nvim": { "branch": "main", "commit": "8d5ab76836d89be1c761a4ed61bf700d98c71e5d" }
 }

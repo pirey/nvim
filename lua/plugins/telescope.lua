@@ -1,5 +1,10 @@
 local Util = require("lazyvim.util")
 
+local function get_filename_from_path(path)
+    local tail = string.match(path, "[^/]+$")
+    return tail
+end
+
 return {
   {
     "nvim-telescope/telescope.nvim",
@@ -19,8 +24,17 @@ return {
         layout_config = { prompt_position = "top" },
         sorting_strategy = "ascending",
         winblend = 0,
-        path_display = { "truncate" },
+        -- path_display = { "truncate" },
+        path_display = function(_, path)
+          local tail = get_filename_from_path(path)
+          return string.format("%s (%s)", tail, path)
+        end,
       },
+      pickers = {
+        lsp_references = {
+          show_line = false,
+        }
+      }
     },
   },
 }
