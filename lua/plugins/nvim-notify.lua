@@ -1,8 +1,9 @@
 return {
-  -- {
-  --   "rcarriga/nvim-notify",
-  --   config = function()
-  --     require("telescope").load_extension("notify")
-  --   end,
-  -- },
+  {
+    "rcarriga/nvim-notify",
+    opts = {
+      max_width = 80,
+      stages = "fade",
+    },
+  },
 }
