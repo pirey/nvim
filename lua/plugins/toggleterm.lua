@@ -14,13 +14,13 @@ if vim.fn.has("win64") or vim.fn.has("win32") then
 end
 
 local function is_lazygit_term(bufname)
-  local pattern = "(?i)lazygit%.exe$"
+  local pattern = "lazygit.EXE"
   return string.match(bufname, pattern)
 end
 
 function _G.set_terminal_keymaps()
   local opts = { buffer = 0 }
-  if not is_lazygit_term(vim.fn.bufname()) then
+  if is_lazygit_term(vim.fn.bufname()) then
     return
   end
 
