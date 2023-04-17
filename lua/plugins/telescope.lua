@@ -1,8 +1,24 @@
 local Util = require("lazyvim.util")
+local actions = require("telescope.actions")
+
+-- borrow from telescope.utils.path_tail
+local function path_tail(path, sep)
+  for i = #path, 1, -1 do
+    if path:sub(i, i) == sep then
+      return path:sub(i + 1, -1)
+    end
+  end
+  return path
+end
 
 local function get_filename_from_path(path)
-    local tail = string.match(path, "[^/]+$")
-    return tail
+  local unix_sep = "/"
+  local windows_sep = "\\"
+  local tail = path_tail(path, unix_sep)
+  if tail == path then
+    return path_tail(path, windows_sep)
+  end
+  return tail
 end
 
 return {
@@ -29,12 +45,19 @@ return {
           local tail = get_filename_from_path(path)
           return string.format("%s (%s)", tail, path)
         end,
+        mappings = {
+          i = {
+            ["<esc>"] = actions.close,
+          },
+        },
       },
       pickers = {
         lsp_references = {
+          fname_width = 100,
           show_line = false,
-        }
-      }
+          trim_text = true,
+        },
+      },
     },
   },
 }
