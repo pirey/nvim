@@ -13,8 +13,17 @@ if vim.fn.has("win64") or vim.fn.has("win32") then
   end
 end
 
+local function is_lazygit_term(bufname)
+  local pattern = "(?i)lazygit%.exe$"
+  return string.match(bufname, pattern)
+end
+
 function _G.set_terminal_keymaps()
   local opts = { buffer = 0 }
+  if not is_lazygit_term(vim.fn.bufname()) then
+    return
+  end
+
   vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
   -- vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
   -- vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
