@@ -1,5 +1,6 @@
 local Util = require("lazyvim.util")
 local actions = require("telescope.actions")
+local trouble = require("trouble.providers.telescope")
 
 -- borrow from telescope.utils.path_tail
 local function path_tail(path, sep)
@@ -48,6 +49,7 @@ return {
         mappings = {
           i = {
             ["<esc>"] = actions.close,
+            ["<c-t>"] = trouble.smart_open_with_trouble,
           },
         },
       },
