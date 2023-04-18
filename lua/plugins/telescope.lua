@@ -55,7 +55,6 @@ return {
       },
       pickers = {
         lsp_references = {
-          include_declaration = false,
           fname_width = 100,
           show_line = false,
           trim_text = true,
