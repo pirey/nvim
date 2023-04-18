@@ -3,34 +3,43 @@ local actions = require("telescope.actions")
 local trouble = require("trouble.providers.telescope")
 local transform_mod = require("telescope.actions.mt").transform_mod
 
--- borrowed from telescope.utils.path_tail
-local function path_tail(path, sep)
-  for i = #path, 1, -1 do
-    if path:sub(i, i) == sep then
-      return path:sub(i + 1, -1)
-    end
-  end
-  return path
-end
-
--- the results for find_files and oldfiles have different file separator
--- need to check for both separator to properly get the filename
-local function get_filename_from_path(path)
-  local unix_sep = "/"
-  local windows_sep = "\\"
-  local tail = path_tail(path, unix_sep)
-  if tail == path then
-    return path_tail(path, windows_sep)
-  end
-  return tail
-end
-
 local custom_actions = transform_mod({
   open_and_resume = function(prompt_bufnr)
     actions.select_default(prompt_bufnr)
     require("telescope.builtin").resume()
-  end
+  end,
 })
+
+local function normalize_path(path)
+  return path:gsub('\\', '/')
+end
+
+local function normalize_cwd()
+  return normalize_path(vim.loop.cwd()) .. '/'
+end
+
+local function is_subdirectory(cwd, path)
+  return string.lower(path:sub(1, #cwd)) == string.lower(cwd)
+end
+
+--@param path string
+--@return string, string
+local function split_filepath(path)
+  local normalized_path = normalize_path(path)
+  local normalized_cwd = normalize_cwd()
+  local filename = normalized_path:match('[^/]+$')
+  if is_subdirectory(normalized_cwd, normalized_path) then
+    local stripped_path = normalized_path:sub(#normalized_cwd + 1, -(#filename + 1))
+    return stripped_path, filename
+  else
+    return normalized_path, filename
+  end
+end
+
+local function path_display(_, path)
+  local without_cwd, fname = split_filepath(path)
+  return string.format("%s (%s)", fname, without_cwd)
+end
 
 return {
   {
@@ -52,16 +61,13 @@ return {
         sorting_strategy = "ascending",
         winblend = 0,
         -- path_display = { "truncate" },
-        path_display = function(_, path)
-          local tail = get_filename_from_path(path)
-          return string.format("%s (%s)", tail, path)
-        end,
+        path_display = path_display,
         mappings = {
           i = {
             ["<c-c>"] = false,
             ["<esc>"] = actions.close,
             ["<c-t>"] = trouble.smart_open_with_trouble,
-            ["<c-l>"] = custom_actions.open_and_resume,
+            ["<Right>"] = custom_actions.open_and_resume,
           },
         },
       },
