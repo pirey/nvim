@@ -17,7 +17,6 @@ if vim.fn.has("wsl") then
   }
 end
 
-
 if vim.fn.has("nvim") and vim.fn.executable("nvr") == 1 then
   vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
 end
@@ -35,4 +34,6 @@ end
 
 vim.o.clipboard = "" -- separate system clipboard and vim clipboard
 vim.o.splitright = true
-vim.cmd("set formatoptions-=cro") -- disable auto comment, usefull when pasting code snippet that has comments
+-- vim.cmd("set formatoptions-=cro") -- disable auto comment, usefull when pasting code snippet that has comments
+-- vim.opt.formatoptions = vim.o.formatoptions - {"c","r","o"}
+vim.opt.formatoptions:remove({ "c", "r", "o" })
