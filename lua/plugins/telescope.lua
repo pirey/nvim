@@ -48,6 +48,7 @@ return {
         end,
         mappings = {
           i = {
+            ["<c-c>"] = false,
             ["<esc>"] = actions.close,
             ["<c-t>"] = trouble.smart_open_with_trouble,
           },
