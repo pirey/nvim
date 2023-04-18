@@ -61,7 +61,7 @@ return {
             ["<c-c>"] = false,
             ["<esc>"] = actions.close,
             ["<c-t>"] = trouble.smart_open_with_trouble,
-            ["<Right>"] = custom_actions.open_and_resume,
+            ["<c-l>"] = custom_actions.open_and_resume,
           },
         },
       },
