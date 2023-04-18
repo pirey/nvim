@@ -1,8 +1,9 @@
 local Util = require("lazyvim.util")
 local actions = require("telescope.actions")
 local trouble = require("trouble.providers.telescope")
+local transform_mod = require("telescope.actions.mt").transform_mod
 
--- borrow from telescope.utils.path_tail
+-- borrowed from telescope.utils.path_tail
 local function path_tail(path, sep)
   for i = #path, 1, -1 do
     if path:sub(i, i) == sep then
@@ -12,6 +13,8 @@ local function path_tail(path, sep)
   return path
 end
 
+-- the results for find_files and oldfiles have different file separator
+-- need to check for both separator to properly get the filename
 local function get_filename_from_path(path)
   local unix_sep = "/"
   local windows_sep = "\\"
@@ -21,6 +24,13 @@ local function get_filename_from_path(path)
   end
   return tail
 end
+
+local custom_actions = transform_mod({
+  open_and_resume = function(prompt_bufnr)
+    actions.select_default(prompt_bufnr)
+    require("telescope.builtin").resume()
+  end
+})
 
 return {
   {
@@ -51,6 +61,7 @@ return {
             ["<c-c>"] = false,
             ["<esc>"] = actions.close,
             ["<c-t>"] = trouble.smart_open_with_trouble,
+            ["<Right>"] = custom_actions.open_and_resume,
           },
         },
       },
