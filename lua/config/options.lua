@@ -33,6 +33,6 @@ if vim.fn.has("win64") or vim.fn.has("win32") then
   vim.o.shell = "powershell.exe"
 end
 
-vim.o.clipboard = "unnamed"
+vim.o.clipboard = "" -- separate system clipboard and vim clipboard
 vim.o.splitright = true
 vim.cmd("set formatoptions-=cro") -- disable auto comment, usefull when pasting code snippet that has comments
