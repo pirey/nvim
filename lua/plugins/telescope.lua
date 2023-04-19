@@ -28,17 +28,22 @@ local function split_filepath(path)
   local normalized_path = normalize_path(path)
   local normalized_cwd = normalize_cwd()
   local filename = normalized_path:match("[^/]+$")
+
   if is_subdirectory(normalized_cwd, normalized_path) then
     local stripped_path = normalized_path:sub(#normalized_cwd + 1, -(#filename + 1))
     return stripped_path, filename
   else
-    return normalized_path, filename
+    local stripped_path = normalized_path:sub(1, -(#filename + 1))
+    return stripped_path, filename
   end
 end
 
 local function path_display(_, path)
-  local without_cwd, fname = split_filepath(path)
-  return string.format("%s (%s)", fname, without_cwd)
+  local stripped_path, filename = split_filepath(path)
+  if filename == stripped_path or stripped_path == "" then
+    return filename
+  end
+  return string.format("%s ~ %s", filename, stripped_path)
 end
 
 return {
