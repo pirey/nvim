@@ -11,11 +11,11 @@ local custom_actions = transform_mod({
 })
 
 local function normalize_path(path)
-  return path:gsub('\\', '/')
+  return path:gsub("\\", "/")
 end
 
 local function normalize_cwd()
-  return normalize_path(vim.loop.cwd()) .. '/'
+  return normalize_path(vim.loop.cwd()) .. "/"
 end
 
 local function is_subdirectory(cwd, path)
@@ -27,7 +27,7 @@ end
 local function split_filepath(path)
   local normalized_path = normalize_path(path)
   local normalized_cwd = normalize_cwd()
-  local filename = normalized_path:match('[^/]+$')
+  local filename = normalized_path:match("[^/]+$")
   if is_subdirectory(normalized_cwd, normalized_path) then
     local stripped_path = normalized_path:sub(#normalized_cwd + 1, -(#filename + 1))
     return stripped_path, filename
@@ -50,10 +50,12 @@ return {
       { "<leader>gc", false },
       { "<leader>gS", "<cmd>Telescope git_status<cr>", desc = "Git status with preview" },
 
-      -- find
+      -- files
       { "<leader><space>", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
       { "<leader>ff", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
       { "<leader>fF", Util.telescope("files"), desc = "Find Files (root dir)" },
+      { "<leader>fr", Util.telescope("oldfiles", { cwd_only = true }), desc = "Recent project files" },
+      { "<leader>fR", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
     },
     opts = {
       defaults = {
