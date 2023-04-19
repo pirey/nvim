@@ -22,7 +22,13 @@ return {
   {
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
-    config = true,
+    opts = {
+      file_panel = {
+        win_config = {
+          position = "right"
+        }
+      }
+    },
     keys = {
       { "<leader>gdd", "<cmd>DiffviewOpen<cr>", desc = "Git diff" },
       { "<leader>gdf", "<cmd>DiffviewFileHistory %<cr>", desc = "Git file history" },
