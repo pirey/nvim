@@ -43,5 +43,3 @@ local function close_other_buffers()
 end
 
 vim.keymap.set("n", "<leader>bo", close_other_buffers, { desc = "Close other buffers" })
-
-vim.keymap.set("i", "<c-v>", "<c-o><cmd>set paste<cr>i<c-r>+<esc><cmd>set nopaste<cr>i", { desc = "Paste properly" })

@@ -18,13 +18,16 @@ return {
     },
   },
 
-  -- TODO: explore this
-  -- better diffing
+  -- View git diff, file history, log
   {
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
     config = true,
-    keys = { { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "DiffView" } },
+    keys = {
+      { "<leader>gdd", "<cmd>DiffviewOpen<cr>", desc = "Git diff" },
+      { "<leader>gdf", "<cmd>DiffviewFileHistory %<cr>", desc = "Git file history" },
+      { "<leader>gdl", "<cmd>DiffviewFileHistory<cr>", desc = "Git log history" },
+    },
   },
 
   -- {

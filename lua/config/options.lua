@@ -32,6 +32,9 @@ if vim.fn.has("win64") or vim.fn.has("win32") then
   vim.o.shell = "powershell.exe"
 end
 
-vim.o.clipboard = "" -- separate system clipboard and vim clipboard
 vim.o.splitright = true
+vim.o.clipboard = "" -- separate system clipboard and vim clipboard
 vim.opt.formatoptions:remove({ "c", "r", "o" })
+
+-- clean diff
+vim.opt.fillchars:append({ diff = " " })
