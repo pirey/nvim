@@ -2,7 +2,7 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
-if vim.fn.has("wsl") then
+if vim.fn.has("wsl") == 1 then
   vim.g.clipboard = {
     name = "WslClipboard",
     copy = {
@@ -17,7 +17,7 @@ if vim.fn.has("wsl") then
   }
 end
 
-if vim.fn.has("nvim") and vim.fn.executable("nvr") == 1 then
+if vim.fn.has("nvim") == 1 and vim.fn.executable("nvr") == 1 then
   vim.env.GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
 end
 
@@ -28,7 +28,7 @@ if vim.fn.has("gui_running") == 1 then
   -- vim.o.guifont = "JetBrainsMono NF:10"
 end
 
-if vim.fn.has("win64") or vim.fn.has("win32") then
+if vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 then
   vim.o.shell = "powershell.exe"
 end
 
