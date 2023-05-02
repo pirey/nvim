@@ -69,6 +69,7 @@ return {
         winblend = 0,
         -- path_display = { "truncate" },
         path_display = path_display,
+        preview = false,
         mappings = {
           i = {
             ["<c-c>"] = false,
