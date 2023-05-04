@@ -26,6 +26,10 @@ return {
     opts = {
       window = {
         position = "right",
+        mappings = {
+          ["l"] = "open",
+          ["h"] = "close_node",
+        }
       },
     },
   },
