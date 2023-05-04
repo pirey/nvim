@@ -43,3 +43,4 @@ local function close_other_buffers()
 end
 
 vim.keymap.set("n", "<leader>bo", close_other_buffers, { desc = "Close other buffers" })
+vim.keymap.set("i", "<c-t>", '<c-r>=strftime("%FT%T%z")<cr>')
