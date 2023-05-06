@@ -14,7 +14,7 @@ if vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 then
 end
 
 local function is_lazygit_term(bufname)
-  local pattern = "lazygit.EXE"
+  local pattern = "lazygit"
   return string.match(bufname, pattern)
 end
 
