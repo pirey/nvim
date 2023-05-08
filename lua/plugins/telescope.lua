@@ -53,7 +53,6 @@ return {
       -- git
       { "<leader>gs", false },
       { "<leader>gc", false },
-      { "<leader>gS", "<cmd>Telescope git_status<cr>", desc = "Git status with preview" },
 
       -- files
       { "<leader><space>", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
