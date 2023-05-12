@@ -13,7 +13,7 @@ vim.keymap.set({ "n", "v" }, "J", "15gj")
 vim.keymap.set({ "n", "v" }, "K", "15gk")
 
 -- clipboard / copy paste
-vim.keymap.set("v", "<c-c>", '"*y')
+vim.keymap.set("v", "<c-c>", '"+y')
 vim.keymap.set("n", "gp", "`[v`]", { desc = "Select last pasted text" })
 vim.keymap.set("n", "yp", "yyp")
 vim.keymap.set("n", "yP", "yyP")
