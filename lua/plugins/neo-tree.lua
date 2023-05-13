@@ -24,6 +24,11 @@ return {
       { "<leader>E", openRoot, desc = "Explorer NeoTree (cwd)" },
     },
     opts = {
+      filesystem = {
+        filtered_items = {
+          hide_dotfiles = false,
+        },
+      },
       window = {
         position = "right",
         mappings = {
