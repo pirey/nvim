@@ -81,6 +81,7 @@ return {
             ["<c-p>"] = actions_layout.toggle_preview,
             ["<c-t>"] = trouble.smart_open_with_trouble,
             ["<c-l>"] = custom_actions.open_and_resume,
+            ["<c-x>"] = actions.delete_buffer,
           },
         },
       },
