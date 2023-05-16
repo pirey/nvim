@@ -42,7 +42,7 @@ return {
     version = "*",
     config = true,
     keys = {
-      { "<leader>t", "<cmd>ToggleTerm<cr>", desc = "Open terminal" },
+      { "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Open terminal" },
     },
   },
 }
