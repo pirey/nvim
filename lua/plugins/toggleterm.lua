@@ -18,13 +18,15 @@ local function is_lazygit_term(bufname)
   return string.match(bufname, pattern)
 end
 
-function _G.set_terminal_keymaps()
+function _G.handle_term_open()
   local opts = { buffer = 0 }
   if is_lazygit_term(vim.fn.bufname()) then
     return
   end
 
   vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
+  vim.opt_local.number = false
+  vim.opt_local.relativenumber = false
   -- vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
   -- vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
   -- vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
@@ -34,7 +36,7 @@ function _G.set_terminal_keymaps()
 end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
-vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+vim.cmd("autocmd! TermOpen term://* lua handle_term_open()")
 
 return {
   {
