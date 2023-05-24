@@ -12,6 +12,27 @@ return {
     end,
     opts = {
       autoformat = false,
+      setup = {
+        tsserver = function(_, opts)
+          local util = require("lspconfig.util")
+
+          require("lazyvim.util").on_attach(function(client, buffer)
+            if client.name == "tsserver" then
+              -- stylua: ignore
+              vim.keymap.set("n", "<leader>co", "<cmd>TypescriptOrganizeImports<CR>", { buffer = buffer, desc = "Organize Imports" })
+              -- stylua: ignore
+              vim.keymap.set("n", "<leader>cR", "<cmd>TypescriptRenameFile<CR>", { desc = "Rename File", buffer = buffer })
+            end
+          end)
+
+          require("lspconfig").tsserver.setup({
+            root_dir = function(fname)
+              return util.root_pattern(".git")(fname)
+            end,
+          })
+          return true
+        end,
+      },
     },
   },
 }
