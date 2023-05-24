@@ -30,6 +30,7 @@ end
 
 if vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 then
   vim.o.shell = "powershell.exe"
+  vim.o.laststatus = 3
 end
 
 vim.o.splitright = true
