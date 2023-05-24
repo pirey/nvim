@@ -25,11 +25,12 @@ return {
             end
           end)
 
-          require("lspconfig").tsserver.setup({
-            root_dir = function(fname)
-              return util.root_pattern(".git")(fname)
-            end,
-          })
+          opts.root_dir = function(fname)
+            return util.root_pattern(".git")(fname)
+          end
+
+          -- require("lspconfig").tsserver.setup({
+          require("typescript").setup(opts)
           return true
         end,
       },
