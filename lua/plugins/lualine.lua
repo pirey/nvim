@@ -33,7 +33,7 @@ local conditions = {
 }
 
 function custom_fname:init(options)
-  local default_status_colors = { saved = colors.fg, modified = colors.yellow }
+  local default_status_colors = { saved = colors.fg, modified = colors.green }
   custom_fname.super.init(self, options)
   self.options.path = 1
   self.options.cond = conditions.buffer_not_empty
@@ -44,7 +44,8 @@ function custom_fname:init(options)
       self.options
     ),
     modified = highlight.create_component_highlight_group(
-      { fg = default_status_colors.modified },
+      { fg = colors.bg, bg = default_status_colors.modified },
+
       "filename_status_modified",
       self.options
     ),
@@ -125,7 +126,7 @@ ins_left({
     -- auto change color according to neovims mode
     local mode_color = {
       n = colors.fg_dark,
-      i = colors.yellow,
+      i = colors.green,
       v = colors.blue,
       -- [''] = colors.blue,
       V = colors.blue,
