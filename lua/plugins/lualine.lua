@@ -15,7 +15,7 @@
 -- Credit: glepnir
 local lualine = require("lualine")
 local colors = require("tokyonight.colors").moon()
-local custom_fname = require("lualine.components.filename"):extend()
+local custom_filename = require("lualine.components.filename"):extend()
 local highlight = require("lualine.highlight")
 
 local conditions = {
@@ -32,20 +32,18 @@ local conditions = {
   end,
 }
 
-function custom_fname:init(options)
-  local default_status_colors = { saved = colors.fg, modified = colors.green }
-  custom_fname.super.init(self, options)
+function custom_filename:init(options)
+  custom_filename.super.init(self, options)
   self.options.path = 1
   self.options.cond = conditions.buffer_not_empty
   self.status_colors = {
     saved = highlight.create_component_highlight_group(
-      { fg = default_status_colors.saved },
+      { fg = colors.fg, gui = "bold" },
       "filename_status_saved",
       self.options
     ),
     modified = highlight.create_component_highlight_group(
-      { fg = colors.bg, bg = default_status_colors.modified },
-
+      { fg = colors.bg, bg = colors.green, gui = "bold" },
       "filename_status_modified",
       self.options
     ),
@@ -55,8 +53,8 @@ function custom_fname:init(options)
   end
 end
 
-function custom_fname:update_status()
-  local data = custom_fname.super.update_status(self)
+function custom_filename:update_status()
+  local data = custom_filename.super.update_status(self)
   data = highlight.component_format_highlight(
     vim.bo.modified and self.status_colors.modified or self.status_colors.saved
   ) .. data
@@ -116,42 +114,42 @@ end
 --   padding = { left = 0, right = 1 }, -- We don't need space before this
 -- }
 
-ins_left({
-  -- mode component
-  function()
-    -- return ''
-    -- return "▊ "
-    -- return " ■ "
-    return "██"
-  end,
-  color = function()
-    -- auto change color according to neovims mode
-    local mode_color = {
-      n = colors.fg_dark,
-      i = colors.green,
-      v = colors.blue,
-      -- [''] = colors.blue,
-      V = colors.blue,
-      c = colors.magenta,
-      no = colors.red,
-      s = colors.orange,
-      S = colors.orange,
-      [""] = colors.orange,
-      ic = colors.yellow,
-      R = colors.violet,
-      Rv = colors.violet,
-      cv = colors.red,
-      ce = colors.red,
-      r = colors.cyan,
-      rm = colors.cyan,
-      ["r?"] = colors.cyan,
-      ["!"] = colors.red,
-      t = colors.red,
-    }
-    return { fg = mode_color[vim.fn.mode()] }
-  end,
-  padding = { right = 1 },
-})
+-- ins_left({
+--   -- mode component
+--   function()
+--     -- return ''
+--     -- return "▊ "
+--     -- return " ■ "
+--     return "█"
+--   end,
+--   color = function()
+--     -- auto change color according to neovims mode
+--     local mode_color = {
+--       n = colors.fg_dark,
+--       i = colors.green,
+--       v = colors.blue,
+--       -- [''] = colors.blue,
+--       V = colors.blue,
+--       c = colors.magenta,
+--       no = colors.red,
+--       s = colors.orange,
+--       S = colors.orange,
+--       [""] = colors.orange,
+--       ic = colors.yellow,
+--       R = colors.violet,
+--       Rv = colors.violet,
+--       cv = colors.red,
+--       ce = colors.red,
+--       r = colors.cyan,
+--       rm = colors.cyan,
+--       ["r?"] = colors.cyan,
+--       ["!"] = colors.red,
+--       t = colors.red,
+--     }
+--     return { fg = mode_color[vim.fn.mode()] }
+--   end,
+--   padding = { right = 1 },
+-- })
 
 -- ins_left {
 --   -- filesize component
@@ -181,10 +179,6 @@ ins_left({
 --   color = { fg = colors.cyan, gui = 'bold' },
 -- }
 
-ins_left({ "location", color = { fg = colors.fg_dark } })
-
-ins_left({ "progress", color = { fg = colors.fg_dark, gui = "bold" } })
-
 ins_left({
   "diagnostics",
   sources = { "nvim_diagnostic" },
@@ -202,7 +196,7 @@ ins_left({
 --   cond = conditions.buffer_not_empty,
 --   color = { fg = colors.fg, gui = "bold" },
 -- })
-ins_left(custom_fname)
+ins_left(custom_filename)
 
 ins_left({
   function()
@@ -255,6 +249,16 @@ ins_right({
   cond = conditions.hide_in_width,
 })
 
+ins_right({
+  "location",
+  color = { fg = colors.fg_dark, bg = colors.bg_highlight },
+})
+
+ins_right({
+  "progress",
+  color = { fg = colors.fg_dark, bg = colors.bg_highlight },
+})
+
 -- ins_right {
 --   function()
 --     return '▊'
@@ -264,7 +268,7 @@ ins_right({
 -- }
 
 -- Now don't forget to initialize lualine
-lualine.setup(config)
+-- lualine.setup(config)
 return {
   {
     "nvim-lualine/lualine.nvim",
