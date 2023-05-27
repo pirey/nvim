@@ -252,11 +252,13 @@ ins_right({
 ins_right({
   "location",
   color = { fg = colors.fg_dark, bg = colors.bg_highlight },
+  cond = conditions.buffer_not_empty,
 })
 
 ins_right({
   "progress",
   color = { fg = colors.fg_dark, bg = colors.bg_highlight },
+  cond = conditions.buffer_not_empty,
 })
 
 -- ins_right {
@@ -268,7 +270,7 @@ ins_right({
 -- }
 
 -- Now don't forget to initialize lualine
--- lualine.setup(config)
+lualine.setup(config)
 return {
   {
     "nvim-lualine/lualine.nvim",
