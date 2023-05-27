@@ -71,7 +71,7 @@ local config = {
       -- We are going to use lualine_c an lualine_x as left and
       -- right section. Both are highlighted by c theme .  So we
       -- are just setting default looks o statusline
-      normal = { c = { fg = colors.fg, bg = colors.bg } },
+      normal = { c = { fg = colors.fg, bg = colors.bg_dark } },
       inactive = { c = { fg = colors.fg, bg = colors.bg } },
     },
   },
@@ -232,9 +232,15 @@ ins_left({
 -- }
 
 ins_right({
-  "branch",
-  icon = "",
-  color = { fg = colors.fg, gui = "bold" },
+  "location",
+  color = { fg = colors.fg_dark, bg = colors.bg_dark },
+  cond = conditions.buffer_not_empty,
+})
+
+ins_right({
+  "progress",
+  color = { fg = colors.fg_dark, bg = colors.bg_dark },
+  cond = conditions.buffer_not_empty,
 })
 
 ins_right({
@@ -250,15 +256,9 @@ ins_right({
 })
 
 ins_right({
-  "location",
-  color = { fg = colors.fg_dark, bg = colors.bg_highlight },
-  cond = conditions.buffer_not_empty,
-})
-
-ins_right({
-  "progress",
-  color = { fg = colors.fg_dark, bg = colors.bg_highlight },
-  cond = conditions.buffer_not_empty,
+  "branch",
+  icon = "",
+  color = { fg = colors.fg, gui = "bold" },
 })
 
 -- ins_right {
