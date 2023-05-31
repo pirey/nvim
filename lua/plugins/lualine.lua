@@ -106,24 +106,6 @@ local function ins_right(component)
   table.insert(config.sections.lualine_x, component)
 end
 
-ins_left({
-  "branch",
-  icon = "",
-  color = { fg = colors.fg, gui = "bold" },
-})
-
-ins_left({
-  "diff",
-  -- Is it me or the symbol for modified us really weird
-  symbols = { added = " ", modified = "󰝤 ", removed = " " },
-  diff_color = {
-    added = { fg = colors.green },
-    modified = { fg = colors.orange },
-    removed = { fg = colors.red },
-  },
-  cond = conditions.hide_in_width,
-})
-
 -- ins_left {
 --   function()
 --     return '▊'
@@ -197,6 +179,17 @@ ins_left({
 --   color = { fg = colors.cyan, gui = 'bold' },
 -- }
 
+ins_left({
+  "diagnostics",
+  sources = { "nvim_diagnostic" },
+  symbols = { error = " ", warn = " ", info = " " },
+  diagnostics_color = {
+    color_error = { fg = colors.red },
+    color_warn = { fg = colors.yellow },
+    color_info = { fg = colors.cyan },
+  },
+})
+
 -- ins_left({
 --   "filename",
 --   path = 1,
@@ -239,17 +232,6 @@ ins_left({
 -- }
 
 ins_right({
-  "diagnostics",
-  sources = { "nvim_diagnostic" },
-  symbols = { error = " ", warn = " ", info = " " },
-  diagnostics_color = {
-    color_error = { fg = colors.red },
-    color_warn = { fg = colors.yellow },
-    color_info = { fg = colors.cyan },
-  },
-})
-
-ins_right({
   "location",
   color = { fg = colors.fg_dark, bg = colors.bg_dark },
   cond = conditions.buffer_not_empty,
@@ -259,6 +241,24 @@ ins_right({
   "progress",
   color = { fg = colors.fg_dark, bg = colors.bg_dark },
   cond = conditions.buffer_not_empty,
+})
+
+ins_right({
+  "diff",
+  -- Is it me or the symbol for modified us really weird
+  symbols = { added = " ", modified = "󰝤 ", removed = " " },
+  diff_color = {
+    added = { fg = colors.green },
+    modified = { fg = colors.orange },
+    removed = { fg = colors.red },
+  },
+  cond = conditions.hide_in_width,
+})
+
+ins_right({
+  "branch",
+  icon = "",
+  color = { fg = colors.fg, gui = "bold" },
 })
 
 -- ins_right {
