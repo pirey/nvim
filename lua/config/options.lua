@@ -39,5 +39,3 @@ vim.opt.formatoptions:remove({ "c", "r", "o" })
 
 -- clean diff
 vim.opt.fillchars:append({ diff = " " })
-vim.opt.foldmethod = "indent"
-vim.opt.foldlevel = 10
