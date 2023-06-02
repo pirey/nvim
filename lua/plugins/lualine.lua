@@ -232,6 +232,16 @@ ins_left({
 -- }
 
 ins_right({
+  "searchcount",
+  color = { fg = colors.fg_dark, bg = colors.bg_dark },
+})
+
+ins_right({
+  "selectioncount",
+  color = { fg = colors.bg_dark, bg = colors.blue },
+})
+
+ins_right({
   "location",
   color = { fg = colors.fg_dark, bg = colors.bg_dark },
   cond = conditions.buffer_not_empty,
