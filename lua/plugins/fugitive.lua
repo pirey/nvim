@@ -8,7 +8,7 @@ function _G._handle_git()
   vim.cmd("setlocal foldlevel=0")
   -- vim.o.foldmethod = "syntax"
   -- vim.o.foldlevel = 0
-  vim.keymap.set("n", "zz", function ()
+  vim.keymap.set("n", "zz", function()
     -- vim.o.foldmethod = "syntax"
     -- vim.o.foldlevel = 0
     vim.cmd("setlocal foldmethod=syntax")
@@ -19,5 +19,8 @@ end
 return {
   {
     "tpope/vim-fugitive",
+    keys = {
+      { "<leader>G", "<cmd>Git<cr>", desc = "Open fugitive" },
+    },
   },
 }
