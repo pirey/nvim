@@ -62,7 +62,15 @@ return {
       { "<leader>gc", false },
       { "<leader>gL", "<cmd>Telescope git_commits<CR>", desc = "commits" },
       { "<leader>gS", "<cmd>Telescope git_status<CR>", desc = "status" },
-      { "<leader>gb", Util.telescope("git_branches"), desc = "Open git branches" },
+      {
+        "<leader>gb",
+        Util.telescope("git_branches", {
+          show_remote_tracking_branches = false,
+        }),
+        desc = "Open git branches",
+      },
+      { "<leader>gB", Util.telescope("git_branches"), desc = "Open git branches with remotes" },
+      -- { "<leader>gB", Util.telescope("git_branches", {show_remote_tracking_branches = true} }), desc = "Open git branches" },
 
       -- files
       { "<leader><space>", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
