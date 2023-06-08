@@ -232,6 +232,10 @@ ins_left({
 -- }
 
 ins_right({
+  "filetype",
+})
+
+ins_right({
   "searchcount",
   color = { fg = colors.fg_dark, bg = colors.bg_dark },
 })

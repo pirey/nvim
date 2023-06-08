@@ -40,6 +40,11 @@ vim.opt.formatoptions:remove({ "c", "r", "o" })
 -- clean diff
 vim.opt.fillchars:append({ diff = " " })
 
+-- fold
+vim.o.foldenable = true
+vim.o.foldmethod = "indent"
+vim.o.foldlevel = 99
+
 -- terminal
 if vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 then
   local powershell_options = {

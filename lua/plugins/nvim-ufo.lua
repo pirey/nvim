@@ -1,6 +1,8 @@
+-- nice folding, but still buggy, disable it for now
 return {
   {
     "kevinhwang91/nvim-ufo",
+    enabled = false,
     dependencies = "kevinhwang91/promise-async",
     event = "BufReadPost",
     opts = {},
