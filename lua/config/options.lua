@@ -45,6 +45,9 @@ vim.o.foldenable = true
 vim.o.foldmethod = "indent"
 vim.o.foldlevel = 99
 
+-- search & replace
+vim.o.gdefault = true
+
 -- terminal
 if vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 then
   local powershell_options = {
