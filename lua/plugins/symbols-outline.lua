@@ -24,7 +24,7 @@ return {
         -- close = { "<Esc>", "q" },
         -- goto_location = "<Cr>",
         -- focus_location = "o",
-        hover_symbol = "<C-k>",
+        -- hover_symbol = "<C-k>",
         toggle_preview = "P",
         -- rename_symbol = "r",
         -- code_actions = "a",
