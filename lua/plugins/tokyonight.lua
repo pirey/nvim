@@ -37,6 +37,13 @@ local function highlight_fold(hl, c)
   }
 end
 
+local function highlight_lsp_lens(hl, c)
+  hl.LspLens = {
+    fg = c.fg_gutter,
+    bg = c.bg,
+  }
+end
+
 return {
   {
     "folke/tokyonight.nvim",
@@ -44,6 +51,7 @@ return {
       on_highlights = function(hl, c)
         highlight_telescope(hl, c)
         highlight_fold(hl, c)
+        highlight_lsp_lens(hl, c)
       end,
     },
   },
