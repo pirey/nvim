@@ -48,9 +48,4 @@ vim.keymap.set("n", "<leader>gg", function()
   })
 end, { desc = "Lazygit" })
 
-local function close_other_buffers()
-  vim.cmd("%bd | e#")
-end
-
-vim.keymap.set("n", "<leader>bo", close_other_buffers, { desc = "Close other buffers" })
 vim.keymap.set("i", "<c-t>", '<c-r>=strftime("%FT%T%z")<cr>')
