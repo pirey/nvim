@@ -5,7 +5,7 @@
 local Util = require("lazyvim.util")
 
 vim.keymap.set({ "n", "v" }, ";", ":")
-vim.keymap.set({ "n" }, "<leader>;", "<cmd>Telescope commands<cr>", { desc = "Fuzzy commands" })
+vim.keymap.set({ "n" }, "<leader>;", "q:", { desc = "Command line window" })
 
 -- movements
 vim.keymap.set({ "n", "v" }, "E", "20l")
