@@ -10,5 +10,10 @@ return {
         desc = "Close other buffers and windows",
       })
     end,
+    opts = {
+      options = {
+        offsets = {},
+      },
+    },
   },
 }

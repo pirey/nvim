@@ -48,6 +48,11 @@ return {
   {
     "folke/tokyonight.nvim",
     opts = {
+      styles = {
+        -- Background styles. Can be "dark", "transparent" or "normal"
+        sidebars = "normal", -- style for sidebars, see below
+        floats = "dark", -- style for floating windows
+      },
       on_highlights = function(hl, c)
         highlight_telescope(hl, c)
         highlight_fold(hl, c)
