@@ -63,21 +63,3 @@ if vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 then
     vim.opt[option] = value
   end
 end
-
-local function is_lazygit_term(bufname)
-  local pattern = "lazygit"
-  return string.match(bufname, pattern)
-end
-
-function _G.handle_term_open()
-  local opts = { buffer = 0 }
-  if is_lazygit_term(vim.fn.bufname()) then
-    return
-  end
-
-  vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
-  vim.opt_local.number = false
-  vim.opt_local.relativenumber = false
-end
-
-vim.cmd("autocmd! TermOpen term://* lua handle_term_open()")
