@@ -54,6 +54,7 @@ vim.keymap.set("n", "<leader>wK", "<cmd>wincmd K<cr>", { silent = true })
 vim.keymap.set("n", "<leader>wH", "<cmd>wincmd H<cr>", { silent = true })
 vim.keymap.set("n", "<leader>wL", "<cmd>wincmd L<cr>", { silent = true })
 
+-- etc
 vim.keymap.del("n", "<leader>gG")
 vim.keymap.set("n", "<leader>gg", function()
   Util.float_term({ "lazygit" }, {
@@ -63,5 +64,4 @@ vim.keymap.set("n", "<leader>gg", function()
     },
   })
 end, { desc = "Lazygit" })
-
 vim.keymap.set("i", "<c-t>", '<c-r>=strftime("%FT%T%z")<cr>')
