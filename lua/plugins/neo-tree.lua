@@ -1,11 +1,15 @@
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
+    keys = {
+      { "<leader>e", "<cmd>Neotree toggle reveal<cr>" },
+    },
     opts = {
       sources = {
         "filesystem",
       },
       filesystem = {
+        follow_current_file = false,
         filtered_items = {
           hide_hidden = false,
           hide_gitignored = false,
