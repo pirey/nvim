@@ -22,6 +22,7 @@ return {
         augroup END
       ]])
     end,
+    cmd = { "CtrlSF" },
     keys = {
       { "<leader>sf", ":CtrlSF -hidden -smartcase ", desc = "Search" },
       { "<leader>sF", "<cmd>CtrlSFToggle<cr>", desc = "Search Result" },
