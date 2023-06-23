@@ -36,6 +36,9 @@ end
 vim.o.splitright = true
 vim.o.clipboard = "" -- separate system clipboard and vim clipboard
 vim.opt.formatoptions:remove({ "c", "r", "o" })
+vim.opt.signcolumn = "yes"
+vim.opt.number = false
+vim.opt.relativenumber = false
 
 -- clean diff
 vim.opt.fillchars:append({ diff = " " })
@@ -60,6 +63,6 @@ if vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 then
   }
 
   for option, value in pairs(powershell_options) do
-    vim.opt[option] = value
+    vim.o[option] = value
   end
 end
