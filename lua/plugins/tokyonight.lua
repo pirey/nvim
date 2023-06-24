@@ -28,6 +28,10 @@ local function highlight_telescope(hl, c)
     bg = c.bg_dark,
     fg = c.bg_dark,
   }
+  hl.NoiceCmdlinePopupBorder = {
+    bg = c.bg,
+    fg = c.bg,
+  }
 end
 
 local function highlight_fold(hl, c)
