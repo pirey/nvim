@@ -29,7 +29,7 @@ return {
           opts.server = {
             root_dir = function(fname)
               return util.root_pattern(".git")(fname)
-            end
+            end,
           }
 
           -- if using lspconfig, don't wrap it under server
@@ -40,6 +40,11 @@ return {
           require("typescript").setup(opts)
           return true
         end,
+      },
+      servers = {
+        dartls = {
+          cmd = { "dart", "language-server", "--protocol=lsp" },
+        },
       },
     },
   },
