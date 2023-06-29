@@ -275,6 +275,19 @@ ins_right({
   color = { fg = colors.fg, gui = "bold" },
 })
 
+-- Tmux indicator
+ins_right({
+  function()
+    if os.getenv("TMUX") ~= nil then
+      return "■"
+    else
+      return ""
+    end
+  end,
+  color = { fg = colors.green }, -- Sets highlighting of component
+  padding = { right = 1 }, -- We don't need space before this
+})
+
 -- ins_right {
 --   function()
 --     return '▊'
