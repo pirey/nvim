@@ -22,6 +22,9 @@ local conditions = {
   buffer_not_empty = function()
     return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
   end,
+  buffer_empty = function()
+    return vim.fn.empty(vim.fn.expand("%:t")) == 1
+  end,
   hide_in_width = function()
     return vim.fn.winwidth(0) > 80
   end,
@@ -197,6 +200,18 @@ ins_left({
 --   color = { fg = colors.fg, gui = "bold" },
 -- })
 ins_left(custom_filename)
+
+ins_left({
+  function()
+    local home = os.getenv("HOME")
+    local cwd = vim.fn.getcwd()
+    if home == nil then
+      return cwd
+    end
+    return string.gsub(cwd, home, "~")
+  end,
+  cond = conditions.buffer_empty,
+})
 
 ins_left({
   function()
