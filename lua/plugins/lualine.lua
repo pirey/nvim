@@ -278,8 +278,17 @@ ins_right({
 -- Tmux indicator
 ins_right({
   function()
+    local function get_tmux_char()
+      local result = io.popen("tmux list-panes -F '#F' | grep Z")
+      if result ~= nil and result:read("*a") ~= "" then
+        return "██"
+      else
+        return "■"
+      end
+    end
+
     if os.getenv("TMUX") ~= nil then
-      return "■"
+      return get_tmux_char()
     else
       return ""
     end
