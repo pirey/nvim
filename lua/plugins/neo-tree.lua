@@ -21,6 +21,7 @@ return {
         mappings = {
           ["z"] = "noop",
           ["/"] = "noop",
+          ["f"] = "fuzzy_finder",
           ["zM"] = "close_all_nodes",
           ["l"] = "open",
           ["h"] = "close_node",
