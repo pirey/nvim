@@ -20,6 +20,7 @@ return {
         position = "right",
         mappings = {
           ["z"] = "noop",
+          ["/"] = "noop",
           ["zM"] = "close_all_nodes",
           ["l"] = "open",
           ["h"] = "close_node",
