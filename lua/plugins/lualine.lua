@@ -42,7 +42,7 @@ function custom_filename:init(options)
   self.options.cond = conditions.buffer_not_empty
   self.status_colors = {
     saved = highlight.create_component_highlight_group(
-      { fg = colors.fg, bg = colors.bg_dark, gui = "bold" },
+      { fg = colors.bg, bg = colors.fg, gui = "bold" },
       "filename_status_saved",
       self.options
     ),
@@ -55,6 +55,7 @@ function custom_filename:init(options)
   if self.options.color == nil then
     self.options.color = ""
   end
+  self.options.separator = { right = "" }
 end
 
 function custom_filename:update_status()
@@ -75,7 +76,7 @@ local config = {
       -- We are going to use lualine_c an lualine_x as left and
       -- right section. Both are highlighted by c theme .  So we
       -- are just setting default looks o statusline
-      normal = { c = { fg = colors.fg, bg = colors.bg_dark } },
+      normal = { c = { fg = colors.fg, bg = colors.bg } },
       inactive = { c = { fg = colors.fg, bg = colors.bg } },
     },
   },
@@ -188,9 +189,18 @@ ins_left(custom_filename)
 -- file dirname
 ins_left({
   function()
-    return vim.fn.expand("%:h")
+    local dirname = vim.fn.fnamemodify(vim.fn.expand('%:h'), ':~:.')
+    local percentage = vim.o.columns > 200 and 0.45 or 0.25
+    local maxlen = math.floor(vim.o.columns * percentage)
+
+    if vim.api.nvim_strwidth(dirname) >= maxlen then
+      return ".." .. string.sub(dirname, -maxlen)
+    end
+    return dirname
   end,
-  color = { fg = colors.fg_dark },
+  color = { fg = colors.fg_dark, bg = colors.bg_highlight },
+  -- separator = { left = '', right = '' },
+  separator = { left = "", right = "" },
   cond = conditions.buffer_not_empty,
 })
 
@@ -205,6 +215,7 @@ ins_left({
   },
 })
 
+-- display cwd if opening empty file
 ins_left({
   function()
     local home = os.getenv("HOME")
@@ -215,19 +226,31 @@ ins_left({
     return string.gsub(cwd, home, "~")
   end,
   cond = conditions.buffer_empty,
+  color = { fg = colors.fg_dark, bg = colors.bg_highlight },
+  separator = { left = "", right = "" },
 })
 
-ins_left({
-  function()
-    return require("nvim-navic").get_location({
-      highlight = false,
-    })
-  end,
-  cond = function()
-    return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
-  end,
-  color = { fg = colors.fg_dark, bg = colors.bg_dark },
-})
+-- ins_left({
+--   function()
+--     return require("nvim-navic").get_location({
+--       highlight = false,
+--       -- depth_limit = 2,
+--     })
+--   end,
+--   fmt = function(str)
+--     local percentage = vim.o.columns > 200 and 0.20 or 0.15
+--     local maxlen = math.floor(vim.o.columns * percentage)
+--     if vim.api.nvim_strwidth(str) >= maxlen then
+--       local trimmed = string.sub(str, -maxlen)
+--       return ".." .. string.gsub(trimmed, "^[\\.]+", "")
+--     end
+--     return str
+--   end,
+--   cond = function()
+--     return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
+--   end,
+--   color = { fg = colors.fg_dark },
+-- })
 
 -- Insert mid section. You can make any number of sections in neovim :)
 -- for lualine it's any number greater then 2
@@ -252,50 +275,6 @@ ins_left({
 --   color = { fg = colors.green, gui = 'bold' },
 -- }
 
-ins_right({
-  "filetype",
-})
-
-ins_right({
-  "searchcount",
-  color = { fg = colors.fg_dark, bg = colors.bg_dark },
-})
-
-ins_right({
-  "selectioncount",
-  color = { fg = colors.bg_dark, bg = colors.blue },
-})
-
-ins_right({
-  "location",
-  color = { fg = colors.fg_dark, bg = colors.bg_dark },
-  cond = conditions.buffer_not_empty,
-})
-
-ins_right({
-  "progress",
-  color = { fg = colors.fg_dark, bg = colors.bg_dark },
-  cond = conditions.buffer_not_empty,
-})
-
-ins_right({
-  "diff",
-  -- Is it me or the symbol for modified us really weird
-  symbols = { added = " ", modified = " ", removed = " " },
-  diff_color = {
-    added = { fg = colors.green },
-    modified = { fg = colors.orange },
-    removed = { fg = colors.red },
-  },
-  cond = conditions.hide_in_width,
-})
-
-ins_right({
-  "branch",
-  icon = "",
-  color = { fg = colors.fg, gui = "bold" },
-})
-
 -- Tmux indicator
 ins_right({
   function()
@@ -316,6 +295,60 @@ ins_right({
   end,
   color = { fg = colors.green }, -- Sets highlighting of component
   padding = { right = 1 }, -- We don't need space before this
+})
+
+ins_right({
+  "filetype",
+})
+
+ins_right({
+  "searchcount",
+  color = { fg = colors.fg_dark },
+})
+
+ins_right({
+  "selectioncount",
+  color = { fg = colors.bg_dark, bg = colors.blue },
+})
+
+ins_right({
+  "location",
+  color = { fg = colors.fg_dark },
+  cond = conditions.buffer_not_empty,
+})
+
+ins_right({
+  "progress",
+  color = { fg = colors.fg_dark },
+  cond = conditions.buffer_not_empty,
+})
+
+ins_right({
+  "diff",
+  -- Is it me or the symbol for modified us really weird
+  symbols = { added = " ", modified = " ", removed = " " },
+  diff_color = {
+    added = { fg = colors.green },
+    modified = { fg = colors.orange },
+    removed = { fg = colors.red },
+  },
+  -- color = { bg = colors.bg_highlight },
+  cond = conditions.hide_in_width,
+})
+
+ins_right({
+  "branch",
+  icon = "",
+  color = { fg = colors.bg, bg = colors.fg, gui = "bold" },
+  fmt = function(branch_name)
+    local maxlen = 20
+    if vim.api.nvim_strwidth(branch_name) >= maxlen then
+      local trimmed = string.sub(branch_name, 1, maxlen)
+      local pattern = "[-_]$"
+      return string.gsub(trimmed, pattern, "") .. ".."
+    end
+    return branch_name
+  end,
 })
 
 -- ins_right {
