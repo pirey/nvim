@@ -37,11 +37,12 @@ local conditions = {
 
 function custom_filename:init(options)
   custom_filename.super.init(self, options)
-  self.options.path = 1
+  self.options.path = 0 -- use this for filename only
+  -- self.options.path = 1 -- use this for relative filename
   self.options.cond = conditions.buffer_not_empty
   self.status_colors = {
     saved = highlight.create_component_highlight_group(
-      { fg = colors.fg, gui = "bold" },
+      { fg = colors.fg, bg = colors.bg_dark, gui = "bold" },
       "filename_status_saved",
       self.options
     ),
@@ -182,6 +183,17 @@ end
 --   color = { fg = colors.cyan, gui = 'bold' },
 -- }
 
+ins_left(custom_filename)
+
+-- file dirname
+ins_left({
+  function()
+    return vim.fn.expand("%:h")
+  end,
+  color = { fg = colors.fg_dark },
+  cond = conditions.buffer_not_empty,
+})
+
 ins_left({
   "diagnostics",
   sources = { "nvim_diagnostic" },
@@ -192,14 +204,6 @@ ins_left({
     color_info = { fg = colors.cyan },
   },
 })
-
--- ins_left({
---   "filename",
---   path = 1,
---   cond = conditions.buffer_not_empty,
---   color = { fg = colors.fg, gui = "bold" },
--- })
-ins_left(custom_filename)
 
 ins_left({
   function()
@@ -215,12 +219,14 @@ ins_left({
 
 ins_left({
   function()
-    return require("nvim-navic").get_location()
+    return require("nvim-navic").get_location({
+      highlight = false,
+    })
   end,
   cond = function()
     return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
   end,
-  color = { bg = colors.bg },
+  color = { fg = colors.fg_dark, bg = colors.bg_dark },
 })
 
 -- Insert mid section. You can make any number of sections in neovim :)
