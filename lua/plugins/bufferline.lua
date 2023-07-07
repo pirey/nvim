@@ -1,3 +1,4 @@
+local colors = require("tokyonight.colors").moon()
 return {
   {
     "akinsho/bufferline.nvim",
@@ -14,6 +15,11 @@ return {
       options = {
         offsets = {},
         always_show_bufferline = true,
+      },
+      highlights = {
+        fill = {
+          bg = colors.bg_dark,
+        },
       },
     },
   },
