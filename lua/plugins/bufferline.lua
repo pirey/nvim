@@ -13,6 +13,7 @@ return {
     opts = {
       options = {
         offsets = {},
+        always_show_bufferline = true,
       },
     },
   },
