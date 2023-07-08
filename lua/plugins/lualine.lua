@@ -1,19 +1,4 @@
--- return {
---   {
---     "nvim-lualine/lualine.nvim",
---     opts = {
---       options = {
---         component_separators = { left = "", right = "" },
---         section_separators = { left = "", right = "" },
---       },
---     }
---   },
--- }
-
--- Eviline config for lualine
--- Author: shadmansaleh
--- Credit: glepnir
-local lualine = require("lualine")
+-- local lualine = require("lualine")
 local colors = require("tokyonight.colors").moon()
 local custom_filename = require("lualine.components.filename"):extend()
 local highlight = require("lualine.highlight")
@@ -80,7 +65,7 @@ local config = {
       inactive = { c = { fg = colors.fg, bg = colors.bg } },
     },
     disabled_filetypes = {
-      winbar = {"neo-tree", "DiffviewFiles"},
+      winbar = { "neo-tree", "DiffviewFiles", "git" },
     },
   },
   sections = {
@@ -320,26 +305,63 @@ ins_left({
 --   color = { fg = colors.green, gui = 'bold' },
 -- }
 
--- Tmux indicator
-ins_right({
-  function()
-    local function get_tmux_char()
-      local result = io.popen("tmux list-panes -F '#F' | grep Z")
-      if result ~= nil and result:read("*a") ~= "" then
-        return "██"
-      else
-        return "■"
-      end
-    end
+local function get_tmux_char()
+  local result = io.popen("tmux list-panes -F '#F' | grep Z")
 
-    if os.getenv("TMUX") ~= nil then
-      return get_tmux_char()
+  if result ~= nil and result:read("*a") ~= "" then
+    result:close()
+    return "██"
+  else
+    return "■"
+  end
+end
+
+-- Tmux indicator
+-- TODO: need to improve performance
+---@diagnostic disable-next-line: unused-local, unused-function
+local function tmux_status()
+---@diagnostic disable-next-line: unused-function
+  local function get_win_name()
+    local result = io.popen('tmux display-message -p "#{window_name}"')
+    if result ~= nil then
+      local window_name = result:read("*a"):gsub("\n", "")
+      result:close()
+      return window_name
+    end
+    return ""
+  end
+
+---@diagnostic disable-next-line: unused-function
+  local function get_label()
+    local result = io.popen("tmux show-window-options")
+    if result ~= nil then
+      local window_options = result:read("*a"):gsub("\n", "")
+      result:close()
+
+      -- Check if the automatic-rename option is set to "off"
+      -- if so then it has been renamed
+      if window_options:find("automatic%-rename off") then
+        return " " .. get_win_name()
+      end
     else
       return ""
     end
-  end,
+  end
+
+  if os.getenv("TMUX") ~= nil then
+    return get_tmux_char() .. get_label()
+  else
+    return ""
+  end
+end
+
+ins_right({
+  get_tmux_char,
   color = { fg = colors.green }, -- Sets highlighting of component
   padding = { right = 1 }, -- We don't need space before this
+  cond = function()
+    return os.getenv("TMUX") ~= nil
+  end,
 })
 
 ins_right({
@@ -409,7 +431,7 @@ ins_right({
 -- }
 
 -- Now don't forget to initialize lualine
-lualine.setup(config)
+-- lualine.setup(config)
 return {
   {
     "nvim-lualine/lualine.nvim",
