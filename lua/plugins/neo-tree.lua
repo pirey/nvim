@@ -22,7 +22,7 @@ return {
           ["z"] = "noop",
           ["/"] = "noop",
           ["s"] = "noop",
-          ["S"] = "open_vsplit",
+          ["<c-v>"] = "open_vsplit",
           ["f"] = "fuzzy_finder",
           ["zM"] = "close_all_nodes",
           ["l"] = "open",
