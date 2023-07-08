@@ -79,6 +79,9 @@ local config = {
       normal = { c = { fg = colors.fg, bg = colors.bg } },
       inactive = { c = { fg = colors.fg, bg = colors.bg } },
     },
+    disabled_filetypes = {
+      winbar = {"neo-tree", "DiffviewFiles"},
+    },
   },
   sections = {
     -- these are to remove the defaults
@@ -149,6 +152,7 @@ ins_right_winbar({
     left = "",
     -- right = "",
   },
+  cond = conditions.buffer_not_empty,
 })
 
 ins_left_winbar({
@@ -171,6 +175,7 @@ ins_left_winbar({
   --   return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
   -- end,
   color = { fg = colors.fg_dark },
+  cond = conditions.buffer_not_empty,
 })
 
 -- ins_left {
