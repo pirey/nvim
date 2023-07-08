@@ -41,11 +41,11 @@ return {
           return true
         end,
       },
-      servers = {
-        dartls = {
-          cmd = { "dart", "language-server", "--protocol=lsp" },
-        },
-      },
+      -- servers = {
+      --   dartls = {
+      --     cmd = { "dart", "language-server", "--protocol=lsp" },
+      --   },
+      -- },
     },
   },
 }
