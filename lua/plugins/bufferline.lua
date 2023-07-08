@@ -14,7 +14,7 @@ return {
     opts = {
       options = {
         offsets = {},
-        -- always_show_bufferline = true,
+        always_show_bufferline = true,
       },
       highlights = {
         fill = {
