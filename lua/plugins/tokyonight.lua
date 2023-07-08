@@ -48,6 +48,13 @@ local function highlight_lsp_lens(hl, c)
   }
 end
 
+local function highlight_flutter(hl, c)
+  hl.FlutterClosingTags = {
+    fg = c.fg_gutter,
+    bg = c.bg,
+  }
+end
+
 return {
   {
     "folke/tokyonight.nvim",
@@ -61,6 +68,7 @@ return {
         highlight_telescope(hl, c)
         highlight_fold(hl, c)
         highlight_lsp_lens(hl, c)
+        highlight_flutter(hl, c)
       end,
     },
   },
