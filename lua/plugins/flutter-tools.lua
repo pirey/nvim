@@ -8,9 +8,9 @@ return {
     },
     -- config = true,
     opts = {
-      widget_guides = {
-        enabled = true,
-      },
+      -- widget_guides = {
+      --   enabled = true,
+      -- },
       closing_tags = {
         highlight = "FlutterClosingTags", -- highlight for the closing tag
         prefix = "|> ", -- character to use for close tag e.g. > Widget
