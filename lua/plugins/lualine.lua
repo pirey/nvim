@@ -99,6 +99,22 @@ local config = {
     lualine_c = {},
     lualine_x = {},
   },
+  winbar = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {},
+  },
+  inactive_winbar = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {},
+  },
 }
 
 -- Inserts a component in lualine_c at left section
@@ -110,6 +126,52 @@ end
 local function ins_right(component)
   table.insert(config.sections.lualine_x, component)
 end
+
+-- Inserts a component in winbar lualine_c at left section
+local function ins_left_winbar(component)
+  table.insert(config.winbar.lualine_c, component)
+  table.insert(config.inactive_winbar.lualine_c, component)
+end
+
+-- Inserts a component in winbar lualine_x at right section
+local function ins_right_winbar(component)
+  table.insert(config.winbar.lualine_x, component)
+  table.insert(config.inactive_winbar.lualine_x, component)
+end
+
+ins_right_winbar({
+  "filename",
+  color = {
+    fg = colors.fg_dark,
+    bg = colors.bg_highlight,
+  },
+  separator = {
+    left = "",
+    -- right = "",
+  },
+})
+
+ins_left_winbar({
+  function()
+    return require("nvim-navic").get_location({
+      highlight = false,
+      -- depth_limit = 2,
+    })
+  end,
+  -- fmt = function(str)
+  --   local percentage = vim.o.columns > 200 and 0.20 or 0.15
+  --   local maxlen = math.floor(vim.o.columns * percentage)
+  --   if vim.api.nvim_strwidth(str) >= maxlen then
+  --     local trimmed = string.sub(str, -maxlen)
+  --     return ".." .. string.gsub(trimmed, "^[\\.]+", "")
+  --   end
+  --   return str
+  -- end,
+  -- cond = function()
+  --   return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
+  -- end,
+  color = { fg = colors.fg_dark },
+})
 
 -- ins_left {
 --   function()
@@ -189,7 +251,7 @@ ins_left(custom_filename)
 -- file dirname
 ins_left({
   function()
-    local dirname = vim.fn.fnamemodify(vim.fn.expand('%:h'), ':~:.')
+    local dirname = vim.fn.fnamemodify(vim.fn.expand("%:h"), ":~:.")
     local percentage = vim.o.columns > 200 and 0.45 or 0.25
     local maxlen = math.floor(vim.o.columns * percentage)
 
@@ -229,28 +291,6 @@ ins_left({
   color = { fg = colors.fg_dark, bg = colors.bg_highlight },
   separator = { left = "", right = "" },
 })
-
--- ins_left({
---   function()
---     return require("nvim-navic").get_location({
---       highlight = false,
---       -- depth_limit = 2,
---     })
---   end,
---   fmt = function(str)
---     local percentage = vim.o.columns > 200 and 0.20 or 0.15
---     local maxlen = math.floor(vim.o.columns * percentage)
---     if vim.api.nvim_strwidth(str) >= maxlen then
---       local trimmed = string.sub(str, -maxlen)
---       return ".." .. string.gsub(trimmed, "^[\\.]+", "")
---     end
---     return str
---   end,
---   cond = function()
---     return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
---   end,
---   color = { fg = colors.fg_dark },
--- })
 
 -- Insert mid section. You can make any number of sections in neovim :)
 -- for lualine it's any number greater then 2
@@ -349,6 +389,10 @@ ins_right({
     end
     return branch_name
   end,
+  separator = {
+    left = "",
+    -- right = "",
+  },
 })
 
 -- ins_right {
