@@ -255,7 +255,7 @@ ins_left({
     local percentage = vim.o.columns > 200 and 0.45 or 0.25
     local maxlen = math.floor(vim.o.columns * percentage)
 
-    if vim.api.nvim_strwidth(dirname) >= maxlen then
+    if vim.api.nvim_strwidth(dirname) > maxlen then
       return ".." .. string.sub(dirname, -maxlen)
     end
     return dirname
