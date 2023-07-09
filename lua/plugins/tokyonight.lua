@@ -50,7 +50,7 @@ end
 
 local function highlight_flutter(hl, c)
   hl.FlutterClosingTags = {
-    fg = c.fg_gutter,
+    fg = c.fg_dark,
     bg = c.bg,
   }
 end
