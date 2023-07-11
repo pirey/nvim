@@ -94,8 +94,8 @@ return {
       modes = {
         --   -- options used when flash is activated through
         --   -- a regular search with `/` or `?`
-        --   search = {
-        --     enabled = true, -- enable flash for search
+          search = {
+            enabled = false, -- enable flash for search
         --     highlight = { backdrop = false },
         --     jump = { history = true, register = true, nohlsearch = true },
         --     search = {
@@ -103,7 +103,7 @@ return {
         --       -- `mode` is always set to `search`
         --       -- `incremental` is set to `true` when `incsearch` is enabled
         --     },
-        --   },
+          },
         -- options used when flash is activated through
         -- `f`, `F`, `t`, `T`, `;` and `,` motions
         char = {
