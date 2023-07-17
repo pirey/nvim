@@ -9,7 +9,9 @@ return {
         "filesystem",
       },
       filesystem = {
-        follow_current_file = false,
+        follow_current_file = {
+          enabled = false,
+        },
         filtered_items = {
           hide_hidden = false,
           hide_gitignored = false,
