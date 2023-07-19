@@ -16,32 +16,32 @@ return {
         offsets = {},
         always_show_bufferline = true,
       },
-      highlights = {
-        fill = {
-          bg = colors.bg,
-        },
-        background = {
-          bg = colors.bg,
-        },
-        buffer_selected = {
-          bg = colors.bg_dark,
-        },
-        buffer_visible = {
-          bg = colors.bg,
-        },
-        close_button = {
-          bg = colors.bg,
-        },
-        close_button_visible = {
-          bg = colors.bg,
-        },
-        close_button_selected = {
-          bg = colors.bg_dark,
-        },
-        separator = {
-          bg = colors.bg,
-        },
-      },
+      -- highlights = {
+      --   fill = {
+      --     bg = colors.bg,
+      --   },
+      --   background = {
+      --     bg = colors.bg,
+      --   },
+      --   buffer_selected = {
+      --     bg = colors.bg_dark,
+      --   },
+      --   buffer_visible = {
+      --     bg = colors.bg,
+      --   },
+      --   close_button = {
+      --     bg = colors.bg,
+      --   },
+      --   close_button_visible = {
+      --     bg = colors.bg,
+      --   },
+      --   close_button_selected = {
+      --     bg = colors.bg_dark,
+      --   },
+      --   separator = {
+      --     bg = colors.bg,
+      --   },
+      -- },
     },
   },
 }
