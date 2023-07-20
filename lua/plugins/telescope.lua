@@ -4,6 +4,36 @@ local actions_layout = require("telescope.actions.layout")
 local trouble = require("trouble.providers.telescope")
 local transform_mod = require("telescope.actions.mt").transform_mod
 
+local temp_showtabline
+local temp_laststatus
+
+-- autocmd handler
+function _G.global_telescope_find_pre()
+  temp_showtabline = vim.o.showtabline
+  temp_laststatus = vim.o.laststatus
+  vim.o.showtabline = 0
+  vim.o.laststatus = 0
+end
+
+function _G.global_telescope_leave_prompt()
+  -- vim.o.laststatus = 3
+  -- vim.o.showtabline = 2
+  vim.o.laststatus = temp_showtabline
+  vim.o.showtabline = temp_laststatus
+end
+
+-- Register the autocmd for the User event TelescopeFindPre
+vim.cmd([[
+  augroup MyAutocmds
+    autocmd!
+    autocmd User TelescopeFindPre lua global_telescope_find_pre()
+    autocmd FileType TelescopePrompt autocmd BufLeave <buffer> lua global_telescope_leave_prompt()
+  augroup END
+]])
+
+
+-- custom actions
+
 local custom_actions = transform_mod({
   open_and_resume = function(prompt_bufnr)
     actions.select_default(prompt_bufnr)

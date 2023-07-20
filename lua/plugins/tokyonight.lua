@@ -34,6 +34,42 @@ local function highlight_telescope(hl, c)
   }
 end
 
+local function highlight_telescope_fullscreen(hl, c)
+  -- local prompt = "#2d3149"
+  local prompt = c.bg
+  hl.TelescopeNormal = {
+    bg = c.bg,
+    fg = c.fg,
+  }
+  hl.TelescopeBorder = {
+    bg = c.bg,
+    fg = c.bg,
+  }
+  hl.TelescopePromptNormal = {
+    bg = prompt,
+  }
+  hl.TelescopePromptBorder = {
+    bg = prompt,
+    fg = prompt,
+  }
+  hl.TelescopePromptTitle = {
+    bg = prompt,
+    fg = prompt,
+  }
+  hl.TelescopePreviewTitle = {
+    bg = c.bg,
+    fg = c.bg,
+  }
+  hl.TelescopeResultsTitle = {
+    bg = c.bg,
+    fg = c.bg,
+  }
+  hl.NoiceCmdlinePopupBorder = {
+    bg = c.bg,
+    fg = c.bg,
+  }
+end
+
 local function highlight_fold(hl, c)
   hl.Folded = {
     fg = c.fg_gutter,
@@ -65,7 +101,7 @@ return {
         floats = "dark", -- style for floating windows
       },
       on_highlights = function(hl, c)
-        highlight_telescope(hl, c)
+        highlight_telescope_fullscreen(hl, c)
         highlight_fold(hl, c)
         highlight_lsp_lens(hl, c)
         highlight_flutter(hl, c)
