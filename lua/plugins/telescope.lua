@@ -125,7 +125,7 @@ return {
         -- path_display = { "truncate" },
         path_display = path_display,
         preview = {
-          hide_on_startup = true,
+          -- hide_on_startup = true,
         },
         mappings = {
           i = {

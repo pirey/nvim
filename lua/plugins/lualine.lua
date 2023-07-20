@@ -40,7 +40,8 @@ function custom_filename:init(options)
   if self.options.color == nil then
     self.options.color = ""
   end
-  self.options.separator = { right = "" }
+  -- self.options.separator = { right = "" }
+  self.options.separator = { right = "" }
 end
 
 function custom_filename:update_status()
@@ -134,7 +135,7 @@ ins_right_winbar({
     bg = colors.bg_highlight,
   },
   separator = {
-    left = "",
+    -- left = "",
     -- right = "",
   },
   cond = conditions.buffer_not_empty,
@@ -252,7 +253,7 @@ ins_left({
   end,
   color = { fg = colors.fg_dark, bg = colors.bg_highlight },
   -- separator = { left = '', right = '' },
-  separator = { left = "", right = "" },
+  separator = { left = "", right = "" },
   cond = conditions.buffer_not_empty,
 })
 
@@ -279,7 +280,8 @@ ins_left({
   end,
   cond = conditions.buffer_empty,
   color = { fg = colors.fg_dark, bg = colors.bg_highlight },
-  separator = { left = "", right = "" },
+  -- separator = { left = "", right = "" },
+  separator = { left = "", right = "" },
 })
 
 -- Insert mid section. You can make any number of sections in neovim :)
@@ -417,7 +419,7 @@ ins_right({
     return branch_name
   end,
   separator = {
-    left = "",
+    -- left = "",
     -- right = "",
   },
 })
