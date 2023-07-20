@@ -11,6 +11,7 @@ local temp_laststatus
 function _G.global_telescope_find_pre()
   temp_showtabline = vim.o.showtabline
   temp_laststatus = vim.o.laststatus
+  print('lastatus: ' .. temp_laststatus)
   vim.o.showtabline = 0
   vim.o.laststatus = 0
 end
@@ -18,8 +19,8 @@ end
 function _G.global_telescope_leave_prompt()
   -- vim.o.laststatus = 3
   -- vim.o.showtabline = 2
-  vim.o.laststatus = temp_showtabline
-  vim.o.showtabline = temp_laststatus
+  vim.o.laststatus = temp_laststatus
+  vim.o.showtabline = temp_showtabline
 end
 
 -- Register the autocmd for the User event TelescopeFindPre
