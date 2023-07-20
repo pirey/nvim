@@ -11,7 +11,6 @@ local temp_laststatus
 function _G.global_telescope_find_pre()
   temp_showtabline = vim.o.showtabline
   temp_laststatus = vim.o.laststatus
-  print('lastatus: ' .. temp_laststatus)
   vim.o.showtabline = 0
   vim.o.laststatus = 0
 end
