@@ -25,7 +25,8 @@ return {
     cmd = { "CtrlSF" },
     keys = {
       { "<leader>sf", ":CtrlSF -hidden -smartcase ", desc = "Search" },
-      { "<leader>sF", "<cmd>CtrlSFToggle<cr>", desc = "Search Result" },
+      { "<leader>sr", "<cmd>CtrlSFUpdate<cr>", desc = "Refresh Search" },
+      { "<leader>sF", "<cmd>CtrlSFToggle<cr><cmd>CtrlSFUpdate<cr>", desc = "Toggle Search Result" },
     },
   },
 }
