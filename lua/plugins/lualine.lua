@@ -18,6 +18,9 @@ local conditions = {
     local gitdir = vim.fn.finddir(".git", filepath .. ";")
     return gitdir and #gitdir > 0 and #gitdir < #filepath
   end,
+  diff_mode = function()
+    return vim.o.diff == true
+  end,
 }
 
 function custom_filename:init(options)
@@ -50,6 +53,17 @@ function custom_filename:update_status()
     vim.bo.modified and self.status_colors.modified or self.status_colors.saved
   ) .. data
   return data
+end
+
+local function get_dirname()
+  local dirname = vim.fn.fnamemodify(vim.fn.expand("%:h"), ":~:.")
+  local percentage = vim.o.columns > 200 and 0.45 or 0.25
+  local maxlen = math.floor(vim.o.columns * percentage)
+
+  if vim.api.nvim_strwidth(dirname) > maxlen then
+    return ".." .. string.sub(dirname, -maxlen)
+  end
+  return dirname
 end
 
 -- Config
@@ -138,7 +152,16 @@ ins_right_winbar({
     -- left = "",
     -- right = "",
   },
-  cond = conditions.buffer_not_empty,
+  cond = function()
+    return conditions.buffer_not_empty() and (not conditions.diff_mode())
+  end,
+})
+
+-- fullname in diff mode
+ins_right_winbar({
+  "filename",
+  path = 1,
+  cond = conditions.diff_mode,
 })
 
 ins_left_winbar({
@@ -161,7 +184,9 @@ ins_left_winbar({
   --   return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
   -- end,
   color = { fg = colors.fg_dark },
-  cond = conditions.buffer_not_empty,
+  cond = function()
+    return conditions.buffer_not_empty() and (not conditions.diff_mode())
+  end,
 })
 
 -- ins_left {
@@ -241,16 +266,7 @@ ins_left(custom_filename)
 
 -- file dirname
 ins_left({
-  function()
-    local dirname = vim.fn.fnamemodify(vim.fn.expand("%:h"), ":~:.")
-    local percentage = vim.o.columns > 200 and 0.45 or 0.25
-    local maxlen = math.floor(vim.o.columns * percentage)
-
-    if vim.api.nvim_strwidth(dirname) > maxlen then
-      return ".." .. string.sub(dirname, -maxlen)
-    end
-    return dirname
-  end,
+  get_dirname,
   color = { fg = colors.fg_dark, bg = colors.bg_highlight },
   -- separator = { left = '', right = '' },
   separator = { left = "", right = "" },
@@ -322,7 +338,7 @@ end
 -- TODO: need to improve performance
 ---@diagnostic disable-next-line: unused-local, unused-function
 local function tmux_status()
----@diagnostic disable-next-line: unused-function
+  ---@diagnostic disable-next-line: unused-function
   local function get_win_name()
     local result = io.popen('tmux display-message -p "#{window_name}"')
     if result ~= nil then
@@ -333,7 +349,7 @@ local function tmux_status()
     return ""
   end
 
----@diagnostic disable-next-line: unused-function
+  ---@diagnostic disable-next-line: unused-function
   local function get_label()
     local result = io.popen("tmux show-window-options")
     if result ~= nil then
