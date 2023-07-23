@@ -38,7 +38,7 @@ vim.o.clipboard = "" -- separate system clipboard and vim clipboard
 vim.opt.formatoptions:remove({ "c", "r", "o" })
 vim.opt.signcolumn = "yes"
 vim.opt.number = true
-vim.opt.relativenumber = false
+vim.opt.relativenumber = true
 
 -- clean diff
 vim.opt.fillchars:append({ diff = " " })
