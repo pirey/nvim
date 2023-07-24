@@ -423,7 +423,7 @@ ins_right({
 
 ins_right({
   "branch",
-  icon = "",
+  icon = "",
   color = { fg = colors.bg, bg = colors.fg, gui = "bold" },
   fmt = function(branch_name)
     local maxlen = 20
