@@ -53,8 +53,8 @@ local function highlight_telescope_fullscreen(hl, c)
     fg = prompt,
   }
   hl.TelescopePromptTitle = {
-    bg = prompt,
-    fg = prompt,
+    bg = c.bg_highlight,
+    fg = c.fg,
   }
   hl.TelescopePreviewTitle = {
     bg = c.bg,
