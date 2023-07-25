@@ -39,6 +39,7 @@ vim.opt.formatoptions:remove({ "c", "r", "o" })
 vim.opt.signcolumn = "yes"
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.o.wrap = false
 
 -- clean diff
 vim.opt.fillchars:append({ diff = " " })
