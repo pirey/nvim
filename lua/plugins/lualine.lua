@@ -328,7 +328,8 @@ local function get_tmux_char()
 
   if result ~= nil and result:read("*a") ~= "" then
     result:close()
-    return "██"
+    -- return "██"
+    return "■ ■"
   else
     return "■"
   end
@@ -373,14 +374,14 @@ local function tmux_status()
   end
 end
 
--- ins_right({
---   get_tmux_char,
---   color = { fg = colors.green }, -- Sets highlighting of component
---   padding = { right = 1 }, -- We don't need space before this
---   cond = function()
---     return os.getenv("TMUX") ~= nil
---   end,
--- })
+ins_right({
+  get_tmux_char,
+  color = { fg = colors.green }, -- Sets highlighting of component
+  padding = { right = 1 }, -- We don't need space before this
+  cond = function()
+    return os.getenv("TMUX") ~= nil
+  end,
+})
 
 -- ins_right({
 --   "filetype",
