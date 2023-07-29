@@ -1,3 +1,10 @@
+vim.cmd[[
+  augroup DartAutocommands
+    autocmd!
+    autocmd FileType dart nnoremap <buffer> <leader>cs <cmd>FlutterOutlineToggle<cr>
+  augroup END
+]]
+
 return {
   {
     "akinsho/flutter-tools.nvim",

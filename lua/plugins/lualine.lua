@@ -102,22 +102,22 @@ local config = {
     lualine_c = {},
     lualine_x = {},
   },
-  winbar = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = {},
-  },
-  inactive_winbar = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = {},
-  },
+  -- winbar = {
+  --   lualine_a = {},
+  --   lualine_b = {},
+  --   lualine_c = {},
+  --   lualine_x = {},
+  --   lualine_y = {},
+  --   lualine_z = {},
+  -- },
+  -- inactive_winbar = {
+  --   lualine_a = {},
+  --   lualine_b = {},
+  --   lualine_c = {},
+  --   lualine_x = {},
+  --   lualine_y = {},
+  --   lualine_z = {},
+  -- },
 }
 
 -- Inserts a component in lualine_c at left section
@@ -132,14 +132,14 @@ end
 
 -- Inserts a component in winbar lualine_c at left section
 local function ins_left_winbar(component)
-  table.insert(config.winbar.lualine_c, component)
-  table.insert(config.inactive_winbar.lualine_c, component)
+  -- table.insert(config.winbar.lualine_c, component)
+  -- table.insert(config.inactive_winbar.lualine_c, component)
 end
 
 -- Inserts a component in winbar lualine_x at right section
 local function ins_right_winbar(component)
-  table.insert(config.winbar.lualine_x, component)
-  table.insert(config.inactive_winbar.lualine_x, component)
+  -- table.insert(config.winbar.lualine_x, component)
+  -- table.insert(config.inactive_winbar.lualine_x, component)
 end
 
 ins_right_winbar({
