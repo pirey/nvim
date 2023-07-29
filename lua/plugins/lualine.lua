@@ -30,12 +30,14 @@ function custom_filename:init(options)
   self.options.cond = conditions.buffer_not_empty
   self.status_colors = {
     saved = highlight.create_component_highlight_group(
-      { fg = colors.bg, bg = colors.fg, gui = "bold" },
+      -- { fg = colors.bg, bg = colors.fg, gui = "bold" },
+      { fg = colors.fg, bg = colors.bg, gui = "bold" },
       "filename_status_saved",
       self.options
     ),
     modified = highlight.create_component_highlight_group(
-      { fg = colors.bg, bg = colors.green, gui = "bold" },
+      -- { fg = colors.bg, bg = colors.green, gui = "bold" },
+      { fg = colors.green, bg = colors.bg, gui = "bold" },
       "filename_status_modified",
       self.options
     ),
@@ -267,7 +269,8 @@ ins_left(custom_filename)
 -- file dirname
 ins_left({
   get_dirname,
-  color = { fg = colors.fg_dark, bg = colors.bg_highlight },
+  -- color = { fg = colors.fg_dark, bg = colors.bg_highlight },
+  color = { fg = colors.fg_dark, bg = colors.bg },
   -- separator = { left = '', right = '' },
   separator = { left = "", right = "" },
   cond = conditions.buffer_not_empty,
@@ -295,7 +298,8 @@ ins_left({
     return string.gsub(cwd, home, "~")
   end,
   cond = conditions.buffer_empty,
-  color = { fg = colors.fg_dark, bg = colors.bg_highlight },
+  -- color = { fg = colors.fg_dark, bg = colors.bg_highlight },
+  color = { fg = colors.fg_dark, bg = colors.bg },
   -- separator = { left = "", right = "" },
   separator = { left = "", right = "" },
 })
@@ -425,7 +429,8 @@ ins_right({
 ins_right({
   "branch",
   icon = "",
-  color = { fg = colors.bg, bg = colors.fg, gui = "bold" },
+  -- color = { fg = colors.bg, bg = colors.fg, gui = "bold" },
+  color = { fg = colors.fg, bg = colors.bg, gui = "bold" },
   fmt = function(branch_name)
     local maxlen = 20
     if vim.api.nvim_strwidth(branch_name) >= maxlen then
