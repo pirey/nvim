@@ -23,13 +23,13 @@ function _G.global_telescope_leave_prompt()
 end
 
 -- Register the autocmd for the User event TelescopeFindPre
-vim.cmd([[
-  augroup MyAutocmds
-    autocmd!
-    autocmd User TelescopeFindPre lua global_telescope_find_pre()
-    autocmd FileType TelescopePrompt autocmd BufLeave <buffer> lua global_telescope_leave_prompt()
-  augroup END
-]])
+-- vim.cmd([[
+--   augroup MyAutocmds
+--     autocmd!
+--     autocmd User TelescopeFindPre lua global_telescope_find_pre()
+--     autocmd FileType TelescopePrompt autocmd BufLeave <buffer> lua global_telescope_leave_prompt()
+--   augroup END
+-- ]])
 
 -- custom actions
 
