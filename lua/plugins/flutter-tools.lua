@@ -12,8 +12,9 @@ return {
       --   enabled = true,
       -- },
       closing_tags = {
-        highlight = "FlutterClosingTags", -- highlight for the closing tag
-        prefix = "</> ", -- character to use for close tag e.g. > Widget
+        highlight = "Comment", -- highlight for the closing tag
+        -- prefix = "</> ", -- character to use for close tag e.g. > Widget
+        prefix = "", -- character to use for close tag e.g. > Widget
         enabled = true, -- set to false to disable
       },
     },
