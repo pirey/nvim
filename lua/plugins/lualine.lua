@@ -264,27 +264,49 @@ ins_left_winbar({
 --   color = { fg = colors.cyan, gui = 'bold' },
 -- }
 
-ins_left(custom_filename)
+-- ins_left(custom_filename)
 
 -- file dirname
+-- ins_left({
+--   get_dirname,
+--   -- color = { fg = colors.fg_dark, bg = colors.bg_highlight },
+--   color = { fg = colors.fg_dark, bg = colors.bg },
+--   -- separator = { left = '', right = '' },
+--   separator = { left = "", right = "" },
+--   cond = conditions.buffer_not_empty,
+-- })
+
 ins_left({
-  get_dirname,
-  -- color = { fg = colors.fg_dark, bg = colors.bg_highlight },
-  color = { fg = colors.fg_dark, bg = colors.bg },
-  -- separator = { left = '', right = '' },
-  separator = { left = "", right = "" },
-  cond = conditions.buffer_not_empty,
+  "branch",
+  icon = "",
+  -- color = { fg = colors.bg, bg = colors.fg, gui = "bold" },
+  color = { fg = colors.fg, bg = colors.bg, gui = "bold" },
+  -- fmt = function(branch_name)
+  --   local maxlen = 20
+  --   if vim.api.nvim_strwidth(branch_name) >= maxlen then
+  --     local trimmed = string.sub(branch_name, 1, maxlen)
+  --     local pattern = "[-_]$"
+  --     return string.gsub(trimmed, pattern, "") .. ".."
+  --   end
+  --   return branch_name
+  -- end,
+  separator = {
+    -- left = "",
+    -- right = "",
+  },
 })
 
 ins_left({
-  "diagnostics",
-  sources = { "nvim_diagnostic" },
-  symbols = { error = " ", warn = " ", info = " " },
-  diagnostics_color = {
-    color_error = { fg = colors.red },
-    color_warn = { fg = colors.yellow },
-    color_info = { fg = colors.cyan },
+  "diff",
+  -- Is it me or the symbol for modified us really weird
+  symbols = { added = " ", modified = " ", removed = " " },
+  diff_color = {
+    added = { fg = colors.green },
+    modified = { fg = colors.orange },
+    removed = { fg = colors.red },
   },
+  -- color = { bg = colors.bg_highlight },
+  cond = conditions.hide_in_width,
 })
 
 -- display cwd if opening empty file
@@ -341,7 +363,6 @@ end
 
 -- Tmux indicator
 -- TODO: need to improve performance
----@diagnostic disable-next-line: unused-local, unused-function
 local function tmux_status()
   ---@diagnostic disable-next-line: unused-function
   local function get_win_name()
@@ -379,17 +400,19 @@ local function tmux_status()
 end
 
 ins_right({
-  get_tmux_char,
-  color = { fg = colors.green }, -- Sets highlighting of component
-  padding = { right = 1 }, -- We don't need space before this
-  cond = function()
-    return os.getenv("TMUX") ~= nil
-  end,
+  "diagnostics",
+  sources = { "nvim_diagnostic" },
+  symbols = { error = " ", warn = " ", info = " " },
+  diagnostics_color = {
+    color_error = { fg = colors.red },
+    color_warn = { fg = colors.yellow },
+    color_info = { fg = colors.cyan },
+  },
 })
 
--- ins_right({
---   "filetype",
--- })
+ins_right({
+  "filetype",
+})
 
 ins_right({
   "searchcount",
@@ -414,36 +437,12 @@ ins_right({
 })
 
 ins_right({
-  "diff",
-  -- Is it me or the symbol for modified us really weird
-  symbols = { added = " ", modified = " ", removed = " " },
-  diff_color = {
-    added = { fg = colors.green },
-    modified = { fg = colors.orange },
-    removed = { fg = colors.red },
-  },
-  -- color = { bg = colors.bg_highlight },
-  cond = conditions.hide_in_width,
-})
-
-ins_right({
-  "branch",
-  icon = "",
-  -- color = { fg = colors.bg, bg = colors.fg, gui = "bold" },
-  color = { fg = colors.fg, bg = colors.bg, gui = "bold" },
-  fmt = function(branch_name)
-    local maxlen = 20
-    if vim.api.nvim_strwidth(branch_name) >= maxlen then
-      local trimmed = string.sub(branch_name, 1, maxlen)
-      local pattern = "[-_]$"
-      return string.gsub(trimmed, pattern, "") .. ".."
-    end
-    return branch_name
+  get_tmux_char,
+  color = { fg = colors.green }, -- Sets highlighting of component
+  padding = { left = 1, right = 1 }, -- We don't need space before this
+  cond = function()
+    return os.getenv("TMUX") ~= nil
   end,
-  separator = {
-    -- left = "",
-    -- right = "",
-  },
 })
 
 -- ins_right {
