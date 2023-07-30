@@ -128,6 +128,9 @@ return {
         path_display = path_display,
         preview = {
           -- hide_on_startup = true,
+          treesitter = {
+            disable = { "markdown" },
+          },
         },
         mappings = {
           i = {
