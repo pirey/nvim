@@ -199,42 +199,42 @@ ins_left_winbar({
 --   padding = { left = 0, right = 1 }, -- We don't need space before this
 -- }
 
--- ins_left({
---   -- mode component
---   function()
---     -- return ''
---     -- return "▊ "
---     -- return " ■ "
---     return "█"
---   end,
---   color = function()
---     -- auto change color according to neovims mode
---     local mode_color = {
---       n = colors.fg_dark,
---       i = colors.green,
---       v = colors.blue,
---       -- [''] = colors.blue,
---       V = colors.blue,
---       c = colors.magenta,
---       no = colors.red,
---       s = colors.orange,
---       S = colors.orange,
---       [""] = colors.orange,
---       ic = colors.yellow,
---       R = colors.violet,
---       Rv = colors.violet,
---       cv = colors.red,
---       ce = colors.red,
---       r = colors.cyan,
---       rm = colors.cyan,
---       ["r?"] = colors.cyan,
---       ["!"] = colors.red,
---       t = colors.red,
---     }
---     return { fg = mode_color[vim.fn.mode()] }
---   end,
---   padding = { right = 1 },
--- })
+ins_left({
+  -- mode component
+  function()
+    -- return ''
+    -- return "▊ "
+    -- return " ■ "
+    return "█"
+  end,
+  color = function()
+    -- auto change color according to neovims mode
+    local mode_color = {
+      n = colors.fg_dark,
+      i = colors.green,
+      v = colors.blue,
+      -- [''] = colors.blue,
+      V = colors.blue,
+      c = colors.magenta,
+      no = colors.red,
+      s = colors.orange,
+      S = colors.orange,
+      [""] = colors.orange,
+      ic = colors.yellow,
+      R = colors.violet,
+      Rv = colors.violet,
+      cv = colors.red,
+      ce = colors.red,
+      r = colors.cyan,
+      rm = colors.cyan,
+      ["r?"] = colors.cyan,
+      ["!"] = colors.red,
+      t = colors.red,
+    }
+    return { fg = mode_color[vim.fn.mode()] }
+  end,
+  padding = { right = 1 },
+})
 
 -- ins_left {
 --   -- filesize component
