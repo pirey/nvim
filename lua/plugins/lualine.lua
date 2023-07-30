@@ -431,11 +431,11 @@ ins_right({
   cond = conditions.buffer_not_empty,
 })
 
-ins_right({
-  "progress",
-  color = { fg = colors.fg_dark },
-  cond = conditions.buffer_not_empty,
-})
+-- ins_right({
+--   "progress",
+--   color = { fg = colors.fg_dark },
+--   cond = conditions.buffer_not_empty,
+-- })
 
 ins_right({
   get_tmux_char,
