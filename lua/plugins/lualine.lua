@@ -321,21 +321,21 @@ ins_left({
 })
 
 -- display cwd if opening empty file
-ins_left({
-  function()
-    local home = os.getenv("HOME")
-    local cwd = vim.fn.getcwd()
-    if home == nil then
-      return cwd
-    end
-    return string.gsub(cwd, home, "~")
-  end,
-  cond = conditions.buffer_empty,
-  -- color = { fg = colors.fg_dark, bg = colors.bg_highlight },
-  color = { fg = colors.fg_dark, bg = colors.bg },
-  -- separator = { left = "", right = "" },
-  separator = { left = "", right = "" },
-})
+-- ins_left({
+--   function()
+--     local home = os.getenv("HOME")
+--     local cwd = vim.fn.getcwd()
+--     if home == nil then
+--       return cwd
+--     end
+--     return string.gsub(cwd, home, "~")
+--   end,
+--   cond = conditions.buffer_empty,
+--   -- color = { fg = colors.fg_dark, bg = colors.bg_highlight },
+--   color = { fg = colors.fg_dark, bg = colors.bg },
+--   -- separator = { left = "", right = "" },
+--   separator = { left = "", right = "" },
+-- })
 
 -- Insert mid section. You can make any number of sections in neovim :)
 -- for lualine it's any number greater then 2
