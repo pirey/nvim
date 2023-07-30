@@ -309,6 +309,17 @@ ins_left({
   cond = conditions.hide_in_width,
 })
 
+ins_left({
+  "diagnostics",
+  sources = { "nvim_diagnostic" },
+  symbols = { error = " ", warn = " ", info = " " },
+  diagnostics_color = {
+    color_error = { fg = colors.red },
+    color_warn = { fg = colors.yellow },
+    color_info = { fg = colors.cyan },
+  },
+})
+
 -- display cwd if opening empty file
 ins_left({
   function()
@@ -400,17 +411,6 @@ local function tmux_status()
 end
 
 ins_right({
-  "diagnostics",
-  sources = { "nvim_diagnostic" },
-  symbols = { error = " ", warn = " ", info = " " },
-  diagnostics_color = {
-    color_error = { fg = colors.red },
-    color_warn = { fg = colors.yellow },
-    color_info = { fg = colors.cyan },
-  },
-})
-
-ins_right({
   "filetype",
 })
 
@@ -421,7 +421,8 @@ ins_right({
 
 ins_right({
   "selectioncount",
-  color = { fg = colors.bg_dark, bg = colors.blue },
+  -- color = { fg = colors.bg_dark, bg = colors.blue },
+  color = "Visual",
 })
 
 ins_right({
