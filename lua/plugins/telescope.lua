@@ -113,7 +113,7 @@ return {
     },
     opts = {
       defaults = {
-        layout_strategy = "horizontal",
+        layout_strategy = "bottom_pane",
         layout_config = {
           horizontal = {
             prompt_position = "top",
