@@ -411,10 +411,6 @@ local function tmux_status()
 end
 
 ins_right({
-  "filetype",
-})
-
-ins_right({
   "searchcount",
   color = { fg = colors.fg_dark },
 })
@@ -430,6 +426,11 @@ ins_right({
   color = { fg = colors.fg_dark },
   cond = conditions.buffer_not_empty,
 })
+
+ins_right({
+  "filetype",
+})
+
 
 -- ins_right({
 --   "progress",
