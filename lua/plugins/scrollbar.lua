@@ -7,7 +7,9 @@ return {
     },
     config = function()
       require("scrollbar").setup()
-      require("scrollbar.handlers.search").setup()
+      require("scrollbar.handlers.search").setup({
+        override_lens = function() end,
+      })
       require("scrollbar.handlers.gitsigns").setup()
     end,
   },

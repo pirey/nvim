@@ -2,6 +2,9 @@ return {
   {
     "folke/noice.nvim",
     opts = {
+      messages = {
+        view_search = false,
+      },
       views = {
         cmdline_popup = {
           border = {
@@ -14,6 +17,6 @@ return {
           },
         },
       },
-    }
-  }
+    },
+  },
 }
