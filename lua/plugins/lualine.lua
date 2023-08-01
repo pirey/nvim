@@ -428,6 +428,10 @@ ins_right({
 })
 
 ins_right({
+  "encoding",
+})
+
+ins_right({
   "filetype",
 })
 
