@@ -4,14 +4,14 @@ local actions_layout = require("telescope.actions.layout")
 local trouble = require("trouble.providers.telescope")
 local transform_mod = require("telescope.actions.mt").transform_mod
 
-local temp_showtabline
+-- local temp_showtabline
 local temp_laststatus
 
 -- autocmd handler
 function _G.global_telescope_find_pre()
-  temp_showtabline = vim.o.showtabline
+  -- temp_showtabline = vim.o.showtabline
   temp_laststatus = vim.o.laststatus
-  vim.o.showtabline = 0
+  -- vim.o.showtabline = 0
   vim.o.laststatus = 0
 end
 
@@ -19,17 +19,17 @@ function _G.global_telescope_leave_prompt()
   -- vim.o.laststatus = 3
   -- vim.o.showtabline = 2
   vim.o.laststatus = temp_laststatus
-  vim.o.showtabline = temp_showtabline
+  -- vim.o.showtabline = temp_showtabline
 end
 
 -- Register the autocmd for the User event TelescopeFindPre
--- vim.cmd([[
---   augroup MyAutocmds
---     autocmd!
---     autocmd User TelescopeFindPre lua global_telescope_find_pre()
---     autocmd FileType TelescopePrompt autocmd BufLeave <buffer> lua global_telescope_leave_prompt()
---   augroup END
--- ]])
+vim.cmd([[
+  augroup MyAutocmds
+    autocmd!
+    autocmd User TelescopeFindPre lua global_telescope_find_pre()
+    autocmd FileType TelescopePrompt autocmd BufLeave <buffer> lua global_telescope_leave_prompt()
+  augroup END
+]])
 
 -- custom actions
 
@@ -121,9 +121,13 @@ return {
             height = { padding = 0 },
             preview_width = 0.5,
           },
+          bottom_pane = {
+            prompt_position = "bottom",
+            sorting_strategy = "descending",
+          },
         },
-        sorting_strategy = "ascending",
-        winblend = 0,
+        border = false,
+        -- winblend = 0,
         -- path_display = { "truncate" },
         path_display = path_display,
         preview = {
@@ -148,7 +152,7 @@ return {
       pickers = {
         lsp_references = {
           fname_width = 100,
-          show_line = false,
+          show_line = false, -- don't show current line
           trim_text = true,
         },
       },

@@ -28,10 +28,6 @@ local function highlight_telescope(hl, c)
     bg = c.bg_dark,
     fg = c.bg_dark,
   }
-  hl.NoiceCmdlinePopupBorder = {
-    bg = c.bg,
-    fg = c.bg,
-  }
 end
 
 local function highlight_telescope_fullscreen(hl, c)
@@ -63,6 +59,13 @@ local function highlight_telescope_fullscreen(hl, c)
   hl.TelescopeResultsTitle = {
     bg = c.bg,
     fg = c.bg,
+  }
+end
+
+local function highlight_noice(hl, c)
+  hl.NoiceCmdlinePrompt = {
+    bg = c.bg_dark,
+    fg = c.fg,
   }
   hl.NoiceCmdlinePopupBorder = {
     bg = c.bg,
@@ -101,7 +104,8 @@ return {
         floats = "dark", -- style for floating windows
       },
       on_highlights = function(hl, c)
-        highlight_telescope_fullscreen(hl, c)
+        -- highlight_telescope_fullscreen(hl, c)
+        -- highlight_noice(hl, c)
         highlight_fold(hl, c)
         highlight_lsp_lens(hl, c)
         highlight_flutter(hl, c)
