@@ -12,45 +12,49 @@ return {
       messages = {
         view_search = false,
       },
-      -- views = {
-      --   cmdline_popup = {
-      --     border = {
-      --       style = "none",
-      --       padding = { 1, 1 },
-      --     },
-      --     size = {
-      --       min_width = 60,
-      --       width = "auto",
-      --       height = "auto",
-      --     },
-      --     position = {
-      --       row = 0,
-      --       col = "50%",
-      --     },
-      --     filter_options = {},
-      --     win_options = {
-      --       winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
-      --     },
-      --   },
-      --   cmdline_popupmenu = {
-      --     position = {
-      --       row = 4,
-      --       col = "50%"
-      --     },
-      --     border = {
-      --       style = "none",
-      --       padding = { 1, 2 },
-      --     },
-      --     size = {
-      --       min_width = 62,
-      --       width = "auto",
-      --       height = "auto",
-      --     },
-      --     win_options = {
-      --       winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
-      --     },
-      --   },
-      -- },
+      views = {
+        notify = {
+          replace = false,
+          merge = false,
+        },
+        -- cmdline_popup = {
+        --   border = {
+        --     style = "none",
+        --     padding = { 1, 1 },
+        --   },
+        --   size = {
+        --     min_width = 60,
+        --     width = "auto",
+        --     height = "auto",
+        --   },
+        --   position = {
+        --     row = 0,
+        --     col = "50%",
+        --   },
+        --   filter_options = {},
+        --   win_options = {
+        --     winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+        --   },
+        -- },
+        -- cmdline_popupmenu = {
+        --   position = {
+        --     row = 4,
+        --     col = "50%"
+        --   },
+        --   border = {
+        --     style = "none",
+        --     padding = { 1, 2 },
+        --   },
+        --   size = {
+        --     min_width = 62,
+        --     width = "auto",
+        --     height = "auto",
+        --   },
+        --   win_options = {
+        --     winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+        --   },
+        -- },
+      },
     },
   },
 }
