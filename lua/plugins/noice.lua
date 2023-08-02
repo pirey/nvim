@@ -14,7 +14,7 @@ return {
       },
       views = {
         notify = {
-          replace = false,
+          replace = true,
           merge = false,
         },
         -- cmdline_popup = {
