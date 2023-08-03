@@ -277,7 +277,7 @@ ins_left_winbar({
 ins_left({
   "branch",
   icon = "",
-  color = { fg = colors.fg, bg = colors.bg },
+  color = { fg = colors.fg, bg = colors.bg, gui = "bold" },
   -- fmt = function(branch_name)
   --   local maxlen = 20
   --   if vim.api.nvim_strwidth(branch_name) >= maxlen then

@@ -8,7 +8,7 @@ return {
       -- max_height = 5,
       stages = "static",
       -- fps = 60,
-      top_down = false,
+      -- top_down = false,
     },
   },
 }
