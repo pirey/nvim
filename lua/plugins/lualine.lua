@@ -30,13 +30,11 @@ function custom_filename:init(options)
   self.options.cond = conditions.buffer_not_empty
   self.status_colors = {
     saved = highlight.create_component_highlight_group(
-      -- { fg = colors.bg, bg = colors.fg, gui = "bold" },
       { fg = colors.fg, bg = colors.bg, gui = "bold" },
       "filename_status_saved",
       self.options
     ),
     modified = highlight.create_component_highlight_group(
-      -- { fg = colors.bg, bg = colors.green, gui = "bold" },
       { fg = colors.green, bg = colors.bg, gui = "bold" },
       "filename_status_modified",
       self.options
@@ -279,8 +277,7 @@ ins_left_winbar({
 ins_left({
   "branch",
   icon = "",
-  -- color = { fg = colors.bg, bg = colors.fg, gui = "bold" },
-  color = { fg = colors.fg, bg = colors.bg, gui = "bold" },
+  color = { fg = colors.fg, bg = colors.bg },
   -- fmt = function(branch_name)
   --   local maxlen = 20
   --   if vim.api.nvim_strwidth(branch_name) >= maxlen then
