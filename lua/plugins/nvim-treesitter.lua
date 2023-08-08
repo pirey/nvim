@@ -3,7 +3,7 @@ return {
   opts = {
     ignore_install = { "help" },
     highlight = {
-      disable = { "markdown" },
+      disable = { "markdown", "json" },
     },
   },
 }
