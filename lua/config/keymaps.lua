@@ -55,12 +55,7 @@ vim.keymap.set("n", "<leader>wH", "<cmd>wincmd H<cr>", { silent = true })
 vim.keymap.set("n", "<leader>wL", "<cmd>wincmd L<cr>", { silent = true })
 
 -- copy paste
--- vim.keymap.set("n", "<leader>sy", [[<cmd>let @* = ''<cr><cmd>g//let @* .= getline('.') . "\n"<cr>]], { desc = "copy search matches"})
--- vim.keymap.set("n", "<leader>sy", [[<cmd>g//y A<cr>]], { desc = "copy search matches"})
-vim.keymap.set("n", "<leader>sy", function()
-  vim.cmd("let @a = ''")
-  vim.cmd("g//y A")
-end, { desc = "copy search matches" })
+vim.keymap.set("n", "<leader>sy", [[<cmd>let @a = ''<cr><cmd>g//y A<cr>]], { desc = "copy search matches"})
 
 vim.keymap.set(
   "n",
