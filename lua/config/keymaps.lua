@@ -55,6 +55,7 @@ vim.keymap.set("n", "<leader>wH", "<cmd>wincmd H<cr>", { silent = true })
 vim.keymap.set("n", "<leader>wL", "<cmd>wincmd L<cr>", { silent = true })
 
 -- copy paste
+-- TODO: copy only matches, not entire line
 vim.keymap.set("n", "<leader>sy", [[<cmd>let @a = ''<cr><cmd>g//y A<cr>]], { desc = "copy search matches"})
 
 vim.keymap.set(

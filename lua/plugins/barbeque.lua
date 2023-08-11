@@ -1,4 +1,3 @@
--- TODO: need to test performance
 return {
   {
     "utilyre/barbecue.nvim",
