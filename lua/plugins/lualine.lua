@@ -240,28 +240,6 @@ ins_left_winbar({
 --   cond = conditions.buffer_not_empty,
 -- }
 
--- ins_left {
---   -- Lsp server name .
---   function()
---     local icon = ' LSP: '
---     local msg = ''
---     local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
---     local clients = vim.lsp.get_active_clients()
---     if next(clients) == nil then
---       return msg
---     end
---     for _, client in ipairs(clients) do
---       local filetypes = client.config.filetypes
---       if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
---         return icon .. client.name
---       end
---     end
---     return msg
---   end,
---   -- icon = ' LSP:',
---   color = { fg = colors.cyan, gui = 'bold' },
--- }
-
 -- ins_left(custom_filename)
 
 -- file dirname
@@ -407,6 +385,31 @@ local function tmux_status()
   end
 end
 
+-- ins_right({
+--   -- Lsp server name .
+--   function()
+--     local icon = "● LSP: "
+--     local msg = ""
+--     local buf_ft = vim.api.nvim_get_option_value("filetype", {
+--       buf = 0,
+--     })
+--     local clients = vim.lsp.get_active_clients()
+--     if next(clients) == nil then
+--       return msg
+--     end
+--     for _, client in ipairs(clients) do
+--       if client.name ~= "null-ls" then
+--         local filetypes = client.config.filetypes
+--         if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+--           return icon .. client.name
+--         end
+--       end
+--     end
+--     return msg
+--   end,
+--   -- icon = ' LSP:',
+-- })
+
 ins_right({
   "searchcount",
   color = { fg = colors.fg_dark },
@@ -431,7 +434,6 @@ ins_right({
 ins_right({
   "filetype",
 })
-
 
 -- ins_right({
 --   "progress",
