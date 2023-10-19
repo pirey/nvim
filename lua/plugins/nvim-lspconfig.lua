@@ -12,7 +12,7 @@ return {
       keys[#keys + 1] = { "<leader>k", vim.lsp.buf.hover }
     end,
     opts = {
-      autoformat = false,
+      -- autoformat = false,
       -- setup = {
       --   tsserver = function(_, opts)
       --     local util = require("lspconfig.util")
