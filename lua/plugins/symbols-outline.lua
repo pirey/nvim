@@ -3,7 +3,7 @@ return {
   {
     "simrat39/symbols-outline.nvim",
     cmd = "SymbolsOutline",
-    -- keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
+    keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
     opts = {
       highlight_hovered_item = true,
       -- show_guides = true,
@@ -41,7 +41,8 @@ return {
   {
     "stevearc/aerial.nvim",
     opts = {},
-    keys = { { "<leader>cs", "<cmd>AerialToggle<cr>", desc = "Code Outline" } },
+    cmd = "AerialToggle",
+    -- keys = { { "<leader>cs", "<cmd>AerialToggle<cr>", desc = "Code Outline" } },
     -- Optional dependencies
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
