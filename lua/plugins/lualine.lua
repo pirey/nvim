@@ -341,9 +341,9 @@ local function get_tmux_char()
   if result ~= nil and result:read("*a") ~= "" then
     result:close()
     -- return "██"
-    return "■ ■"
-  else
     return "■"
+  else
+    return ""
   end
 end
 
