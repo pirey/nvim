@@ -3,17 +3,28 @@ return {
   -- neorg
   {
     "nvim-neorg/neorg",
+    build = ":Neorg sync-parsers",
+    dependencies = { "nvim-lua/plenary.nvim" },
     ft = "norg",
-    opts = {
-      load = {
-        ["core.defaults"] = {},
-        ["core.norg.concealer"] = {},
-        ["core.norg.completion"] = {
-          config = { engine = "nvim-cmp" },
+    config = function()
+      require("neorg").setup({
+        load = {
+          ["core.defaults"] = {},
+          ["core.concealer"] = {},
+          ["core.dirman"] = {
+            -- config = { engine = "nvim-cmp" },
+            config = {
+              workspaces = {
+                notes = "~/notes",
+              },
+              default_workspace = "notes",
+            },
+          },
         },
-        ["core.integrations.nvim-cmp"] = {},
-      },
-    },
-  },
+      })
 
+      vim.wo.foldlevel = 99
+      vim.wo.conceallevel = 2
+    end,
+  },
 }
