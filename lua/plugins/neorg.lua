@@ -1,23 +1,29 @@
+vim.g.maplocalleader = ","
 return {
-  -- TODO: explore this
-  -- neorg
   {
     "nvim-neorg/neorg",
     build = ":Neorg sync-parsers",
     dependencies = { "nvim-lua/plenary.nvim" },
-    ft = "norg",
     config = function()
       require("neorg").setup({
         load = {
           ["core.defaults"] = {},
           ["core.concealer"] = {},
+          ["core.summary"] = {},
+          ["core.journal"] = {
+            config = {
+              strategy = "flat",
+              workspace = "work",
+            },
+          },
           ["core.dirman"] = {
             -- config = { engine = "nvim-cmp" },
             config = {
               workspaces = {
-                notes = "~/notes",
+                notes = "~/norg/notes",
+                work = "~/norg/work",
               },
-              default_workspace = "notes",
+              default_workspace = "work",
             },
           },
         },

@@ -36,7 +36,7 @@ return {
         center = {
           { action = "Telescope find_files",                                     desc = " Find file",       icon = " ", key = "f" },
           {
-            action = "Neotree toggle",
+              action = "Neotree toggle",
             desc = " Explore",
             icon = " ",
             key = "e",

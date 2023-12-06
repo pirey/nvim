@@ -19,7 +19,7 @@ return {
         },
       },
       window = {
-        position = "right",
+        position = "bottom",
         mappings = {
           ["z"] = "noop",
           ["/"] = "noop",
