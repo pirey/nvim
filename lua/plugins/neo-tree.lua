@@ -24,6 +24,7 @@ return {
           ["z"] = "noop",
           ["/"] = "noop",
           ["s"] = "noop",
+          ["<esc>"] = "close_window",
           ["<c-v>"] = "open_vsplit",
           ["f"] = "fuzzy_finder",
           ["zM"] = "close_all_nodes",
