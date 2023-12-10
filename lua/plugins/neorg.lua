@@ -13,7 +13,7 @@ return {
           ["core.journal"] = {
             config = {
               strategy = "flat",
-              workspace = "work",
+              workspace = "journal",
             },
           },
           ["core.dirman"] = {
@@ -22,8 +22,9 @@ return {
               workspaces = {
                 notes = "~/norg/notes",
                 work = "~/norg/work",
+                journal = "~/norg/journal",
               },
-              default_workspace = "work",
+              default_workspace = "notes",
             },
           },
         },
