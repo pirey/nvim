@@ -2,7 +2,8 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     keys = {
-      { "<leader>e", "<cmd>Neotree toggle reveal<cr>" },
+      { "<leader>e", "<cmd>Neotree dir=./ toggle reveal<cr>" },
+      { "<leader>E", "<cmd>Neotree toggle reveal_force_cwd<cr>" },
     },
     opts = {
       sources = {
