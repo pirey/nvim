@@ -14,7 +14,6 @@ return {
             },
           },
           ["core.summary"] = {},
-          ["core.tempus"] = {},
           ["core.journal"] = {
             config = {
               strategy = "flat",
