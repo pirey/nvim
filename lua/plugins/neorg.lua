@@ -14,10 +14,11 @@ return {
             },
           },
           ["core.summary"] = {},
+          ["core.tempus"] = {},
           ["core.journal"] = {
             config = {
               strategy = "flat",
-              workspace = "journal",
+              workspace = "work",
             },
           },
           ["core.dirman"] = {
@@ -26,7 +27,6 @@ return {
               workspaces = {
                 notes = "~/norg/notes",
                 work = "~/norg/work",
-                journal = "~/norg/journal",
               },
               default_workspace = "notes",
             },
