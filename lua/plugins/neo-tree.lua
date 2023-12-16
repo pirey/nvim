@@ -20,6 +20,7 @@ return {
         },
       },
       window = {
+        height = "50%",
         position = "bottom",
         mappings = {
           ["z"] = "noop",
