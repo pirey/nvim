@@ -22,11 +22,14 @@ return {
     setup_blade()
     local opts = {
       ignore_install = { "help" },
-      ensure_installed = { "org", "php" },
+      ensure_installed = { "org" },
       highlight = {
         enable = true,
         -- disable = { "markdown", "json" },
         additional_vim_regex_highlighting = { "org" },
+      },
+      indent = {
+        enable = true,
       },
     }
     require("nvim-treesitter.configs").setup(opts)
