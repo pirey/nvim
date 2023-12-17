@@ -6,7 +6,7 @@ return {
     },
     formatters = {
       ["blade-formatter"] = {
-        prepend_args = { "--sort-classes" },
+        prepend_args = { "--sort-classes", "--wrap-attributes", "force" },
       },
     },
   },
