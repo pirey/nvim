@@ -14,6 +14,7 @@ vim.keymap.set({ "n", "v" }, "J", "15gj")
 vim.keymap.set({ "n", "v" }, "K", "15gk")
 vim.keymap.set({ "n", "v" }, "zl", "L")
 vim.keymap.set({ "n", "v" }, "zh", "H")
+vim.keymap.set({ "n", "v" }, "<c-e>", "<c-u>")
 vim.keymap.set("v", "$", "$h")
 
 -- clipboard / copy paste
@@ -56,7 +57,7 @@ vim.keymap.set("n", "<leader>wL", "<cmd>wincmd L<cr>", { silent = true })
 
 -- copy paste
 -- TODO: copy only matches, not entire line
-vim.keymap.set("n", "<leader>sy", [[<cmd>let @a = ''<cr><cmd>g//y A<cr>]], { desc = "copy search matches"})
+vim.keymap.set("n", "<leader>sy", [[<cmd>let @a = ''<cr><cmd>g//y A<cr>]], { desc = "copy search matches" })
 
 vim.keymap.set(
   "n",
