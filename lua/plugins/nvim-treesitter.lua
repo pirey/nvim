@@ -22,7 +22,7 @@ return {
     setup_blade()
     local opts = {
       ignore_install = { "help" },
-      ensure_installed = { "org" },
+      ensure_installed = { "org", "http", "json" },
       highlight = {
         enable = true,
         -- disable = { "markdown", "json" },
