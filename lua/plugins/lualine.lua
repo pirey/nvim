@@ -121,12 +121,12 @@ local config = {
 }
 
 -- Inserts a component in lualine_c at left section
-local function ins_left(component)
+local function insert_left(component)
   table.insert(config.sections.lualine_c, component)
 end
 
 -- Inserts a component in lualine_x at right section
-local function ins_right(component)
+local function insert_right(component)
   table.insert(config.sections.lualine_x, component)
 end
 
@@ -252,7 +252,7 @@ ins_left_winbar({
 --   cond = conditions.buffer_not_empty,
 -- })
 
-ins_left({
+insert_left({
   "branch",
   icon = "",
   color = { fg = colors.fg, bg = colors.bg, gui = "bold" },
@@ -271,7 +271,7 @@ ins_left({
   },
 })
 
-ins_left({
+insert_left({
   "diff",
   -- Is it me or the symbol for modified us really weird
   symbols = { added = " ", modified = " ", removed = " " },
@@ -284,7 +284,7 @@ ins_left({
   cond = conditions.hide_in_width,
 })
 
-ins_left({
+insert_left({
   "diagnostics",
   sources = { "nvim_diagnostic" },
   symbols = { error = " ", warn = " ", info = " " },
@@ -314,7 +314,7 @@ ins_left({
 
 -- Insert mid section. You can make any number of sections in neovim :)
 -- for lualine it's any number greater then 2
-ins_left({
+insert_left({
   function()
     return "%="
   end,
@@ -410,28 +410,28 @@ end
 --   -- icon = ' LSP:',
 -- })
 
-ins_right({
+insert_right({
   "searchcount",
   color = { fg = colors.fg_dark },
 })
 
-ins_right({
+insert_right({
   "selectioncount",
   -- color = { fg = colors.bg_dark, bg = colors.blue },
   color = "Visual",
 })
 
-ins_right({
+insert_right({
   "location",
   color = { fg = colors.fg_dark },
   cond = conditions.buffer_not_empty,
 })
 
-ins_right({
+insert_right({
   "encoding",
 })
 
-ins_right({
+insert_right({
   "filetype",
 })
 
@@ -440,8 +440,7 @@ ins_right({
 --   color = { fg = colors.fg_dark },
 --   cond = conditions.buffer_not_empty,
 -- })
-
-ins_right({
+insert_right({
   get_tmux_char,
   color = { fg = colors.green }, -- Sets highlighting of component
   padding = { left = 1, right = 1 }, -- We don't need space before this
