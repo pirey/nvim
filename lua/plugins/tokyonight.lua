@@ -75,7 +75,8 @@ end
 
 local function highlight_fold(hl, c)
   hl.Folded = {
-    fg = c.fg_gutter,
+    -- fg = c.fg_gutter,
+    fg = c.fg_dark,
     bg = c.bg,
   }
 end
