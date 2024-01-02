@@ -47,6 +47,21 @@ local custom_actions = transform_mod({
     actions.select_default(prompt_bufnr)
     require("telescope.builtin").resume()
   end,
+  -- https://github.com/nvim-telescope/telescope.nvim/issues/1048#issuecomment-1679797700
+  select_one_or_multi = function(prompt_bufnr)
+    local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+    local multi = picker:get_multi_selection()
+    if not vim.tbl_isempty(multi) then
+      require("telescope.actions").close(prompt_bufnr)
+      for _, j in pairs(multi) do
+        if j.path ~= nil then
+          vim.cmd(string.format("%s %s", "edit", j.path))
+        end
+      end
+    else
+      require("telescope.actions").select_default(prompt_bufnr)
+    end
+  end,
 })
 
 local function normalize_path(path)
@@ -155,6 +170,7 @@ return {
             ["<c-p>"] = actions_layout.toggle_preview,
             ["<c-t>"] = trouble.smart_open_with_trouble,
             ["<c-l>"] = custom_actions.open_and_resume,
+            ["<cr>"] = custom_actions.select_one_or_multi,
             ["<c-x>"] = actions.delete_buffer,
           },
         },
