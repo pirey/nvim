@@ -15,6 +15,12 @@ return {
   {
     "akinsho/org-bullets.nvim",
     dependencies = { "nvim-orgmode/orgmode" },
-    opts = {},
+    opts = {
+      symbols = {
+        checkboxes = {
+          todo = { "✗", "OrgTODO" },
+        },
+      },
+    },
   },
 }
