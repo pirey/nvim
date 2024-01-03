@@ -40,6 +40,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.o.wrap = false
+vim.opt.listchars = { space = "·" }
 
 -- clean diff
 vim.opt.fillchars:append({ diff = " " })
