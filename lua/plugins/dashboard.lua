@@ -1,9 +1,26 @@
+local function make_header(logo_splitted, center)
+  local padding = 5
+  local total_lines = #logo_splitted + (#center * 2) + 1
+  local win_h = vim.fn.winheight(0)
+  local num_empty_lines = win_h - total_lines - padding
+  local header = logo_splitted
+  if num_empty_lines > 0 then
+    for i = 1, num_empty_lines do
+      table.insert(header, "")
+    end
+  end
+
+  return header
+end
+
 return {
   {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",
     opts = function()
       local logo = [[
+
+
 
         ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣠⣤⣤⣴⣦⣤⣤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
         ⠀⠀⠀⠀⠀⠀⢀⣤⣾⣿⣿⣿⣿⠿⠿⠿⠿⣿⣿⣿⣿⣶⣤⡀⠀⠀⠀⠀⠀⠀
@@ -20,8 +37,59 @@ return {
         ⠀⠀⠀⠀⠈⠻⣿⣿⣷⣤⣄⡀⠀⠀⠀⠀⠀⠀⢀⣠⣴⣾⣿⣿⠟⠁⠀⠀⠀⠀
         ⠀⠀⠀⠀⠀⠀⠈⠛⠿⣿⣿⣿⣿⣿⣶⣶⣿⣿⣿⣿⣿⠿⠋⠁⠀⠀⠀⠀⠀⠀
         ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠛⠛⠛⠛⠛⠛⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-
       ]]
+
+      local logo_splitted = vim.split(logo, "\n")
+
+      local center = {
+        {
+          action = "Telescope find_files",
+          desc = " Find file",
+          icon = " ",
+          key = "f",
+        },
+        {
+          action = "Neotree toggle",
+          desc = " Explore",
+          icon = " ",
+          key = "e",
+        },
+        {
+          action = "ene | startinsert",
+          desc = " New file",
+          icon = " ",
+          key = "n",
+        },
+        {
+          action = "Telescope oldfiles",
+          desc = " Recent files",
+          icon = " ",
+          key = "r",
+        },
+        {
+          action = "Git | only",
+          desc = " Git",
+          icon = " ",
+          key = "g",
+        },
+        {
+          action = [[lua require("lazyvim.util").telescope.config_files()()]],
+          desc = " Config",
+          icon = " ",
+          key = "c",
+        },
+        {
+          action = 'lua require("persistence").load()',
+          desc = " Restore Session",
+          icon = " ",
+          key = "s",
+        },
+        -- { action = "LazyExtras",                                               desc = " Lazy Extras",     icon = " ", key = "x" },
+        -- { action = "Lazy",                                                     desc = " Lazy",            icon = "󰒲 ", key = "l" },
+        -- { action = "qa",                                                       desc = " Quit",            icon = " ", key = "q" },
+      }
+
+      local header = make_header(logo_splitted, center)
 
       local opts = {
         theme = "doom",
@@ -31,25 +99,8 @@ return {
           statusline = false,
         },
         config = {
-          header = vim.split(logo, "\n"),
-        -- stylua: ignore
-        center = {
-          { action = "Telescope find_files",                                     desc = " Find file",       icon = " ", key = "f" },
-          {
-              action = "Neotree toggle",
-            desc = " Explore",
-            icon = " ",
-            key = "e",
-          },
-          { action = "ene | startinsert",                                        desc = " New file",        icon = " ", key = "n" },
-          { action = "Telescope oldfiles",                                       desc = " Recent files",    icon = " ", key = "r" },
-          { action = "Git | only",                                                      desc = " Git",             icon = " ", key = "g" },
-          { action = [[lua require("lazyvim.util").telescope.config_files()()]], desc = " Config",          icon = " ", key = "c" },
-          { action = 'lua require("persistence").load()',                        desc = " Restore Session", icon = " ", key = "s" },
-          -- { action = "LazyExtras",                                               desc = " Lazy Extras",     icon = " ", key = "x" },
-          -- { action = "Lazy",                                                     desc = " Lazy",            icon = "󰒲 ", key = "l" },
-          -- { action = "qa",                                                       desc = " Quit",            icon = " ", key = "q" },
-        },
+          header = header,
+          center = center,
           footer = function()
             local stats = require("lazy").stats()
             local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
