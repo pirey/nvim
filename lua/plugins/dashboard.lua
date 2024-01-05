@@ -1,24 +1,5 @@
-local function make_header(logo_splitted, center)
-  local padding = 5
-  local total_lines = #logo_splitted + (#center * 2) + 1
-  local win_h = vim.fn.winheight(0)
-  local num_empty_lines = win_h - total_lines - padding
-  local header = logo_splitted
-  if num_empty_lines > 0 then
-    for i = 1, num_empty_lines do
-      table.insert(header, "")
-    end
-  end
-
-  return header
-end
-
-return {
-  {
-    "nvimdev/dashboard-nvim",
-    event = "VimEnter",
-    opts = function()
-      local logo = [[
+local function make_logo()
+  local logo = [[
 
 
 
@@ -39,8 +20,31 @@ return {
         ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠛⠛⠛⠛⠛⠛⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
       ]]
 
-      local logo_splitted = vim.split(logo, "\n")
+  local logo_splitted = vim.split(logo, "\n")
 
+  return logo_splitted
+end
+
+local function make_header(logo_splitted, center)
+  local padding = 5
+  local total_lines = #logo_splitted + (#center * 2) + 1
+  local win_h = vim.fn.winheight(0)
+  local num_empty_lines = win_h - total_lines - padding
+  local header = logo_splitted
+  if num_empty_lines > 0 then
+    for i = 1, num_empty_lines do
+      table.insert(header, "")
+    end
+  end
+
+  return header
+end
+
+return {
+  {
+    "nvimdev/dashboard-nvim",
+    event = "VimEnter",
+    opts = function()
       local center = {
         {
           action = "Telescope find_files",
@@ -89,7 +93,7 @@ return {
         -- { action = "qa",                                                       desc = " Quit",            icon = " ", key = "q" },
       }
 
-      local header = make_header(logo_splitted, center)
+      local header = make_header(make_logo(), center)
 
       local opts = {
         theme = "doom",
