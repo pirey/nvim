@@ -40,7 +40,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.number = false
 vim.opt.relativenumber = false
 vim.o.wrap = false
-vim.opt.listchars = { space = "·" }
+vim.opt.listchars = { space = "·", tab = ">~" }
 
 -- clean diff
 vim.opt.fillchars:append({ diff = " " })
@@ -68,3 +68,7 @@ if vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 then
     vim.o[option] = value
   end
 end
+
+vim.cmd([[
+  command! -nargs=0 CopyRelativePath :let @+=expand('%:p:~:.')
+]])
