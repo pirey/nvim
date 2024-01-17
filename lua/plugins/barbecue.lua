@@ -8,6 +8,7 @@ return {
       "nvim-tree/nvim-web-devicons", -- optional dependency
     },
     opts = {
+      include_buftypes = { "", "nowrite" },
       -- configurations go here
     },
   },
