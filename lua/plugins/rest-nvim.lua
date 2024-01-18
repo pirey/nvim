@@ -6,6 +6,19 @@ return {
     { "<leader>rp", "<Plug>RestNvimPreview", "Preview curl request" },
     { "<leader>rp", "<Plug>RestNvimLast", "Run last request" },
   },
+  init = function()
+    os.execute("mkdir -p ~/.rest-nvim")
+    vim.api.nvim_create_user_command("RestNvim", function(arg)
+      local filename = arg.args
+      if #filename == 0 then
+        filename = "index"
+      end
+      if not filename:match("%.http$") then
+        filename = filename .. ".http"
+      end
+      vim.cmd("edit ~/.rest-nvim/" .. filename)
+    end, { nargs = "?", desc = "Open http client" })
+  end,
   config = function()
     require("rest-nvim").setup({
       -- Open request results in a horizontal split
