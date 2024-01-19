@@ -409,6 +409,17 @@ end
 --   end,
 --   -- icon = ' LSP:',
 -- })
+--
+insert_right({
+  function()
+    local char_register = vim.fn.reg_recording()
+    if #char_register > 0 then
+      return "REC @" .. char_register
+    end
+    return ""
+  end,
+  color = "Visual",
+})
 
 insert_right({
   "searchcount",
