@@ -19,4 +19,9 @@ return {
   {
     "tpope/vim-dadbod",
   },
+
+  {
+    "tommcdo/vim-fubitive",
+    dependencies = { "tpope/vim-fugitive" },
+  },
 }
