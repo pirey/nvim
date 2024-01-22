@@ -7,14 +7,16 @@ local Util = require("lazyvim.util")
 vim.keymap.set({ "n", "v" }, ";", ":")
 vim.keymap.set({ "n" }, "<leader>;", "q:", { desc = "Command line window" })
 
--- movements
+-- movements/navigation
 vim.keymap.set({ "n", "v" }, "E", "20l")
 vim.keymap.set({ "n", "v" }, "B", "20h")
 vim.keymap.set({ "n", "v" }, "J", "15gj")
 vim.keymap.set({ "n", "v" }, "K", "15gk")
-vim.keymap.set({ "n", "v" }, "zl", "L")
-vim.keymap.set({ "n", "v" }, "zh", "H")
-vim.keymap.set({ "n", "v" }, "<c-e>", "<c-u>")
+-- vim.keymap.set({ "n", "v" }, "zl", "L")
+-- vim.keymap.set({ "n", "v" }, "zh", "H")
+vim.keymap.set({ "n", "v" }, "zl", "20zl")
+vim.keymap.set({ "n", "v" }, "zh", "20zh")
+vim.keymap.set({ "n", "v" }, "<c-e>", "<c-b>")
 vim.keymap.set("v", "$", "$h")
 
 -- clipboard / copy paste
