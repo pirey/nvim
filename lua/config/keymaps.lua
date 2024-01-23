@@ -16,6 +16,7 @@ vim.keymap.set({ "n", "v" }, "K", "15gk")
 -- vim.keymap.set({ "n", "v" }, "zh", "H")
 vim.keymap.set({ "n", "v" }, "zl", "20zl")
 vim.keymap.set({ "n", "v" }, "zh", "20zh")
+vim.keymap.set({ "n", "v" }, "<c-d>", "<c-f>")
 vim.keymap.set({ "n", "v" }, "<c-e>", "<c-b>")
 vim.keymap.set("v", "$", "$h")
 
