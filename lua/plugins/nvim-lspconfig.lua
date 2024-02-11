@@ -15,6 +15,10 @@ return {
       servers = {
         tailwindcss = {
           filetypes_include = { "blade" },
+          root_dir = require("lspconfig.util").root_pattern(".git"),
+        },
+        tsserver = {
+          root_dir = require("lspconfig.util").root_pattern(".git"),
         },
       },
     },
