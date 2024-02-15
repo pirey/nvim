@@ -15,6 +15,7 @@ return {
       servers = {
         tailwindcss = {
           filetypes_include = { "blade" },
+          -- TODO: only start tailwind server if found tailwind config file
           root_dir = require("lspconfig.util").root_pattern(".git"),
         },
         tsserver = {
