@@ -1,5 +1,7 @@
 return {
   "joaomsa/telescope-orgmode.nvim",
+  "pirey/telescope-orgmode.nvim",
+  branch = "fix-deprecated-error-message",
   dependencies = {
     { "nvim-orgmode/orgmode", lazy = true },
     { "nvim-telescope/telescope.nvim", lazy = true },
