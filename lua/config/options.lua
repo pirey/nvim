@@ -41,6 +41,10 @@ vim.opt.number = false
 vim.opt.relativenumber = false
 vim.o.wrap = false
 vim.opt.listchars = { space = "·", tab = "· " }
+vim.opt.iskeyword:append("-")
+vim.opt.iskeyword:append("#")
+vim.opt.iskeyword:append(".")
+vim.opt.iskeyword:append(":")
 
 -- clean diff
 vim.opt.fillchars:append({ diff = " " })
