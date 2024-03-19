@@ -59,7 +59,6 @@
   "persistence.nvim": { "branch": "main", "commit": "4982499c1636eac254b72923ab826ee7827b3084" },
   "plenary.nvim": { "branch": "master", "commit": "f7adfc4b3f4f91aab6caebf42b3682945fbc35be" },
   "rest.nvim": { "branch": "main", "commit": "2929d4683195f70ddf02cfb192e2e664521aad50" },
-  "sunglasses.nvim": { "branch": "main", "commit": "fe31ab6fdd4eaaec545eed729b0d59e63a0934f9" },
   "symbols-outline.nvim": { "branch": "master", "commit": "564ee65dfc9024bdde73a6621820866987cbb256" },
   "tabscope.nvim": { "branch": "main", "commit": "cba52d18fbb1171cd92c7baf916e98fb720d6ae0" },
   "tailwindcss-colorizer-cmp.nvim": { "branch": "main", "commit": "bc25c56083939f274edcfe395c6ff7de23b67c50" },
