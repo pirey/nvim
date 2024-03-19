@@ -18,15 +18,12 @@ end
 return {
   "nvim-treesitter/nvim-treesitter",
   config = function()
-    require("orgmode").setup_ts_grammar()
     setup_blade()
     local opts = {
       ignore_install = { "help" },
-      ensure_installed = { "org", "http", "json" },
+      ensure_installed = { "http", "json" },
       highlight = {
         enable = true,
-        -- disable = { "markdown", "json" },
-        additional_vim_regex_highlighting = { "org" },
       },
       indent = {
         enable = true,
