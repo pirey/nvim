@@ -1,9 +1,6 @@
--- TODO: sudden error after upgrade? not sure how to fix
--- temporariy switch to neorg
 return {
   {
     "nvim-orgmode/orgmode",
-    enabled = false,
     dependencies = {
       { "nvim-treesitter/nvim-treesitter", lazy = true },
     },
@@ -31,7 +28,6 @@ return {
   },
   {
     "akinsho/org-bullets.nvim",
-    enabled = true,
     dependencies = { "nvim-orgmode/orgmode" },
     opts = {
       symbols = {
