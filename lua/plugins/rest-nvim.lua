@@ -1,4 +1,8 @@
----legacy
+-- NOTE: dependencies
+-- for ubuntu WSL, need to copy curl.h manually
+-- sudo apt-get install libcurl4-gnutls-dev
+-- sudo cp /usr/include/x86_64-linux-gnu/curl/* /usr/include/curl
+
 ---@diagnostic disable-next-line: unused-function, unused-local
 local keys = {
   { "<leader>rr", "<Plug>RestNvim", "Run http request under cursor" },
@@ -6,9 +10,7 @@ local keys = {
   { "<leader>rp", "<Plug>RestNvimLast", "Run last request" },
 }
 
----legacy
----@diagnostic disable-next-line: unused-function, unused-local
-local function init()
+local function init_rest_nvim()
   os.execute("mkdir -p ~/.rest-nvim")
   vim.api.nvim_create_user_command("RestNvim", function(arg)
     local filename = arg.args
@@ -35,7 +37,7 @@ return {
   {
     "rest-nvim/rest.nvim",
     dependencies = { "vhyrro/luarocks.nvim" },
-    init = init,
+    init = init_rest_nvim,
     cmd = "RestNvim",
     ft = "http",
     config = function()
