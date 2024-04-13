@@ -8,7 +8,7 @@ local keys = {
 
 ---legacy
 ---@diagnostic disable-next-line: unused-function, unused-local
-local function gen_folder()
+local function init()
   os.execute("mkdir -p ~/.rest-nvim")
   vim.api.nvim_create_user_command("RestNvim", function(arg)
     local filename = arg.args
@@ -27,13 +27,17 @@ return {
     "vhyrro/luarocks.nvim",
     priority = 1000,
     config = true,
+    lazy = true,
     opts = {
-      rocks = {  "lua-curl", "nvim-nio", "mimetypes", "xml2lua" }, -- Specify LuaRocks packages to install
+      rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" }, -- Specify LuaRocks packages to install
     },
   },
   {
     "rest-nvim/rest.nvim",
     dependencies = { "vhyrro/luarocks.nvim" },
+    init = init,
+    cmd = "RestNvim",
+    ft = "http",
     config = function()
       require("rest-nvim").setup({
         client = "curl",
