@@ -335,6 +335,10 @@ insert_left({
 --   color = { fg = colors.green, gui = 'bold' },
 -- }
 
+local function get_max_line()
+  return "of " .. vim.fn.line("$")
+end
+
 local function get_tmux_char()
   local result = io.popen("tmux list-panes -F '#F' | grep Z")
 
@@ -434,6 +438,12 @@ insert_right({
 
 insert_right({
   "location",
+  color = { fg = colors.fg_dark },
+  cond = conditions.buffer_not_empty,
+})
+
+insert_right({
+  get_max_line,
   color = { fg = colors.fg_dark },
   cond = conditions.buffer_not_empty,
 })
