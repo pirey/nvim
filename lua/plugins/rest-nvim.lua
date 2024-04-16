@@ -103,7 +103,7 @@ return {
             },
           },
           keybinds = {
-            buffer_local = false,
+            buffer_local = true,
             prev = "H",
             next = "L",
           },
