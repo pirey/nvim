@@ -336,7 +336,7 @@ insert_left({
 -- }
 
 local function get_max_line()
-  return "of " .. vim.fn.line("$")
+  return vim.fn.line("$")
 end
 
 local function get_tmux_char()
