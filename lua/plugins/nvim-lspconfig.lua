@@ -20,6 +20,11 @@ return {
         tsserver = {
           root_dir = require("lspconfig.util").find_git_ancestor,
         },
+        hls = {
+          -- use hls managed by ghcup instead of mason,
+          -- and use default config from nvim-lspconfig
+          mason = false,
+        },
       },
     },
   },
