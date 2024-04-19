@@ -25,6 +25,11 @@ return {
           -- and use default config from nvim-lspconfig
           mason = false,
         },
+        -- install gopls
+        -- go install golang.org/x/tools/gopls@latest
+        gopls = {
+          mason = false,
+        },
       },
     },
   },
