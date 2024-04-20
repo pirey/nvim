@@ -153,7 +153,9 @@ return {
         border = false,
         -- winblend = 0,
         -- path_display = { "truncate" },
-        path_display = path_display,
+        path_display = {
+          "filename_first",
+        },
         preview = {
           -- hide_on_startup = true,
           treesitter = {
