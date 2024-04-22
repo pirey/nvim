@@ -114,7 +114,7 @@ return {
       { "<leader>gs", false },
       { "<leader>gc", false },
       { "<leader>sR", false },
-      { "<leader>:", "<cmd>Telescope commands<cr>", desc = "Fuzzy commands" },
+      { "<leader>;", "<cmd>Telescope commands<cr>", desc = "Fuzzy commands" },
       { "<leader>gL", "<cmd>Telescope git_commits<CR>", desc = "commits" },
       { "<leader>gS", "<cmd>Telescope git_status<CR>", desc = "status" },
       { "<leader>b/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", desc = "search current file" },
