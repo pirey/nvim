@@ -1,15 +1,9 @@
 return {
   {
     "akinsho/bufferline.nvim",
-    init = function()
-      vim.keymap.set("n", "<leader>bo", function()
-        vim.cmd("only")
-        vim.cmd("BufferLineCloseLeft")
-        vim.cmd("BufferLineCloseRight")
-      end, {
-        desc = "Close other buffers and windows",
-      })
-    end,
+    keys = {
+      { "<leader>bo", "<Cmd>BufferLineCloseOthers<CR><Cmd>only<CR>", desc = "Delete Other Buffers and windows" },
+    },
     opts = {
       options = {
         offsets = {},
