@@ -79,4 +79,4 @@ vim.keymap.set("n", "<leader>gg", function()
     },
   })
 end, { desc = "Lazygit" })
-vim.keymap.set("i", "<c-t>", '<c-r>=strftime("%FT%T%z")<cr>')
+-- vim.keymap.set("i", "<c-t>", '<c-r>=strftime("%FT%T%z")<cr>')
