@@ -9,6 +9,7 @@ return {
     },
     opts = {
       include_buftypes = { "", "nowrite" },
+      exclude_filetypes = { "netrw", "toggleterm", "terminal" },
       -- configurations go here
     },
   },
