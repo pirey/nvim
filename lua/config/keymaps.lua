@@ -6,7 +6,7 @@ local Util = require("lazyvim.util")
 
 vim.keymap.set({ "n", "v" }, ";", ":")
 vim.keymap.set({ "n" }, "<leader>:", "q:", { desc = "Command line window" })
-vim.keymap.set({ "n" }, "q;", "q:", { desc = "Command line window" })
+-- vim.keymap.set({ "n" }, "q;", "q:", { desc = "Command line window" })
 
 -- movements/navigation
 vim.keymap.set({ "n", "v" }, "E", "20l")
