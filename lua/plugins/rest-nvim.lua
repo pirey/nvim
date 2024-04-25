@@ -21,7 +21,13 @@ local function init_rest_nvim()
       filename = filename .. ".http"
     end
     vim.cmd("edit ~/.rest-nvim/" .. filename)
-  end, { nargs = "?", desc = "Open http client" })
+  end, {
+    nargs = "?",
+    desc = "Open http client",
+    -- TODO: write completion
+    -- complete = function(ArgLead, CmdLine, CursorPos)
+    -- end,
+  })
 end
 
 return {
