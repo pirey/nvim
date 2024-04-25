@@ -55,7 +55,7 @@ return {
         },
         result = {
           split = {
-            horizontal = false,
+            horizontal = true,
             in_place = false,
             stay_in_current_window_after_split = true,
           },
@@ -104,8 +104,8 @@ return {
           },
           keybinds = {
             buffer_local = true,
-            prev = "H",
-            next = "L",
+            prev = "<leader>h",
+            next = "<leader>l",
           },
         },
         highlight = {
@@ -128,7 +128,7 @@ return {
         ---@see vim.keymap.set
         keybinds = {
           {
-            "<localleader>rr",
+            "<leader>rr",
             "<cmd>Rest run<cr>",
             "Run request under the cursor",
           },
