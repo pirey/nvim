@@ -1,3 +1,5 @@
+-- TODO: the plugin is broken
+
 -- NOTE: dependencies
 -- for ubuntu WSL, need to copy curl.h manually
 -- sudo apt-get install libcurl4-gnutls-dev
