@@ -54,6 +54,7 @@ vim.o.foldlevel = 99
 vim.o.gdefault = true
 
 -- terminal
+vim.o.scrollback = 10000
 if vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 then
   local powershell_options = {
     shell = vim.fn.executable("pwsh") == 1 and "pwsh" or "powershell",
