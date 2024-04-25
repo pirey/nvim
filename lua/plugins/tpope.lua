@@ -12,6 +12,11 @@ function _G._handle_fugitive()
   vim.keymap.set("n", "q", "<cmd>q<cr>", { buffer = true })
 end
 
+vim.cmd("autocmd! FileType dbout lua _handle_dbout()")
+function _G._handle_dbout()
+  vim.keymap.set("n", "q", "<cmd>q<cr>", { buffer = true })
+end
+
 return {
   {
     "tpope/vim-fugitive",
