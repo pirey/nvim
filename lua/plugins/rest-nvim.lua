@@ -38,7 +38,6 @@ return {
     "rest-nvim/rest.nvim",
     dependencies = { "vhyrro/luarocks.nvim" },
     init = init_rest_nvim,
-    cmd = "RestNvim",
     ft = "http",
     config = function()
       require("rest-nvim").setup({
