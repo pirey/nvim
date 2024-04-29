@@ -17,9 +17,15 @@ function _G._handle_dbout()
   vim.keymap.set("n", "q", "<cmd>q<cr>", { buffer = true })
 end
 
+local function init_fugitive()
+  -- muscle memory from the old days
+  vim.api.nvim_create_user_command("Gst", "Git", { desc = "Open git status" })
+end
+
 return {
   {
     "tpope/vim-fugitive",
+    init = init_fugitive,
   },
   {
     "tpope/vim-surround",
