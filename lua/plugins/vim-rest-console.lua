@@ -7,7 +7,7 @@ return {
       if #filename == 0 then
         filename = "index"
       end
-      vim.cmd("edit ~/.vim-rest-console/" .. filename .. ".rest")
+      vim.cmd("tabedit ~/.vim-rest-console/" .. filename .. ".rest")
     end
     local opts = { nargs = "?", desc = "Open HTTP Console" }
     vim.api.nvim_create_user_command("VRC", handle_open_console, opts)
