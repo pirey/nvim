@@ -3,7 +3,7 @@ return {
     "akinsho/bufferline.nvim",
     keys = {
       { "<leader>bo", "<Cmd>only<CR><Cmd>BufferLineCloseOthers<CR>", desc = "Delete Other Buffers and windows" },
-      { "<leader>bD", "<Cmd>bufdo bd<CR>", desc = "Delete all buffers" },
+      { "<leader>BD", "<Cmd>bufdo bd<CR>", desc = "Delete all buffers" },
     },
     opts = {
       options = {
