@@ -13,5 +13,12 @@ return {
     vim.api.nvim_create_user_command("VRC", handle_open_console, opts)
     vim.api.nvim_create_user_command("Http", handle_open_console, opts)
     vim.cmd("autocmd! BufRead,BufNewFile __REST_response__ setlocal ft=json")
+
+    -- vim.g.vrc_set_default_mapping = 0
+    vim.g.vrc_response_default_content_type = "application/json"
+    vim.g.vrc_output_buffer_name = "VRC_OUTPUT.json"
+    vim.g.vrc_auto_format_response_patterns = {
+      json = "jq",
+    }
   end,
 }
