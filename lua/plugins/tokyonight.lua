@@ -137,6 +137,8 @@ return {
         highlight_fold(highlights, colors)
         highlight_lsp_lens(highlights, colors)
         highlight_flutter(highlights, colors)
+
+        highlights["@markup.raw.markdown_inline"] = { bg = colors.none, fg = colors.blue }
       end,
     },
   },
