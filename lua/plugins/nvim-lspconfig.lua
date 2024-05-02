@@ -18,7 +18,8 @@ return {
           root_dir = require("lspconfig.util").root_pattern("tailwind.config.js"),
         },
         tsserver = {
-          root_dir = require("lspconfig.util").find_git_ancestor,
+          root_dir = require("lspconfig.util").root_pattern(".git"),
+          -- root_dir = require("lspconfig.util").find_git_ancestor,
         },
         hls = {
           -- use hls managed by ghcup instead of mason,

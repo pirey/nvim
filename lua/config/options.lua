@@ -41,6 +41,7 @@ vim.opt.number = false
 vim.opt.relativenumber = false
 vim.o.wrap = false
 vim.opt.listchars = { space = "·", tab = "▸ " }
+vim.o.linebreak = true
 
 -- clean diff
 vim.opt.fillchars:append({ diff = " " })
