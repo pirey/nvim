@@ -21,6 +21,7 @@ return {
       json = "jq",
     }
     vim.g.vrc_curl_opts = {
+      ["-i"] = "",
       ["--silent"] = "",
     }
   end,
