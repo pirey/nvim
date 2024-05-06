@@ -8,8 +8,8 @@ return {
       "nvim-tree/nvim-web-devicons", -- optional dependency
     },
     opts = {
-      include_buftypes = { "", "nowrite" },
-      exclude_filetypes = { "netrw", "toggleterm", "terminal" },
+      include_buftypes = { "" },
+      exclude_filetypes = { "netrw", "toggleterm", "terminal", "git" },
       -- configurations go here
     },
   },
