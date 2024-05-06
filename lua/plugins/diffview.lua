@@ -8,18 +8,18 @@ return {
     opts = {
       file_panel = {
         win_config = {
-          position = "right"
-        }
+          position = "right",
+        },
       },
       default_args = {
-        DiffviewFileHistory = { "--max-count=25" }
+        DiffviewFileHistory = { "--max-count=25" },
       },
     },
     keys = {
-      { "<leader>gs", "<cmd>DiffviewOpen<cr>",                       desc = "Git status" },
-      { "<leader>gf", "<cmd>DiffviewFileHistory %<cr>",              desc = "Git file history" },
+      { "<leader>gs", "<cmd>DiffviewOpen<cr>", desc = "Git status" },
+      { "<leader>gf", "<cmd>DiffviewFileHistory %<cr>", desc = "Git file history" },
       { "<leader>gl", "<cmd>DiffviewFileHistory<cr>", desc = "Git log history" },
+      { "<leader>gt", "<cmd>DiffviewFileHistory -g --range=stash<cr>", desc = "Git latest stash" },
     },
   },
-
 }
