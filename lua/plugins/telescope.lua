@@ -1,6 +1,6 @@
 local Util = require("lazyvim.util")
 local actions = require("telescope.actions")
-local actions_layout = require("telescope.actions.layout")
+-- local actions_layout = require("telescope.actions.layout")
 local trouble = require("trouble.providers.telescope")
 local transform_mod = require("telescope.actions.mt").transform_mod
 
@@ -168,7 +168,7 @@ return {
             ["<esc>"] = actions.close,
             ["<c-j>"] = actions.move_selection_next,
             ["<c-k>"] = actions.move_selection_previous,
-            ["<c-p>"] = actions_layout.toggle_preview,
+            -- ["<c-p>"] = actions_layout.toggle_preview,
             ["<c-t>"] = trouble.smart_open_with_trouble,
             ["<c-l>"] = custom_actions.open_and_resume,
             ["<cr>"] = custom_actions.select_one_or_multi,
