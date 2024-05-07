@@ -13,6 +13,18 @@ return {
       },
     },
   },
+  {
+    "echasnovski/mini.bufremove",
+    keys = {
+      {
+        ",x",
+        function()
+          require("mini.bufremove").delete(0)
+        end,
+        desc = "Delete buffer",
+      },
+    },
+  },
   -- {
   --   "echasnovski/mini.indentscope",
   --   enabled = false,
