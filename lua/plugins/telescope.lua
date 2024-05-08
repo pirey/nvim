@@ -137,6 +137,7 @@ return {
     },
     opts = {
       defaults = {
+        file_ignore_patterns = { "node_modules" },
         layout_strategy = "bottom_pane",
         layout_config = {
           horizontal = {
