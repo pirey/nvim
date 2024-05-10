@@ -7,7 +7,7 @@ function _G._handle_git()
   vim.keymap.set("n", "q", "<cmd>q<cr>", { buffer = true })
 end
 
-vim.cmd("autocmd! FileType fugitive lua _handle_fugitive()")
+vim.cmd("autocmd! FileType fugitive,fugitiveblame lua _handle_fugitive()")
 function _G._handle_fugitive()
   vim.keymap.set("n", "q", "<cmd>q<cr>", { buffer = true })
 end

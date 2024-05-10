@@ -48,6 +48,6 @@ return {
       },
     })
     -- disable by default
-    -- vim.cmd("SunglassesDisable")
+    vim.cmd("SunglassesDisable")
   end,
 }
