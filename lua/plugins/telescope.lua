@@ -173,7 +173,6 @@ return {
             ["<c-t>"] = trouble.smart_open_with_trouble,
             ["<c-l>"] = custom_actions.open_and_resume,
             ["<cr>"] = custom_actions.select_one_or_multi,
-            ["<c-j>"] = custom_actions.select_one_or_multi,
             ["<c-x>"] = actions.delete_buffer,
           },
         },
