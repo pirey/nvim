@@ -131,6 +131,7 @@ return {
       -- files
       { "<leader><space>", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
       { "<c-p>", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
+      { "<leader>p", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
       { "<leader>ff", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
       { "<leader>fF", Util.telescope("files"), desc = "Find Files (root dir)" },
       { "<leader>fr", Util.telescope("oldfiles", { cwd_only = true }), desc = "Recent project files" },
