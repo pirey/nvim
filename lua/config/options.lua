@@ -74,3 +74,7 @@ end
 vim.cmd([[
   command! -nargs=0 CopyRelativePath :let @+=expand('%:p:~:.')
 ]])
+
+-- statusline & tabline
+-- to revert, enable the following plugins bufferline, barbecue, lualine
+vim.o.laststatus = 2

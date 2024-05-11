@@ -481,8 +481,7 @@ insert_right({
 -- Now don't forget to initialize lualine
 -- require("lualine").setup(config)
 return {
-  {
-    "nvim-lualine/lualine.nvim",
-    opts = config,
-  },
+  "nvim-lualine/lualine.nvim",
+  enabled = false,
+  opts = config,
 }

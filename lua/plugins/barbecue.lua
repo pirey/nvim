@@ -1,6 +1,7 @@
 return {
   {
     "utilyre/barbecue.nvim",
+    enabled = false,
     name = "barbecue",
     version = "*",
     dependencies = {
@@ -9,7 +10,7 @@ return {
     },
     opts = {
       include_buftypes = { "" },
-      exclude_filetypes = { "netrw", "toggleterm", "terminal", "git" },
+      exclude_filetypes = { "netrw", "toggleterm", "terminal", "git", "markdown" },
       -- configurations go here
     },
   },

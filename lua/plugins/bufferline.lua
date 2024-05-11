@@ -1,6 +1,7 @@
 return {
   {
     "akinsho/bufferline.nvim",
+    enabled = false,
     keys = {
       { "<leader>bo", "<Cmd>only<CR><Cmd>BufferLineCloseOthers<CR>", desc = "Delete Other Buffers and windows" },
       { "<leader>BD", "<Cmd>bufdo bd<CR>", desc = "Delete all buffers" },
