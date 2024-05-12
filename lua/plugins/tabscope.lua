@@ -1,4 +1,4 @@
 return {
   "backdround/tabscope.nvim",
-  opts = {},
+  config = true,
 }

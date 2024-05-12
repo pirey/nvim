@@ -1,4 +1,5 @@
 -- TODO: the plugin is broken
+-- TODO: remove this plugin later, we already have :VRC
 
 -- NOTE: dependencies
 -- for ubuntu WSL, need to copy curl.h manually
