@@ -1,3 +1,9 @@
+if true then
+  return {
+    "nvim-lualine/lualine.nvim",
+    enabled = false,
+  }
+end
 -- local lualine = require("lualine")
 local colors = require("tokyonight.colors").moon()
 local custom_filename = require("lualine.components.filename"):extend()
