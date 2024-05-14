@@ -35,7 +35,6 @@
   "night-owl.nvim": { "branch": "main", "commit": "42b85926978c8cba6ed4a57c84a530449e59904b" },
   "nightfly": { "branch": "master", "commit": "9a58d12bc682948616d187598fbc653536f202c3" },
   "noice.nvim": { "branch": "main", "commit": "09102ca2e9a3e9302119fdaf7a059a034e4a626d" },
-  "nord.nvim": { "branch": "main", "commit": "a6f4979566e44a69ddc80c9df73e960af1ab1840" },
   "nui.nvim": { "branch": "main", "commit": "a3597dc88b53489d3fddbddbbd13787355253bb0" },
   "nvim-cmp": { "branch": "main", "commit": "24122371810089d390847d8ba66325c1f1aa64c0" },
   "nvim-colorizer.lua": { "branch": "master", "commit": "a065833f35a3a7cc3ef137ac88b5381da2ba302e" },
