@@ -15,6 +15,6 @@ return {
     })
     vim.g.nightflyWinSeparator = 2
     vim.g.nightflyUnderlineMatchParen = false
-    -- vim.cmd.colorscheme("nightfly")
+    vim.cmd.colorscheme("nightfly")
   end,
 }
