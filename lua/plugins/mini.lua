@@ -23,6 +23,13 @@ return {
         end,
         desc = "Delete buffer",
       },
+      {
+        ",d",
+        function()
+          vim.cmd("bd")
+        end,
+        desc = "Delete buffer",
+      },
     },
   },
   -- {
