@@ -1,8 +1,8 @@
 return {
   "pirey/vim-nightfly-colors",
   name = "nightfly",
-  lazy = false,
-  priority = 1000,
+  -- lazy = false,
+  -- priority = 1000,
   config = function()
     -- customize highlighting
     local colors = require("nightfly").palette
@@ -25,6 +25,6 @@ return {
     vim.g.nightflyUnderlineMatchParen = false
 
     -- activate colorscheme
-    vim.cmd.colorscheme("nightfly")
+    -- vim.cmd.colorscheme("nightfly")
   end,
 }
