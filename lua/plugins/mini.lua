@@ -24,6 +24,13 @@ return {
         desc = "Delete buffer",
       },
       {
+        ",w",
+        function()
+          vim.cmd("close")
+        end,
+        desc = "Close window",
+      },
+      {
         ",d",
         function()
           vim.cmd("bd")
