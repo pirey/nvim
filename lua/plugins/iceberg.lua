@@ -14,8 +14,8 @@ return {
       callback = function()
         local bg = "#161821"
         local visual = "#272c42"
-        vim.api.nvim_set_hl(0, "CursorLineNr", { bg = bg })
-        vim.api.nvim_set_hl(0, "LineNr", { bg = bg })
+        vim.api.nvim_set_hl(0, "CursorLineNr", { bg = bg, bold = true })
+        vim.api.nvim_set_hl(0, "LineNr", { bg = bg, fg = "#444b71" })
         vim.api.nvim_set_hl(0, "Folded", { bg = bg })
         vim.api.nvim_set_hl(0, "NonText", { fg = bg })
         vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = bg, bg = bg })
