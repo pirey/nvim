@@ -29,6 +29,8 @@ return {
         patch_hl("GitGutterAdd", { bg = bg })
         patch_hl("GitGutterChange", { bg = bg })
         patch_hl("GitGutterDelete", { bg = bg })
+        vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#3e445e" })
+        vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#3e445e" })
       end,
       group = custom_highlight,
     })
