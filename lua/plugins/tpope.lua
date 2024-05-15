@@ -27,9 +27,9 @@ return {
     "tpope/vim-fugitive",
     init = init_fugitive,
   },
-  {
-    "tpope/vim-surround",
-  },
+  -- {
+  --   "tpope/vim-surround",
+  -- },
   {
     "tpope/vim-abolish",
   },
