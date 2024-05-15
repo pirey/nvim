@@ -37,6 +37,13 @@ return {
         end,
         desc = "Delete buffer",
       },
+      {
+        ",b",
+        function()
+          vim.cmd("b#")
+        end,
+        desc = "Previous buffer",
+      },
     },
   },
   -- {
