@@ -1,3 +1,10 @@
+local function patch_hl(hlg, patch)
+  local hl = vim.api.nvim_get_hl(0, {
+    name = hlg,
+  })
+  vim.api.nvim_set_hl(0, hlg, vim.tbl_deep_extend("keep", patch, hl))
+end
+
 return {
   "cocopon/iceberg.vim",
   init = function()
@@ -19,12 +26,11 @@ return {
         vim.api.nvim_set_hl(0, "DiffChange", { bg = "#384851", fg = "NONE" })
         vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#53343b", fg = "NONE" })
         vim.api.nvim_set_hl(0, "DiffText", { bg = "#5b7881", fg = "NONE" })
+        patch_hl("GitGutterAdd", { bg = bg })
+        patch_hl("GitGutterChange", { bg = bg })
+        patch_hl("GitGutterDelete", { bg = bg })
       end,
       group = custom_highlight,
     })
   end,
 }
--- return {
---   "oahlen/iceberg.nvim",
---   lazy = true,
--- }
