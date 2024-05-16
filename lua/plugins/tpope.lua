@@ -20,6 +20,7 @@ end
 local function init_fugitive()
   -- muscle memory from the old days
   vim.api.nvim_create_user_command("Gst", "Git", { desc = "Open git status" })
+  vim.keymap.set("n", ",g", "<cmd>Git<cr>", { desc = "Open fugitive" })
 end
 
 return {
