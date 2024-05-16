@@ -12,6 +12,9 @@ return {
       keys[#keys + 1] = { "<leader>k", vim.lsp.buf.hover }
     end,
     opts = {
+      inlay_hints = {
+        enabled = false,
+      },
       servers = {
         tailwindcss = {
           filetypes_include = { "blade" },
