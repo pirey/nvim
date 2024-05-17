@@ -1,3 +1,7 @@
+if true then
+  return {}
+end
+
 -- TODO: the plugin is broken
 -- TODO: remove this plugin later, we already have :VRC
 

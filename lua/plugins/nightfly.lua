@@ -13,9 +13,6 @@ return {
         vim.api.nvim_set_hl(0, "NonText", { fg = colors.bg, bg = "NONE" })
         vim.api.nvim_set_hl(0, "StatusLine", { fg = colors.fg, bg = colors.deep_blue })
         vim.api.nvim_set_hl(0, "StatusLineNC", { fg = colors.fg, bg = colors.black_blue })
-        vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = colors.dark_blue })
-        vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = colors.dark_blue })
-        vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bg = colors.dark_blue })
       end,
       group = custom_highlight,
     })
