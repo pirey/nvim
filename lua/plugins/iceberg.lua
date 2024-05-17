@@ -38,6 +38,7 @@ return {
         patch_hl("DiagnosticSignHint", { bg = bg })
         vim.api.nvim_set_hl(0, "WinSeparator", { fg = bg_dark })
         vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#3e445e" })
+        vim.api.nvim_set_hl(0, "IncSearch", { fg = "NONE", bg = visual })
 
         -- Notify
         vim.api.nvim_set_hl(0, "NotifyBackground", { fg = fg, bg = bg })
