@@ -8,7 +8,7 @@ end
 return {
   "cocopon/iceberg.vim",
   init = function()
-    local custom_highlight = vim.api.nvim_create_augroup("CustomIceberg", {})
+    local custom_highlight = vim.api.nvim_create_augroup("CustomIceberg", { clear = true })
     vim.api.nvim_create_autocmd("ColorScheme", {
       pattern = "iceberg",
       callback = function()
@@ -58,6 +58,11 @@ return {
         vim.api.nvim_set_hl(0, "NotifyINFOBody", { fg = fg, bg = bg })
         vim.api.nvim_set_hl(0, "NotifyDEBUGBody", { fg = fg, bg = bg })
         vim.api.nvim_set_hl(0, "NotifyTRACEBody", { fg = fg, bg = bg })
+
+        -- disable lsp semantic token highlight
+        for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+          vim.api.nvim_set_hl(0, group, {})
+        end
       end,
       group = custom_highlight,
     })
