@@ -1,3 +1,5 @@
+-- patch_hl adds highlight definition without replacing original highlight
+-- @param hlg string Highlight group
 local function patch_hl(hlg, patch)
   local hl = vim.api.nvim_get_hl(0, {
     name = hlg,
@@ -13,7 +15,7 @@ return {
       pattern = "iceberg",
       callback = function()
         local bg = "#161821"
-        local bg_dark = "#3e445e" -- from StatuslineNC
+        local bg_dark = "#3e445e" -- from StatusLineNC
         local fg = "#c6c8d1"
         local visual = "#272c42"
         vim.api.nvim_set_hl(0, "CursorLineNr", { bg = bg, bold = true })
@@ -35,6 +37,7 @@ return {
         patch_hl("DiagnosticSignHint", { bg = bg })
         vim.api.nvim_set_hl(0, "WinSeparator", { fg = bg_dark })
         vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#3e445e" })
+        patch_hl("StatusLine", { bold = true })
 
         -- Notify
         vim.api.nvim_set_hl(0, "NotifyBackground", { fg = fg, bg = bg })
