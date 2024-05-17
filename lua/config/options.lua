@@ -78,4 +78,4 @@ vim.cmd([[
 -- statusline & tabline
 -- to revert, enable the following plugins bufferline, barbecue, lualine
 vim.o.laststatus = 2
-vim.o.statusline = "%t %m"
+vim.o.statusline = " %-0.50f %m%=%-15.(%l,%c%) %P "
