@@ -13,39 +13,6 @@ return {
       },
     },
   },
-  {
-    "echasnovski/mini.bufremove",
-    keys = {
-      {
-        ",x",
-        function()
-          require("mini.bufremove").delete(0)
-        end,
-        desc = "Delete buffer",
-      },
-      {
-        ",w",
-        function()
-          vim.cmd("close")
-        end,
-        desc = "Close window",
-      },
-      {
-        ",d",
-        function()
-          vim.cmd("bd")
-        end,
-        desc = "Delete buffer",
-      },
-      {
-        ",b",
-        function()
-          vim.cmd("b#")
-        end,
-        desc = "Previous buffer",
-      },
-    },
-  },
   -- {
   --   "echasnovski/mini.indentscope",
   --   opts = {},
