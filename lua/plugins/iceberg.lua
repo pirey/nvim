@@ -20,7 +20,7 @@ return {
         local visual = "#272c42"
         vim.api.nvim_set_hl(0, "CursorLineNr", { bg = bg, bold = true })
         vim.api.nvim_set_hl(0, "LineNr", { bg = bg, fg = "#444b71" })
-        vim.api.nvim_set_hl(0, "Folded", { bg = bg })
+        -- vim.api.nvim_set_hl(0, "Folded", { bg = bg })
         vim.api.nvim_set_hl(0, "NonText", { fg = bg })
         vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = bg, bg = bg })
         vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#45493e", fg = "NONE" })
@@ -37,7 +37,6 @@ return {
         patch_hl("DiagnosticSignHint", { bg = bg })
         vim.api.nvim_set_hl(0, "WinSeparator", { fg = bg_dark })
         vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#3e445e" })
-        patch_hl("StatusLine", { bold = true })
 
         -- Notify
         vim.api.nvim_set_hl(0, "NotifyBackground", { fg = fg, bg = bg })

@@ -42,9 +42,15 @@ vim.opt.relativenumber = false
 vim.o.wrap = false
 vim.opt.listchars = { space = "·", tab = "▸ " }
 vim.o.linebreak = true
-
--- clean diff
-vim.opt.fillchars:append({ diff = " " })
+vim.opt.fillchars = {
+  foldopen = "",
+  foldclose = "",
+  fold = " ",
+  foldsep = " ",
+  -- diff = "╱",
+  diff = " ",
+  eob = " ",
+}
 
 -- fold
 vim.o.foldenable = true
