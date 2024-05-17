@@ -84,13 +84,4 @@ vim.cmd([[
 -- statusline & tabline
 -- to revert, enable the following plugins bufferline, barbecue, lualine
 vim.o.laststatus = 2
-vim.o.statusline = "%{v:lua.stl_totalbuf()} %-0.50f %m%=%-15.(%l,%c%) %P "
-
-function stl_totalbuf()
-  local count = #vim.fn.getbufinfo({ buflisted = 1 })
-  if count > 1 then
-    return " [" .. count .. "]"
-  else
-    return ""
-  end
-end
+vim.o.statusline = " %-0.50f %m%=%-15.(%l,%c%) %P "
