@@ -60,6 +60,8 @@ return {
         vim.api.nvim_set_hl(0, "NotifyDEBUGBody", { fg = fg, bg = bg })
         vim.api.nvim_set_hl(0, "NotifyTRACEBody", { fg = fg, bg = bg })
 
+        vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = bg_dark, bg = bg })
+
         patch_group_pattern("GitGutter", { bg = bg })
         patch_group_pattern("Diagnostic", { bg = bg })
 

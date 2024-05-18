@@ -137,6 +137,7 @@ return {
       { "<leader>fr", Util.telescope("oldfiles", { cwd_only = true }), desc = "Recent project files" },
       { "<leader>fR", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
     },
+    -- TODO: tidy prompt title
     opts = {
       defaults = {
         file_ignore_patterns = { "node_modules" },
@@ -153,7 +154,11 @@ return {
             sorting_strategy = "descending",
           },
         },
-        border = false,
+        -- border = false,
+        -- borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+        borderchars = { "─", "", "", "", "", "", "", "" },
+        -- results_title = false,
+        -- prompt_title = false,
         -- winblend = 0,
         -- path_display = { "truncate" },
         path_display = {
