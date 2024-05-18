@@ -8,6 +8,10 @@ vim.keymap.set({ "n", "v" }, ";", ":")
 vim.keymap.set({ "n" }, "<leader>:", "q:", { desc = "Command line window" })
 -- vim.keymap.set({ "n" }, "q;", "q:", { desc = "Command line window" })
 
+-- swap visual selection
+vim.keymap.set("n", "<c-v>", "V")
+vim.keymap.set("n", "V", "<c-v>")
+
 -- movements/navigation
 vim.keymap.set({ "n", "v" }, "E", "20l")
 vim.keymap.set({ "n", "v" }, "B", "20h")
@@ -36,6 +40,7 @@ vim.keymap.del("t", "<c-l>")
 vim.keymap.del("t", "<C-/>")
 vim.keymap.del("t", "<c-_>")
 
+-- delete some keymaps from lazyvim
 vim.keymap.del("n", "<leader>ft")
 vim.keymap.del("n", "<leader>fT")
 vim.keymap.del("n", "<c-/>")
