@@ -80,12 +80,12 @@ return {
             highlight = "Normal",
           },
         },
-        buffer_selected = {
-          bg = {
-            attribute = "bg",
-            highlight = "Normal",
-          },
-        },
+        -- buffer_selected = {
+        --   bg = {
+        --     attribute = "bg",
+        --     highlight = "Normal",
+        --   },
+        -- },
         numbers = {
           bg = {
             attribute = "bg",
