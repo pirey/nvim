@@ -67,9 +67,9 @@ return {
         patch_group_pattern("Diagnostic", { bg = bg })
 
         -- disable lsp semantic token highlight
-        for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
-          vim.api.nvim_set_hl(0, group, {})
-        end
+        -- for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+        --   vim.api.nvim_set_hl(0, group, {})
+        -- end
       end,
       group = custom_highlight,
     })
