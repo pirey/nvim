@@ -80,12 +80,12 @@ return {
             highlight = "Normal",
           },
         },
-        -- buffer_selected = {
-        --   bg = {
-        --     attribute = "bg",
-        --     highlight = "Normal",
-        --   },
-        -- },
+        buffer_selected = {
+          bg = {
+            attribute = "bg",
+            highlight = "Normal",
+          },
+        },
         numbers = {
           bg = {
             attribute = "bg",
@@ -179,6 +179,10 @@ return {
         info_diagnostic = {
           bg = {
             attribute = "bg",
+            highlight = "Normal",
+          },
+          fg = {
+            attribute = "fg",
             highlight = "Normal",
           },
         },
