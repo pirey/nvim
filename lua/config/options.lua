@@ -40,8 +40,8 @@ vim.opt.signcolumn = "yes"
 vim.opt.number = false
 vim.opt.relativenumber = false
 vim.o.wrap = false
-vim.opt.listchars = { space = "·", tab = "▸ " }
 vim.o.linebreak = true
+vim.opt.listchars = { space = "·", tab = "▸ " }
 vim.opt.fillchars = {
   foldopen = "",
   foldclose = "",
@@ -83,5 +83,5 @@ vim.cmd([[
 
 -- statusline & tabline
 -- to revert, enable the following plugins bufferline, barbecue, lualine
-vim.o.laststatus = 2
-vim.o.statusline = " %-0.50f %m%=%-15.(%l,%c%) %P "
+vim.o.laststatus = 3
+vim.o.statusline = " %f %m%=%-15.(%l,%c%) %P "

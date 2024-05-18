@@ -36,6 +36,7 @@ return {
         vim.api.nvim_set_hl(0, "DiffText", { bg = "#5b7881", fg = "NONE" })
         vim.api.nvim_set_hl(0, "WinSeparator", { fg = bg_dark })
         vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#3e445e" })
+        vim.api.nvim_set_hl(0, "StatusLine", { fg = fg, bg = bg, bold = true })
 
         -- Notify
         vim.api.nvim_set_hl(0, "NotifyBackground", { fg = fg, bg = bg })
