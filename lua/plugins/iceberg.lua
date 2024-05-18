@@ -1,10 +1,17 @@
 -- patch_hl adds highlight definition without replacing original highlight
+-- useful when we need to override highlight and retain existing definition
 -- @param hlg string Highlight group
 local function patch_hl(hlg, patch)
   local hl = vim.api.nvim_get_hl(0, {
     name = hlg,
   })
   vim.api.nvim_set_hl(0, hlg, vim.tbl_deep_extend("keep", patch, hl))
+end
+
+local function patch_group_pattern(hlg_pattern, patch)
+  for _, hlg in pairs(vim.fn.getcompletion(hlg_pattern, "highlight")) do
+    patch_hl(hlg, patch)
+  end
 end
 
 return {
@@ -27,14 +34,6 @@ return {
         vim.api.nvim_set_hl(0, "DiffChange", { bg = "#384851", fg = "NONE" })
         vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#53343b", fg = "NONE" })
         vim.api.nvim_set_hl(0, "DiffText", { bg = "#5b7881", fg = "NONE" })
-        patch_hl("GitGutterAdd", { bg = bg })
-        patch_hl("GitGutterChange", { bg = bg })
-        patch_hl("GitGutterDelete", { bg = bg })
-        patch_hl("DiagnosticSignInfo", { bg = bg })
-        patch_hl("DiagnosticSignError", { bg = bg })
-        patch_hl("DiagnosticSignOk", { bg = bg })
-        patch_hl("DiagnosticSignWarn", { bg = bg })
-        patch_hl("DiagnosticSignHint", { bg = bg })
         vim.api.nvim_set_hl(0, "WinSeparator", { fg = bg_dark })
         vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#3e445e" })
 
@@ -60,6 +59,9 @@ return {
         vim.api.nvim_set_hl(0, "NotifyINFOBody", { fg = fg, bg = bg })
         vim.api.nvim_set_hl(0, "NotifyDEBUGBody", { fg = fg, bg = bg })
         vim.api.nvim_set_hl(0, "NotifyTRACEBody", { fg = fg, bg = bg })
+
+        patch_group_pattern("GitGutter", { bg = bg })
+        patch_group_pattern("Diagnostic", { bg = bg })
 
         -- disable lsp semantic token highlight
         for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
