@@ -85,6 +85,7 @@ return {
             attribute = "bg",
             highlight = "Normal",
           },
+          bold = true,
         },
         numbers = {
           bg = {
@@ -137,6 +138,10 @@ return {
         hint_selected = {
           bg = {
             attribute = "bg",
+            highlight = "Normal",
+          },
+          fg = {
+            attribute = "fg",
             highlight = "Normal",
           },
         },
