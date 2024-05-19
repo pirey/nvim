@@ -18,6 +18,7 @@ return {
       local ctrlsf_augroup = vim.api.nvim_create_augroup("CtrlsfAugroup", { clear = true })
       vim.api.nvim_create_autocmd("FileType", {
         group = ctrlsf_augroup,
+        pattern = "ctrlsf",
         callback = function()
           vim.cmd("only")
         end,
