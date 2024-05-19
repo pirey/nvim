@@ -2,25 +2,26 @@ return {
   {
     "dyng/ctrlsf.vim",
     init = function()
-      vim.api.nvim_set_var("ctrlsf_auto_close", {
+      vim.g.ctrlsf_auto_close = {
         normal = 0,
         compact = 0,
-      })
-      vim.api.nvim_set_var("ctrlsf_auto_focus", {
+      }
+      vim.g.ctrlsf_auto_focus = {
         at = "start",
-      })
-      vim.api.nvim_set_var("ctrlsf_confirm_save", 0)
-      -- vim.api.nvim_set_var("ctrlsf_auto_preview", 1)
-      -- vim.api.nvim_set_var("ctrlsf_preview_position", "inside")
-      -- vim.api.nvim_set_var("ctrlsf_default_view_mode", "compact")
-      -- vim.api.nvim_set_var("ctrlsf_position", "right")
+      }
+      vim.g.ctrlsf_confirm_save = 0
+      vim.g.ctrlsf_auto_preview = 1
+      -- vim.g.ctrlsf_preview_position= "inside"
+      -- vim.g.ctrlsf_default_view_mode= "compact"
+      -- vim.g.ctrlsf_position= "right"
 
-      vim.cmd([[
-        augroup ctrlsf_autocmd
-          autocmd!
-          autocmd FileType ctrlsf only
-        augroup END
-      ]])
+      local ctrlsf_augroup = vim.api.nvim_create_augroup("CtrlsfAugroup", { clear = true })
+      vim.api.nvim_create_autocmd("FileType", {
+        group = ctrlsf_augroup,
+        callback = function()
+          vim.cmd("only")
+        end,
+      })
     end,
     cmd = { "CtrlSF" },
     keys = {
