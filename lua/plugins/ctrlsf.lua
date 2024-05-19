@@ -10,7 +10,7 @@ return {
         at = "start",
       }
       vim.g.ctrlsf_confirm_save = 0
-      vim.g.ctrlsf_auto_preview = 1
+      -- vim.g.ctrlsf_auto_preview = 1
       -- vim.g.ctrlsf_preview_position= "inside"
       -- vim.g.ctrlsf_default_view_mode= "compact"
       -- vim.g.ctrlsf_position= "right"

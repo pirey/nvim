@@ -9,7 +9,7 @@ end
 
 vim.cmd("autocmd! FileType fugitive,fugitiveblame lua _handle_fugitive()")
 function _G._handle_fugitive()
-  vim.keymap.set("n", "q", "<cmd>q<cr>", { buffer = true })
+  vim.keymap.set("n", "q", "<cmd>bd<cr>", { buffer = true })
 end
 
 vim.cmd("autocmd! FileType dbout lua _handle_dbout()")
