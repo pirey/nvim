@@ -22,7 +22,8 @@ return {
       pattern = "iceberg",
       callback = function()
         local bg = "#161821"
-        local bg_dark = "#3e445e" -- from StatusLineNC
+        local fg_dark = "#3e445e" -- from StatusLineNC
+        local bg_dark = "#0f1117" -- from StatusLineNC
         local fg = "#c6c8d1"
         local visual = "#272c42"
         vim.api.nvim_set_hl(0, "CursorLineNr", { bg = bg, bold = true })
@@ -34,17 +35,17 @@ return {
         vim.api.nvim_set_hl(0, "DiffChange", { bg = "#384851", fg = "NONE" })
         vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#53343b", fg = "NONE" })
         vim.api.nvim_set_hl(0, "DiffText", { bg = "#5b7881", fg = "NONE" })
-        vim.api.nvim_set_hl(0, "WinSeparator", { fg = bg_dark })
+        vim.api.nvim_set_hl(0, "WinSeparator", { fg = fg_dark, bold = true })
         vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#3e445e" })
-        vim.api.nvim_set_hl(0, "StatusLine", { fg = fg, bg = bg, bold = true })
+        -- vim.api.nvim_set_hl(0, "StatusLine", { fg = fg, bg = bg, bold = true })
 
         -- Notify
         vim.api.nvim_set_hl(0, "NotifyBackground", { fg = fg, bg = bg })
-        vim.api.nvim_set_hl(0, "NotifyERRORBorder", { fg = bg_dark, bg = bg })
-        vim.api.nvim_set_hl(0, "NotifyWARNBorder", { fg = bg_dark, bg = bg })
-        vim.api.nvim_set_hl(0, "NotifyINFOBorder", { fg = bg_dark, bg = bg })
-        vim.api.nvim_set_hl(0, "NotifyDEBUGBorder", { fg = bg_dark, bg = bg })
-        vim.api.nvim_set_hl(0, "NotifyTRACEBorder", { fg = bg_dark, bg = bg })
+        vim.api.nvim_set_hl(0, "NotifyERRORBorder", { fg = fg_dark, bg = bg })
+        vim.api.nvim_set_hl(0, "NotifyWARNBorder", { fg = fg_dark, bg = bg })
+        vim.api.nvim_set_hl(0, "NotifyINFOBorder", { fg = fg_dark, bg = bg })
+        vim.api.nvim_set_hl(0, "NotifyDEBUGBorder", { fg = fg_dark, bg = bg })
+        vim.api.nvim_set_hl(0, "NotifyTRACEBorder", { fg = fg_dark, bg = bg })
         vim.api.nvim_set_hl(0, "NotifyERRORIcon", { fg = fg })
         vim.api.nvim_set_hl(0, "NotifyWARNIcon", { fg = fg })
         vim.api.nvim_set_hl(0, "NotifyINFOIcon", { fg = fg })
@@ -61,7 +62,7 @@ return {
         vim.api.nvim_set_hl(0, "NotifyDEBUGBody", { fg = fg, bg = bg })
         vim.api.nvim_set_hl(0, "NotifyTRACEBody", { fg = fg, bg = bg })
 
-        vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = bg_dark, bg = bg })
+        vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = fg_dark, bg = bg })
 
         patch_group_pattern("GitGutter", { bg = bg })
         patch_group_pattern("Diagnostic", { bg = bg })
