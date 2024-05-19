@@ -82,6 +82,6 @@ vim.cmd([[
 ]])
 
 -- statusline & tabline
--- to revert, enable the following plugins bufferline, barbecue, lualine
 vim.o.laststatus = 3
-vim.o.statusline = " %f %m%=%-15.(%l,%c%) %P "
+local git_branch = " [%{substitute(system('git rev-parse --abbrev-ref HEAD'), '.$', '', '')}]"
+vim.o.statusline = git_branch .. " %f %m%=%-15.(%l,%c%) %P "
