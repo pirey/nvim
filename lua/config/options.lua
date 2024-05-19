@@ -83,5 +83,4 @@ vim.cmd([[
 
 -- statusline & tabline
 vim.o.laststatus = 3
-local git_branch = " [%{substitute(system('git rev-parse --abbrev-ref HEAD'), '.$', '', '')}]"
-vim.o.statusline = git_branch .. " %f %m%=%-15.(%l,%c%) %P "
+vim.o.statusline = " %f %m%=%-15.(%l,%c%) %P "
