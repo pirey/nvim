@@ -8,7 +8,9 @@ return {
       cmdline = {
         view = "cmdline",
       },
-      messages = {},
+      messages = {
+        view_search = false,
+      },
       views = {
         notify = {
           replace = true,
