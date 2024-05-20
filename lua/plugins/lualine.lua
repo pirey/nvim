@@ -33,8 +33,8 @@ local opts = {
     global_status = true,
     always_divide_middle = false,
     -- Disable sections and component separators
-    component_separators = "",
-    section_separators = "",
+    -- component_separators = "",
+    -- section_separators = "",
     disabled_filetypes = {
       statusline = { "neo-tree", "git", "fugitive" },
       winbar = { "neo-tree", "DiffviewFiles", "git" },
@@ -74,21 +74,20 @@ end
 insert_left({
   "branch",
   icon = "",
-  separator = {},
 })
 
 -- TODO: adjust color for diff and diagnostics (and filetype)
-insert_left({
-  "diff",
-  cond = conditions.hide_in_width,
-})
-
-insert_left({
-  "diagnostics",
-  sources = { "nvim_diagnostic" },
-  -- symbols = { error = " ", warn = " ", info = " " },
-  symbols = { error = "E", warn = "W", info = "I", hint = "H" },
-})
+-- insert_left({
+--   "diff",
+--   cond = conditions.hide_in_width,
+-- })
+--
+-- insert_left({
+--   "diagnostics",
+--   sources = { "nvim_diagnostic" },
+--   -- symbols = { error = " ", warn = " ", info = " " },
+--   symbols = { error = "E", warn = "W", info = "I", hint = "H" },
+-- })
 
 insert_left({
   "filename",
