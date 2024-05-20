@@ -1,14 +1,3 @@
-if true then
-  return {
-    "nvim-lualine/lualine.nvim",
-    enabled = false,
-  }
-end
--- local lualine = require("lualine")
--- local colors = require("tokyonight.colors").moon()
--- local custom_filename = require("lualine.components.filename"):extend()
--- local highlight = require("lualine.highlight")
-
 local conditions = {
   buffer_not_empty = function()
     return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
@@ -29,30 +18,18 @@ local conditions = {
   end,
 }
 
--- local function get_dirname()
---   local dirname = vim.fn.fnamemodify(vim.fn.expand("%:h"), ":~:.")
---   local percentage = vim.o.columns > 200 and 0.45 or 0.25
---   local maxlen = math.floor(vim.o.columns * percentage)
---
---   if vim.api.nvim_strwidth(dirname) > maxlen then
---     return ".." .. string.sub(dirname, -maxlen)
---   end
---   return dirname
--- end
-
--- Config
-local config = {
+local opts = {
   options = {
+    theme = {
+      normal = {
+        a = "StatusLine", -- "Normal",
+        b = "StatusLine", -- "Normal",
+        c = "StatusLine", -- "Normal",
+      },
+    },
     -- Disable sections and component separators
     component_separators = "",
     section_separators = "",
-    -- theme = {
-    --   -- We are going to use lualine_c an lualine_x as left and
-    --   -- right section. Both are highlighted by c theme .  So we
-    --   -- are just setting default looks o statusline
-    --   normal = { c = { fg = colors.fg, bg = colors.bg } },
-    --   inactive = { c = { fg = colors.fg, bg = colors.bg } },
-    -- },
     disabled_filetypes = {
       winbar = { "neo-tree", "DiffviewFiles", "git" },
     },
@@ -76,64 +53,26 @@ local config = {
     lualine_c = {},
     lualine_x = {},
   },
-  -- winbar = {
-  --   lualine_a = {},
-  --   lualine_b = {},
-  --   lualine_c = {},
-  --   lualine_x = {},
-  --   lualine_y = {},
-  --   lualine_z = {},
-  -- },
-  -- inactive_winbar = {
-  --   lualine_a = {},
-  --   lualine_b = {},
-  --   lualine_c = {},
-  --   lualine_x = {},
-  --   lualine_y = {},
-  --   lualine_z = {},
-  -- },
 }
 
 -- Inserts a component in lualine_c at left section
 local function insert_left(component)
-  table.insert(config.sections.lualine_c, component)
+  table.insert(opts.sections.lualine_c, component)
 end
 
 -- Inserts a component in lualine_x at right section
 local function insert_right(component)
-  table.insert(config.sections.lualine_x, component)
+  table.insert(opts.sections.lualine_x, component)
 end
 
 insert_left({
   "branch",
   icon = "",
-  -- TODO: bold normal
-  color = "Normal",
-  -- fmt = function(branch_name)
-  --   local maxlen = 20
-  --   if vim.api.nvim_strwidth(branch_name) >= maxlen then
-  --     local trimmed = string.sub(branch_name, 1, maxlen)
-  --     local pattern = "[-_]$"
-  --     return string.gsub(trimmed, pattern, "") .. ".."
-  --   end
-  --   return branch_name
-  -- end,
-  separator = {
-    -- left = "",
-    -- right = "",
-  },
+  separator = {},
 })
 
 insert_left({
   "diff",
-  -- Is it me or the symbol for modified us really weird
-  symbols = { added = " ", modified = " ", removed = " " },
-  diff_color = {
-    added = "GitSignsAdd",
-    modified = "GitSignsChange",
-    removed = "GitSignsDelete",
-  },
-  -- color = { bg = colors.bg_highlight },
   cond = conditions.hide_in_width,
 })
 
@@ -141,29 +80,14 @@ insert_left({
   "diagnostics",
   sources = { "nvim_diagnostic" },
   -- symbols = { error = " ", warn = " ", info = " " },
-  diagnostics_color = {
-    color_error = "DiagnosticError",
-    color_warn = "DiagnosticWarn",
-    color_info = "DiagnosticInfo",
-  },
+  symbols = { error = "E", warn = "W", info = "I", hint = "H" },
 })
 
--- display cwd if opening empty file
--- ins_left({
---   function()
---     local home = os.getenv("HOME")
---     local cwd = vim.fn.getcwd()
---     if home == nil then
---       return cwd
---     end
---     return string.gsub(cwd, home, "~")
---   end,
---   cond = conditions.buffer_empty,
---   -- color = { fg = colors.fg_dark, bg = colors.bg_highlight },
---   color = { fg = colors.fg_dark, bg = colors.bg },
---   -- separator = { left = "", right = "" },
---   separator = { left = "", right = "" },
--- })
+insert_left({
+  function()
+    return "%f"
+  end,
+})
 
 -- Insert mid section. You can make any number of sections in neovim :)
 -- for lualine it's any number greater then 2
@@ -172,21 +96,6 @@ insert_left({
     return "%="
   end,
 })
-
--- Add components to right sections
--- ins_right {
---   'o:encoding', -- option component same as &encoding in viml
---   fmt = string.upper, -- I'm not sure why it's upper case either ;)
---   cond = conditions.hide_in_width,
---   color = { fg = colors.green, gui = 'bold' },
--- }
-
--- ins_right {
---   'fileformat',
---   fmt = string.upper,
---   icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
---   color = { fg = colors.green, gui = 'bold' },
--- }
 
 local function get_max_line()
   return vim.fn.line("$")
@@ -197,76 +106,12 @@ local function get_tmux_char()
 
   if result ~= nil and result:read("*a") ~= "" then
     result:close()
-    -- return "██"
     return "■"
   else
     return ""
   end
 end
 
--- Tmux indicator
--- TODO: need to improve performance
-local function tmux_status()
-  ---@diagnostic disable-next-line: unused-function
-  local function get_win_name()
-    local result = io.popen('tmux display-message -p "#{window_name}"')
-    if result ~= nil then
-      local window_name = result:read("*a"):gsub("\n", "")
-      result:close()
-      return window_name
-    end
-    return ""
-  end
-
-  ---@diagnostic disable-next-line: unused-function
-  local function get_label()
-    local result = io.popen("tmux show-window-options")
-    if result ~= nil then
-      local window_options = result:read("*a"):gsub("\n", "")
-      result:close()
-
-      -- Check if the automatic-rename option is set to "off"
-      -- if so then it has been renamed
-      if window_options:find("automatic%-rename off") then
-        return " " .. get_win_name()
-      end
-    else
-      return ""
-    end
-  end
-
-  if os.getenv("TMUX") ~= nil then
-    return get_tmux_char() .. get_label()
-  else
-    return ""
-  end
-end
-
--- ins_right({
---   -- Lsp server name .
---   function()
---     local icon = "● LSP: "
---     local msg = ""
---     local buf_ft = vim.api.nvim_get_option_value("filetype", {
---       buf = 0,
---     })
---     local clients = vim.lsp.get_active_clients()
---     if next(clients) == nil then
---       return msg
---     end
---     for _, client in ipairs(clients) do
---       if client.name ~= "null-ls" then
---         local filetypes = client.config.filetypes
---         if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
---           return icon .. client.name
---         end
---       end
---     end
---     return msg
---   end,
---   -- icon = ' LSP:',
--- })
---
 insert_right({
   function()
     local char_register = vim.fn.reg_recording()
@@ -280,27 +125,21 @@ insert_right({
 
 insert_right({
   "searchcount",
-  -- TODO: dark fg
-  color = "Normal",
+  color = "Search",
 })
 
 insert_right({
   "selectioncount",
-  -- color = { fg = colors.bg_dark, bg = colors.blue },
   color = "Visual",
 })
 
 insert_right({
   "location",
-  -- TODO: dark fg
-  color = "Normal",
   cond = conditions.buffer_not_empty,
 })
 
 insert_right({
   get_max_line,
-  -- TODO: dark fg
-  color = "Normal",
   cond = conditions.buffer_not_empty,
 })
 
@@ -309,35 +148,23 @@ insert_right({
 })
 
 insert_right({
-  "filetype",
+  function()
+    return "%y"
+  end,
+  -- "filetype",
+  -- colored = false,
+  -- color = "StatusLine",
 })
 
--- ins_right({
---   "progress",
---   color = { fg = colors.fg_dark },
---   cond = conditions.buffer_not_empty,
--- })
 insert_right({
   get_tmux_char,
-  -- TODO: bold normal
-  color = "Normal", -- Sets highlighting of component
   padding = { left = 1, right = 1 }, -- We don't need space before this
   cond = function()
     return os.getenv("TMUX") ~= nil
   end,
 })
 
--- ins_right {
---   function()
---     return '▊'
---   end,
---   color = { fg = colors.blue },
---   padding = { left = 1 },
--- }
-
--- Now don't forget to initialize lualine
--- require("lualine").setup(config)
 return {
   "nvim-lualine/lualine.nvim",
-  opts = config,
+  opts = opts,
 }
