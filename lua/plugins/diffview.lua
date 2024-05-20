@@ -14,6 +14,14 @@ return {
       default_args = {
         DiffviewFileHistory = { "--max-count=25" },
       },
+      hooks = {
+        view_leave = function()
+          vim.opt.signcolumn = "yes"
+        end,
+        diff_buf_win_enter = function(bufnr)
+          vim.opt_local.signcolumn = "no"
+        end,
+      },
     },
     keys = {
       { "<leader>gs", "<cmd>DiffviewOpen<cr>", desc = "Git status" },

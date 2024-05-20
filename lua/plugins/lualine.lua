@@ -33,8 +33,8 @@ local opts = {
     global_status = true,
     always_divide_middle = false,
     -- Disable sections and component separators
-    -- component_separators = "",
-    -- section_separators = "",
+    component_separators = "", -- "│",
+    section_separators = "", -- "│",
     disabled_filetypes = {
       statusline = { "neo-tree", "git", "fugitive" },
       winbar = { "neo-tree", "DiffviewFiles", "git" },
