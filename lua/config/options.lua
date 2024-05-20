@@ -82,5 +82,5 @@ vim.cmd([[
 ]])
 
 -- statusline & tabline
-vim.o.laststatus = 3
-vim.o.statusline = " %f %m%=%-15.(%l,%c%) %P "
+-- vim.o.laststatus = 3
+-- vim.o.statusline = " %f %m%=%-15.(%l,%c%) %P "

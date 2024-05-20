@@ -25,12 +25,18 @@ local opts = {
         a = "StatusLine", -- "Normal",
         b = "StatusLine", -- "Normal",
         c = "StatusLine", -- "Normal",
+        x = "StatusLine", -- "Normal",
+        y = "StatusLine", -- "Normal",
+        z = "StatusLine", -- "Normal",
       },
     },
+    global_status = true,
+    always_divide_middle = false,
     -- Disable sections and component separators
     component_separators = "",
     section_separators = "",
     disabled_filetypes = {
+      statusline = { "neo-tree", "git", "fugitive" },
       winbar = { "neo-tree", "DiffviewFiles", "git" },
     },
   },
@@ -71,6 +77,7 @@ insert_left({
   separator = {},
 })
 
+-- TODO: adjust color for diff and diagnostics (and filetype)
 insert_left({
   "diff",
   cond = conditions.hide_in_width,
@@ -84,17 +91,13 @@ insert_left({
 })
 
 insert_left({
-  function()
-    return "%f"
-  end,
+  "%f %m",
 })
 
 -- Insert mid section. You can make any number of sections in neovim :)
 -- for lualine it's any number greater then 2
 insert_left({
-  function()
-    return "%="
-  end,
+  "%=",
 })
 
 local function get_max_line()
@@ -112,7 +115,7 @@ local function get_tmux_char()
   end
 end
 
-insert_right({
+insert_left({
   function()
     local char_register = vim.fn.reg_recording()
     if #char_register > 0 then
@@ -123,40 +126,38 @@ insert_right({
   color = "Visual",
 })
 
-insert_right({
+insert_left({
   "searchcount",
   color = "Search",
 })
 
-insert_right({
+insert_left({
   "selectioncount",
   color = "Visual",
 })
 
-insert_right({
+insert_left({
   "location",
   cond = conditions.buffer_not_empty,
 })
 
-insert_right({
+insert_left({
   get_max_line,
   cond = conditions.buffer_not_empty,
 })
 
-insert_right({
+insert_left({
   "encoding",
 })
 
-insert_right({
-  function()
-    return "%y"
-  end,
+insert_left({
+  "%y",
   -- "filetype",
   -- colored = false,
   -- color = "StatusLine",
 })
 
-insert_right({
+insert_left({
   get_tmux_char,
   padding = { left = 1, right = 1 }, -- We don't need space before this
   cond = function()
