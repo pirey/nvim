@@ -91,7 +91,8 @@ insert_left({
 })
 
 insert_left({
-  "%f %m",
+  "filename",
+  path = 1,
 })
 
 -- Insert mid section. You can make any number of sections in neovim :)

@@ -25,6 +25,7 @@ return {
         local fg_dark = "#3e445e" -- from StatusLineNC
         local bg_dark = "#0f1117" -- from StatusLineNC
         local fg = "#c6c8d1"
+        local bg_stl = "#818596"
         local visual = "#272c42"
         vim.api.nvim_set_hl(0, "CursorLineNr", { bg = bg, bold = true })
         vim.api.nvim_set_hl(0, "LineNr", { bg = bg, fg = "#444b71" })
@@ -38,6 +39,7 @@ return {
         vim.api.nvim_set_hl(0, "DiffText", { bg = "#384851", fg = "NONE" })
         vim.api.nvim_set_hl(0, "WinSeparator", { fg = fg_dark, bold = true })
         vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#3e445e" })
+        patch_hl("StatusLine", { bold = true })
         -- vim.api.nvim_set_hl(0, "StatusLine", { fg = fg, bg = bg, bold = true })
 
         -- Notify
