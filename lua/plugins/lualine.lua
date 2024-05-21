@@ -158,6 +158,10 @@ insert_left({
 })
 
 insert_left({
+  "progress",
+})
+
+insert_left({
   get_tmux_char,
   padding = { left = 1, right = 1 }, -- We don't need space before this
   cond = function()
