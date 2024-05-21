@@ -5,8 +5,10 @@ local conditions = {
   buffer_empty = function()
     return vim.fn.empty(vim.fn.expand("%:t")) == 1
   end,
-  hide_in_width = function()
-    return vim.fn.winwidth(0) > 80
+  hide_in_width = function(w)
+    return function()
+      return vim.fn.winwidth(0) > w
+    end
   end,
   check_git_workspace = function()
     local filepath = vim.fn.expand("%:p:h")
@@ -92,6 +94,10 @@ insert_left({
 insert_left({
   "filename",
   path = 1,
+  shorting_target = vim.fn.winwidth(0) / 1.2,
+  symbols = {
+    modified = "●",
+  },
 })
 
 -- Insert mid section. You can make any number of sections in neovim :)
