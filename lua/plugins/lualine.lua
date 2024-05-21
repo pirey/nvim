@@ -36,7 +36,7 @@ local opts = {
     component_separators = "", -- "│",
     section_separators = "", -- "│",
     disabled_filetypes = {
-      statusline = { "neo-tree", "git", "fugitive" },
+      statusline = { "neo-tree", "git", "fugitive", "toggleterm" },
       winbar = { "neo-tree", "DiffviewFiles", "git" },
     },
   },
