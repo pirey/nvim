@@ -100,14 +100,6 @@ insert_left({
   "%=",
 })
 
-insert_left({
-  " ",
-})
-
-insert_left({
-  "%=",
-})
-
 local function get_max_line()
   return vim.fn.line("$")
 end
