@@ -8,11 +8,8 @@ vim.keymap.set({ "n", "v" }, ";", ":")
 vim.keymap.set({ "n" }, "<leader>:", "q:", { desc = "Command line window" })
 -- vim.keymap.set({ "n" }, "q;", "q:", { desc = "Command line window" })
 
--- swap visual selection
-vim.keymap.set("n", "<c-v>", "V")
-vim.keymap.set("n", "V", "<c-v>")
 -- double v for line selection
-vim.keymap.set("n", "vv", "V")
+vim.keymap.set({ "n", "v" }, "vv", "V")
 
 -- movements/navigation
 vim.keymap.set({ "n", "v" }, "E", "20l")
