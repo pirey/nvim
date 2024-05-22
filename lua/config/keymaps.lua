@@ -21,6 +21,9 @@ vim.keymap.set({ "n", "v" }, "zh", "20zh")
 vim.keymap.set({ "n", "v" }, "<c-e>", "<c-u>")
 vim.keymap.set("v", "$", "$h")
 
+-- editing
+vim.keymap.set("n", "<c-a>", "A")
+
 -- clipboard / copy paste
 vim.keymap.set("v", "<c-c>", '"+y')
 vim.keymap.set("n", "gp", "`[v`]", { desc = "Select last pasted text" })
