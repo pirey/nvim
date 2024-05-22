@@ -76,6 +76,10 @@ end
 insert_left({
   "branch",
   icon = "",
+  separator = {
+    left = "-",
+    right = "-",
+  },
 })
 
 -- TODO: adjust color for diff and diagnostics (and filetype)
