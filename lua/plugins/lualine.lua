@@ -114,17 +114,6 @@ local function get_max_line()
   return vim.fn.line("$")
 end
 
-local function get_tmux_char()
-  local result = io.popen("tmux list-panes -F '#F' | grep Z")
-
-  if result ~= nil and result:read("*a") ~= "" then
-    result:close()
-    return "■"
-  else
-    return ""
-  end
-end
-
 insert_left({
   function()
     local char_register = vim.fn.reg_recording()
@@ -171,11 +160,25 @@ insert_left({
   "progress",
 })
 
+local function get_tmux_char()
+  local result = io.popen("tmux list-panes -F '#F' | grep Z")
+
+  if result ~= nil and result:read("*a") ~= "" then
+    result:close()
+    return "■"
+  else
+    return ""
+  end
+end
+
 insert_left({
   get_tmux_char,
   padding = { left = 1, right = 1 }, -- We don't need space before this
   cond = function()
     return os.getenv("TMUX") ~= nil
+  end,
+  on_click = function()
+    os.execute("tmux resize-pane -Z")
   end,
 })
 
