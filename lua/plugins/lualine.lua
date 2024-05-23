@@ -19,102 +19,44 @@ local conditions = {
     return vim.o.diff == true
   end,
 }
-
-local opts = {
-  options = {
-    theme = {
-      normal = {
-        a = "StatusLine", -- "Normal",
-        b = "StatusLine", -- "Normal",
-        c = "StatusLine", -- "Normal",
-        x = "StatusLine", -- "Normal",
-        y = "StatusLine", -- "Normal",
-        z = "StatusLine", -- "Normal",
-      },
-    },
-    global_status = true,
-    always_divide_middle = false,
-    -- Disable sections and component separators
-    component_separators = "", -- "│",
-    section_separators = "", -- "│",
-    disabled_filetypes = {
-      statusline = { "neo-tree", "git", "fugitive", "toggleterm" },
-      winbar = { "neo-tree", "DiffviewFiles", "git" },
-    },
-  },
-  sections = {
-    -- these are to remove the defaults
-    lualine_a = {},
-    lualine_b = {},
-    lualine_y = {},
-    lualine_z = {},
-    -- These will be filled later
-    lualine_c = {},
-    lualine_x = {},
-  },
-  inactive_sections = {
-    -- these are to remove the defaults
-    lualine_a = {},
-    lualine_b = {},
-    lualine_y = {},
-    lualine_z = {},
-    lualine_c = {},
-    lualine_x = {},
-  },
-}
-
--- Inserts a component in lualine_c at left section
-local function insert_left(component)
-  table.insert(opts.sections.lualine_c, component)
-end
-
--- Inserts a component in lualine_x at right section
-local function insert_right(component)
-  table.insert(opts.sections.lualine_x, component)
-end
-
-insert_left({
+local branch = {
   "branch",
   icon = "",
-  separator = {
-    left = "-",
-    right = "-",
-  },
-})
+}
 
 -- TODO: adjust color for diff and diagnostics (and filetype)
--- insert_left({
---   "diff",
---   cond = conditions.hide_in_width,
--- })
---
--- insert_left({
---   "diagnostics",
---   sources = { "nvim_diagnostic" },
---   -- symbols = { error = " ", warn = " ", info = " " },
---   symbols = { error = "E", warn = "W", info = "I", hint = "H" },
--- })
+local diff = {
+  "diff",
+}
 
-insert_left({
+local diagnostics = {
+  "diagnostics",
+  sources = { "nvim_diagnostic" },
+  symbols = { error = " ", warn = " ", info = " " },
+  -- symbols = { error = "E", warn = "W", info = "I", hint = "H" },
+}
+
+local filename = {
   "filename",
   path = 1,
   shorting_target = vim.fn.winwidth(0) / 1.2,
   symbols = {
     modified = "●",
   },
-})
+  cond = conditions.buffer_not_empty,
+}
 
--- Insert mid section. You can make any number of sections in neovim :)
--- for lualine it's any number greater then 2
-insert_left({
+local separator = {
   "%=",
-})
+}
 
-local function get_max_line()
-  return vim.fn.line("$")
-end
+local space = {
+  function()
+    return " "
+  end,
+}
 
-insert_left({
+local macro = {
   function()
     local char_register = vim.fn.reg_recording()
     if #char_register > 0 then
@@ -123,56 +65,56 @@ insert_left({
     return ""
   end,
   color = "Visual",
-})
+}
 
-insert_left({
+local searchcount = {
   "searchcount",
   color = "Search",
-})
+}
 
-insert_left({
+local selectioncount = {
   "selectioncount",
   color = "Visual",
-})
+}
 
-insert_left({
+local location = {
   "location",
   cond = conditions.buffer_not_empty,
-})
+}
 
-insert_left({
-  get_max_line,
+local max_line = {
+  function()
+    return vim.fn.line("$")
+  end,
   cond = conditions.buffer_not_empty,
-})
+}
 
-insert_left({
+local encoding = {
   "encoding",
-})
+}
 
-insert_left({
+local filetype = {
   "%y",
   -- "filetype",
   -- colored = false,
-  -- color = "StatusLine",
-})
+}
 
-insert_left({
+local progress = {
   "progress",
-})
+  cond = conditions.buffer_not_empty,
+}
 
-local function get_tmux_char()
-  local result = io.popen("tmux list-panes -F '#F' | grep Z")
+local tmux_char = {
+  function()
+    local result = io.popen("tmux list-panes -F '#F' | grep Z")
 
-  if result ~= nil and result:read("*a") ~= "" then
-    result:close()
-    return "■"
-  else
-    return ""
-  end
-end
-
-insert_left({
-  get_tmux_char,
+    if result ~= nil and result:read("*a") ~= "" then
+      result:close()
+      return "■"
+    else
+      return ""
+    end
+  end,
   padding = { left = 1, right = 1 }, -- We don't need space before this
   cond = function()
     return os.getenv("TMUX") ~= nil
@@ -180,9 +122,66 @@ insert_left({
   on_click = function()
     os.execute("tmux resize-pane -Z")
   end,
-})
+}
 
 return {
   "nvim-lualine/lualine.nvim",
-  opts = opts,
+  opts = {
+    options = {
+      theme = {
+        normal = {
+          a = "StatusLine",
+          b = "StatusLine",
+          c = "StatusLine",
+          x = "StatusLine",
+          y = "StatusLine",
+          z = "StatusLine",
+        },
+      },
+      global_status = true,
+      always_divide_middle = false,
+      -- Disable sections and component separators
+      component_separators = "", -- "│",
+      section_separators = "", -- "│",
+      disabled_filetypes = {
+        statusline = { "neo-tree", "git", "fugitive", "toggleterm" },
+        winbar = { "neo-tree", "DiffviewFiles", "git" },
+      },
+    },
+    sections = {
+      lualine_a = {
+        branch,
+      },
+      lualine_b = {},
+      lualine_c = {
+        filename,
+      },
+      lualine_x = {
+        diff,
+        diagnostics,
+        macro,
+        searchcount,
+        selectioncount,
+      },
+      lualine_y = {
+        location,
+        max_line,
+      },
+      lualine_z = {
+        encoding,
+        filetype,
+        progress,
+        tmux_char,
+      },
+    },
+    inactive_sections = {
+      -- these are to remove the defaults
+      lualine_a = {},
+      lualine_b = {},
+      lualine_y = {},
+      lualine_z = {},
+      lualine_c = {},
+      lualine_x = {},
+    },
+  },
 }
