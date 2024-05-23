@@ -27,13 +27,16 @@ local branch = {
 -- TODO: adjust color for diff and diagnostics (and filetype)
 local diff = {
   "diff",
+  -- symbols = { added = " ", modified = " ", removed = " " },
+  colored = false,
 }
 
 local diagnostics = {
   "diagnostics",
   sources = { "nvim_diagnostic" },
-  symbols = { error = " ", warn = " ", info = " " },
-  -- symbols = { error = "E", warn = "W", info = "I", hint = "H" },
+  -- symbols = { error = " ", warn = " ", info = " ", hint = " " },
+  colored = false,
+  symbols = { error = "E:", warn = "W:", info = "I:", hint = "H:" },
 }
 
 local filename = {
@@ -157,15 +160,15 @@ return {
         filename,
       },
       lualine_x = {
-        diff,
         diagnostics,
+        diff,
         macro,
         searchcount,
         selectioncount,
       },
       lualine_y = {
         location,
-        max_line,
+        -- max_line,
       },
       lualine_z = {
         encoding,
