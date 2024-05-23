@@ -23,6 +23,13 @@ return {
         tsserver = {
           root_dir = require("lspconfig.util").root_pattern(".git"),
           -- root_dir = require("lspconfig.util").find_git_ancestor,
+          settings = {
+            typescript = {
+              preferences = {
+                importModuleSpecifierPreference = "non-relative",
+              },
+            },
+          },
         },
         hls = {
           -- use hls managed by ghcup instead of mason,
