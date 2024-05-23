@@ -46,7 +46,6 @@ local filename = {
   symbols = {
     modified = "●",
   },
-  cond = conditions.buffer_not_empty,
 }
 
 local separator = {
@@ -82,7 +81,6 @@ local selectioncount = {
 
 local location = {
   "location",
-  cond = conditions.buffer_not_empty,
 }
 
 local max_line = {
