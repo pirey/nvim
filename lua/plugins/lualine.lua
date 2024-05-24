@@ -5,7 +5,7 @@ local conditions = {
   buffer_empty = function()
     return vim.fn.empty(vim.fn.expand("%:t")) == 1
   end,
-  hide_in_width = function(w)
+  screen_width = function(w)
     return function()
       return vim.fn.winwidth(0) > w
     end
@@ -22,6 +22,7 @@ local conditions = {
 local branch = {
   "branch",
   icon = "",
+  cond = conditions.screen_width(120),
 }
 
 -- TODO: adjust color for diff and diagnostics (and filetype)
@@ -29,20 +30,22 @@ local diff = {
   "diff",
   -- symbols = { added = " ", modified = " ", removed = " " },
   colored = false,
+  cond = conditions.screen_width(120),
 }
 
 local diagnostics = {
   "diagnostics",
   sources = { "nvim_diagnostic" },
-  -- symbols = { error = " ", warn = " ", info = " ", hint = " " },
+  symbols = { error = " ", warn = " ", info = " ", hint = " " },
   colored = false,
-  symbols = { error = "E:", warn = "W:", info = "I:", hint = "H:" },
+  -- symbols = { error = "E:", warn = "W:", info = "I:", hint = "H:" },
+  cond = conditions.screen_width(120),
 }
 
 local filename = {
   "filename",
   path = 1,
-  shorting_target = vim.fn.winwidth(0) / 1.2,
+  shorting_target = vim.fn.winwidth(0) / 2,
   symbols = {
     modified = "●",
   },
@@ -95,9 +98,9 @@ local encoding = {
 }
 
 local filetype = {
-  "%y",
-  -- "filetype",
-  -- colored = false,
+  -- "%y",
+  "filetype",
+  colored = false,
 }
 
 local progress = {
@@ -141,18 +144,15 @@ return {
       },
       global_status = true,
       always_divide_middle = false,
-      -- Disable sections and component separators
-      component_separators = "", -- "│",
-      section_separators = "", -- "│",
+      component_separators = "",
+      section_separators = "",
       disabled_filetypes = {
         statusline = { "neo-tree", "git", "fugitive", "toggleterm" },
         winbar = { "neo-tree", "DiffviewFiles", "git" },
       },
     },
     sections = {
-      lualine_a = {
-        branch,
-      },
+      lualine_a = {},
       lualine_b = {},
       lualine_c = {
         filename,
@@ -160,18 +160,19 @@ return {
       lualine_x = {
         diagnostics,
         diff,
+        branch,
         macro,
         searchcount,
         selectioncount,
       },
       lualine_y = {
-        location,
-        -- max_line,
-      },
-      lualine_z = {
         encoding,
         filetype,
-        progress,
+      },
+      lualine_z = {
+        location,
+        -- max_line,
+        -- progress,
         tmux_char,
       },
     },
