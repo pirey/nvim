@@ -65,16 +65,27 @@ local macro = {
   function()
     local char_register = vim.fn.reg_recording()
     if #char_register > 0 then
-      return "REC @" .. char_register
+      return "[REC@" .. char_register .. "]"
     end
     return ""
   end,
-  color = "Visual",
+  -- color = "Visual",
 }
 
 local searchcount = {
   "searchcount",
-  color = "Search",
+  -- color = "Search",
+  fmt = function(s)
+    if s ~= "" then
+      local replaced = string.gsub(s, "[%[%]]", "")
+      if replaced == "0/0" then
+        return ""
+      end
+      local search_path = vim.fn.getreg("/")
+      return '[Search "' .. search_path .. '": ' .. replaced .. "]"
+    end
+    return ""
+  end,
 }
 
 local selectioncount = {
@@ -98,14 +109,13 @@ local encoding = {
 }
 
 local filetype = {
-  -- "%y",
-  "filetype",
-  colored = false,
+  "%y",
+  -- "filetype",
+  -- colored = false,
 }
 
 local progress = {
   "progress",
-  cond = conditions.buffer_not_empty,
 }
 
 local tmux_char = {
@@ -161,18 +171,18 @@ return {
         diagnostics,
         diff,
         branch,
+      },
+      lualine_y = {
         macro,
         searchcount,
         selectioncount,
-      },
-      lualine_y = {
-        encoding,
+        -- encoding,
         filetype,
       },
       lualine_z = {
         location,
         -- max_line,
-        -- progress,
+        progress,
         tmux_char,
       },
     },
