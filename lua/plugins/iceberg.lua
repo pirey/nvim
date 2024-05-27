@@ -42,6 +42,9 @@ return {
         patch_hl("StatusLine", { bold = true })
         -- vim.api.nvim_set_hl(0, "StatusLine", { fg = fg, bg = bg, bold = true })
 
+        -- Italic jsx/html tag attribute @tag.attribute.tsx htmlArg
+        vim.api.nvim_set_hl(0, "Constant", { fg = "#a093c7", italic = true })
+
         -- Notify
         vim.api.nvim_set_hl(0, "NotifyBackground", { fg = fg, bg = bg })
         vim.api.nvim_set_hl(0, "NotifyERRORBorder", { fg = fg_dark, bg = bg })
