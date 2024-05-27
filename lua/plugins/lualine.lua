@@ -76,15 +76,11 @@ local searchcount = {
   "searchcount",
   -- color = "Search",
   fmt = function(s)
-    if s ~= "" then
-      local replaced = string.gsub(s, "[%[%]]", "")
-      if replaced == "0/0" then
-        return ""
-      end
-      local search_path = vim.fn.getreg("/")
-      return '[Search "' .. search_path .. '": ' .. replaced .. "]"
+    if s == "" or s == "[0/0]" then
+      return ""
     end
-    return ""
+    local search_pattern = vim.fn.getreg("/")
+    return "SEARCH: " .. search_pattern .. " " .. s
   end,
 }
 
