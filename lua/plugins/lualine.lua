@@ -65,23 +65,23 @@ local macro = {
   function()
     local char_register = vim.fn.reg_recording()
     if #char_register > 0 then
-      return "[REC@" .. char_register .. "]"
+      return "[REC @" .. char_register .. "]"
     end
     return ""
   end,
-  -- color = "Visual",
+  color = "Visual",
 }
 
 local searchcount = {
   "searchcount",
-  -- color = "Search",
-  fmt = function(s)
-    if s == "" or s == "[0/0]" then
-      return ""
-    end
-    local search_pattern = vim.fn.getreg("/")
-    return "SEARCH: " .. search_pattern .. " " .. s
-  end,
+  color = "Search",
+  -- fmt = function(s)
+  --   if s == "" or s == "[0/0]" then
+  --     return ""
+  --   end
+  --   local search_pattern = vim.fn.getreg("/")
+  --   return "SEARCH: " .. search_pattern .. " " .. s
+  -- end,
 }
 
 local selectioncount = {
@@ -170,12 +170,12 @@ return {
       },
       lualine_y = {
         macro,
-        searchcount,
-        selectioncount,
         -- encoding,
         filetype,
       },
       lualine_z = {
+        selectioncount,
+        searchcount,
         location,
         -- max_line,
         progress,

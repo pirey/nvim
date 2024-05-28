@@ -39,7 +39,7 @@ return {
         vim.api.nvim_set_hl(0, "DiffText", { bg = "#384851", fg = "NONE" })
         vim.api.nvim_set_hl(0, "WinSeparator", { fg = fg_dark, bold = true })
         vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#3e445e" })
-        patch_hl("StatusLine", { bold = true })
+        -- patch_hl("StatusLine", { bold = true })
         -- vim.api.nvim_set_hl(0, "StatusLine", { fg = fg, bg = bg, bold = true })
 
         -- Italic jsx/html tag attribute @tag.attribute.tsx htmlArg
