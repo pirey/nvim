@@ -17,6 +17,7 @@ return {
         vim.api.nvim_set_hl(0, "DiffAdd", { bg = colors.blue5, fg = "NONE" })
         vim.api.nvim_set_hl(0, "DiffChange", { bg = colors.blue2, fg = "NONE" })
         vim.api.nvim_set_hl(0, "DiffDelete", { bg = colors.folded_bg, fg = "NONE" })
+        vim.api.nvim_set_hl(0, "NormalFloat", { bg = colors.dark })
         util.patch_hl("DiffText", { fg = "NONE" })
       end,
     })
