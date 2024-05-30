@@ -1,7 +1,10 @@
--- patch_hl adds highlight definition without replacing original highlight
--- useful when we need to override highlight and retain existing definition
--- @param hlg string Highlight group
 Util = {}
+
+--- patch_hl adds highlight definition without replacing original highlight
+--- useful when we need to override highlight and retain existing definition
+---
+--- @param hlg string Highlight group name
+--- @param patch table Override highlight
 function Util.patch_hl(hlg, patch)
   local hl = vim.api.nvim_get_hl(0, {
     name = hlg,
