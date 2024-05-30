@@ -1,19 +1,3 @@
--- patch_hl adds highlight definition without replacing original highlight
--- useful when we need to override highlight and retain existing definition
--- @param hlg string Highlight group
-local function patch_hl(hlg, patch)
-  local hl = vim.api.nvim_get_hl(0, {
-    name = hlg,
-  })
-  vim.api.nvim_set_hl(0, hlg, vim.tbl_deep_extend("keep", patch, hl))
-end
-
-local function patch_group_pattern(hlg_pattern, patch)
-  for _, hlg in pairs(vim.fn.getcompletion(hlg_pattern, "highlight")) do
-    patch_hl(hlg, patch)
-  end
-end
-
 return {
   "cocopon/iceberg.vim",
   init = function()
@@ -21,6 +5,7 @@ return {
     vim.api.nvim_create_autocmd("ColorScheme", {
       pattern = "iceberg",
       callback = function()
+        local util = require("util")
         local bg = "#161821"
         local fg_dark = "#3e445e" -- from StatusLineNC
         local bg_dark = "#0f1117" -- from StatusLineNC
@@ -39,7 +24,7 @@ return {
         vim.api.nvim_set_hl(0, "DiffText", { bg = "#384851", fg = "NONE" })
         vim.api.nvim_set_hl(0, "WinSeparator", { fg = fg_dark, bold = true })
         vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#3e445e" })
-        -- patch_hl("StatusLine", { bold = true })
+        -- util.patch_hl("StatusLine", { bold = true })
         -- vim.api.nvim_set_hl(0, "StatusLine", { fg = fg, bg = bg, bold = true })
 
         -- Italic jsx/html tag attribute @tag.attribute.tsx htmlArg
@@ -70,8 +55,8 @@ return {
 
         vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = fg_dark, bg = bg })
 
-        patch_group_pattern("GitGutter", { bg = bg })
-        patch_group_pattern("Diagnostic", { bg = bg })
+        util.patch_group_pattern("GitGutter", { bg = bg })
+        util.patch_group_pattern("Diagnostic", { bg = bg })
 
         -- disable lsp semantic token highlight
         -- for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
