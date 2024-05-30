@@ -16,10 +16,10 @@ return {
       },
       hooks = {
         view_leave = function()
-          vim.opt.signcolumn = "yes"
+          -- vim.opt.signcolumn = "yes"
         end,
         diff_buf_win_enter = function(bufnr)
-          vim.opt_local.signcolumn = "no"
+          -- vim.opt_local.signcolumn = "no"
         end,
       },
     },

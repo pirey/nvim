@@ -1,32 +1,39 @@
-vim.cmd("autocmd! BufReadPost fugitive://* set bufhidden=delete")
-
-vim.cmd("autocmd! FileType git lua _handle_git()")
-function _G._handle_git()
-  vim.cmd("setlocal foldmethod=syntax")
-  vim.cmd("setlocal foldlevel=0")
-  vim.keymap.set("n", "q", "<cmd>q<cr>", { buffer = true })
-end
-
-vim.cmd("autocmd! FileType fugitive,fugitiveblame lua _handle_fugitive()")
-function _G._handle_fugitive()
-  vim.keymap.set("n", "q", "<cmd>bd<cr>", { buffer = true })
-end
-
-vim.cmd("autocmd! FileType dbout lua _handle_dbout()")
-function _G._handle_dbout()
-  vim.keymap.set("n", "q", "<cmd>q<cr>", { buffer = true })
-end
-
-local function init_fugitive()
-  -- muscle memory from the old days
-  vim.api.nvim_create_user_command("Gst", "Git", { desc = "Open git status" })
-  vim.keymap.set("n", ",g", "<cmd>Git<cr>", { desc = "Open fugitive" })
-end
-
 return {
   {
     "tpope/vim-fugitive",
-    init = init_fugitive,
+    init = function()
+      local fugitive_group = vim.api.nvim_create_augroup("FugitiveAugroup", {
+        clear = true,
+      })
+
+      vim.api.nvim_create_autocmd("BufReadPost", {
+        group = fugitive_group,
+        pattern = "fugitive://*",
+        callback = function()
+          vim.opt_local.bufhidden = "delete"
+        end,
+      })
+
+      vim.api.nvim_create_autocmd({ "FileType" }, {
+        group = fugitive_group,
+        pattern = { "fugitive", "fugitiveblame", "git" },
+        callback = function()
+          vim.keymap.set("n", "q", "<cmd>bd<cr>", { buffer = true })
+          vim.opt_local.number = false
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        group = fugitive_group,
+        pattern = "git",
+        callback = function()
+          vim.opt_local.foldmethod = "syntax"
+          vim.opt_local.foldlevel = 0
+        end,
+      })
+
+      vim.keymap.set("n", ",g", "<cmd>Git<cr>", { desc = "Open fugitive" })
+    end,
   },
   -- {
   --   "tpope/vim-surround",
@@ -36,6 +43,15 @@ return {
   },
   {
     "tpope/vim-dadbod",
+    init = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("DadbobAugroup", { clear = true }),
+        pattern = "dbout",
+        callback = function()
+          vim.keymap.set("n", "q", "<cmd>q<cr>", { buffer = true })
+        end,
+      })
+    end,
   },
 
   {
