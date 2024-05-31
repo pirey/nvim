@@ -3,20 +3,20 @@ return {
   {
     "tiagovla/scope.nvim",
     config = function()
-      require("telescope").load_extension("scope")
       require("scope").setup({})
+      -- require("telescope").load_extension("scope")
     end,
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
-    },
-    keys = {
-      {
-        "<leader>ba",
-        function()
-          vim.cmd("Telescope scope buffers")
-        end,
-        desc = "Select Buffer (All Tabs)",
-      },
-    },
+    -- dependencies = {
+    --   "nvim-telescope/telescope.nvim",
+    -- },
+    -- keys = {
+    --   {
+    --     "<leader>ba",
+    --     function()
+    --       vim.cmd("Telescope scope buffers")
+    --     end,
+    --     desc = "Select Buffer (All Tabs)",
+    --   },
+    -- },
   },
 }
