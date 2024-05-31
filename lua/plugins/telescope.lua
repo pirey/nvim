@@ -139,7 +139,7 @@ return {
       {
         "<leader>,",
         Util.telescope("buffers", { select_current = true, cwd = vim.fn.getcwd() }),
-        desc = "Switch Buffer",
+        desc = "Select Buffer",
       },
     },
     -- TODO: tidy prompt title
