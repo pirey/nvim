@@ -31,6 +31,16 @@ return {
             },
           },
         },
+        elmls = {
+          -- root_dir = require("lspconfig.util").root_pattern("elm.json"),
+          init_options = {
+            disableElmLSDiagnostics = true,
+            elmReviewDiagnostics = "off",
+            onlyUpdateDiagnosticsOnSave = true,
+            skipInstallPackageConfirmation = false,
+          },
+          settings = {},
+        },
         hls = {
           -- use hls managed by ghcup instead of mason,
           -- and use default config from nvim-lspconfig
