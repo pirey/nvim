@@ -33,11 +33,11 @@ return {
 
         -- Notify
         vim.api.nvim_set_hl(0, "NotifyBackground", { fg = fg, bg = bg })
-        vim.api.nvim_set_hl(0, "NotifyERRORBorder", { fg = fg_dark, bg = bg })
-        vim.api.nvim_set_hl(0, "NotifyWARNBorder", { fg = fg_dark, bg = bg })
-        vim.api.nvim_set_hl(0, "NotifyINFOBorder", { fg = fg_dark, bg = bg })
-        vim.api.nvim_set_hl(0, "NotifyDEBUGBorder", { fg = fg_dark, bg = bg })
-        vim.api.nvim_set_hl(0, "NotifyTRACEBorder", { fg = fg_dark, bg = bg })
+        vim.api.nvim_set_hl(0, "NotifyERRORBorder", { fg = bg_dark, bg = bg_dark })
+        vim.api.nvim_set_hl(0, "NotifyWARNBorder", { fg = bg_dark, bg = bg_dark })
+        vim.api.nvim_set_hl(0, "NotifyINFOBorder", { fg = bg_dark, bg = bg_dark })
+        vim.api.nvim_set_hl(0, "NotifyDEBUGBorder", { fg = bg_dark, bg = bg_dark })
+        vim.api.nvim_set_hl(0, "NotifyTRACEBorder", { fg = bg_dark, bg = bg_dark })
         vim.api.nvim_set_hl(0, "NotifyERRORIcon", { fg = fg })
         vim.api.nvim_set_hl(0, "NotifyWARNIcon", { fg = fg })
         vim.api.nvim_set_hl(0, "NotifyINFOIcon", { fg = fg })
@@ -48,11 +48,11 @@ return {
         vim.api.nvim_set_hl(0, "NotifyINFOTitle", { fg = fg })
         vim.api.nvim_set_hl(0, "NotifyDEBUGTitle", { fg = fg })
         vim.api.nvim_set_hl(0, "NotifyTRACETitle", { fg = fg })
-        vim.api.nvim_set_hl(0, "NotifyERRORBody", { fg = fg, bg = bg })
-        vim.api.nvim_set_hl(0, "NotifyWARNBody", { fg = fg, bg = bg })
-        vim.api.nvim_set_hl(0, "NotifyINFOBody", { fg = fg, bg = bg })
-        vim.api.nvim_set_hl(0, "NotifyDEBUGBody", { fg = fg, bg = bg })
-        vim.api.nvim_set_hl(0, "NotifyTRACEBody", { fg = fg, bg = bg })
+        vim.api.nvim_set_hl(0, "NotifyERRORBody", { fg = fg, bg = bg_dark })
+        vim.api.nvim_set_hl(0, "NotifyWARNBody", { fg = fg, bg = bg_dark })
+        vim.api.nvim_set_hl(0, "NotifyINFOBody", { fg = fg, bg = bg_dark })
+        vim.api.nvim_set_hl(0, "NotifyDEBUGBody", { fg = fg, bg = bg_dark })
+        vim.api.nvim_set_hl(0, "NotifyTRACEBody", { fg = fg, bg = bg_dark })
 
         vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = fg_dark, bg = bg })
 
