@@ -136,6 +136,11 @@ return {
       { "<leader>fF", Util.telescope("files"), desc = "Find Files (root dir)" },
       { "<leader>fr", Util.telescope("oldfiles", { cwd_only = true }), desc = "Recent project files" },
       { "<leader>fR", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
+      {
+        "<leader>,",
+        Util.telescope("buffers", { select_current = true }),
+        desc = "Switch Buffer",
+      },
     },
     -- TODO: tidy prompt title
     opts = {
