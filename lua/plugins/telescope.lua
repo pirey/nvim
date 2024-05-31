@@ -138,7 +138,7 @@ return {
       { "<leader>fR", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
       {
         "<leader>,",
-        Util.telescope("buffers", { select_current = true }),
+        Util.telescope("buffers", { select_current = true, cwd = vim.fn.getcwd() }),
         desc = "Switch Buffer",
       },
     },
