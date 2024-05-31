@@ -22,7 +22,6 @@ local conditions = {
 local branch = {
   "branch",
   icon = "",
-  cond = conditions.screen_width(120),
 }
 
 -- TODO: adjust color for diff and diagnostics (and filetype)
@@ -158,16 +157,10 @@ return {
       },
     },
     sections = {
-      lualine_a = {},
+      lualine_a = { branch, diff, diagnostics },
       lualine_b = {},
-      lualine_c = {
-        filename,
-      },
-      lualine_x = {
-        diagnostics,
-        diff,
-        branch,
-      },
+      lualine_c = {},
+      lualine_x = {},
       lualine_y = {
         macro,
         -- encoding,

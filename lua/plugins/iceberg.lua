@@ -11,6 +11,7 @@ return {
         local bg_dark = "#0f1117" -- from StatusLineNC
         local fg = "#c6c8d1"
         local bg_stl = "#818596"
+        local fg_stl = "#17171b"
         local visual = "#272c42"
         vim.api.nvim_set_hl(0, "CursorLineNr", { bg = bg, bold = true })
         vim.api.nvim_set_hl(0, "LineNr", { bg = bg, fg = "#444b71" })
@@ -25,7 +26,7 @@ return {
         vim.api.nvim_set_hl(0, "WinSeparator", { fg = fg_dark, bold = true })
         vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#3e445e" })
         -- util.patch_hl("StatusLine", { bold = true })
-        -- vim.api.nvim_set_hl(0, "StatusLine", { fg = fg, bg = bg, bold = true })
+        -- vim.api.nvim_set_hl(0, "StatusLine", { fg = fg_stl, bg = bg_stl, bold = true })
 
         -- Italic jsx/html tag attribute @tag.attribute.tsx htmlArg
         vim.api.nvim_set_hl(0, "Constant", { fg = "#a093c7", italic = true })
