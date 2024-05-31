@@ -16,7 +16,7 @@ return {
 
       vim.api.nvim_create_autocmd({ "FileType" }, {
         group = fugitive_group,
-        pattern = { "fugitive", "fugitiveblame", "git" },
+        pattern = { "fugitive", "fugitiveblame", "git", "gitcommit" },
         callback = function()
           vim.keymap.set("n", "q", "<cmd>bd<cr>", { buffer = true })
           vim.opt_local.number = false
