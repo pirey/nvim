@@ -32,6 +32,7 @@ return {
           },
         },
         elmls = {
+          mason = false,
           -- root_dir = require("lspconfig.util").root_pattern("elm.json"),
           init_options = {
             disableElmLSDiagnostics = true,
