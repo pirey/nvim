@@ -31,6 +31,13 @@ return {
             },
           },
         },
+        purescriptls = {
+          settings = {
+            purescript = {
+              formatter = "purs-tidy",
+            },
+          },
+        },
         elmls = {
           mason = false,
           -- root_dir = require("lspconfig.util").root_pattern("elm.json"),
