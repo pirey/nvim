@@ -65,10 +65,18 @@ local filename = {
   },
 }
 
-local filename_pretty = require("lazyvim.util").lualine.pretty_path({
-  modified_hl = "Bold",
-  modified_sign = " ●",
-})
+local filename_pretty = {
+  require("lazyvim.util").lualine.pretty_path({
+    modified_hl = "Bold",
+    modified_sign = " ●",
+  }),
+  fmt = function(s)
+    if #s == 0 then
+      return "[No Name]"
+    end
+    return s
+  end,
+}
 
 local separator = {
   "%=",
