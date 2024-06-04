@@ -23,6 +23,9 @@ local branch = {
   "branch",
   icon = "",
   fmt = function(s)
+    if #s == 0 then
+      return ""
+    end
     -- PERF: is it ok to run this on each render
     local h = vim.api.nvim_get_hl(0, {
       name = "StatusLine",
@@ -174,10 +177,10 @@ return {
       },
     },
     sections = {
-      lualine_a = { branch, diff, diagnostics },
+      lualine_a = { filename_pretty },
       lualine_b = {},
-      lualine_c = { filename_pretty },
-      lualine_x = {},
+      lualine_c = {},
+      lualine_x = { diagnostics, diff, branch },
       lualine_y = {
         macro,
         -- encoding,
