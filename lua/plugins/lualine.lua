@@ -43,12 +43,14 @@ local diagnostics = {
 
 local filename = {
   "filename",
-  path = 1,
+  path = 4,
   shorting_target = vim.fn.winwidth(0) / 2,
   symbols = {
     modified = "●",
   },
 }
+
+local filename_pretty = require("lazyvim.util").lualine.pretty_path()
 
 local separator = {
   "%=",
@@ -159,7 +161,7 @@ return {
     sections = {
       lualine_a = { branch, diff, diagnostics },
       lualine_b = {},
-      lualine_c = {},
+      lualine_c = { filename_pretty },
       lualine_x = {},
       lualine_y = {
         macro,

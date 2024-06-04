@@ -25,8 +25,9 @@ return {
         vim.api.nvim_set_hl(0, "DiffText", { bg = "#384851", fg = "NONE" })
         vim.api.nvim_set_hl(0, "WinSeparator", { fg = fg_dark, bold = true })
         vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#3e445e" })
-        -- util.patch_hl("StatusLine", { bold = true })
-        -- vim.api.nvim_set_hl(0, "StatusLine", { fg = fg_stl, bg = bg_stl, bold = true })
+
+        -- original highlight from iceberg.vim use this color in reverse, for some reason
+        vim.api.nvim_set_hl(0, "StatusLine", { fg = fg_stl, bg = bg_stl })
 
         -- Italic jsx/html tag attribute @tag.attribute.tsx htmlArg
         vim.api.nvim_set_hl(0, "Constant", { fg = "#a093c7", italic = true })
