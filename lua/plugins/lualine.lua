@@ -22,6 +22,18 @@ local conditions = {
 local branch = {
   "branch",
   icon = "",
+  fmt = function(s)
+    -- PERF: is it ok to run this on each render
+    local h = vim.api.nvim_get_hl(0, {
+      name = "StatusLine",
+    })
+    vim.api.nvim_set_hl(0, "LualineBranch", {
+      bold = true,
+      bg = h.bg,
+      fg = h.fg,
+    })
+    return "%#LualineBranch#" .. s
+  end,
 }
 
 -- TODO: adjust color for diff and diagnostics (and filetype)
@@ -50,7 +62,10 @@ local filename = {
   },
 }
 
-local filename_pretty = require("lazyvim.util").lualine.pretty_path()
+local filename_pretty = require("lazyvim.util").lualine.pretty_path({
+  modified_hl = "Bold",
+  modified_sign = " ●",
+})
 
 local separator = {
   "%=",

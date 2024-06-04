@@ -13,6 +13,7 @@ return {
         local bg_stl = "#818596"
         local fg_stl = "#17171b"
         local visual = "#272c42"
+        vim.api.nvim_set_hl(0, "Bold", { bold = true })
         vim.api.nvim_set_hl(0, "CursorLineNr", { bg = bg, bold = true })
         vim.api.nvim_set_hl(0, "LineNr", { bg = bg, fg = "#444b71" })
         -- vim.api.nvim_set_hl(0, "Folded", { bg = bg })
