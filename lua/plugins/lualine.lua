@@ -1,3 +1,5 @@
+local util = require("util")
+
 local conditions = {
   buffer_not_empty = function()
     return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
@@ -5,9 +7,9 @@ local conditions = {
   buffer_empty = function()
     return vim.fn.empty(vim.fn.expand("%:t")) == 1
   end,
-  screen_width = function(w)
+  screen_width = function(min_w)
     return function()
-      return vim.fn.winwidth(0) > w
+      return vim.fn.winwidth(0) > min_w
     end
   end,
   check_git_workspace = function()
@@ -19,6 +21,7 @@ local conditions = {
     return vim.o.diff == true
   end,
 }
+
 local branch = {
   "branch",
   icon = "",
@@ -26,6 +29,7 @@ local branch = {
     if #s == 0 then
       return ""
     end
+
     -- PERF: is it ok to run this on each render
     local h = vim.api.nvim_get_hl(0, {
       name = "StatusLine",
@@ -35,15 +39,15 @@ local branch = {
       bg = h.bg,
       fg = h.fg,
     })
+    s = util.truncate_string(s, { maxlen = 20, should_truncate = vim.o.columns < 150 })
     return "%#LualineBranch#" .. s
   end,
 }
 
--- TODO: adjust color for diff and diagnostics (and filetype)
 local diff = {
   "diff",
   -- symbols = { added = " ", modified = " ", removed = " " },
-  colored = false,
+  -- colored = false,
   cond = conditions.screen_width(120),
 }
 
@@ -51,7 +55,7 @@ local diagnostics = {
   "diagnostics",
   sources = { "nvim_diagnostic" },
   symbols = { error = " ", warn = " ", info = " ", hint = " " },
-  colored = false,
+  -- colored = false,
   -- symbols = { error = "E:", warn = "W:", info = "I:", hint = "H:" },
   cond = conditions.screen_width(120),
 }
@@ -67,15 +71,16 @@ local filename = {
 
 local filename_pretty = {
   require("lazyvim.util").lualine.pretty_path({
-    modified_hl = "Bold",
+    -- modified_hl = "Bold", -- same highlight as filename_hl
     modified_sign = " ●",
   }),
-  -- fmt = function(s)
-  --   if #s == 0 then
-  --     return "[No Name]"
-  --   end
-  --   return s
-  -- end,
+  fmt = function(s)
+    local no_hl = string.gsub(s, "%%#.-#", "")
+    local breakpoint_percent = 0.50
+    return util.truncate_string(s, {
+      should_truncate = #no_hl > math.floor(vim.o.columns * breakpoint_percent),
+    })
+  end,
 }
 
 local separator = {
@@ -134,7 +139,8 @@ local encoding = {
 local filetype = {
   -- "%y",
   "filetype",
-  colored = false,
+  cond = conditions.screen_width(120),
+  -- colored = false,
 }
 
 local progress = {
@@ -168,8 +174,9 @@ return {
       theme = {
         normal = {
           a = "StatusLine",
-          b = "StatusLine",
+          b = "Visual",
           c = "CursorLine",
+          -- TODO: find out if these are necessary, remove otherwise
           -- x = "StatusLine",
           -- y = "StatusLine",
           -- z = "StatusLine",
@@ -177,8 +184,8 @@ return {
       },
       global_status = true,
       always_divide_middle = false,
-      component_separators = "",
-      section_separators = "",
+      -- component_separators = "",
+      -- section_separators = "",
       disabled_filetypes = {
         statusline = { "neo-tree", "git", "fugitive", "toggleterm", "trouble" },
         winbar = { "neo-tree", "DiffviewFiles", "git" },
@@ -188,17 +195,16 @@ return {
       lualine_a = { branch },
       lualine_b = { diff, diagnostics },
       lualine_c = { filename_pretty },
-      lualine_x = {},
-      lualine_y = {
+      lualine_x = {
+        selectioncount,
+        searchcount,
         macro,
-        -- encoding,
+      },
+      lualine_y = {
         filetype,
       },
       lualine_z = {
-        selectioncount,
-        searchcount,
         location,
-        -- max_line,
         progress,
         tmux_char,
       },
