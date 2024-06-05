@@ -70,12 +70,12 @@ local filename_pretty = {
     modified_hl = "Bold",
     modified_sign = " ●",
   }),
-  fmt = function(s)
-    if #s == 0 then
-      return "[No Name]"
-    end
-    return s
-  end,
+  -- fmt = function(s)
+  --   if #s == 0 then
+  --     return "[No Name]"
+  --   end
+  --   return s
+  -- end,
 }
 
 local separator = {
@@ -132,9 +132,9 @@ local encoding = {
 }
 
 local filetype = {
-  "%y",
-  -- "filetype",
-  -- colored = false,
+  -- "%y",
+  "filetype",
+  colored = false,
 }
 
 local progress = {
@@ -169,10 +169,10 @@ return {
         normal = {
           a = "StatusLine",
           b = "StatusLine",
-          c = "StatusLine",
-          x = "StatusLine",
-          y = "StatusLine",
-          z = "StatusLine",
+          c = "CursorLine",
+          -- x = "StatusLine",
+          -- y = "StatusLine",
+          -- z = "StatusLine",
         },
       },
       global_status = true,
@@ -185,10 +185,10 @@ return {
       },
     },
     sections = {
-      lualine_a = { filename_pretty },
-      lualine_b = {},
-      lualine_c = {},
-      lualine_x = { diagnostics, diff, branch },
+      lualine_a = { branch },
+      lualine_b = { diff, diagnostics },
+      lualine_c = { filename_pretty },
+      lualine_x = {},
       lualine_y = {
         macro,
         -- encoding,
