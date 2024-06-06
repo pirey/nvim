@@ -25,7 +25,7 @@
   },
   "conform.nvim": {
     "branch": "master",
-    "commit": "355049bc318c3c968b2b434cea9a5bcdf6bf8ea7"
+    "commit": "069e971295a34a810484b7b2ef54b3c735214181"
   },
   "ctrlsf.vim": {
     "branch": "master",
@@ -185,7 +185,7 @@
   },
   "nvim-treesitter": {
     "branch": "master",
-    "commit": "49e4e2b4b62360677568c47b6467f31c809b391c"
+    "commit": "fc9ee79f64b18bf431e862c2462d4f76d488492a"
   },
   "nvim-treesitter-textobjects": {
     "branch": "master",
@@ -213,7 +213,7 @@
   },
   "orgmode": {
     "branch": "master",
-    "commit": "1fbc26374e2647dbf09ff2c2736d6ef6192106b3"
+    "commit": "8e319bf0972a167352002ebbfd26aafd5bdafaf3"
   },
   "persistence.nvim": {
     "branch": "main",
@@ -321,7 +321,6 @@
   },
   "which-key.nvim": {
     "branch": "main",
-    "commit": "4b7167f8fb2dba3d01980735e3509e172c024c29"
+    "commit": "c1958e2529433ef096e924c72315733790ca7f88"
   }
 }
-
