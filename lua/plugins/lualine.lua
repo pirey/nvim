@@ -182,7 +182,7 @@ return {
           -- z = "StatusLine",
         },
       },
-      global_status = true,
+      globalstatus = true,
       always_divide_middle = false,
       -- component_separators = "",
       -- section_separators = "",
