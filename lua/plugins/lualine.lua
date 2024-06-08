@@ -9,7 +9,7 @@ local conditions = {
   end,
   screen_width = function(min_w)
     return function()
-      return vim.fn.winwidth(0) > min_w
+      return vim.o.columns > min_w
     end
   end,
   check_git_workspace = function()
