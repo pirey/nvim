@@ -1,4 +1,4 @@
-local Util = require("lazyvim.util")
+local lazyvim_util = require("lazyvim.util")
 local actions = require("telescope.actions")
 local actions_layout = require("telescope.actions.layout")
 local trouble = require("trouble.providers.telescope")
@@ -120,25 +120,25 @@ return {
       { "<leader>b/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", desc = "search current file" },
       {
         "<leader>gb",
-        Util.telescope("git_branches", {
+        lazyvim_util.pick("git_branches", {
           show_remote_tracking_branches = false,
         }),
         desc = "Open git branches",
       },
-      { "<leader>gB", Util.telescope("git_branches"), desc = "Open git branches with remotes" },
+      { "<leader>gB", lazyvim_util.pick("git_branches"), desc = "Open git branches with remotes" },
       -- { "<leader>gB", Util.telescope("git_branches", {show_remote_tracking_branches = true} }), desc = "Open git branches" },
 
       -- files
-      { "<leader><space>", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
-      { "<c-p>", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
-      { "<leader>p", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
-      { "<leader>ff", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
-      { "<leader>fF", Util.telescope("files"), desc = "Find Files (root dir)" },
-      { "<leader>fr", Util.telescope("oldfiles", { cwd_only = true }), desc = "Recent project files" },
+      { "<leader><space>", lazyvim_util.pick("files"), desc = "Find Files (cwd)" },
+      { "<c-p>", lazyvim_util.pick("files"), desc = "Find Files (cwd)" },
+      { "<leader>p", lazyvim_util.pick("files"), desc = "Find Files (cwd)" },
+      { "<leader>ff", lazyvim_util.pick("files"), desc = "Find Files (cwd)" },
+      { "<leader>fF", lazyvim_util.pick("files"), desc = "Find Files (root dir)" },
+      { "<leader>fr", lazyvim_util.pick("oldfiles", { cwd_only = true }), desc = "Recent project files" },
       { "<leader>fR", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
       {
         "<leader>,",
-        Util.telescope("buffers", { select_current = true, cwd = vim.fn.getcwd() }),
+        lazyvim_util.pick("buffers", { select_current = true, cwd = vim.fn.getcwd() }),
         desc = "Select Buffer",
       },
     },
