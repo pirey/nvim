@@ -33,6 +33,10 @@ return {
         -- Italic jsx/html tag attribute @tag.attribute.tsx htmlArg
         vim.api.nvim_set_hl(0, "Constant", { fg = "#a093c7", italic = true })
 
+        -- Trouble
+        vim.api.nvim_set_hl(0, "TroubleNormal", { bg = bg, fg = fg })
+        vim.api.nvim_set_hl(0, "TroubleNormalNC", { bg = bg, fg = fg })
+
         -- Notify
         vim.api.nvim_set_hl(0, "NotifyBackground", { fg = fg, bg = bg })
         vim.api.nvim_set_hl(0, "NotifyERRORBorder", { fg = bg_dark, bg = bg_dark })

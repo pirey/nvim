@@ -140,6 +140,16 @@ return {
         lazyvim_util.pick("buffers", { select_current = true, cwd = vim.fn.getcwd() }),
         desc = "Select Buffer",
       },
+      {
+        "<leader>ss",
+        "<cmd>Telescope lsp_document_symbols<cr>",
+        desc = "Goto Symbol",
+      },
+      {
+        "<leader>sS",
+        "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+        desc = "Goto Symbol (Workspace)",
+      },
     },
     -- TODO: tidy prompt title
     opts = {
