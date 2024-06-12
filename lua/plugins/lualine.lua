@@ -39,7 +39,10 @@ local branch = {
       bg = h.bg,
       fg = h.fg,
     })
-    s = util.truncate_string(s, { maxlen = 20, should_truncate = vim.o.columns < 150 })
+    s = util.truncate_string(s, {
+      maxlen = 15,
+      -- should_truncate = vim.o.columns < 150,
+    })
     return "%#LualineBranch#" .. s
   end,
 }
