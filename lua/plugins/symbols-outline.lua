@@ -1,3 +1,6 @@
+if true then
+  return {}
+end
 return {
   "simrat39/symbols-outline.nvim",
   cmd = "SymbolsOutline",
