@@ -129,11 +129,10 @@ return {
       -- { "<leader>gB", Util.telescope("git_branches", {show_remote_tracking_branches = true} }), desc = "Open git branches" },
 
       -- files
-      { "<leader><space>", lazyvim_util.pick("files"), desc = "Find Files (cwd)" },
-      { "<c-p>", lazyvim_util.pick("files"), desc = "Find Files (cwd)" },
-      { "<leader>p", lazyvim_util.pick("files"), desc = "Find Files (cwd)" },
-      { "<leader>ff", lazyvim_util.pick("files"), desc = "Find Files (cwd)" },
-      { "<leader>fF", lazyvim_util.pick("files"), desc = "Find Files (root dir)" },
+      { "<leader><space>", lazyvim_util.pick("git_files"), desc = "Find Files (cwd)" },
+      { "<c-p>", lazyvim_util.pick("git_files"), desc = "Find Files (cwd)" },
+      { "<leader>p", lazyvim_util.pick("git_files"), desc = "Find Files (cwd)" },
+      { "<leader>ff", lazyvim_util.pick("git_files"), desc = "Find Files (cwd)" },
       { "<leader>fr", lazyvim_util.pick("oldfiles", { cwd_only = true }), desc = "Recent project files" },
       { "<leader>fR", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
       {
