@@ -26,6 +26,8 @@ return {
         vim.api.nvim_set_hl(0, "DiffText", { bg = "#384851", fg = "NONE" })
         vim.api.nvim_set_hl(0, "WinSeparator", { fg = fg_dark, bold = true })
         vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#3e445e" })
+        vim.api.nvim_set_hl(0, "FlashMatch", { link = "Visual" })
+        vim.api.nvim_set_hl(0, "FlashLabel", { link = "CurSearch" })
 
         -- original highlight from iceberg.vim use this color in reverse, for some reason
         vim.api.nvim_set_hl(0, "StatusLine", { fg = fg_stl, bg = bg_stl })
