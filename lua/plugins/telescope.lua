@@ -100,6 +100,8 @@ local function path_display(_, path)
   return string.format("%s ~ %s", filename, stripped_path)
 end
 
+local open_files = "<cmd>Telescope find_files<cr>"
+
 return {
   {
     "nvim-telescope/telescope.nvim",
@@ -129,10 +131,10 @@ return {
       -- { "<leader>gB", Util.telescope("git_branches", {show_remote_tracking_branches = true} }), desc = "Open git branches" },
 
       -- files
-      { "<leader><space>", lazyvim_util.pick("auto"), desc = "Find Files (cwd)" },
-      { "<c-p>", lazyvim_util.pick("auto"), desc = "Find Files (cwd)" },
-      { "<leader>p", lazyvim_util.pick("auto"), desc = "Find Files (cwd)" },
-      { "<leader>ff", lazyvim_util.pick("auto"), desc = "Find Files (cwd)" },
+      { "<leader><space>", open_files, desc = "Find Files (cwd)" },
+      { "<c-p>", open_files, desc = "Find Files (cwd)" },
+      { "<leader>p", open_files, desc = "Find Files (cwd)" },
+      { "<leader>ff", open_files, desc = "Find Files (cwd)" },
       { "<leader>fr", lazyvim_util.pick("oldfiles", { cwd_only = true }), desc = "Recent project files" },
       { "<leader>fR", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
       {
