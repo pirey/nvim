@@ -67,6 +67,22 @@ return {
         util.patch_group_pattern("GitGutter", { bg = bg })
         util.patch_group_pattern("Diagnostic", { bg = bg })
 
+        -- todo-comments.nvim
+        -- TODO:
+        vim.api.nvim_set_hl(0, "TodoSignTODO", { link = "DiagnosticInfo" })
+        -- HACK:
+        vim.api.nvim_set_hl(0, "TodoSignHACK", { link = "DiagnosticWarn" })
+        -- FIX:
+        vim.api.nvim_set_hl(0, "TodoSignFIX", { link = "DiagnosticError" })
+        -- WARN:
+        vim.api.nvim_set_hl(0, "TodoSignWARN", { link = "DiagnosticWarn" })
+        -- PERF:
+        vim.api.nvim_set_hl(0, "TodoSignPERF", { link = "DiagnosticInfo" })
+        -- NOTE:
+        vim.api.nvim_set_hl(0, "TodoSignNOTE", { link = "DiagnosticHint" })
+        -- TEST:
+        vim.api.nvim_set_hl(0, "TodoSignTEST", { link = "DiagnosticInfo" })
+
         -- disable lsp semantic token highlight
         -- for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
         --   vim.api.nvim_set_hl(0, group, {})
