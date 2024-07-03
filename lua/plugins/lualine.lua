@@ -188,7 +188,7 @@ return {
       globalstatus = true,
       always_divide_middle = false,
       component_separators = "",
-      -- section_separators = "",
+      section_separators = "",
       disabled_filetypes = {
         statusline = { "neo-tree", "git", "fugitive", "toggleterm", "trouble" },
         winbar = { "neo-tree", "DiffviewFiles", "git" },
