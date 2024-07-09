@@ -19,6 +19,10 @@ return {
       modes = { insert = true, command = false, terminal = false },
     },
   },
+  {
+    "echasnovski/mini.icons",
+    enabled = false,
+  },
   -- {
   --   "echasnovski/mini.indentscope",
   --   opts = {},
