@@ -39,10 +39,10 @@ local branch = {
       bg = h.bg,
       fg = h.fg,
     })
-    s = util.truncate_string(s, {
-      maxlen = 15,
-      -- should_truncate = vim.o.columns < 150,
-    })
+    -- s = util.truncate_string(s, {
+    --   maxlen = 15,
+    --   -- should_truncate = vim.o.columns < 150,
+    -- })
     return "%#LualineBranch#" .. s
   end,
 }
@@ -145,6 +145,10 @@ local filetype = {
   cond = conditions.screen_width(120),
   -- colored = false,
 }
+local filetype_icon = {
+  "filetype",
+  icon_only = true,
+}
 
 local progress = {
   "progress",
@@ -177,8 +181,10 @@ return {
       theme = {
         normal = {
           a = "StatusLine",
-          b = "Visual",
-          c = "CursorLine",
+          -- b = "Visual",
+          -- c = "CursorLine",
+          b = "StatusLine",
+          c = "StatusLine",
           -- TODO: find out if these are necessary, remove otherwise
           -- x = "StatusLine",
           -- y = "StatusLine",
@@ -188,24 +194,22 @@ return {
       globalstatus = true,
       always_divide_middle = false,
       component_separators = "",
-      -- section_separators = "",
+      section_separators = "",
       disabled_filetypes = {
         statusline = { "neo-tree", "git", "fugitive", "toggleterm", "trouble" },
         winbar = { "neo-tree", "DiffviewFiles", "git" },
       },
     },
     sections = {
-      lualine_a = { branch },
-      lualine_b = { diff, diagnostics },
-      lualine_c = { filename_pretty },
+      lualine_a = {},
+      lualine_b = {},
+      lualine_c = { filetype_icon, filename_pretty, diagnostics },
       lualine_x = {
         selectioncount,
         searchcount,
         macro,
       },
-      lualine_y = {
-        filetype,
-      },
+      lualine_y = { diff, branch },
       lualine_z = {
         location,
         progress,
