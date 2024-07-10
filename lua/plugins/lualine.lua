@@ -63,6 +63,23 @@ local diagnostics = {
   cond = conditions.screen_width(120),
 }
 
+local no_file = {
+  function()
+    -- PERF: is it ok to run this on each render
+    local h = vim.api.nvim_get_hl(0, {
+      name = "StatusLine",
+    })
+    vim.api.nvim_set_hl(0, "LualineNoFile", {
+      bold = true,
+      bg = h.bg,
+      fg = h.fg,
+    })
+    local s = " neovim"
+    return "%#LualineNoFile#" .. s
+  end,
+  cond = conditions.buffer_empty,
+}
+
 local filename = {
   "filename",
   path = 4,
@@ -201,7 +218,7 @@ return {
       },
     },
     sections = {
-      lualine_a = {},
+      lualine_a = { no_file },
       lualine_b = {},
       lualine_c = { filetype_icon, filename_pretty, diagnostics },
       lualine_x = {
