@@ -160,9 +160,9 @@ local tmux_char = {
 
     if result ~= nil and result:read("*a") ~= "" then
       result:close()
-      return "■"
+      return "■■"
     else
-      return ""
+      return "■"
     end
   end,
   padding = { left = 1, right = 1 }, -- We don't need space before this
