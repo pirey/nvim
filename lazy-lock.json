@@ -14,7 +14,7 @@
   "flutter-tools.nvim": { "branch": "main", "commit": "5aa227fa083fd740184b55b5220dfabc24a25cc7" },
   "friendly-snippets": { "branch": "main", "commit": "00ebcaa159e817150bd83bfe2d51fa3b3377d5c4" },
   "garbage-day.nvim": { "branch": "main", "commit": "4a1160bfffb2f499fb55a54333f29d160ab3c8a1" },
-  "gitsigns.nvim": { "branch": "main", "commit": "2a7b39f4d282935f8b44cbe82879af69c7472f5c" },
+  "gitsigns.nvim": { "branch": "main", "commit": "f4928ba14eb6c667786ac7d69927f6aee6719f1e" },
   "gv.vim": { "branch": "master", "commit": "b6bb6664e2c95aa584059f195eb3a9f3cb133994" },
   "iceberg.vim": { "branch": "master", "commit": "23835d5ed696436f716cbfdb56a93a7850fe3b18" },
   "lazy.nvim": { "branch": "main", "commit": "b02c9eae6a250f98908c146d1dc1a891f5019f0a" },
@@ -49,7 +49,7 @@
   "nvim-scrollbar": { "branch": "main", "commit": "d09f14aa16c9f2748e77008f9da7b1f76e4e7b85" },
   "nvim-snippets": { "branch": "main", "commit": "56b4052f71220144689caaa2e5b66222ba5661eb" },
   "nvim-spectre": { "branch": "master", "commit": "9a28f926d3371b7ef02243cbbb653a0478d06e31" },
-  "nvim-treesitter": { "branch": "master", "commit": "4836c1df6516cc2f895e362f3d00a15a236407b3" },
+  "nvim-treesitter": { "branch": "master", "commit": "3076b9a98a130a3601a41c5e3def1ffb8b796367" },
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "34867c69838078df7d6919b130c0541c0b400c47" },
   "nvim-ts-autotag": { "branch": "main", "commit": "26c365cc7d58d0da17b13e747855d331eb26fcf0" },
   "nvim-web-devicons": { "branch": "master", "commit": "c0cfc1738361b5da1cd0a962dd6f774cc444f856" },
@@ -81,5 +81,5 @@
   "vim-rest-console": { "branch": "master", "commit": "7b407f47185468d1b57a8bd71cdd66c9a99359b2" },
   "vim-table-mode": { "branch": "master", "commit": "e4365bde024f73e205eefa2fb78e3029ddb92ea9" },
   "vim-wakatime": { "branch": "master", "commit": "3cb40867cb5a3120f9bef76eff88edc7f1dc1a23" },
-  "which-key.nvim": { "branch": "main", "commit": "21f3465ecd68b4e7cf84bb0b88c72cc23ff7838b" }
+  "which-key.nvim": { "branch": "main", "commit": "a1770d266f58499ca03e0b83272f07003052dbed" }
 }
