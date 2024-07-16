@@ -220,7 +220,11 @@ return {
     sections = {
       lualine_a = { no_file },
       lualine_b = {},
-      lualine_c = { filetype_icon, filename_pretty, diagnostics },
+      lualine_c = {
+        -- filetype_icon,
+        filename_pretty,
+        diagnostics,
+      },
       lualine_x = {
         selectioncount,
         searchcount,
