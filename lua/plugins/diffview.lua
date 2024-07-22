@@ -6,6 +6,7 @@ return {
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
     opts = {
+      use_icons = false,
       file_panel = {
         win_config = {
           position = "right",
