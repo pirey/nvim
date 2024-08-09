@@ -181,7 +181,7 @@ return {
           "filename_first",
         },
         preview = {
-          hide_on_startup = true,
+          -- hide_on_startup = true,
           treesitter = {
             disable = { "markdown" },
           },
