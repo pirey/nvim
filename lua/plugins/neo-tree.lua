@@ -8,6 +8,7 @@ return {
     opts = {
       sources = {
         "filesystem",
+        "buffers",
       },
       event_handlers = {
         {
@@ -39,7 +40,7 @@ return {
           ["s"] = "noop",
           ["<esc>"] = "close_window",
           ["<c-v>"] = "open_vsplit",
-          ["f"] = "fuzzy_finder",
+          -- ["f"] = "fuzzy_finder",
           ["zM"] = "close_all_nodes",
           ["l"] = "open",
           ["h"] = "close_node",
