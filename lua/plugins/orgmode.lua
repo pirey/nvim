@@ -1,7 +1,8 @@
 return {
   {
     "nvim-orgmode/orgmode",
-    event = "VeryLazy",
+    lazy = true,
+    ft = "org",
     config = function()
       -- Setup orgmode
       require("orgmode").setup({
@@ -21,6 +22,7 @@ return {
   },
   {
     "akinsho/org-bullets.nvim",
+    ft = "org",
     dependencies = { "nvim-orgmode/orgmode" },
     opts = {
       symbols = {
@@ -34,6 +36,7 @@ return {
     -- "joaomsa/telescope-orgmode.nvim",
     "pirey/telescope-orgmode.nvim",
     enabled = false,
+    ft = "org",
     branch = "fix-deprecated-error-message",
     dependencies = {
       { "nvim-orgmode/orgmode", lazy = true },

@@ -1,9 +1,12 @@
-vim.cmd[[
+if true then
+  return {}
+end
+vim.cmd([[
   augroup DartAutocommands
     autocmd!
     autocmd FileType dart nnoremap <buffer> <leader>cs <cmd>FlutterOutlineToggle<cr>
   augroup END
-]]
+]])
 
 return {
   {
