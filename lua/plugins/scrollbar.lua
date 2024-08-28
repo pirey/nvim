@@ -1,7 +1,6 @@
 return {
   {
     "petertriho/nvim-scrollbar",
-    lazy = true,
     dependencies = {
       "kevinhwang91/nvim-hlslens",
       "lewis6991/gitsigns.nvim",
