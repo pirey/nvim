@@ -1,5 +1,11 @@
-local function make_logo()
-  local logo = [[
+return {
+  {
+    "nvimdev/dashboard-nvim",
+    enabled = false,
+    event = "VimEnter",
+    opts = function()
+      local function make_logo()
+        local logo = [[
 
 
 
@@ -20,32 +26,26 @@ local function make_logo()
         ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠛⠛⠛⠛⠛⠛⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
       ]]
 
-  local logo_splitted = vim.split(logo, "\n")
+        local logo_splitted = vim.split(logo, "\n")
 
-  return logo_splitted
-end
+        return logo_splitted
+      end
 
-local function make_header(logo_splitted, center)
-  local padding = 5
-  local total_lines = #logo_splitted + (#center * 2) + 1
-  local win_h = vim.fn.winheight(0)
-  local num_empty_lines = win_h - total_lines - padding
-  local header = logo_splitted
-  if num_empty_lines > 0 then
-    for i = 1, num_empty_lines do
-      table.insert(header, "")
-    end
-  end
+      local function make_header(logo_splitted, center)
+        local padding = 5
+        local total_lines = #logo_splitted + (#center * 2) + 1
+        local win_h = vim.fn.winheight(0)
+        local num_empty_lines = win_h - total_lines - padding
+        local header = logo_splitted
+        if num_empty_lines > 0 then
+          for i = 1, num_empty_lines do
+            table.insert(header, "")
+          end
+        end
 
-  return header
-end
+        return header
+      end
 
-return {
-  {
-    "nvimdev/dashboard-nvim",
-    enabled = false,
-    event = "VimEnter",
-    opts = function()
       local center = {
         {
           action = "Telescope find_files",

@@ -17,23 +17,12 @@ return {
         enabled = false,
       },
       servers = {
-        tailwindcss = {
-          filetypes_include = { "blade" },
-          root_dir = require("lspconfig.util").root_pattern("tailwind.config.js"),
-        },
-        tsserver = {
-          root_dir = require("lspconfig.util").root_pattern(".git"),
-          -- root_dir = require("lspconfig.util").find_git_ancestor,
-          settings = {
-            typescript = {
-              preferences = {
-                importModuleSpecifierPreference = "non-relative",
-              },
-            },
-          },
-        },
+        -- tailwindcss = {
+        --   filetypes_include = { "blade" },
+        --   root_dir = require("lspconfig.util").root_pattern("tailwind.config.js"),
+        -- },
         vtsls = {
-          root_dir = require("lspconfig.util").root_pattern(".git"),
+          -- root_dir = require("lspconfig.util").root_pattern(".git"),
           -- root_dir = require("lspconfig.util").find_git_ancestor,
           settings = {
             typescript = {
