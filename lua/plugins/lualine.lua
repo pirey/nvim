@@ -87,6 +87,7 @@ local filename = {
   symbols = {
     modified = "●",
   },
+  cond = conditions.buffer_not_empty,
 }
 
 local filename_pretty = {
@@ -223,7 +224,10 @@ return {
       lualine_b = {},
       lualine_c = {
         -- filetype_icon,
-        filename_pretty,
+        -- filename,
+        "%f",
+        "%m",
+        -- filename_pretty,
         diagnostics,
       },
       lualine_x = {
