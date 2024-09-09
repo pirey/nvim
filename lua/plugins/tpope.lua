@@ -1,6 +1,9 @@
 return {
   {
     "tpope/vim-fugitive",
+    keys = {
+      { ",g", "<cmd>Git<cr>", desc = "Open fugitive" },
+    },
     init = function()
       local fugitive_group = vim.api.nvim_create_augroup("FugitiveAugroup", {
         clear = true,
@@ -32,7 +35,7 @@ return {
         end,
       })
 
-      vim.keymap.set("n", ",g", "<cmd>Git<cr>", { desc = "Open fugitive" })
+      -- vim.keymap.set("n", ",g", "<cmd>Git<cr>", { desc = "Open fugitive" })
     end,
   },
   -- {
