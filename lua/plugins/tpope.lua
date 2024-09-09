@@ -54,8 +54,8 @@ return {
     end,
   },
 
-  {
-    "tommcdo/vim-fubitive",
-    dependencies = { "tpope/vim-fugitive" },
-  },
+  -- {
+  --   "tommcdo/vim-fubitive",
+  --   dependencies = { "tpope/vim-fugitive" },
+  -- },
 }

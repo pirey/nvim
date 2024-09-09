@@ -16,6 +16,7 @@ return {
   },
   {
     "mfussenegger/nvim-lint",
+    ft = { "markdown" },
     opts = {
       linters_by_ft = {
         markdown = {},

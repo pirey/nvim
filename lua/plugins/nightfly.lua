@@ -1,3 +1,6 @@
+if true then
+  return {}
+end
 return {
   "pirey/vim-nightfly-colors",
   name = "nightfly",
