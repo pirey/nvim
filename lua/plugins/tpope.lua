@@ -4,6 +4,7 @@ return {
     keys = {
       { ",g", "<cmd>Git<cr>", desc = "Open fugitive" },
     },
+    cmd = { "Gw" },
     init = function()
       local fugitive_group = vim.api.nvim_create_augroup("FugitiveAugroup", {
         clear = true,
