@@ -1,6 +1,7 @@
 return {
   {
     "folke/flash.nvim",
+    enabled = false,
     opts = {
       -- -- labels = "abcdefghijklmnopqrstuvwxyz",
       -- labels = "asdfghjklqwertyuiopzxcvbnm",
@@ -94,16 +95,16 @@ return {
       modes = {
         --   -- options used when flash is activated through
         --   -- a regular search with `/` or `?`
-          search = {
-            enabled = false, -- enable flash for search
-        --     highlight = { backdrop = false },
-        --     jump = { history = true, register = true, nohlsearch = true },
-        --     search = {
-        --       -- `forward` will be automatically set to the search direction
-        --       -- `mode` is always set to `search`
-        --       -- `incremental` is set to `true` when `incsearch` is enabled
-        --     },
-          },
+        search = {
+          enabled = false, -- enable flash for search
+          --     highlight = { backdrop = false },
+          --     jump = { history = true, register = true, nohlsearch = true },
+          --     search = {
+          --       -- `forward` will be automatically set to the search direction
+          --       -- `mode` is always set to `search`
+          --       -- `incremental` is set to `true` when `incsearch` is enabled
+          --     },
+        },
         -- options used when flash is activated through
         -- `f`, `F`, `t`, `T`, `;` and `,` motions
         char = {
