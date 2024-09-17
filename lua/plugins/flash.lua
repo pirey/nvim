@@ -1,7 +1,7 @@
 return {
   {
     "folke/flash.nvim",
-    enabled = false,
+    -- enabled = false,
     opts = {
       -- -- labels = "abcdefghijklmnopqrstuvwxyz",
       -- labels = "asdfghjklqwertyuiopzxcvbnm",
@@ -129,6 +129,9 @@ return {
         -- },
         -- options used for remote flash
         -- remote = {}
+      },
+      label = {
+        uppercase = false,
       },
     },
   },
