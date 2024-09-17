@@ -5,7 +5,8 @@ return {
     keys = "etovxqpdygfblzhckisuran",
   },
   keys = {
-    { "S", "<cmd>HopWord<cr>" },
+    { "S", "<cmd>HopPatternMW<cr>" },
     { "s", "<cmd>HopWordMW<cr>" },
+    { "f", "<cmd>HopWordCurrentLine<cr>" },
   },
 }
