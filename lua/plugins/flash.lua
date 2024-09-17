@@ -2,6 +2,17 @@ return {
   {
     "folke/flash.nvim",
     -- enabled = false,
+    keys = {
+      { "s", false },
+      {
+        "f",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Flash",
+      },
+    },
     opts = {
       -- -- labels = "abcdefghijklmnopqrstuvwxyz",
       -- labels = "asdfghjklqwertyuiopzxcvbnm",
@@ -111,7 +122,8 @@ return {
           -- enabled = true,
           -- by default all keymaps are enabled, but you can disable some of them,
           -- by removing them from the list.
-          keys = { "f", "F", "t", "T" },
+          -- keys = { "f", "F", "t", "T" },
+          keys = { "t", "T" },
           -- search = { wrap = false },
           -- highlight = { backdrop = true },
           -- jump = { register = false },
