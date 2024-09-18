@@ -173,6 +173,18 @@ local progress = {
   "progress",
 }
 
+local noicecmd = {
+  function()
+    return require("noice").api.status.command.get()
+  end,
+  cond = function()
+    return package.loaded["noice"] and require("noice").api.status.command.has()
+  end,
+  color = function()
+    return LazyVim.ui.fg("Statement")
+  end,
+}
+
 local tmux_char = {
   function()
     local result = io.popen("tmux list-panes -F '#F' | grep Z")
@@ -231,6 +243,7 @@ return {
         diagnostics,
       },
       lualine_x = {
+        noicecmd,
         selectioncount,
         searchcount,
         macro,
