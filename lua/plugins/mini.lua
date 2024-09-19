@@ -23,6 +23,10 @@ return {
     "echasnovski/mini.icons",
     enabled = false,
   },
+  {
+    "echasnovski/mini.ai",
+    enabled = false,
+  },
   -- {
   --   "echasnovski/mini.indentscope",
   --   opts = {},
