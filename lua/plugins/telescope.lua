@@ -176,14 +176,4 @@ return {
       },
     },
   },
-  -- {
-  --   "neovim/nvim-lspconfig",
-  --   opts = function()
-  --     local Keys = require("lazyvim.plugins.lsp.keymaps").get()
-  --     -- stylua: ignore
-  --     vim.list_extend(Keys, {
-  --       { "gd", vim.lsp.buf.definition, desc = "Goto Definition", has = "definition" },
-  --     })
-  --   end,
-  -- },
 }
