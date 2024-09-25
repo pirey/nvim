@@ -138,6 +138,9 @@ return {
         highlight_lsp_lens(highlights, colors)
         highlight_flutter(highlights, colors)
 
+        highlights["@tag.tsx"] = {}
+        highlights["@tag.javascript"] = {}
+
         highlights["@markup.raw.markdown_inline"] = { bg = colors.none, fg = colors.blue }
       end,
     },
