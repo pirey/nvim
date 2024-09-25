@@ -1,6 +1,6 @@
 -- make telescope borderless
 local function highlight_telescope(hl, c)
-  local prompt = "#2d3149"
+  -- local prompt = "#2d3149"
   hl.TelescopeNormal = {
     bg = c.bg_dark,
     fg = c.fg_dark,
@@ -9,25 +9,29 @@ local function highlight_telescope(hl, c)
     bg = c.bg_dark,
     fg = c.bg_dark,
   }
-  hl.TelescopePromptNormal = {
-    bg = prompt,
-  }
-  hl.TelescopePromptBorder = {
-    bg = prompt,
-    fg = prompt,
-  }
   hl.TelescopePromptTitle = {
-    bg = prompt,
-    fg = prompt,
+    bg = c.bg_highlight,
+    fg = c.fg,
   }
-  hl.TelescopePreviewTitle = {
-    bg = c.bg_dark,
-    fg = c.bg_dark,
-  }
-  hl.TelescopeResultsTitle = {
-    bg = c.bg_dark,
-    fg = c.bg_dark,
-  }
+  -- hl.TelescopePromptNormal = {
+  --   bg = prompt,
+  -- }
+  -- hl.TelescopePromptBorder = {
+  --   bg = prompt,
+  --   fg = prompt,
+  -- }
+  -- hl.TelescopePromptTitle = {
+  --   bg = prompt,
+  --   fg = prompt,
+  -- }
+  -- hl.TelescopePreviewTitle = {
+  --   bg = c.bg_dark,
+  --   fg = c.bg_dark,
+  -- }
+  -- hl.TelescopeResultsTitle = {
+  --   bg = c.bg_dark,
+  --   fg = c.bg_dark,
+  -- }
 end
 
 local function highlight_telescope_fullscreen(hl, c)
@@ -132,9 +136,10 @@ return {
       ---@param highlights Highlights
       ---@param colors ColorScheme
       on_highlights = function(highlights, colors)
-        highlight_telescope_fullscreen(highlights, colors)
+        -- highlight_telescope_fullscreen(highlights, colors)
+        highlight_telescope(highlights, colors)
         -- highlight_noice(hl, c)
-        highlight_fold(highlights, colors)
+        -- highlight_fold(highlights, colors)
         highlight_lsp_lens(highlights, colors)
         highlight_flutter(highlights, colors)
 
