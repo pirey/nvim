@@ -132,15 +132,15 @@ return {
       ---@param highlights Highlights
       ---@param colors ColorScheme
       on_highlights = function(highlights, colors)
-        -- highlight_telescope_fullscreen(hl, c)
+        highlight_telescope_fullscreen(highlights, colors)
         -- highlight_noice(hl, c)
         highlight_fold(highlights, colors)
         highlight_lsp_lens(highlights, colors)
         highlight_flutter(highlights, colors)
 
+        -- treesitter
         highlights["@tag.tsx"] = {}
         highlights["@tag.javascript"] = {}
-
         highlights["@markup.raw.markdown_inline"] = { bg = colors.none, fg = colors.blue }
       end,
     },
