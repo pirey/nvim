@@ -243,7 +243,7 @@ return {
         diagnostics,
       },
       lualine_x = {
-        noicecmd,
+        -- noicecmd,
         selectioncount,
         searchcount,
         macro,
