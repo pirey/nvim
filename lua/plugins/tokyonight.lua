@@ -141,7 +141,7 @@ return {
         -- highlight_noice(hl, c)
         -- highlight_fold(highlights, colors)
         highlight_lsp_lens(highlights, colors)
-        highlight_flutter(highlights, colors)
+        -- highlight_flutter(highlights, colors)
 
         -- treesitter
         highlights["@tag.tsx"] = {}
