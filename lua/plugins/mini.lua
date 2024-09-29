@@ -27,10 +27,16 @@ return {
     "echasnovski/mini.ai",
     enabled = false,
   },
-  -- {
-  --   "echasnovski/mini.indentscope",
-  --   opts = {},
-  -- },
+  {
+    "echasnovski/mini.indentscope",
+    opts = {
+      draw = {
+        animation = function()
+          return 0
+        end,
+      },
+    },
+  },
   -- {
   --   "echasnovski/mini.pairs",
   --   enabled = false,
