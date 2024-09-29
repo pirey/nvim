@@ -1,5 +1,6 @@
 return {
   "cocopon/iceberg.vim",
+  enabled = false,
   init = function()
     local custom_highlight = vim.api.nvim_create_augroup("CustomIceberg", { clear = true })
     vim.api.nvim_create_autocmd("ColorScheme", {
