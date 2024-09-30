@@ -11,6 +11,8 @@ return {
       -- add a keymap
       -- keys[#keys + 1] = { "<c-k>", vim.lsp.buf.hover }
       keys[#keys + 1] = { "<leader>k", vim.lsp.buf.hover }
+
+      keys[#keys + 1] = { "gr", false }
     end,
     opts = {
       inlay_hints = {
