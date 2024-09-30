@@ -29,7 +29,6 @@ return {
   },
   {
     "echasnovski/mini.indentscope",
-    enabled = vim.fn.has("wsl") == 1,
     opts = {
       draw = {
         animation = function()
