@@ -2,12 +2,12 @@ return {
   {
     "DNLHC/glance.nvim",
     priority = 20,
-    keys = {
-      { "<space>gd", "<cmd>Glance definitions<cr>" },
-      { "<space>gr", "<cmd>Glance references<cr>" },
-      { "<space>gy", "<cmd>Glance type_definitions<cr>" },
-      { "<space>gi", "<cmd>Glance implementations<cr>" },
-    },
+    -- keys = {
+    --   { "gd", "<cmd>Glance definitions<cr>" },
+    --   { "gr", "<cmd>Glance references<cr>" },
+    --   { "gy", "<cmd>Glance type_definitions<cr>" },
+    --   { "gi", "<cmd>Glance implementations<cr>" },
+    -- },
     cmd = { "Glance" },
     config = function()
       -- Lua configuration
@@ -83,7 +83,17 @@ return {
             ["<leader>l"] = actions.enter_win("list"), -- Focus list window
           },
         },
-        hooks = {},
+        hooks = {
+          after_close = function() end,
+          before_close = function() end,
+          before_open = function(results, open, jump, method)
+            if #results == 1 then
+              jump(results[1]) -- argument is optional
+            else
+              open(results) -- argument is optional
+            end
+          end,
+        },
         folds = {
           fold_closed = "",
           fold_open = "",
@@ -97,6 +107,26 @@ return {
           enable = true, -- Available strating from nvim-0.8+
         },
         use_trouble_qf = false, -- Quickfix action will open trouble.nvim instead of built-in quickfix list window
+      })
+    end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = function()
+      if LazyVim.pick.want() ~= "telescope" then
+        return
+      end
+      local Keys = require("lazyvim.plugins.lsp.keymaps").get()
+      -- stylua: ignore
+      vim.list_extend(Keys, {
+        -- { "gd", function() require("telescope.builtin").lsp_definitions({ reuse_win = true }) end, desc = "Goto Definition", has = "definition" },
+        -- { "gr", "<cmd>Telescope lsp_references<cr>", desc = "References", nowait = true },
+        -- { "gI", function() require("telescope.builtin").lsp_implementations({ reuse_win = true }) end, desc = "Goto Implementation" },
+        -- { "gy", function() require("telescope.builtin").lsp_type_definitions({ reuse_win = true }) end, desc = "Goto T[y]pe Definition" },
+      { "gd", "<cmd>Glance definitions<cr>" },
+      { "gr", "<cmd>Glance references<cr>" },
+      { "gy", "<cmd>Glance type_definitions<cr>" },
+      { "gi", "<cmd>Glance implementations<cr>" },
       })
     end,
   },
