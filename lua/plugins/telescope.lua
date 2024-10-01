@@ -85,6 +85,7 @@ return {
       { "<leader>gS", "<cmd>Telescope git_status<CR>", desc = "status" },
       { "<leader>b/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", desc = "search current file" },
       { "<leader>/", "<cmd>Telescope live_grep<CR>", desc = "Live grep" },
+      { "<leader>sw", "<cmd>Telescope grep_string<cr>", mode = { "v", "n" }, desc = "Selection (cwd)" },
       {
         "<leader>gb",
         lazyvim_util.pick("git_branches", {
