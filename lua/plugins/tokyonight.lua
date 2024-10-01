@@ -24,14 +24,14 @@ local function highlight_telescope(hl, c)
   --   bg = prompt,
   --   fg = prompt,
   -- }
-  -- hl.TelescopePreviewTitle = {
-  --   bg = c.bg_dark,
-  --   fg = c.bg_dark,
-  -- }
-  -- hl.TelescopeResultsTitle = {
-  --   bg = c.bg_dark,
-  --   fg = c.bg_dark,
-  -- }
+  hl.TelescopePreviewTitle = {
+    bg = c.bg_highlight,
+    fg = c.fg,
+  }
+  hl.TelescopeResultsTitle = {
+    bg = c.bg_highlight,
+    fg = c.fg,
+  }
 end
 
 local function highlight_telescope_fullscreen(hl, c)
