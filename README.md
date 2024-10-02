@@ -13,7 +13,7 @@ For my old neovim configuration, checkout my [dotfiles](https://github.com/pirey
 }
 ```
 
-![tokyonight](./tokyonight.jpeg)
+![tokyonight](./screenshots/1.jpeg)
 
 ### Iceberg
 
@@ -24,4 +24,4 @@ For my old neovim configuration, checkout my [dotfiles](https://github.com/pirey
 }
 ```
 
-![iceberg](./iceberg.png)
+![iceberg](./screenshots/2.png)
