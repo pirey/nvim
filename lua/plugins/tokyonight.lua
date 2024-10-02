@@ -81,7 +81,7 @@ local function highlight_fold(hl, c)
   hl.Folded = {
     -- fg = c.fg_gutter,
     fg = c.fg_dark,
-    bg = c.bg,
+    bg = c.bg_dark,
   }
 end
 
@@ -139,7 +139,7 @@ return {
         -- highlight_telescope_fullscreen(highlights, colors)
         highlight_telescope(highlights, colors)
         -- highlight_noice(hl, c)
-        -- highlight_fold(highlights, colors)
+        highlight_fold(highlights, colors)
         highlight_lsp_lens(highlights, colors)
         -- highlight_flutter(highlights, colors)
 
