@@ -12,18 +12,21 @@ local custom_actions = transform_mod({
     require("telescope.builtin").resume()
   end,
   -- https://github.com/nvim-telescope/telescope.nvim/issues/1048#issuecomment-1679797700
-  select_one_or_multi = function(prompt_bufnr)
-    local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
-    local multi = picker:get_multi_selection()
-    if not vim.tbl_isempty(multi) then
-      require("telescope.actions").close(prompt_bufnr)
-      for _, j in pairs(multi) do
-        if j.path ~= nil then
-          vim.cmd(string.format("%s %s", "edit", j.path))
+  select_one_or_multi = function(cmd)
+    return function(prompt_bufnr)
+      local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+      local multi = picker:get_multi_selection()
+      if not vim.tbl_isempty(multi) then
+        require("telescope.actions").close(prompt_bufnr)
+        for i, j in pairs(multi) do
+          if j.path ~= nil then
+            cmd = cmd or "edit"
+            vim.cmd(string.format("%s %s", cmd, j.path))
+          end
         end
+      else
+        require("telescope.actions").select_default(prompt_bufnr)
       end
-    else
-      require("telescope.actions").select_default(prompt_bufnr)
     end
   end,
 })
@@ -163,7 +166,8 @@ return {
             ["<c-l>"] = custom_actions.open_and_resume,
             ["zl"] = actions.preview_scrolling_right,
             ["zh"] = actions.preview_scrolling_left,
-            ["<cr>"] = custom_actions.select_one_or_multi,
+            ["<cr>"] = custom_actions.select_one_or_multi("edit"),
+            ["<c-v>"] = custom_actions.select_one_or_multi("vsp"),
             ["<c-x>"] = actions.delete_buffer,
           },
         },
