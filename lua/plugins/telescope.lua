@@ -20,12 +20,20 @@ local custom_actions = transform_mod({
         require("telescope.actions").close(prompt_bufnr)
         for i, j in pairs(multi) do
           if j.path ~= nil then
-            cmd = cmd or "edit"
+            if not cmd or cmd == "default" then
+              cmd = "edit"
+            elseif cmd == "vertical" then
+              cmd = "vsp"
+            end
             vim.cmd(string.format("%s %s", cmd, j.path))
           end
         end
       else
-        require("telescope.actions").select_default(prompt_bufnr)
+        if not cmd or cmd == "default" then
+          require("telescope.actions").select_default(prompt_bufnr)
+        elseif cmd == "vertical" then
+          require("telescope.actions").select_vertical(prompt_bufnr)
+        end
       end
     end
   end,
@@ -166,8 +174,8 @@ return {
             ["<c-l>"] = custom_actions.open_and_resume,
             ["zl"] = actions.preview_scrolling_right,
             ["zh"] = actions.preview_scrolling_left,
-            ["<cr>"] = custom_actions.select_one_or_multi("edit"),
-            ["<c-v>"] = custom_actions.select_one_or_multi("vsp"),
+            ["<cr>"] = custom_actions.select_one_or_multi("default"),
+            ["<c-v>"] = custom_actions.select_one_or_multi("vertical"),
             ["<c-x>"] = actions.delete_buffer,
           },
         },
