@@ -94,7 +94,7 @@ local filename_pretty = {
   require("lazyvim.util").lualine.pretty_path({
     -- modified_hl = "Bold", -- same highlight as filename_hl
     modified_sign = " ●",
-    length = 4,
+    length = 6,
   }),
   fmt = function(s)
     local no_hl = string.gsub(s, "%%#.-#", "")
@@ -237,9 +237,9 @@ return {
       lualine_c = {
         -- filetype_icon,
         -- filename,
-        "%f",
-        "%m",
-        -- filename_pretty,
+        -- "%f",
+        -- "%m",
+        filename_pretty,
         diagnostics,
       },
       lualine_x = {
