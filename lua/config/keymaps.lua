@@ -9,7 +9,11 @@ vim.keymap.set({ "n" }, "<leader>:", "q:", { desc = "Command line window" })
 -- vim.keymap.set({ "n" }, "q;", "q:", { desc = "Command line window" })
 
 -- selection
-vim.keymap.set("n", "<c-a>", "ggVG")
+-- vim.keymap.set("n", "<c-a>", "ggVG")
+vim.keymap.set("n", "<c-a>", function()
+  vim.cmd("normal! m'") -- Set a mark for the current cursor position
+  vim.cmd("normal! ggVG") -- Select all lines
+end)
 -- double v for line selection
 vim.keymap.set({ "n", "v" }, "vv", "V")
 
