@@ -8,6 +8,8 @@ vim.keymap.set({ "n", "v" }, ";", ":")
 vim.keymap.set({ "n" }, "<leader>:", "q:", { desc = "Command line window" })
 -- vim.keymap.set({ "n" }, "q;", "q:", { desc = "Command line window" })
 
+-- selection
+vim.keymap.set("n", "<c-a>", "ggVG")
 -- double v for line selection
 vim.keymap.set({ "n", "v" }, "vv", "V")
 
@@ -20,9 +22,6 @@ vim.keymap.set({ "n", "v" }, "zl", "20zl")
 vim.keymap.set({ "n", "v" }, "zh", "20zh")
 vim.keymap.set({ "n", "v" }, "<c-e>", "<c-u>")
 vim.keymap.set("v", "$", "$h")
-
--- editing
-vim.keymap.set("n", "<c-a>", "A")
 
 -- clipboard / copy paste
 vim.keymap.set("v", "<c-c>", '"+y')
