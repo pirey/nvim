@@ -83,8 +83,9 @@ vim.keymap.set(
 
 -- etc
 vim.keymap.del("n", "<leader>gG")
-vim.keymap.set("n", ",x", util.ui.bufremove, { desc = "Delete buffer" })
-vim.keymap.set("n", "<leader>BD", "<Cmd>bufdo bd<CR>", { desc = "Delete all buffers" })
+vim.keymap.set("n", ",x", util.ui.bufremove, { desc = "Close buffer" })
+vim.keymap.set("n", "<leader>bo", "<cmd>silent! %bd | e# | bd#<cr>", { desc = "Close other buffers" })
+vim.keymap.set("n", "<leader>bD", "<Cmd>bufdo bd<CR>", { desc = "Delete all buffers" })
 vim.keymap.set("n", ",w", function()
   vim.cmd("close")
 end, { desc = "Close window" })
