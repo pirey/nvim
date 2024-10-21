@@ -6,36 +6,44 @@ local transform_mod = require("telescope.actions.mt").transform_mod
 
 -- custom actions
 
+local handle_open = function(cmd, prompt_bufnr)
+  local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
+  local multi = picker:get_multi_selection()
+  if not vim.tbl_isempty(multi) then
+    require("telescope.actions").close(prompt_bufnr)
+    for i, j in pairs(multi) do
+      if j.path ~= nil then
+        if not cmd or cmd == "default" then
+          cmd = "edit"
+        elseif cmd == "vertical" then
+          cmd = "vsp"
+        end
+        vim.cmd(string.format("%s %s", cmd, j.path))
+      end
+    end
+  else
+    print(vim.inspect(cmd))
+    if not cmd or cmd == "default" then
+      print("def")
+      require("telescope.actions").select_default(prompt_bufnr)
+    elseif cmd == "vertical" then
+      print("vert")
+      require("telescope.actions").select_vertical(prompt_bufnr)
+    end
+  end
+end
+
 local custom_actions = transform_mod({
   open_and_resume = function(prompt_bufnr)
     actions.select_default(prompt_bufnr)
     require("telescope.builtin").resume()
   end,
   -- https://github.com/nvim-telescope/telescope.nvim/issues/1048#issuecomment-1679797700
-  select_one_or_multi = function(cmd)
-    return function(prompt_bufnr)
-      local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
-      local multi = picker:get_multi_selection()
-      if not vim.tbl_isempty(multi) then
-        require("telescope.actions").close(prompt_bufnr)
-        for i, j in pairs(multi) do
-          if j.path ~= nil then
-            if not cmd or cmd == "default" then
-              cmd = "edit"
-            elseif cmd == "vertical" then
-              cmd = "vsp"
-            end
-            vim.cmd(string.format("%s %s", cmd, j.path))
-          end
-        end
-      else
-        if not cmd or cmd == "default" then
-          require("telescope.actions").select_default(prompt_bufnr)
-        elseif cmd == "vertical" then
-          require("telescope.actions").select_vertical(prompt_bufnr)
-        end
-      end
-    end
+  select_one_or_multi = function(prompt_bufnr)
+    handle_open("default", prompt_bufnr)
+  end,
+  select_one_or_multi_vertical = function(prompt_bufnr)
+    handle_open("vertical", prompt_bufnr)
   end,
 })
 
@@ -174,8 +182,8 @@ return {
             ["<c-l>"] = custom_actions.open_and_resume,
             ["zl"] = actions.preview_scrolling_right,
             ["zh"] = actions.preview_scrolling_left,
-            ["<cr>"] = custom_actions.select_one_or_multi("default"),
-            ["<c-v>"] = custom_actions.select_one_or_multi("vertical"),
+            ["<cr>"] = custom_actions.select_one_or_multi,
+            ["<c-v>"] = custom_actions.select_one_or_multi_vertical,
             ["<c-x>"] = actions.delete_buffer,
           },
         },
