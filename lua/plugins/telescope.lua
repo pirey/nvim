@@ -22,12 +22,9 @@ local handle_open = function(cmd, prompt_bufnr)
       end
     end
   else
-    print(vim.inspect(cmd))
     if not cmd or cmd == "default" then
-      print("def")
       require("telescope.actions").select_default(prompt_bufnr)
     elseif cmd == "vertical" then
-      print("vert")
       require("telescope.actions").select_vertical(prompt_bufnr)
     end
   end
