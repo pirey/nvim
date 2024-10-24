@@ -4,7 +4,18 @@ return {
   -- View git diff, file history, log
   {
     "sindrets/diffview.nvim",
-    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
+    cmd = {
+      "OpenDiff",
+      "DiffviewOpen",
+      "DiffviewClose",
+      "DiffviewToggleFiles",
+      "DiffviewFocusFiles",
+    },
+    init = function()
+      vim.api.nvim_create_user_command("OpenDiff", function(opts)
+        vim.cmd("DiffviewOpen " .. opts.args .. "^.." .. opts.args)
+      end, { nargs = 1 })
+    end,
     opts = {
       use_icons = false,
       file_panel = {
