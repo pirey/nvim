@@ -95,6 +95,7 @@ local filename_pretty = {
     -- modified_hl = "Bold", -- same highlight as filename_hl
     modified_sign = " ●",
     length = 6,
+    readonly_icon = " RO ",
   }),
   fmt = function(s)
     local no_hl = string.gsub(s, "%%#.-#", "")

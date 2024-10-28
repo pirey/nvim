@@ -1,6 +1,6 @@
 return {
   "diepm/vim-rest-console",
-  cmd = { "VRC", "Http" },
+  -- cmd = { "VRC", "Http" },
   init = function()
     os.execute("mkdir -p ~/.vim-rest-console")
     local function handle_open_console(arg)
