@@ -63,6 +63,7 @@ return {
             ["<C-u>"] = actions.preview_scroll_win(5),
             ["<C-d>"] = actions.preview_scroll_win(-5),
             ["v"] = actions.jump_vsplit,
+            ["<c-v>"] = actions.jump_vsplit,
             ["s"] = actions.jump_split,
             ["t"] = actions.jump_tab,
             ["<CR>"] = actions.jump,
