@@ -25,12 +25,9 @@ local spec = {
 }
 
 if not vim.env.TERMUX_VERSION then
-  table.insert(
-    spec,
-    {
-      import = "lazyvim.plugins.extras.ui.treesitter-context",
-    }
-  )
+  table.insert(spec, {
+    -- import = "lazyvim.plugins.extras.ui.treesitter-context",
+  })
 end
 
 require("lazy").setup({
