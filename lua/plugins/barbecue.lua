@@ -9,7 +9,13 @@ return {
     },
     opts = {
       include_buftypes = { "" },
-      exclude_filetypes = { "netrw", "toggleterm", "terminal", "git", "markdown" },
+      exclude_filetypes = {
+        "netrw",
+        "toggleterm",
+        "terminal",
+        "git",
+        "markdown",
+      },
       -- configurations go here
     },
   },

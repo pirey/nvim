@@ -141,12 +141,12 @@ return {
         file_ignore_patterns = { "node_modules" },
         layout_strategy = "bottom_pane",
         layout_config = {
-          horizontal = {
-            prompt_position = "top",
-            width = { padding = 0 },
-            height = { padding = 0 },
-            preview_width = 0.5,
-          },
+          -- horizontal = {
+          --   prompt_position = "top",
+          --   width = { padding = 0 },
+          --   height = { padding = 0 },
+          --   preview_width = 0.5,
+          -- },
           bottom_pane = {
             prompt_position = "bottom",
             sorting_strategy = "descending",
