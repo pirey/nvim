@@ -2,7 +2,7 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
-local util = require("lazyvim.util")
+local snacks = require("snacks")
 
 vim.keymap.set({ "n", "v" }, ";", ":")
 vim.keymap.set({ "n" }, "<leader>:", "q:", { desc = "Command line window" })
@@ -37,19 +37,19 @@ vim.keymap.set("n", "yP", "yyP")
 
 -- terminal
 vim.keymap.set("t", "<esc>", [[<C-\><C-n>]])
-vim.keymap.del("t", "<esc><esc>")
-vim.keymap.del("t", "<c-h>")
-vim.keymap.del("t", "<c-j>")
-vim.keymap.del("t", "<c-k>")
-vim.keymap.del("t", "<c-l>")
-vim.keymap.del("t", "<C-/>")
-vim.keymap.del("t", "<c-_>")
+-- vim.keymap.del("t", "<esc><esc>")
+-- vim.keymap.del("t", "<c-h>")
+-- vim.keymap.del("t", "<c-j>")
+-- vim.keymap.del("t", "<c-k>")
+-- vim.keymap.del("t", "<c-l>")
+-- vim.keymap.del("t", "<C-/>")
+-- vim.keymap.del("t", "<c-_>")
 
 -- delete some keymaps from lazyvim
-vim.keymap.del("n", "<leader>ft")
-vim.keymap.del("n", "<leader>fT")
-vim.keymap.del("n", "<c-/>")
-vim.keymap.del("n", "<c-_>")
+-- vim.keymap.del("n", "<leader>ft")
+-- vim.keymap.del("n", "<leader>fT")
+-- vim.keymap.del("n", "<c-/>")
+-- vim.keymap.del("n", "<c-_>")
 
 -- window
 vim.keymap.set("n", "<Up>", "5<c-w>+", { silent = true })
@@ -82,8 +82,8 @@ vim.keymap.set(
 )
 
 -- etc
-vim.keymap.del("n", "<leader>gG")
-vim.keymap.set("n", ",x", util.ui.bufremove, { desc = "Close buffer" })
+-- vim.keymap.del("n", "<leader>gG")
+vim.keymap.set("n", ",x", snacks.bufdelete.delete, { desc = "Close buffer" })
 vim.keymap.set("n", "<leader>bo", "<cmd>silent! %bd | e# | bd#<cr>", { desc = "Close other buffers" })
 vim.keymap.set("n", "<leader>bD", "<Cmd>bufdo bd<CR>", { desc = "Delete all buffers" })
 vim.keymap.set("n", ",w", function()

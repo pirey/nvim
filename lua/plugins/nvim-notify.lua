@@ -1,6 +1,10 @@
+if true then
+  return {}
+end
 return {
   {
     "rcarriga/nvim-notify",
+    enabled = false,
     opts = {
       render = "minimal",
       mininum_width = 50,
