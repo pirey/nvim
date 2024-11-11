@@ -1,5 +1,6 @@
 return {
   "brenoprata10/nvim-highlight-colors",
-  enabled = false,
-  config = true,
+  opts = {
+    enable_tailwind = false, -- already handled by tailwind-tools.nvim
+  },
 }
