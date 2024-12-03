@@ -19,7 +19,7 @@ return {
   },
   {
     "razak17/tailwind-fold.nvim",
-    enabled = false, -- could not use sort feature of tailwind-tools.nvim when it is enabled
+    enabled = false, -- NOTE: could not use sort feature of tailwind-tools.nvim when it is enabled
     opts = {},
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     -- ft = { "html", "svelte", "astro", "vue", "typescriptreact", "php", "blade" },
