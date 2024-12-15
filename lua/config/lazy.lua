@@ -26,6 +26,7 @@ local spec = {
   { import = "lazyvim.plugins.extras.dap.core" },
   { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
   { import = "lazyvim.plugins.extras.lang.astro" },
+  { import = "lazyvim.plugins.extras.editor.telescope" },
   -- { import = "lazyvim.plugins.extras.lang.json" },
   -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
   -- import/override with your plugins
