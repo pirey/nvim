@@ -35,7 +35,7 @@ end
 
 vim.o.splitright = true
 vim.o.clipboard = "" -- separate system clipboard and vim clipboard
-vim.opt.iskeyword:remove("_")
+-- vim.opt.iskeyword:remove("_")
 vim.opt.formatoptions:remove({ "c", "r", "o" })
 vim.opt.signcolumn = "yes"
 vim.opt.number = true
