@@ -33,6 +33,7 @@ if vim.fn.has("win64") == 1 or vim.fn.has("win32") == 1 then
   vim.o.laststatus = 3
 end
 
+vim.o.swapfile = false
 vim.o.splitright = true
 vim.o.clipboard = "" -- separate system clipboard and vim clipboard
 -- vim.opt.iskeyword:remove("_")
