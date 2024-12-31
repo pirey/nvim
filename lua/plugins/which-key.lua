@@ -10,5 +10,10 @@ return {
       rules = false,
       colors = false,
     },
+    win = {
+      no_overlap = false,
+      border = "none",
+      padding = { 1, 2 }, -- extra window padding [top/bottom, right/left]
+    },
   },
 }
