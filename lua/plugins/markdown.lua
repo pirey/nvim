@@ -8,4 +8,15 @@ return {
       },
     },
   },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {
+      heading = {
+        enabled = false,
+      },
+      checkbox = {
+        enabled = false,
+      },
+    },
+  },
 }
