@@ -106,6 +106,12 @@ local filename_pretty = {
   end,
 }
 
+local cwd = {
+  function()
+    return vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+  end,
+}
+
 local separator = {
   "%=",
 }
@@ -228,7 +234,6 @@ return {
       component_separators = "",
       section_separators = "",
       disabled_filetypes = {
-
         statusline = { "neo-tree", "git", "fugitive", "toggleterm", "trouble" },
         winbar = { "neo-tree", "DiffviewFiles", "git" },
       },
@@ -250,7 +255,7 @@ return {
         searchcount,
         macro,
       },
-      lualine_y = { diff, branch },
+      lualine_y = { diff, cwd, branch },
       lualine_z = {
         location,
         progress,
