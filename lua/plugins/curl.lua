@@ -4,5 +4,9 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
-  config = true,
+  opts = {
+    mappings = {
+      execute_curl = "<c-j>",
+    },
+  },
 }
