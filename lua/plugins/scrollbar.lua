@@ -1,7 +1,7 @@
 return {
   {
     "petertriho/nvim-scrollbar",
-    enabled = vim.fn.has("wsl") == 1,
+    -- enabled = vim.fn.has("wsl") == 1,
     dependencies = {
       "kevinhwang91/nvim-hlslens",
       "lewis6991/gitsigns.nvim",
