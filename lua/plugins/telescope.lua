@@ -138,7 +138,7 @@ return {
     -- TODO: tidy prompt title
     opts = {
       defaults = {
-        file_ignore_patterns = { "node_modules" },
+        file_ignore_patterns = { "node_modules", "*.min.*", "public/vendor" },
         layout_strategy = "bottom_pane",
         layout_config = {
           -- horizontal = {
