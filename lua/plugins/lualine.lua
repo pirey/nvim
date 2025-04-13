@@ -108,7 +108,7 @@ local filename_pretty = {
 
 local cwd = {
   function()
-    return vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+    return " " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
   end,
 }
 
@@ -250,12 +250,14 @@ return {
         diagnostics,
       },
       lualine_x = {
+        cwd,
+        separator,
         -- noicecmd,
         selectioncount,
         searchcount,
         macro,
       },
-      lualine_y = { diff, cwd, branch },
+      lualine_y = { diff, branch },
       lualine_z = {
         location,
         progress,
