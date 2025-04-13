@@ -1,8 +1,20 @@
+if true then
+  return {}
+end
+
 local lazyvim_util = require("lazyvim.util")
 local actions = require("telescope.actions")
 local actions_layout = require("telescope.actions.layout")
--- local trouble = require("trouble.providers.telescope")
 local transform_mod = require("telescope.actions.mt").transform_mod
+
+---@diagnostic disable-next-line: unused-local
+local function calculate_width(self, max_columns, max_lines)
+  local w = 60
+  if max_columns < w then
+    return max_columns
+  end
+  return math.max(w, math.ceil(max_columns / 4))
+end
 
 -- custom actions
 
@@ -11,7 +23,7 @@ local handle_open = function(cmd, prompt_bufnr)
   local multi = picker:get_multi_selection()
   if not vim.tbl_isempty(multi) then
     require("telescope.actions").close(prompt_bufnr)
-    for i, j in pairs(multi) do
+    for _, j in pairs(multi) do
       if j.path ~= nil then
         if not cmd or cmd == "default" then
           cmd = "edit"
@@ -135,18 +147,17 @@ return {
         desc = "Goto Symbol (Workspace)",
       },
     },
-    -- TODO: tidy prompt title
     opts = {
       defaults = {
         file_ignore_patterns = { "node_modules", "*.min.*", "public/vendor" },
         layout_strategy = "bottom_pane",
+        -- sorting_strategy = "ascending", -- for top down result
         layout_config = {
-          -- horizontal = {
-          --   prompt_position = "top",
-          --   width = { padding = 0 },
-          --   height = { padding = 0 },
-          --   preview_width = 0.5,
-          -- },
+          vertical = {
+            prompt_position = "top",
+            width = calculate_width,
+            height = 0.5,
+          },
           bottom_pane = {
             prompt_position = "bottom",
             sorting_strategy = "descending",
@@ -175,7 +186,6 @@ return {
             ["<c-j>"] = actions.move_selection_next,
             ["<c-k>"] = actions.move_selection_previous,
             ["<c-t>"] = actions_layout.toggle_preview,
-            -- ["<c-t>"] = trouble.smart_open_with_trouble,
             ["<c-l>"] = custom_actions.open_and_resume,
             ["zl"] = actions.preview_scrolling_right,
             ["zh"] = actions.preview_scrolling_left,

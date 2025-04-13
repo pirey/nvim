@@ -13,5 +13,24 @@ return {
         col = 0,
       },
     },
+    picker = {
+      win = {
+        input = {
+          keys = {
+            ["<esc>"] = { "cancel", mode = { "n", "i" } },
+            ["<c-c>"] = { "cancel", mode = { "n" } },
+          },
+        },
+      },
+      formatters = {
+        file = {
+          filename_first = true,
+        },
+      },
+    },
+  },
+  keys = {
+    -- git
+    { "<leader>gs", false },
   },
 }

@@ -137,10 +137,10 @@ return {
       ---@param colors ColorScheme
       on_highlights = function(highlights, colors)
         -- highlight_telescope_fullscreen(highlights, colors)
-        highlight_telescope(highlights, colors)
+        -- highlight_telescope(highlights, colors)
         -- highlight_noice(hl, c)
         highlight_fold(highlights, colors)
-        highlight_lsp_lens(highlights, colors)
+        -- highlight_lsp_lens(highlights, colors)
         -- highlight_flutter(highlights, colors)
 
         -- treesitter
