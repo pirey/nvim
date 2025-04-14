@@ -1,5 +1,5 @@
 if true then
-  return {}
+  return {} -- replaced with snacks.nvim picker
 end
 
 local lazyvim_util = require("lazyvim.util")

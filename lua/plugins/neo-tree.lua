@@ -1,3 +1,7 @@
+if true then
+  return {} -- replaced with snacks.nvim explorer
+end
+
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",

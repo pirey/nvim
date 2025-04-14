@@ -32,5 +32,12 @@ return {
   keys = {
     -- git
     { "<leader>gs", false },
+    {
+      "<leader>b/",
+      function()
+        Snacks.picker.lines()
+      end,
+      desc = "Buffer Lines",
+    },
   },
 }
