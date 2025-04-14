@@ -63,7 +63,7 @@ local diagnostics = {
   cond = conditions.screen_width(120),
 }
 
-local no_file = {
+local nofile = {
   function()
     -- PERF: is it ok to run this on each render
     local h = vim.api.nvim_get_hl(0, {
@@ -239,7 +239,7 @@ return {
       },
     },
     sections = {
-      lualine_a = { no_file },
+      lualine_a = { cwd },
       lualine_b = {},
       lualine_c = {
         -- filetype_icon,
@@ -250,8 +250,6 @@ return {
         diagnostics,
       },
       lualine_x = {
-        cwd,
-        separator,
         -- noicecmd,
         selectioncount,
         searchcount,
