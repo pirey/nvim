@@ -27,6 +27,12 @@ return {
           filename_first = true,
         },
       },
+      sources = {
+        explorer = {
+          hidden = true,
+          ignored = true,
+        },
+      },
     },
   },
   keys = {
