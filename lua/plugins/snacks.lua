@@ -31,6 +31,10 @@ return {
         explorer = {
           hidden = true,
           ignored = true,
+          layout = {
+            hidden = { "input" },
+            auto_hide = { "input" },
+          },
         },
       },
     },
