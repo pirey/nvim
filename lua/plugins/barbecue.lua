@@ -1,7 +1,7 @@
 return {
   {
     "utilyre/barbecue.nvim",
-    enabled = false,
+    enabled = false, -- replaced with dropbar.nvim
     name = "barbecue",
     version = "*",
     dependencies = {
