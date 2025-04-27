@@ -4,6 +4,7 @@ return {
     opts = {
       presets = {
         command_palette = false, -- position the cmdline and popupmenu together
+        lsp_doc_border = true,
       },
       cmdline = {
         view = "cmdline",
