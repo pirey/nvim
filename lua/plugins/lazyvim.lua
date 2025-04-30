@@ -3,5 +3,6 @@ return {
   opts = {
     -- colorscheme = "iceberg",
     colorscheme = "tokyonight",
+    -- colorscheme = "poimandres",
   },
 }
