@@ -24,7 +24,7 @@ return {
       },
       formatters = {
         file = {
-          filename_first = true,
+          -- filename_first = true,
         },
       },
       sources = {
