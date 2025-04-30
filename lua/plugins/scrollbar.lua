@@ -15,6 +15,9 @@ return {
         highlight = "Visual",
         hide_if_all_visible = true, -- Hides handle if all lines are visible
       },
+      excluded_filetypes = {
+        "snacks_picker_list",
+      },
     },
     config = function(_, opts)
       require("scrollbar").setup(opts)
