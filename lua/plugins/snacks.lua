@@ -14,6 +14,66 @@ return {
       },
     },
     picker = {
+      layout = {
+        preset = "vscode",
+      },
+      layouts = {
+        vscode = {
+          preview = false,
+          layout = {
+            backdrop = false,
+            row = 3,
+            width = 0.3,
+            min_width = 70,
+            height = 0.4,
+            border = "rounded",
+            box = "vertical",
+            { win = "input", height = 1, border = "solid", title = "{title} {live} {flags}", title_pos = "center" },
+            { win = "list", border = "hpad" },
+            { win = "preview", title = "{preview}", border = "solid" },
+          },
+        },
+        sidebar = {
+          preview = "main",
+          layout = {
+            backdrop = false,
+            width = 40,
+            min_width = 40,
+            height = 0,
+            position = "left",
+            border = "none",
+            box = "vertical",
+            {
+              win = "input",
+              height = 1,
+              border = "solid",
+              title = "{title} {live} {flags}",
+              title_pos = "center",
+            },
+            { win = "list", border = "none" },
+            { win = "preview", title = "{preview}", height = 0.4, border = "top" },
+          },
+        },
+        ivy_split = {
+          preview = "main",
+          layout = {
+            box = "vertical",
+            backdrop = false,
+            width = 0,
+            height = 0.4,
+            position = "bottom",
+            border = "top",
+            title = " {title} {live} {flags}",
+            title_pos = "left",
+            { win = "input", height = 1, border = "solid" },
+            {
+              box = "horizontal",
+              { win = "list", border = "none" },
+              { win = "preview", title = "{preview}", width = 0.6, border = "solid" },
+            },
+          },
+        },
+      },
       win = {
         input = {
           keys = {
@@ -28,12 +88,42 @@ return {
         },
       },
       sources = {
+        colorschemes = {
+          layout = {
+            preset = "sidebar",
+          },
+        },
+        grep = {
+          layout = {
+            preset = "ivy_split",
+          },
+        },
+        keymaps = {
+          layout = {
+            preset = "ivy_split",
+          },
+        },
         explorer = {
           hidden = true,
           ignored = true,
           layout = {
             hidden = { "input" },
             auto_hide = { "input" },
+          },
+        },
+        todo_comments = {
+          layout = {
+            preset = "sidebar",
+          },
+        },
+        undo = {
+          layout = {
+            preset = "sidebar",
+          },
+        },
+        lazy = {
+          layout = {
+            preset = "sidebar",
           },
         },
       },

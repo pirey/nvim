@@ -2,9 +2,8 @@
 
 return {
   "olivercederborg/poimandres.nvim",
-  enabled = false,
-  lazy = false,
-  priority = 1000,
+  lazy = true,
+  -- priority = 1000,
   config = function()
     require("poimandres").setup({
       -- leave this setup function empty for default config
