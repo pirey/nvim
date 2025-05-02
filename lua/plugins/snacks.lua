@@ -118,6 +118,8 @@ return {
         },
         undo = {
           layout = {
+            hidden = { "input" },
+            auto_hide = { "input" },
             preset = "sidebar",
           },
         },
