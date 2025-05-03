@@ -46,7 +46,7 @@ return {
             {
               win = "input",
               height = 1,
-              border = "bottom",
+              border = "solid",
               title = "{title} {live} {flags}",
               title_pos = "center",
             },
