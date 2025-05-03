@@ -17,6 +17,7 @@ return {
       },
       excluded_filetypes = {
         "snacks_picker_list",
+        "noice",
       },
     },
     config = function(_, opts)
