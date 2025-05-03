@@ -164,5 +164,19 @@ return {
       end,
       desc = "Buffer Lines",
     },
+    {
+      "<leader>fR",
+      function()
+        LazyVim.pick("oldfiles")()
+      end,
+      desc = "Recent",
+    },
+    {
+      "<leader>fr",
+      function()
+        Snacks.picker.recent({ filter = { cwd = true } })
+      end,
+      desc = "Recent (cwd)",
+    },
   },
 }
