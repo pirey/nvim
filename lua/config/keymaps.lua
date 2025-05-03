@@ -2,8 +2,6 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
-local snacks = require("snacks")
-
 vim.keymap.set({ "n", "v" }, ";", ":")
 vim.keymap.set({ "n" }, "<leader>:", "q:", { desc = "Command line window" })
 -- vim.keymap.set({ "n" }, "q;", "q:", { desc = "Command line window" })
@@ -25,7 +23,7 @@ vim.keymap.set({ "n", "v" }, "J", "15gj")
 vim.keymap.set({ "n", "v" }, "K", "15gk")
 vim.keymap.set({ "n", "v" }, "zl", "20zl")
 vim.keymap.set({ "n", "v" }, "zh", "20zh")
-vim.keymap.set({ "n", "v" }, "<c-e>", "<c-u>")
+-- vim.keymap.set({ "n", "v" }, "<c-e>", "<c-u>")
 vim.keymap.set("v", "$", "$h")
 
 -- clipboard / copy paste
@@ -84,7 +82,9 @@ vim.keymap.set(
 
 -- etc
 -- vim.keymap.del("n", "<leader>gG")
-vim.keymap.set("n", ",x", snacks.bufdelete.delete, { desc = "Close buffer" })
+vim.keymap.set("n", ",x", function()
+  require("snacks").bufdelete.delete()
+end, { desc = "Close buffer" })
 vim.keymap.set("n", "<leader>bo", "<cmd>silent! %bd | e# | bd#<cr>", { desc = "Close other buffers" })
 vim.keymap.set("n", "<leader>bD", "<Cmd>bufdo bd<CR>", { desc = "Delete all buffers" })
 vim.keymap.set("n", ",w", function()
