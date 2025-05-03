@@ -54,6 +54,24 @@ return {
             { win = "preview", title = "{preview}", height = 0.4, border = "top" },
           },
         },
+        ivy = {
+          layout = {
+            box = "vertical",
+            backdrop = false,
+            row = -1,
+            width = 0,
+            height = 0.4,
+            border = "top",
+            title = " {title} {live} {flags}",
+            title_pos = "left",
+            { win = "input", height = 1, border = "solid" },
+            {
+              box = "horizontal",
+              { win = "list", border = "none" },
+              { win = "preview", title = "{preview}", width = 0.6, border = "left" },
+            },
+          },
+        },
         ivy_split = {
           preview = "main",
           layout = {
@@ -91,6 +109,11 @@ return {
         colorschemes = {
           layout = {
             preset = "sidebar",
+          },
+        },
+        grep_word = {
+          layout = {
+            preset = "ivy_split",
           },
         },
         grep = {
