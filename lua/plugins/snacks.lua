@@ -22,7 +22,7 @@ return {
           preview = false,
           layout = {
             backdrop = false,
-            row = 3,
+            row = 1,
             width = 0.3,
             min_width = 70,
             height = 0.4,
@@ -41,12 +41,12 @@ return {
             min_width = 40,
             height = 0,
             position = "left",
-            border = "none",
+            border = "solid",
             box = "vertical",
             {
               win = "input",
               height = 1,
-              border = "solid",
+              border = "bottom",
               title = "{title} {live} {flags}",
               title_pos = "center",
             },
