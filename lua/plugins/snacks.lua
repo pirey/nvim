@@ -111,6 +111,11 @@ return {
             preset = "sidebar",
           },
         },
+        lines = {
+          layout = {
+            preset = "ivy_split",
+          },
+        },
         git_log_line = {
           layout = {
             preset = "ivy_split",
