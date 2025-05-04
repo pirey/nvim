@@ -214,16 +214,21 @@ local tmux_char = {
 
 local tabs = {
   "tabs",
-  mode = 2,
   tabs_color = {
-    -- Same values as the general color option can be used here.
-    active = "Visual", -- Color for active tab.
-    inactive = "lualine_a_inactive", -- Color for inactive tab.
+    active = "Visual",
+    inactive = "lualine_a_inactive",
   },
+  cond = function()
+    local tabcount = #vim.api.nvim_list_tabpages()
+    return tabcount > 1
+  end,
 }
 
 return {
   "nvim-lualine/lualine.nvim",
+  init = function()
+    vim.o.showtabline = 0
+  end,
   opts = {
     options = {
       theme = {
@@ -270,15 +275,16 @@ return {
       lualine_z = {
         location,
         progress,
+        tabs,
         tmux_char,
       },
     },
-    tabline = {
-      lualine_x = {
-        tabs,
-        separator,
-      },
-    },
+    -- tabline = {
+    --   lualine_x = {
+    --     tabs,
+    --     separator,
+    --   },
+    -- },
     inactive_sections = {
       -- these are to remove the defaults
       lualine_a = {},
