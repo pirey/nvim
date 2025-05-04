@@ -263,9 +263,9 @@ return {
         -- "%f",
         -- "%m",
         filename_pretty,
-        diagnostics,
       },
       lualine_x = {
+        diagnostics,
         -- noicecmd,
         selectioncount,
         searchcount,
