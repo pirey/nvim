@@ -212,6 +212,16 @@ local tmux_char = {
   end,
 }
 
+local tabs = {
+  "tabs",
+  mode = 2,
+  tabs_color = {
+    -- Same values as the general color option can be used here.
+    active = "Visual", -- Color for active tab.
+    inactive = "lualine_a_inactive", -- Color for inactive tab.
+  },
+}
+
 return {
   "nvim-lualine/lualine.nvim",
   opts = {
@@ -231,6 +241,7 @@ return {
       },
       globalstatus = true,
       always_divide_middle = false,
+      always_show_tabline = false,
       component_separators = "",
       section_separators = "",
       disabled_filetypes = {
@@ -260,6 +271,12 @@ return {
         location,
         progress,
         tmux_char,
+      },
+    },
+    tabline = {
+      lualine_x = {
+        tabs,
+        separator,
       },
     },
     inactive_sections = {
