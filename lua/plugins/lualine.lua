@@ -80,9 +80,9 @@ local nofile = {
   cond = conditions.buffer_empty,
 }
 
-local filename = {
+local winbar_filename = {
   "filename",
-  path = 4,
+  path = 0,
   shorting_target = vim.fn.winwidth(0) / 2,
   symbols = {
     modified = "●",
@@ -277,6 +277,16 @@ return {
         progress,
         tabs,
         tmux_char,
+      },
+    },
+    winbar = {
+      lualine_c = {
+        winbar_filename,
+      },
+    },
+    inactive_winbar = {
+      lualine_c = {
+        winbar_filename,
       },
     },
     -- tabline = {
