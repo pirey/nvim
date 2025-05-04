@@ -1,7 +1,6 @@
 return {
-  { "backdround/tabscope.nvim", config = true, enabled = false },
+  -- { "backdround/tabscope.nvim", config = true, enabled = false },
   {
-    enabled = false,
     "tiagovla/scope.nvim",
     config = function()
       require("scope").setup({})
