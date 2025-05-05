@@ -4,12 +4,7 @@ return {
     opts = {
       ignore_install = { "help" },
       ensure_installed = { "http", "json" },
-      highlight = {
-        enable = true,
-        disable = {
-          "php", -- too crowded
-        },
-      },
+      highlight = { enable = true },
       indent = { enable = true },
       incremental_selection = {
         enable = true,
