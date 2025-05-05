@@ -26,6 +26,10 @@ local spec = {
   { import = "lazyvim.plugins.extras.lang.php" },
   { import = "lazyvim.plugins.extras.dap.core" },
   { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
+
+  { import = "lazyvim.plugins.extras.editor.snacks_explorer" },
+  { import = "lazyvim.plugins.extras.editor.snacks_picker" },
+
   -- { import = "lazyvim.plugins.extras.editor.telescope" },
   -- { import = "lazyvim.plugins.extras.lang.json" },
   -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
