@@ -7,6 +7,7 @@ return {
       "lewis6991/gitsigns.nvim",
     },
     opts = {
+      show_in_active_only = true,
       handle = {
         text = " ",
         blend = 30, -- Integer between 0 and 100. 0 for fully opaque and 100 to full transparent. Defaults to 30.

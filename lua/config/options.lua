@@ -39,11 +39,12 @@ vim.o.clipboard = "" -- separate system clipboard and vim clipboard
 -- vim.opt.iskeyword:remove("_")
 vim.opt.formatoptions:remove({ "c", "r", "o" })
 vim.opt.signcolumn = "yes"
-vim.opt.number = true
+vim.opt.number = false
 vim.opt.relativenumber = false
 vim.o.wrap = false
 vim.o.linebreak = true
-vim.opt.listchars = { space = "·", tab = "▸ " }
+-- vim.opt.listchars = { space = "·", tab = "▸ " }
+vim.opt.listchars = { tab = "▸ " }
 vim.opt.fillchars = {
   foldopen = "",
   foldclose = "",
