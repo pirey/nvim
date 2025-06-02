@@ -23,11 +23,6 @@ require("lazy").setup({
     { "tpope/vim-surround" },
     { "tpope/vim-abolish" },
     {
-      "sindrets/diffview.nvim",
-      opts = { use_icons = false },
-      cmd = { "OpenDiff", "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
-    },
-    {
       "dyng/ctrlsf.vim",
       cmd = { "CtrlSF" },
       keys = { { "<leader>sf", ":CtrlSF -hidden -smartcase ", desc = "Search" } }
