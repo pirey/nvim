@@ -23,3 +23,5 @@ vim.cmd("colorscheme iceberg")
 
 -- vim.opt.termguicolors = false
 -- vim.cmd("colorscheme vim")
+
+require('plugins')
