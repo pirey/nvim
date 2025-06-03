@@ -19,14 +19,10 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   spec = {
     { "wakatime/vim-wakatime" },
-    { "tpope/vim-fugitive" },
     { "tpope/vim-surround" },
-    { "tpope/vim-abolish" },
-    {
-      "dyng/ctrlsf.vim",
-      cmd = { "CtrlSF" },
-      keys = { { "<leader>sf", ":CtrlSF -hidden -smartcase ", desc = "Search" } }
-    }
+    { "tpope/vim-fugitive", cmd = { "G", "Git" }},
+    { "tpope/vim-abolish", cmd = "S" },
+    { "dyng/ctrlsf.vim", cmd = "CtrlSF" }
   },
-  install = { colorscheme = { "sorbet" } },
+  install = { colorscheme = { "iceberg" }},
 })
