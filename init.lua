@@ -16,7 +16,7 @@ vim.keymap.set({ "n", "v" }, ";", ":")
 vim.keymap.set({ "n", "v" }, ":", ";")
 vim.keymap.set("n", "<leader>.", ":set path+=**<left><left>")
 vim.keymap.set("v", "<c-c>", '"+y')
-vim.keymap.set("n", "<esc>", ":noh<cr>:<c-c>", { desc = "Clear search highlight", silent = true })
+vim.keymap.set("n", "<esc>", ":noh<cr>:<c-c>")
 
 vim.cmd("autocmd TermOpen * startinsert")
 vim.cmd("colorscheme iceberg")

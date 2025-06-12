@@ -23,7 +23,8 @@ require("lazy").setup({
     { "tpope/vim-surround", dependencies = { "tpope/vim-repeat" }},
     { "tpope/vim-fugitive", cmd = { "G", "Git" }},
     { "tpope/vim-abolish", cmd = "S" },
-    { "dyng/ctrlsf.vim", cmd = "CtrlSF" }
+    { "dyng/ctrlsf.vim", cmd = "CtrlSF" },
+    { "junegunn/fzf", keys = {{ "<c-p>", "<cmd>FZF!<cr>" }}}
   },
   install = { colorscheme = { "iceberg" }},
 })

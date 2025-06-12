@@ -1,0 +1,5 @@
+-- TODO:
+-- auto add all dir to path
+-- :set path+=**
+--
+-- if currently inside git directory, exclude files specified in .gitignore
