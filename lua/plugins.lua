@@ -24,7 +24,13 @@ require("lazy").setup({
     { "tpope/vim-fugitive", cmd = { "G", "Git" }},
     { "tpope/vim-abolish", cmd = "S" },
     { "dyng/ctrlsf.vim", cmd = "CtrlSF" },
-    { "junegunn/fzf", keys = {{ "<c-p>", "<cmd>FZF!<cr>" }}}
+    {
+      "junegunn/fzf",
+      keys = {{ "<c-p>", "<cmd>FZF<cr>" }},
+      init = function()
+        vim.g.fzf_layout = { window = "enew" }
+      end
+    },
   },
   install = { colorscheme = { "iceberg" }},
 })
