@@ -39,7 +39,7 @@ vim.o.clipboard = "" -- separate system clipboard and vim clipboard
 -- vim.opt.iskeyword:remove("_")
 vim.opt.formatoptions:remove({ "c", "r", "o" })
 vim.opt.signcolumn = "yes"
-vim.opt.number = false
+vim.opt.number = true
 vim.opt.relativenumber = false
 vim.o.wrap = false
 vim.o.linebreak = true
