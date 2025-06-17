@@ -29,6 +29,7 @@ return {
         vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "#3e445e" })
         vim.api.nvim_set_hl(0, "FlashMatch", { link = "Visual" })
         vim.api.nvim_set_hl(0, "FlashLabel", { link = "CurSearch" })
+        vim.api.nvim_set_hl(0, "SnacksPickerTree", { link = "Comment" })
 
         -- original highlight from iceberg.vim use this color in reverse, for some reason
         vim.api.nvim_set_hl(0, "StatusLine", { fg = fg, bg = bg_dark })
