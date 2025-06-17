@@ -28,8 +28,8 @@ return {
             height = 0.4,
             border = "rounded",
             box = "vertical",
-            { win = "input", height = 1, border = "solid", title = "{title} {live} {flags}", title_pos = "center" },
-            { win = "list", border = "hpad" },
+            { win = "input",   height = 1,          border = "solid", title = "{title} {live} {flags}", title_pos = "center" },
+            { win = "list",    border = "hpad" },
             { win = "preview", title = "{preview}", border = "solid" },
           },
         },
@@ -50,7 +50,7 @@ return {
               title = "{title} {live} {flags}",
               title_pos = "center",
             },
-            { win = "list", border = "none" },
+            { win = "list",    border = "none" },
             { win = "preview", title = "{preview}", height = 0.4, border = "top" },
           },
         },
@@ -67,7 +67,7 @@ return {
             { win = "input", height = 1, border = "solid" },
             {
               box = "horizontal",
-              { win = "list", border = "none" },
+              { win = "list",    border = "none" },
               { win = "preview", title = "{preview}", width = 0.6, border = "left" },
             },
           },
@@ -86,7 +86,7 @@ return {
             { win = "input", height = 1, border = "solid" },
             {
               box = "horizontal",
-              { win = "list", border = "none" },
+              { win = "list",    border = "none" },
               { win = "preview", title = "{preview}", width = 0.6, border = "solid" },
             },
           },
@@ -96,7 +96,7 @@ return {
         input = {
           keys = {
             ["<esc>"] = { "cancel", mode = { "n", "i" } },
-            ["<c-c>"] = { "cancel", mode = { "n" } },
+            -- ["<c-c>"] = { "cancel", mode = { "n" } },
           },
         },
       },
@@ -167,6 +167,7 @@ return {
   keys = {
     -- git
     { "<leader>gs", false },
+    { "<c-p>",      LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
     {
       "<leader>b/",
       function()
