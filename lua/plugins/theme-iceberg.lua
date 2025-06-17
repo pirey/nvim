@@ -18,7 +18,7 @@ return {
         vim.api.nvim_set_hl(0, "CursorLineNr", { bg = bg, bold = true })
         vim.api.nvim_set_hl(0, "LineNr", { bg = bg, fg = "#444b71" })
         -- vim.api.nvim_set_hl(0, "Folded", { bg = bg })
-        vim.api.nvim_set_hl(0, "NonText", { fg = bg })
+        vim.api.nvim_set_hl(0, "NonText", { link = "Comment" })
         vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = bg, bg = bg })
         vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#45493e", fg = "NONE" })
         -- vim.api.nvim_set_hl(0, "DiffChange", { bg = "#384851", fg = "NONE" })
