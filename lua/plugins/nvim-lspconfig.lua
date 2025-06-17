@@ -2,7 +2,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     lazy = true,
-    enabled = false, -- using too much resource?
     init = function()
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
       -- change a keymap
