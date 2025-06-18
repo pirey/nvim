@@ -11,5 +11,6 @@ return {
       -- this is supposed to calculate half of the screen, but..
       return vim.fn.winheight(0)
     end,
+    shade_terminals = false,
   },
 }
