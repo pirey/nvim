@@ -281,12 +281,12 @@ return {
     },
     winbar = {
       lualine_c = {
-        winbar_filename,
+        -- winbar_filename,
       },
     },
     inactive_winbar = {
       lualine_c = {
-        winbar_filename,
+        -- winbar_filename,
       },
     },
     -- tabline = {
