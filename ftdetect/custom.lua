@@ -7,12 +7,3 @@ vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
     vim.opt.filetype = "html"
   end
 })
-
-vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
-  group = augroup,
-  pattern = "*.jsx",
-  callback = function()
-    -- has better color highlighting
-    vim.opt.filetype = "typescriptreact"
-  end
-})

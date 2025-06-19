@@ -9,6 +9,7 @@ vim.opt.number = true
 vim.opt.cursorline = true
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevelstart = 99
+vim.opt.winborder = "single"
 
 vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
 
@@ -16,7 +17,6 @@ vim.keymap.set({ "n", "v" }, ";", ":")
 vim.keymap.set({ "n", "v" }, ":", ";")
 vim.keymap.set("n", "<leader>.", ":set path+=**<left><left>")
 vim.keymap.set("v", "<c-c>", '"+y')
-vim.keymap.set("n", "<esc>", ":noh<cr>:<c-c>")
 
 vim.cmd("autocmd TermOpen * startinsert")
 vim.cmd("colorscheme iceberg")
