@@ -14,6 +14,7 @@ require("lazy").setup({
     { "tpope/vim-vinegar" },
     { "tpope/vim-surround",   dependencies = { "tpope/vim-repeat" } },
     { "tpope/vim-abolish",    cmd = "S" },
+    { "tpope/vim-fugitive",    cmd = "Git" },
     { "dyng/ctrlsf.vim",      cmd = "CtrlSF" },
     { "Wansmer/treesj",       opts = {} },
     { "mason-org/mason.nvim", opts = {} },
@@ -21,7 +22,11 @@ require("lazy").setup({
     {
       "sindrets/diffview.nvim",
       cmd = { "DiffviewOpen" },
-      keys = { { "<leader>gs", "<cmd>DiffviewOpen<cr>" } },
+      keys = {
+        { "<leader>gs", "<cmd>DiffviewOpen<cr>" },
+        { "<leader>gl", "<cmd>DiffviewFileHistory<cr>" },
+        { "<leader>gf", "<cmd>DiffviewFileHistory %<cr>" },
+      },
       opts = { use_icons = false },
     },
     {
@@ -43,6 +48,19 @@ require("lazy").setup({
       end
     },
     {
+      "ibhagwan/fzf-lua",
+      keys = {
+        { "<leader>f",  "<cmd>FzfLua files<cr>" },
+        { "<leader>b",  "<cmd>FzfLua buffers<cr>" },
+        { "<leader>/",  "<cmd>FzfLua live_grep<cr>" },
+      },
+      opts = {
+        winopts = { border = "solid", fullscreen = true },
+        files = { previewer = false },
+        buffers = { previewer = false },
+      }
+    },
+    {
       "lewis6991/gitsigns.nvim",
       opts = {
         on_attach = function(buffer)
@@ -52,13 +70,11 @@ require("lazy").setup({
             vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
           end
 
-          -- stylua: ignore start
           map("n", "]c", function() gs.nav_hunk("next") end, "Next Hunk")
           map("n", "[c", function() gs.nav_hunk("prev") end, "Prev Hunk")
-          map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
-          map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
+          map({"n", "v"}, "<leader>ghs", gs.stage_hunk, "Toggle Stage Hunk")
+          map({ "n", "v" }, "<leader>ghr", gs.reset_hunk, "Reset Hunk")
           map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
-          map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
           map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
           map("n", "<leader>ghp", gs.preview_hunk, "Preview Hunk")
           map("n", "<leader>ghP", gs.preview_hunk_inline, "Preview Hunk Inline")
@@ -68,23 +84,6 @@ require("lazy").setup({
           map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
         end,
       },
-    },
-
-    {
-      "ibhagwan/fzf-lua",
-      keys = {
-        { "<c-p>",     "<cmd>FzfLua files<cr>" },
-        { "<leader>,", "<cmd>FzfLua buffers<cr>" },
-        { "<leader>/", "<cmd>FzfLua live_grep<cr>" },
-      },
-      opts = {
-        winopts = {
-          border = "solid",
-          fullscreen = true,
-        },
-        files = { previewer = false },
-        buffers = { previewer = false }
-      }
     },
   },
 })
