@@ -9,16 +9,23 @@ vim.opt.rtp:prepend(lazypath)
 -- spec
 require("lazy").setup({
   install = { colorscheme = { "iceberg", "tokyonight" } },
+  ui = {
+    size = { width = 1, height = 1 },
+    backdrop = 100,
+  },
   spec = {
     { "wakatime/vim-wakatime" },
     { "tpope/vim-vinegar" },
     { "tpope/vim-surround",   dependencies = { "tpope/vim-repeat" } },
     { "tpope/vim-abolish",    cmd = "S" },
-    { "tpope/vim-fugitive",    cmd = "Git" },
-    { "dyng/ctrlsf.vim",      cmd = "CtrlSF" },
-    { "Wansmer/treesj",       opts = {} },
+    { "tpope/vim-fugitive",   cmd = "Git" },
     { "mason-org/mason.nvim", opts = {} },
     { "folke/lazydev.nvim",   opts = {} },
+    {
+      "Wansmer/treesj",
+      keys = { { "<leader>j", "<cmd>TSJToggle<cr>" } },
+      opts = { use_default_keymaps = false },
+    },
     {
       "sindrets/diffview.nvim",
       cmd = { "DiffviewOpen" },
@@ -50,9 +57,9 @@ require("lazy").setup({
     {
       "ibhagwan/fzf-lua",
       keys = {
-        { "<leader>f",  "<cmd>FzfLua files<cr>" },
-        { "<leader>b",  "<cmd>FzfLua buffers<cr>" },
-        { "<leader>/",  "<cmd>FzfLua live_grep<cr>" },
+        { "<leader>f", "<cmd>FzfLua files<cr>" },
+        { "<leader>b", "<cmd>FzfLua buffers<cr>" },
+        { "<leader>/", "<cmd>FzfLua live_grep<cr>" },
       },
       opts = {
         winopts = { border = "solid", fullscreen = true },
@@ -72,7 +79,7 @@ require("lazy").setup({
 
           map("n", "]c", function() gs.nav_hunk("next") end, "Next Hunk")
           map("n", "[c", function() gs.nav_hunk("prev") end, "Prev Hunk")
-          map({"n", "v"}, "<leader>ghs", gs.stage_hunk, "Toggle Stage Hunk")
+          map({ "n", "v" }, "<leader>ghs", gs.stage_hunk, "Toggle Stage Hunk")
           map({ "n", "v" }, "<leader>ghr", gs.reset_hunk, "Reset Hunk")
           map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
           map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
@@ -86,9 +93,14 @@ require("lazy").setup({
       },
     },
     {
-      "folke/tokyonight.nvim",
-      opts = { style = "night" },
-      init = function() vim.cmd([[colorscheme tokyonight]]) end
+      "MagicDuck/grug-far.nvim",
+      cmd = "GrugFar",
+      keys = { { "<leader>sr", "<cmd>GrugFar<cr>" } },
+      opts = {
+        icons = { enabled = false },
+        transient = true,
+        windowCreationCommand = "tab split",
+      }
     },
   },
 })
