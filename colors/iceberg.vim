@@ -162,20 +162,20 @@ else
   hi CursorLine cterm=NONE ctermbg=235 ctermfg=NONE guibg=#1e2132 guifg=NONE
   hi Comment ctermfg=242 guifg=#6b7089
   hi Conceal ctermbg=234 ctermfg=242 guibg=#161821 guifg=#6b7089
-  hi Constant ctermfg=140 guifg=#a093c7
+  "hi Constant ctermfg=140 guifg=#a093c7
   hi Cursor ctermbg=252 ctermfg=234 guibg=#c6c8d1 guifg=#161821
   hi CursorLineNr cterm=NONE ctermbg=237 ctermfg=253 guibg=#2a3158 guifg=#cdd1e6
   hi Delimiter ctermfg=252 guifg=#c6c8d1
-  hi DiffAdd ctermbg=29 ctermfg=158 guibg=#45493e guifg=#c0c5b9
-  hi DiffChange ctermbg=23 ctermfg=159 guibg=#384851 guifg=#b3c3cc
-  hi DiffDelete cterm=NONE ctermbg=95 ctermfg=224 gui=NONE guibg=#53343b guifg=#ceb0b6
-  hi DiffText cterm=NONE ctermbg=30 ctermfg=195 gui=NONE guibg=#5b7881 guifg=#c6c8d1
+  "hi DiffAdd ctermbg=29 ctermfg=158 guibg=#45493e guifg=#c0c5b9
+  "hi DiffChange ctermbg=23 ctermfg=159 guibg=#384851 guifg=#b3c3cc
+  "hi DiffDelete cterm=NONE ctermbg=95 ctermfg=224 gui=NONE guibg=#53343b guifg=#ceb0b6
+  "hi DiffText cterm=NONE ctermbg=30 ctermfg=195 gui=NONE guibg=#5b7881 guifg=#c6c8d1
   hi Directory ctermfg=109 guifg=#89b8c2
   hi Error ctermbg=234 ctermfg=203 guibg=#161821 guifg=#e27878
   hi ErrorMsg ctermbg=234 ctermfg=203 guibg=#161821 guifg=#e27878
   hi WarningMsg ctermbg=234 ctermfg=203 guibg=#161821 guifg=#e27878
-  hi EndOfBuffer ctermfg=236 guifg=#242940
-  hi NonText ctermfg=236 guifg=#242940
+  "hi EndOfBuffer ctermfg=236 guifg=#242940
+  "hi NonText ctermfg=236 guifg=#242940
   hi Whitespace ctermfg=236 guifg=#242940
   hi Folded ctermbg=235 ctermfg=245 guibg=#1e2132 guifg=#686f9a
   hi FoldColumn ctermbg=235 ctermfg=239 guibg=#1e2132 guifg=#444b71
@@ -270,9 +270,17 @@ else
   hi icebergALAccentRed ctermfg=203 guifg=#e27878
 
   "custom
-  hi WinSeparator guifg=#3b4252
+  hi EndOfBuffer guifg=#161821 guibg=#161821
+  hi DiffAdd guibg=#45493e guifg=NONE
+  hi DiffChange guibg=#272c42 guifg=NONE
+  hi DiffDelete guibg=#53343b guifg=NONE
+  hi DiffText guibg=#384851 guifg=NONE
+  hi WinSeparator guifg=#3e445e gui=bold
   hi StatusLine guifg=#c6c8d1 guibg=#0f1117
   hi StatusLineTerm guifg=#c6c8d1 guibg=#0f1117
+  hi Constant guifg=#a093c7 gui=italic
+  hi! link NonText Comment
+  "end custom
 
   if has('nvim')
     let g:terminal_color_0 = '#1e2132'

@@ -9,9 +9,9 @@ vim.opt.gdefault = true
 vim.opt.number = true
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevelstart = 99
-vim.opt.winborder = "single"
 
 -- fancy
+vim.opt.winborder = "single"
 vim.opt.showtabline = 0
 vim.opt.fillchars:append { diff = " " }
 
