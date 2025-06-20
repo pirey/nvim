@@ -1,5 +1,6 @@
 vim.g.mapleader = " "
 
+-- essentials
 vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.ignorecase = true
@@ -10,9 +11,10 @@ vim.opt.cursorline = true
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevelstart = 99
 vim.opt.winborder = "single"
-vim.opt.showtabline = 0
 
-vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
+-- fancy
+vim.opt.showtabline = 0
+vim.opt.fillchars:append { diff = " " }
 
 vim.keymap.set({ "n", "v" }, ";", ":")
 vim.keymap.set({ "n", "v" }, ":", ";")
@@ -22,6 +24,5 @@ vim.keymap.set("n", "<leader><tab>o", "<cmd>tabonly<cr>", { silent = true, desc 
 vim.keymap.set("n", "<leader><tab>l", "<cmd>tabs<cr>", { silent = true, desc = "List tabs" })
 
 vim.cmd("autocmd TermOpen * startinsert")
-vim.cmd("colorscheme iceberg")
 
 require('plugins')

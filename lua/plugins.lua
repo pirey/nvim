@@ -8,7 +8,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- spec
 require("lazy").setup({
-  install = { colorscheme = { "iceberg" } },
+  install = { colorscheme = { "iceberg", "tokyonight" } },
   spec = {
     { "wakatime/vim-wakatime" },
     { "tpope/vim-vinegar" },
@@ -84,6 +84,11 @@ require("lazy").setup({
           map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
         end,
       },
+    },
+    {
+      "folke/tokyonight.nvim",
+      opts = { style = "night" },
+      init = function() vim.cmd([[colorscheme tokyonight]]) end
     },
   },
 })
