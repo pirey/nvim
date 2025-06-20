@@ -15,8 +15,9 @@ vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
 
 vim.keymap.set({ "n", "v" }, ";", ":")
 vim.keymap.set({ "n", "v" }, ":", ";")
-vim.keymap.set("n", "<leader>.", ":set path+=**<left><left>")
 vim.keymap.set("v", "<c-c>", '"+y')
+vim.keymap.set("n", "<leader>td", "<cmd>tabclose<cr>", { silent = true, desc = "Close tab" })
+vim.keymap.set("n", "<leader>to", "<cmd>tabonly<cr>", { silent = true, desc = "Close other tabs" })
 
 vim.cmd("autocmd TermOpen * startinsert")
 vim.cmd("colorscheme iceberg")
