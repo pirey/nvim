@@ -53,8 +53,8 @@ require("lazy").setup({
           end
 
           -- stylua: ignore start
-          map("n", "]c", gs.next_hunk, "Next Hunk")
-          map("n", "[c", gs.prev_hunk, "Prev Hunk")
+          map("n", "]c", function() gs.nav_hunk("next") end, "Next Hunk")
+          map("n", "[c", function() gs.nav_hunk("prev") end, "Prev Hunk")
           map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
           map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
           map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
