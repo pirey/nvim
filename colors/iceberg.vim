@@ -269,6 +269,9 @@ else
   hi DiagnosticFloatingHint ctermbg=236 ctermfg=251 guibg=#3d425b guifg=#c6c8d1
   hi icebergALAccentRed ctermfg=203 guifg=#e27878
 
+  "custom
+  hi WinSeparator guifg=#3b4252
+
   if has('nvim')
     let g:terminal_color_0 = '#1e2132'
     let g:terminal_color_1 = '#e27878'
