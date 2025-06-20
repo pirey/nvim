@@ -205,8 +205,8 @@ else
   hi SpellLocal ctermbg=23 ctermfg=252 gui=undercurl guifg=NONE guisp=#89b8c2
   hi SpellRare ctermbg=97 ctermfg=252 gui=undercurl guifg=NONE guisp=#a093c7
   hi Statement ctermfg=110 gui=NONE guifg=#84a0c6
-  hi StatusLine cterm=reverse ctermbg=234 ctermfg=245 gui=reverse guibg=#17171b guifg=#818596 term=reverse
-  hi StatusLineTerm cterm=reverse ctermbg=234 ctermfg=245 gui=reverse guibg=#17171b guifg=#818596 term=reverse
+  "hi StatusLine cterm=reverse ctermbg=234 ctermfg=245 gui=reverse guibg=#17171b guifg=#818596 term=reverse
+  "hi StatusLineTerm cterm=reverse ctermbg=234 ctermfg=245 gui=reverse guibg=#17171b guifg=#818596 term=reverse
   hi StatusLineNC cterm=reverse ctermbg=238 ctermfg=233 gui=reverse guibg=#3e445e guifg=#0f1117
   hi StatusLineTermNC cterm=reverse ctermbg=238 ctermfg=233 gui=reverse guibg=#3e445e guifg=#0f1117
   hi StorageClass ctermfg=110 guifg=#84a0c6
@@ -271,6 +271,8 @@ else
 
   "custom
   hi WinSeparator guifg=#3b4252
+  hi StatusLine guifg=#c6c8d1 guibg=#0f1117
+  hi StatusLineTerm guifg=#c6c8d1 guibg=#0f1117
 
   if has('nvim')
     let g:terminal_color_0 = '#1e2132'
