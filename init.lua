@@ -22,8 +22,12 @@ vim.keymap.set("n", "gp", "`[v`]", { desc = "Select last pasted text" })
 vim.keymap.set("n", "<leader><tab>d", "<cmd>tabclose<cr>", { silent = true, desc = "Close tab" })
 vim.keymap.set("n", "<leader><tab>o", "<cmd>tabonly<cr>", { silent = true, desc = "Close other tabs" })
 vim.keymap.set("n", "<leader><tab>l", "<cmd>tabs<cr>", { silent = true, desc = "List tabs" })
+vim.keymap.set("n", "<leader>.", ":find ")
 
 vim.cmd("autocmd TermOpen * startinsert")
 vim.cmd("colorscheme iceberg")
 
-require('plugins')
+require("plugins")
+require("autopath").setup({
+  set_keymap = false,
+})

@@ -18,7 +18,7 @@ require("lazy").setup({
     { "tpope/vim-vinegar" },
     { "tpope/vim-surround",   dependencies = { "tpope/vim-repeat" } },
     { "tpope/vim-abolish",    cmd = "S" },
-    { "tpope/vim-fugitive",   cmd = "Git" },
+    { "tpope/vim-fugitive",   cmd = { "G", "Gw", "Git" } },
     { "mason-org/mason.nvim", opts = {} },
     { "folke/lazydev.nvim",   opts = {} },
     {
@@ -52,6 +52,9 @@ require("lazy").setup({
         vim.lsp.enable('lua_ls')
         vim.lsp.enable('phpactor')
         vim.lsp.enable('vtsls')
+
+        vim.keymap.set("n", "<leader>dl", vim.diagnostic.setloclist, { desc = "Open local diagnostics" })
+        vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, { desc = "Open global diagnostics" })
       end
     },
     {
