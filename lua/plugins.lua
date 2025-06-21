@@ -65,6 +65,7 @@ require("lazy").setup({
         winopts = { border = "solid", fullscreen = true },
         files = { previewer = false },
         buffers = { previewer = false },
+        colorschemes = { winopts = { fullscreen = false } },
       }
     },
     {
