@@ -13,7 +13,7 @@ vim.opt.foldlevelstart = 99
 -- fancy
 vim.opt.winborder = "single"
 vim.opt.fillchars:append { diff = " " }
-vim.o.tabline = "%=%{tabpagenr()}/%{tabpagenr('$')}%="
+vim.opt.tabline = "%=%{tabpagenr()}/%{tabpagenr('$')}%="
 
 vim.keymap.set({ "n", "v" }, ";", ":", { desc = "Swap ; with :" })
 vim.keymap.set({ "n", "v" }, ":", ";", { desc = "Swap : with ;" })

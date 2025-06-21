@@ -62,7 +62,7 @@ require("lazy").setup({
         { "<leader>/", "<cmd>FzfLua live_grep<cr>" },
       },
       opts = {
-        winopts = { border = "solid", fullscreen = true },
+        winopts = { border = "solid", fullscreen = true, preview = { border = "single" } },
         files = { previewer = false },
         buffers = { previewer = false },
         colorschemes = { winopts = { fullscreen = false } },
