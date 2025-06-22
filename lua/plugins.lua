@@ -141,7 +141,11 @@ require("lazy").setup({
             local fg = "#c6c8d1"
             local comment_fg = "#6b7089"
             local linenr_bg = "#1e2132"
+            local linenr_fg = "#444b71"
             local visual = "#272c42"
+
+            vim.api.nvim_set_hl(0, "CursorLineNr", { bg = bg, bold = true })
+            vim.api.nvim_set_hl(0, "LineNr", { bg = bg, fg = linenr_fg })
 
             -- colored text in diff
             vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#45493e", fg = "NONE" })
