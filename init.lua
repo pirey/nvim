@@ -28,6 +28,3 @@ vim.cmd("autocmd TermOpen * startinsert")
 vim.cmd("colorscheme iceberg")
 
 require("plugins")
-require("autopath").setup({
-  set_keymap = false,
-})

@@ -63,7 +63,7 @@ function M.setup(opts)
   M.set_project_path()
 
   if opts.set_keymap then
-    vim.keymap.set("n", "<leader>f", ":find ", { desc = "Find file (uses dynamic 'path')" })
+    vim.keymap.set("n", "<leader>.", ":find ", { desc = "Find file (uses dynamic 'path')" })
   end
 end
 

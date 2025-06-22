@@ -111,6 +111,22 @@ require("lazy").setup({
       lazy = false,
       priority = 1000,
       opts = { style = "night" },
+    },
+    {
+      'saghen/blink.cmp',
+      version = '1.*',
+      ---@module 'blink.cmp'
+      ---@type blink.cmp.Config
+      opts = {
+        completion = {
+          menu = {
+            draw = {
+              columns = { { "label", "label_description", gap = 1 }, { "kind" } }
+            },
+          },
+          documentation = { auto_show = true }
+        },
+      },
     }
   },
 })
