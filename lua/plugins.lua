@@ -17,7 +17,7 @@ require("lazy").setup({
     { "tpope/vim-abolish",    cmd = "S" },
     { "tpope/vim-fugitive",   cmd = { "G", "Gw", "Git" } },
     { "mason-org/mason.nvim", opts = {} },
-    { "folke/lazydev.nvim",   opts = {} },
+    { "folke/lazydev.nvim", ft = "lua", opts = {} },
     {
       "Wansmer/treesj",
       keys = { { "<leader>j", "<cmd>TSJToggle<cr>" } },
@@ -62,7 +62,7 @@ require("lazy").setup({
         { "<leader>/", "<cmd>FzfLua live_grep<cr>" },
       },
       opts = {
-        winopts = { border = "solid", fullscreen = true, preview = { border = "single" } },
+        winopts = { border = "solid", fullscreen = true },
         files = { previewer = false },
         buffers = { previewer = false },
         colorschemes = { winopts = { fullscreen = false } },
@@ -105,7 +105,81 @@ require("lazy").setup({
     },
     {
       "folke/tokyonight.nvim",
+      lazy = true,
       opts = { style = "night" },
+    },
+    {
+      "cocopon/iceberg.vim",
+      lazy = false,
+      priority = 1000,
+      init = function()
+        --- patch_hl adds highlight definition without replacing original highlight
+        --- useful when we need to override highlight and retain existing definition
+        ---
+        --- @param hlg string Highlight group name
+        --- @param patch table Override highlight
+        local function patch_hl(hlg, patch)
+          local hl = vim.api.nvim_get_hl(0, {
+            name = hlg,
+          })
+          vim.api.nvim_set_hl(0, hlg, vim.tbl_deep_extend("keep", patch, hl))
+        end
+
+        local function patch_group_pattern(hlg_pattern, patch)
+          for _, hlg in pairs(vim.fn.getcompletion(hlg_pattern, "highlight")) do
+            patch_hl(hlg, patch)
+          end
+        end
+
+        local custom_highlight = vim.api.nvim_create_augroup("CustomIceberg", { clear = true })
+        vim.api.nvim_create_autocmd("ColorScheme", {
+          pattern = "iceberg",
+          callback = function()
+            local bg = "#161821"
+            local fg_dark = "#3e445e" -- from StatusLineNC
+            -- local bg_dark = "#0f1117" -- from StatusLineNC
+            local fg = "#c6c8d1"
+            local comment_fg = "#6b7089"
+            local linenr_bg = "#1e2132"
+            local visual = "#272c42"
+
+            -- colored text in diff
+            vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#45493e", fg = "NONE" })
+            vim.api.nvim_set_hl(0, "DiffChange", { bg = visual, fg = "NONE" })
+            vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#53343b", fg = "NONE" })
+            vim.api.nvim_set_hl(0, "DiffText", { bg = "#384851", fg = "NONE" })
+
+            vim.api.nvim_set_hl(0, "NonText", { link = "Comment" })
+            vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = bg, bg = bg }) -- squiggly ~
+            vim.api.nvim_set_hl(0, "WinSeparator", { fg = fg_dark, bold = true })
+            vim.api.nvim_set_hl(0, "SignColumn", { bg = bg })
+            vim.api.nvim_set_hl(0, "FoldColumn", { bg = bg, fg = fg_dark })
+            vim.api.nvim_set_hl(0, "Pmenu", { bg = linenr_bg, fg = fg })
+            vim.api.nvim_set_hl(0, "StatusLine", { fg = comment_fg, bg = bg })
+            vim.api.nvim_set_hl(0, "TabLine", { fg = comment_fg, bg = bg })
+            vim.api.nvim_set_hl(0, "TabLineFill", { fg = comment_fg, bg = bg })
+
+            -- float
+            vim.api.nvim_set_hl(0, "NormalFloat", { bg = linenr_bg, fg = fg })
+            vim.api.nvim_set_hl(0, "FloatBorder", { bg = linenr_bg, fg = fg_dark })
+            vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { bg = linenr_bg, fg = fg_dark })
+            vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { bg = linenr_bg, fg = fg_dark })
+            vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelpBorder", { bg = linenr_bg, fg = fg_dark })
+
+            -- Italic jsx/html tag attribute @tag.attribute.tsx htmlArg
+            vim.api.nvim_set_hl(0, "Constant", { fg = "#a093c7", italic = true })
+
+            patch_group_pattern("GitGutter", { bg = bg })
+            patch_group_pattern("Diagnostic", { bg = bg })
+          end,
+          group = custom_highlight,
+        })
+
+        vim.opt.number = false
+        vim.opt.signcolumn = "yes"
+        vim.opt.laststatus = 3
+        vim.cmd.colorscheme("iceberg")
+      end,
     },
     {
       'saghen/blink.cmp',

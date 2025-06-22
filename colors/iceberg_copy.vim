@@ -19,7 +19,7 @@ if exists('syntax_on')
   syntax reset
 endif
 
-let g:colors_name = 'iceberg'
+let g:colors_name = 'iceberg_copy'
 
 if &background == 'light'
   hi Normal ctermbg=254 ctermfg=237 guibg=#e8e9ec guifg=#33374c

@@ -13,7 +13,7 @@ vim.opt.foldlevelstart = 99
 -- fancy
 vim.opt.winborder = "single"
 vim.opt.fillchars:append { diff = " " }
-vim.opt.tabline = "%=%{tabpagenr()}/%{tabpagenr('$')}%="
+vim.opt.tabline = "%=Tabs: %{tabpagenr()}/%{tabpagenr('$')}%="
 
 vim.keymap.set({ "n", "v" }, ";", ":", { desc = "Swap ; with :" })
 vim.keymap.set({ "n", "v" }, ":", ";", { desc = "Swap : with ;" })
@@ -25,6 +25,6 @@ vim.keymap.set("n", "<leader><tab>l", "<cmd>tabs<cr>", { silent = true, desc = "
 vim.keymap.set("n", "<leader>.", ":find ")
 
 vim.cmd("autocmd TermOpen * startinsert")
-vim.cmd("colorscheme iceberg")
+-- vim.cmd("colorscheme iceberg")
 
 require("plugins")
