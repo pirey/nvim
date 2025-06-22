@@ -104,31 +104,7 @@ require("lazy").setup({
       }
     },
     {
-      "catppuccin/nvim",
-      name = "catppuccin",
-      lazy = false,
-      priority = 1000,
-      config = function ()
-        require("catppuccin").setup({
-          flavour = "mocha",
-        })
-
-        vim.api.nvim_create_autocmd("ColorScheme", {
-          pattern = "catppuccin",
-          group = vim.api.nvim_create_augroup("CustomCatppuccin", { clear = true }),
-          callback = function ()
-            vim.opt.number = false
-            vim.opt.signcolumn = "yes"
-          end
-        })
-
-        vim.cmd.colorscheme("catppuccin")
-      end
-    },
-    {
       "folke/tokyonight.nvim",
-      lazy = false,
-      priority = 1000,
       opts = { style = "night" },
     },
     {
