@@ -144,6 +144,16 @@ require("lazy").setup({
             local linenr_fg = "#444b71"
             local visual = "#272c42"
 
+            vim.api.nvim_set_hl(0, "NonText", { link = "Comment" })
+            vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = bg, bg = bg }) -- squiggly ~
+            vim.api.nvim_set_hl(0, "WinSeparator", { fg = fg_dark, bold = true })
+            vim.api.nvim_set_hl(0, "SignColumn", { bg = bg })
+            vim.api.nvim_set_hl(0, "FoldColumn", { bg = bg, fg = fg_dark })
+            vim.api.nvim_set_hl(0, "StatusLine", { fg = comment_fg, bg = bg })
+            vim.api.nvim_set_hl(0, "TabLine", { fg = comment_fg, bg = bg })
+            vim.api.nvim_set_hl(0, "TabLineFill", { fg = comment_fg, bg = bg })
+
+            -- line number
             vim.api.nvim_set_hl(0, "CursorLineNr", { bg = bg, bold = true })
             vim.api.nvim_set_hl(0, "LineNr", { bg = bg, fg = linenr_fg })
 
@@ -153,22 +163,9 @@ require("lazy").setup({
             vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#53343b", fg = "NONE" })
             vim.api.nvim_set_hl(0, "DiffText", { bg = "#384851", fg = "NONE" })
 
-            vim.api.nvim_set_hl(0, "NonText", { link = "Comment" })
-            vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = bg, bg = bg }) -- squiggly ~
-            vim.api.nvim_set_hl(0, "WinSeparator", { fg = fg_dark, bold = true })
-            vim.api.nvim_set_hl(0, "SignColumn", { bg = bg })
-            vim.api.nvim_set_hl(0, "FoldColumn", { bg = bg, fg = fg_dark })
-            vim.api.nvim_set_hl(0, "Pmenu", { bg = linenr_bg, fg = fg })
-            vim.api.nvim_set_hl(0, "StatusLine", { fg = comment_fg, bg = bg })
-            vim.api.nvim_set_hl(0, "TabLine", { fg = comment_fg, bg = bg })
-            vim.api.nvim_set_hl(0, "TabLineFill", { fg = comment_fg, bg = bg })
-
             -- float
+            vim.api.nvim_set_hl(0, "Pmenu", { bg = linenr_bg, fg = fg })
             vim.api.nvim_set_hl(0, "NormalFloat", { bg = linenr_bg, fg = fg })
-            vim.api.nvim_set_hl(0, "FloatBorder", { bg = linenr_bg, fg = fg_dark })
-            vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { bg = linenr_bg, fg = fg_dark })
-            vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { bg = linenr_bg, fg = fg_dark })
-            vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelpBorder", { bg = linenr_bg, fg = fg_dark })
 
             -- Italic jsx/html tag attribute @tag.attribute.tsx htmlArg
             vim.api.nvim_set_hl(0, "Constant", { fg = "#a093c7", italic = true })
