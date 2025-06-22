@@ -1,0 +1,59 @@
+{
+  "route get": {
+    "prefix": "lararoute",
+    "body": [
+      "Route::get('${1:/path}', [${2:Controller}::class, '${3:method}']);"
+    ]
+  },
+  "controller method": {
+    "prefix": "larafunc",
+    "body": [
+      "public function ${1:methodName}(Request \\$request) {",
+      "    ${2:// code}",
+      "}"
+    ]
+  },
+  "model query": {
+    "prefix": "laramodel",
+    "body": [
+      "${1:Model}::where('${2:field}', ${3:\\$value})->${4:get}();"
+    ]
+  },
+  "validation request": {
+    "prefix": "laravalidate",
+    "body": [
+      "\\$validated = \\$request->validate([",
+      "    '${1:field}' => '${2:required|string}',",
+      "]);"
+    ]
+  },
+  "blade echo": {
+    "prefix": "laraecho",
+    "body": [
+      "{{ \\${1:var} }}"
+    ]
+  },
+  "blade foreach": {
+    "prefix": "laraloop",
+    "body": [
+      "@foreach (${1:\\$items} as ${2:\\$item})",
+      "    ${3:// code}",
+      "@endforeach"
+    ]
+  },
+  "migration field": {
+    "prefix": "larafield",
+    "body": [
+      "\\$table->${1:string}('${2:fieldName}');"
+    ]
+  },
+  "factory definition": {
+    "prefix": "larafactory",
+    "body": [
+      "return [",
+      "    '${1:field}' => ${2:'value'},",
+      "];"
+    ]
+  }
+}
+
