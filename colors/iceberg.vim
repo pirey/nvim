@@ -189,7 +189,7 @@ else
   hi ModeMsg ctermfg=242 guifg=#6b7089
   hi MoreMsg ctermfg=150 guifg=#b4be82
   hi Operator ctermfg=110 guifg=#84a0c6
-  hi Pmenu ctermbg=236 ctermfg=251 guibg=#3d425b guifg=#c6c8d1
+  "hi Pmenu ctermbg=236 ctermfg=251 guibg=#3d425b guifg=#c6c8d1
   hi PmenuSbar ctermbg=236 ctermfg=NONE guibg=#3d425b guifg=NONE
   hi PmenuSel ctermbg=240 ctermfg=255 guibg=#5b6389 guifg=#eff0f4
   hi PmenuThumb ctermbg=251 ctermfg=NONE guibg=#c6c8d1 guifg=NONE
@@ -269,7 +269,8 @@ else
   hi DiagnosticFloatingHint ctermbg=236 ctermfg=251 guibg=#3d425b guifg=#c6c8d1
   hi icebergALAccentRed ctermfg=203 guifg=#e27878
 
-  "custom
+  " CUSTOM {{{
+  " Author: yptama <mail@yeripratama.com>
   hi EndOfBuffer guifg=#161821 guibg=#161821
   hi DiffAdd guibg=#45493e guifg=NONE
   hi DiffChange guibg=#272c42 guifg=NONE
@@ -279,8 +280,11 @@ else
   hi StatusLine guifg=#c6c8d1 guibg=#0f1117
   hi StatusLineTerm guifg=#c6c8d1 guibg=#0f1117
   hi Constant guifg=#a093c7 gui=italic
+  hi NormalFloat guibg=#1e2132 guifg=#c6c8d1
+  hi FloatBorder guibg=#1e2132 guifg=#6b7089
+  hi Pmenu guibg=#1e2132 guifg=#c6c8d1
   hi! link NonText Comment
-  "end custom
+  " }}} END CUSTOM
 
   if has('nvim')
     let g:terminal_color_0 = '#1e2132'
@@ -515,3 +519,4 @@ if !has('nvim')
   hi! link SpecialKey Whitespace
 endif
 
+" vim:fdm=marker
