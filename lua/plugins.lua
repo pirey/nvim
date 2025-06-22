@@ -135,6 +135,11 @@ require("lazy").setup({
           },
           documentation = { auto_show = true },
         },
+        keymap = {
+          -- same as ctrl+/
+          ['<C-_>'] = { "show" },
+        },
+        cmdline = { enabled = false }
       },
     }
   },
