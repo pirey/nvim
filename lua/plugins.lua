@@ -8,11 +8,8 @@ vim.opt.rtp:prepend(lazypath)
 
 -- spec
 require("lazy").setup({
-  install = { colorscheme = { "iceberg", "tokyonight" } },
-  ui = {
-    size = { width = 1, height = 1 },
-    backdrop = 100,
-  },
+  install = { colorscheme = { "iceberg", "tokyonight", "catppuccin" } },
+  ui = { size = { width = 1, height = 1 } },
   spec = {
     { "wakatime/vim-wakatime" },
     { "tpope/vim-vinegar" },
@@ -105,6 +102,28 @@ require("lazy").setup({
         transient = true,
         windowCreationCommand = "tab split",
       }
+    },
+    {
+      "catppuccin/nvim",
+      name = "catppuccin",
+      lazy = false,
+      priority = 1000,
+      config = function ()
+        require("catppuccin").setup({
+          flavour = "mocha",
+        })
+
+        vim.api.nvim_create_autocmd("ColorScheme", {
+          pattern = "catppuccin",
+          group = vim.api.nvim_create_augroup("CustomCatppuccin", { clear = true }),
+          callback = function ()
+            vim.opt.number = false
+            vim.opt.signcolumn = "yes"
+          end
+        })
+
+        vim.cmd.colorscheme("catppuccin")
+      end
     },
     {
       "folke/tokyonight.nvim",
