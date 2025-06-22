@@ -8,7 +8,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- spec
 require("lazy").setup({
-  install = { colorscheme = { "iceberg", "tokyonight", "catppuccin" } },
+  install = { colorscheme = { "iceberg" } },
   ui = { size = { width = 1, height = 1 } },
   spec = {
     { "wakatime/vim-wakatime" },
@@ -109,6 +109,7 @@ require("lazy").setup({
     },
     {
       'saghen/blink.cmp',
+      dependencies = { 'rafamadriz/friendly-snippets' },
       version = '1.*',
       ---@module 'blink.cmp'
       ---@type blink.cmp.Config
