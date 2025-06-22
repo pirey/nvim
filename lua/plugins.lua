@@ -118,13 +118,22 @@ require("lazy").setup({
       ---@module 'blink.cmp'
       ---@type blink.cmp.Config
       opts = {
+        signature = {
+          enabled = true,
+          window = { show_documentation = true },
+        },
         completion = {
+          accept = {
+            auto_brackets = {
+              enabled = false,
+            },
+          },
           menu = {
             draw = {
               columns = { { "label", "label_description", gap = 1 }, { "kind" } }
             },
           },
-          documentation = { auto_show = true }
+          documentation = { auto_show = true },
         },
       },
     }
