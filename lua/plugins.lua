@@ -178,6 +178,11 @@ require("lazy").setup({
             -- Italic jsx/html tag attribute @tag.attribute.tsx htmlArg
             vim.api.nvim_set_hl(0, "Constant", { fg = "#a093c7", italic = true })
 
+            -- etc
+            vim.api.nvim_set_hl(0, "FzfLuaBufFlagCur", { link = "Title" })
+            vim.api.nvim_set_hl(0, "FzfLuaHeaderText", { link = "Title" })
+            vim.api.nvim_set_hl(0, "FzfLuaPathLineNr", { link = "Title" })
+
             patch_group_pattern("GitGutter", { bg = bg })
             patch_group_pattern("Diagnostic", { bg = bg })
           end,
