@@ -178,13 +178,15 @@ require("lazy").setup({
             -- Italic jsx/html tag attribute @tag.attribute.tsx htmlArg
             vim.api.nvim_set_hl(0, "Constant", { fg = "#a093c7", italic = true })
 
+            patch_group_pattern("GitGutter", { bg = bg })
+            patch_group_pattern("Diagnostic", { bg = bg })
+
             -- etc
             vim.api.nvim_set_hl(0, "FzfLuaBufFlagCur", { link = "Title" })
             vim.api.nvim_set_hl(0, "FzfLuaHeaderText", { link = "Title" })
             vim.api.nvim_set_hl(0, "FzfLuaPathLineNr", { link = "Title" })
-
-            patch_group_pattern("GitGutter", { bg = bg })
-            patch_group_pattern("Diagnostic", { bg = bg })
+            vim.api.nvim_set_hl(0, "InclineNormal", { link = "StatusLine" })
+            vim.api.nvim_set_hl(0, "InclineNormalNC", { link = "Visual" })
           end,
           group = custom_highlight,
         })
@@ -192,6 +194,7 @@ require("lazy").setup({
         -- fancy
         vim.opt.signcolumn = "yes"
         vim.opt.cmdheight = 0
+        vim.opt.laststatus = 3
         vim.cmd.colorscheme("iceberg")
       end,
     },
@@ -241,6 +244,16 @@ require("lazy").setup({
         { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
       },
       cmd = { "DBUI" },
-    }
+    },
+    {
+      'b0o/incline.nvim',
+      config = function()
+        require('incline').setup({
+          hide = { only_win = true }
+        })
+      end,
+      -- Optional: Lazy load Incline
+      event = 'VeryLazy',
+    },
   },
 })
