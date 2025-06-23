@@ -52,6 +52,7 @@ require("lazy").setup({
         vim.lsp.enable('lua_ls')
         vim.lsp.enable('phpactor')
         vim.lsp.enable('vtsls')
+        vim.lsp.enable('clangd')
 
         vim.keymap.set("n", "<leader>dl", vim.diagnostic.setloclist, { desc = "Open local diagnostics" })
         vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, { desc = "Open global diagnostics" })
@@ -140,7 +141,7 @@ require("lazy").setup({
           callback = function()
             local bg = "#161821"
             local fg_dark = "#3e445e" -- from StatusLineNC
-            -- local bg_dark = "#0f1117" -- from StatusLineNC
+            local bg_dark = "#0f1117" -- from StatusLineNC
             local fg = "#c6c8d1"
             local comment_fg = "#6b7089"
             local linenr_bg = "#1e2132"
@@ -152,9 +153,6 @@ require("lazy").setup({
             vim.api.nvim_set_hl(0, "WinSeparator", { fg = fg_dark, bold = true })
             vim.api.nvim_set_hl(0, "SignColumn", { bg = bg })
             vim.api.nvim_set_hl(0, "FoldColumn", { bg = bg, fg = fg_dark })
-            vim.api.nvim_set_hl(0, "StatusLine", { fg = comment_fg, bg = bg })
-            vim.api.nvim_set_hl(0, "TabLine", { fg = comment_fg, bg = bg })
-            vim.api.nvim_set_hl(0, "TabLineFill", { fg = comment_fg, bg = bg })
 
             -- line number
             vim.api.nvim_set_hl(0, "CursorLineNr", { bg = bg, bold = true })
@@ -179,9 +177,11 @@ require("lazy").setup({
           group = custom_highlight,
         })
 
+        -- fancy
         vim.opt.number = false
         vim.opt.signcolumn = "yes"
         vim.opt.laststatus = 3
+        vim.opt.cmdheight = 0
         vim.cmd.colorscheme("iceberg")
       end,
     },
