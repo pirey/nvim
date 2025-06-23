@@ -23,6 +23,7 @@ require("lazy").setup({
       keys = { { "<leader>j", "<cmd>TSJToggle<cr>" } },
       opts = { use_default_keymaps = false },
     },
+    { "backdround/tabscope.nvim", opts = {} },
     {
       "sindrets/diffview.nvim",
       cmd = { "DiffviewOpen" },
@@ -178,9 +179,7 @@ require("lazy").setup({
         })
 
         -- fancy
-        vim.opt.number = false
         vim.opt.signcolumn = "yes"
-        vim.opt.laststatus = 3
         vim.opt.cmdheight = 0
         vim.cmd.colorscheme("iceberg")
       end,
