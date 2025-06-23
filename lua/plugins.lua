@@ -23,7 +23,6 @@ require("lazy").setup({
       keys = { { "<leader>j", "<cmd>TSJToggle<cr>" } },
       opts = { use_default_keymaps = false },
     },
-    { "backdround/tabscope.nvim", opts = {} },
     {
       "sindrets/diffview.nvim",
       cmd = { "DiffviewOpen" },
