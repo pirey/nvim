@@ -243,24 +243,5 @@ require("lazy").setup({
       },
       cmd = { "DBUI" },
     },
-    {
-      'b0o/incline.nvim',
-      config = function()
-        require('incline').setup({
-          window = {
-            margin = { vertical = 0 },
-            overlap = { borders = true }
-          },
-          highlight = {
-            groups = {
-              InclineNormal = "Visual",
-              InclineNormalNC = "Visual",
-            }
-          }
-        })
-      end,
-      -- Optional: Lazy load Incline
-      event = 'VeryLazy',
-    },
   },
 })
