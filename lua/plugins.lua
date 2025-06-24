@@ -12,12 +12,22 @@ require("lazy").setup({
   ui = { size = { width = 1, height = 1 } },
   spec = {
     { "wakatime/vim-wakatime" },
-    { "tpope/vim-vinegar" },
     { "tpope/vim-surround",   dependencies = { "tpope/vim-repeat" } },
     { "tpope/vim-abolish",    cmd = "S" },
     { "tpope/vim-fugitive",   cmd = { "G", "Gw", "Git" } },
     { "mason-org/mason.nvim", opts = {} },
     { "folke/lazydev.nvim", ft = "lua", opts = {} },
+    {
+      'stevearc/oil.nvim',
+      -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+      lazy = false,
+      ---@module 'oil'
+      ---@type oil.SetupOpts
+      opts = {},
+      keys = {
+        { "-", "<cmd>Oil<cr>" }
+      }
+    },
     {
       "Wansmer/treesj",
       keys = { { "<leader>j", "<cmd>TSJToggle<cr>" } },
