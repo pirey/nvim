@@ -8,7 +8,8 @@
   "controller method": {
     "prefix": "larafunc",
     "body": [
-      "public function ${1:methodName}(Request \\$request) {",
+      "public function ${1:methodName}(Request \\$request)",
+      "{",
       "    ${2:// code}",
       "}"
     ]
