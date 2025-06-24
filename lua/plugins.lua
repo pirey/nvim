@@ -24,10 +24,10 @@ require("lazy").setup({
       opts = { use_default_keymaps = false },
     },
     {
-      'echasnovski/mini.bufremove',
-      version = '*',
+      "echasnovski/mini.bufremove",
+      version = "*",
       keys = {
-        { "<leader>x", function() require('mini.bufremove').delete() end }
+        { "<leader>x", function() require("mini.bufremove").delete() end }
       }
     },
     {
@@ -42,7 +42,7 @@ require("lazy").setup({
     },
     {
       "nvim-treesitter/nvim-treesitter",
-      branch = 'master',
+      branch = "master",
       lazy = false,
       build = ":TSUpdate",
       opts = {
@@ -56,10 +56,10 @@ require("lazy").setup({
     {
       "neovim/nvim-lspconfig",
       config = function()
-        vim.lsp.enable('lua_ls')
-        vim.lsp.enable('phpactor')
-        vim.lsp.enable('vtsls')
-        vim.lsp.enable('clangd')
+        vim.lsp.enable("lua_ls")
+        vim.lsp.enable("phpactor")
+        vim.lsp.enable("vtsls")
+        vim.lsp.enable("clangd")
 
         vim.keymap.set("n", "<leader>dl", vim.diagnostic.setloclist, { desc = "Open local diagnostics" })
         vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, { desc = "Open global diagnostics" })
@@ -83,7 +83,7 @@ require("lazy").setup({
       "lewis6991/gitsigns.nvim",
       opts = {
         on_attach = function(buffer)
-          local gs = require('gitsigns')
+          local gs = require("gitsigns")
 
           local function map(mode, l, r, desc)
             vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
@@ -197,10 +197,10 @@ require("lazy").setup({
       end,
     },
     {
-      'saghen/blink.cmp',
-      dependencies = { 'rafamadriz/friendly-snippets' },
-      version = '1.*',
-      ---@module 'blink.cmp'
+      "saghen/blink.cmp",
+      dependencies = { "rafamadriz/friendly-snippets" },
+      version = "1.*",
+      ---@module "blink.cmp"
       ---@type blink.cmp.Config
       opts = {
         signature = {
@@ -222,12 +222,12 @@ require("lazy").setup({
         },
         keymap = {
           -- same as ctrl+/
-          ['<C-_>'] = { "show" },
+          ["<C-_>"] = { "show" },
         },
         cmdline = { enabled = false },
         sources = {
           per_filetype = {
-            sql = { 'snippets', 'dadbod', 'buffer' },
+            sql = { "snippets", "dadbod", "buffer" },
           },
           providers = {
             dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
