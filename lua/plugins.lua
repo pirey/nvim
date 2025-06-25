@@ -132,6 +132,11 @@ require("lazy").setup({
         icons = { enabled = false },
         transient = true,
         windowCreationCommand = "tab split",
+        engines = {
+          ripgrep = {
+            extraArgs = "--smart-case",
+          }
+        }
       }
     },
     {
