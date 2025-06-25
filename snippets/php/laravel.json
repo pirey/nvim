@@ -1,12 +1,30 @@
 {
   "route get": {
-    "prefix": "lararoute",
+    "prefix": "route",
     "body": [
       "Route::get('${1:/path}', [${2:Controller}::class, '${3:method}']);"
     ]
   },
+  "hasMany relation": {
+    "prefix": "hasMany",
+    "body": [
+      "public function ${1:methodName}()",
+      "{",
+      "    return \\$this->hasMany(${2:model}::class);",
+      "}"
+    ]
+  },
+  "belongsTo relation": {
+    "prefix": "belongsTo",
+    "body": [
+      "public function ${1:methodName}()",
+      "{",
+      "    return \\$this->belongsTo(${2:model}::class);",
+      "}"
+    ]
+  },
   "controller method": {
-    "prefix": "larafunc",
+    "prefix": "pubHandler",
     "body": [
       "public function ${1:methodName}(Request \\$request)",
       "{",
@@ -20,22 +38,8 @@
       "${1:Model}::where('${2:field}', ${3:\\$value})->${4:get}();"
     ]
   },
-  "validation request": {
-    "prefix": "laravalidate",
-    "body": [
-      "\\$validated = \\$request->validate([",
-      "    '${1:field}' => '${2:required|string}',",
-      "]);"
-    ]
-  },
-  "blade echo": {
-    "prefix": "laraecho",
-    "body": [
-      "{{ \\${1:var} }}"
-    ]
-  },
   "blade foreach": {
-    "prefix": "laraloop",
+    "prefix": "foreachblade",
     "body": [
       "@foreach (${1:\\$items} as ${2:\\$item})",
       "    ${3:// code}",
@@ -43,17 +47,9 @@
     ]
   },
   "migration field": {
-    "prefix": "larafield",
+    "prefix": "$tablefield",
     "body": [
       "\\$table->${1:string}('${2:fieldName}');"
-    ]
-  },
-  "factory definition": {
-    "prefix": "larafactory",
-    "body": [
-      "return [",
-      "    '${1:field}' => ${2:'value'},",
-      "];"
     ]
   }
 }
