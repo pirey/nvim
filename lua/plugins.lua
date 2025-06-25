@@ -18,14 +18,26 @@ require("lazy").setup({
     { "folke/lazydev.nvim", ft = "lua", opts = {} },
     {
       "NeogitOrg/neogit",
+      cmd = { "Neogit", "NeogitLogCurrent" },
       keys = {
-        { "<leader>gn", "<cmd>Neogit<cr>" }
+        { "<leader>gn", "<cmd>Neogit<cr>" },
+        { "<leader>gf", "<cmd>NeogitLogCurrent<cr>" },
+        {
+          "<leader>gl",
+          function()
+            require("neogit").action("log", "log_head")()
+          end
+        },
       },
       dependencies = {
         "nvim-lua/plenary.nvim",
-        "sindrets/diffview.nvim",
         "ibhagwan/fzf-lua",
+        {
+          "sindrets/diffview.nvim",
+          opts = { use_icons = false },
+        }
       },
+      opts = {}
     },
     {
       'stevearc/oil.nvim',
@@ -49,16 +61,6 @@ require("lazy").setup({
       keys = {
         { "<leader>x", function() require("mini.bufremove").delete() end }
       }
-    },
-    {
-      "sindrets/diffview.nvim",
-      cmd = { "DiffviewOpen" },
-      keys = {
-        { "<leader>gs", "<cmd>DiffviewOpen<cr>" },
-        { "<leader>gl", "<cmd>DiffviewFileHistory<cr>" },
-        { "<leader>gf", "<cmd>DiffviewFileHistory %<cr>" },
-      },
-      opts = { use_icons = false },
     },
     {
       "nvim-treesitter/nvim-treesitter",
@@ -91,6 +93,7 @@ require("lazy").setup({
         { "<leader>f", "<cmd>FzfLua files<cr>" },
         { "<leader>b", "<cmd>FzfLua buffers<cr>" },
         { "<leader>/", "<cmd>FzfLua live_grep<cr>" },
+        { "<leader>.", "<cmd>FzfLua resume<cr>" },
       },
       opts = {
         winopts = { border = "solid", fullscreen = true },
