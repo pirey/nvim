@@ -37,6 +37,15 @@ require("lazy").setup({
           opts = { use_icons = false },
         }
       },
+      init = function ()
+        vim.api.nvim_create_autocmd("FileType", {
+          pattern = "Neogit*",
+          group = vim.api.nvim_create_augroup("CustomNeogitAutocmd", { clear = true }),
+          callback = function ()
+            vim.opt_local.cursorline = true
+          end
+        })
+      end,
       opts = {}
     },
     {
