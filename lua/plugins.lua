@@ -86,7 +86,13 @@ require("lazy").setup({
         { "<leader>dD", "<cmd>FzfLua lsp_workspace_diagnostics<cr>" },
       },
       opts = {
-        winopts = { border = "solid", fullscreen = true },
+        winopts = {
+          border = "solid",
+          fullscreen = true,
+          preview = {
+            border = "single"
+          }
+        },
         files = { previewer = false },
         buffers = { previewer = false },
         colorschemes = { winopts = { fullscreen = false } },
@@ -132,11 +138,7 @@ require("lazy").setup({
         }
       }
     },
-    {
-      "folke/tokyonight.nvim",
-      lazy = true,
-      opts = { style = "night" },
-    },
+    { "folke/tokyonight.nvim", opts = { style = "night" } },
     {
       "cocopon/iceberg.vim",
       lazy = false,
