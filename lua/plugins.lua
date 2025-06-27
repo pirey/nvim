@@ -13,41 +13,18 @@ require("lazy").setup({
   spec = {
     { "wakatime/vim-wakatime" },
     { "tpope/vim-surround",   dependencies = { "tpope/vim-repeat" } },
-    { "tpope/vim-abolish",    cmd = "S" },
+    {
+      "tpope/vim-fugitive",
+      cmd = { "G", "Git" },
+      keys = {
+        {"<leader>gs", "<cmd>tab Git<cr>"},
+        {"<leader>gl", "<cmd>tab Git log --oneline<cr>"},
+        {"<leader>gL", "<cmd>tab Git log<cr>"},
+      }
+    },
+    { "tpope/vim-abolish", cmd = "S" },
     { "mason-org/mason.nvim", opts = {} },
     { "folke/lazydev.nvim", ft = "lua", opts = {} },
-    {
-      "NeogitOrg/neogit",
-      cmd = { "Neogit", "NeogitLogCurrent" },
-      keys = {
-        { "<leader>gn", "<cmd>Neogit<cr>" },
-        { "<leader>gf", "<cmd>NeogitLogCurrent<cr>" },
-        {
-          "<leader>gl",
-          function()
-            require("neogit").action("log", "log_head")()
-          end
-        },
-      },
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-        "ibhagwan/fzf-lua",
-        {
-          "sindrets/diffview.nvim",
-          opts = { use_icons = false },
-        }
-      },
-      init = function ()
-        vim.api.nvim_create_autocmd("FileType", {
-          pattern = "Neogit*",
-          group = vim.api.nvim_create_augroup("CustomNeogitAutocmd", { clear = true }),
-          callback = function ()
-            vim.opt_local.cursorline = true
-          end
-        })
-      end,
-      opts = {}
-    },
     {
       'stevearc/oil.nvim',
       -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
