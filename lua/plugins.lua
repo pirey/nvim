@@ -18,8 +18,8 @@ require("lazy").setup({
       cmd = { "G", "Git" },
       keys = {
         {"<leader>gs", "<cmd>tab Git<cr>"},
-        {"<leader>gl", "<cmd>tab Git log --oneline<cr>"},
-        {"<leader>gL", "<cmd>tab Git log<cr>"},
+        {"<leader>gl", "<cmd>tab Git log<cr>"},
+        {"<leader>gL", "<cmd>tab Git log --oneline<cr>"},
       }
     },
     { "tpope/vim-abolish", cmd = "S" },
