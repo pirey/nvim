@@ -14,13 +14,20 @@ require("lazy").setup({
     { "wakatime/vim-wakatime" },
     { "tpope/vim-surround",   dependencies = { "tpope/vim-repeat" } },
     {
-      "tpope/vim-fugitive",
-      cmd = { "G", "Git" },
+      "sindrets/diffview.nvim",
+      cmd = { "DiffviewOpen" },
       keys = {
-        {"<leader>gs", "<cmd>tab Git<cr>"},
-        {"<leader>gl", "<cmd>tab Git log<cr>"},
-        {"<leader>gL", "<cmd>tab Git log --oneline<cr>"},
-      }
+        { "<leader>gs", "<cmd>DiffviewOpen<cr>" },
+        { "<leader>gl", "<cmd>DiffviewFileHistory<cr>" },
+        { "<leader>gf", "<cmd>DiffviewFileHistory %<cr>" },
+        { "<leader>gt", "<cmd>DiffviewFileHistory -g --range=stash<cr>", desc = "Git latest stash" },
+      },
+      opts = {
+        use_icons = false,
+        default_args = {
+          DiffviewFileHistory = { "--max-count=25" },
+        },
+      },
     },
     { "tpope/vim-abolish", cmd = "S" },
     { "mason-org/mason.nvim", opts = {} },

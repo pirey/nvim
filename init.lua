@@ -26,6 +26,15 @@ vim.keymap.set("n", "<leader><tab>o", "<cmd>tabonly<cr>", { silent = true, desc 
 vim.keymap.set("n", "<leader><tab>l", "<cmd>tabs<cr>", { silent = true, desc = "List tabs" })
 vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnew<cr>", { silent = true, desc = "New tab" })
 
+vim.cmd([[
+  cabbrev <expr> gc getcmdtype() == ':' && getcmdline() =~# '^gc' ? '!git commit -m' : 'gc'
+  cabbrev <expr> gad getcmdtype() == ':' && getcmdline() =~# '^gad' ? '!git add .' : 'gad'
+  cabbrev <expr> gst getcmdtype() == ':' && getcmdline() =~# '^gst' ? '!git status' : 'gst'
+  cabbrev <expr> gco getcmdtype() == ':' && getcmdline() =~# '^gco' ? '!git checkout -b' : 'gco'
+  cabbrev <expr> gcn getcmdtype() == ':' && getcmdline() =~# '^gcn' ? '!git commit --amend --no-edit' : 'gcn'
+  cabbrev <expr> git getcmdtype() == ':' && getcmdline() =~# '^git' ? '!git' : 'git'
+]])
+
 vim.cmd("autocmd TermOpen * startinsert")
 -- vim.cmd("colorscheme iceberg")
 
