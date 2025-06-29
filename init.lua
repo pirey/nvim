@@ -38,4 +38,14 @@ vim.cmd([[
 vim.cmd("autocmd TermOpen * startinsert")
 -- vim.cmd("colorscheme iceberg")
 
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "TextChanged", "TextChangedI" }, {
+  callback = function()
+    if vim.bo.modified then
+      vim.cmd("hi! link StatusLine StatusLineNC")
+    else
+      vim.cmd("hi! link StatusLine StatusLine")  -- or your preferred default
+    end
+  end,
+})
+
 require("plugins")
