@@ -13,6 +13,10 @@ require("lazy").setup({
   spec = {
     { "wakatime/vim-wakatime" },
     { "tpope/vim-surround",   dependencies = { "tpope/vim-repeat" } },
+    { "tpope/vim-fugitive", cmd = { "Git", "G" } },
+    { "tpope/vim-abolish", cmd = "S" },
+    { "mason-org/mason.nvim", opts = {} },
+    { "folke/lazydev.nvim", ft = "lua", opts = {} },
     {
       "sindrets/diffview.nvim",
       cmd = { "DiffviewOpen" },
@@ -29,9 +33,6 @@ require("lazy").setup({
         },
       },
     },
-    { "tpope/vim-abolish", cmd = "S" },
-    { "mason-org/mason.nvim", opts = {} },
-    { "folke/lazydev.nvim", ft = "lua", opts = {} },
     {
       'stevearc/oil.nvim',
       -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
