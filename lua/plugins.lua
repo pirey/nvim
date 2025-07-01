@@ -13,7 +13,13 @@ require("lazy").setup({
   spec = {
     { "wakatime/vim-wakatime" },
     { "tpope/vim-surround",   dependencies = { "tpope/vim-repeat" } },
-    { "tpope/vim-fugitive",   cmd = { "Git", "G" } },
+    {
+      "tpope/vim-fugitive",
+      cmd = { "Git", "G", "Gw" },
+      keys = {
+        { "<leader>gg", "<cmd>tab Git<cr>", },
+      }
+    },
     { "tpope/vim-abolish",    cmd = "S" },
     { "mason-org/mason.nvim", opts = {} },
     { "folke/lazydev.nvim",   ft = "lua",                           opts = {} },
@@ -264,7 +270,7 @@ require("lazy").setup({
         cmdline = { enabled = false },
         sources = {
           per_filetype = {
-            sql = { "snippets", "dadbod", "buffer" },
+            sql = { "dadbod", "snippets", "buffer" },
           },
           providers = {
             dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
