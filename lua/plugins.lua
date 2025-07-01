@@ -13,9 +13,10 @@ require("lazy").setup({
   spec = {
     { "wakatime/vim-wakatime" },
     { "tpope/vim-surround",   dependencies = { "tpope/vim-repeat" } },
-    { "tpope/vim-fugitive", cmd = { "Git", "G" } },
-    { "tpope/vim-abolish", cmd = "S" },
+    { "tpope/vim-fugitive",   cmd = { "Git", "G" } },
+    { "tpope/vim-abolish",    cmd = "S" },
     { "mason-org/mason.nvim", opts = {} },
+    { "folke/lazydev.nvim",   ft = "lua",                           opts = {} },
     {
       "sindrets/diffview.nvim",
       cmd = { "DiffviewOpen" },
@@ -71,23 +72,26 @@ require("lazy").setup({
     {
       "neovim/nvim-lspconfig",
       config = function()
+        vim.lsp.enable("lua_ls")
         vim.lsp.enable("phpactor")
         vim.lsp.enable("vtsls")
         vim.lsp.enable("clangd")
+        vim.lsp.enable("tailwindcss")
 
         vim.keymap.set("n", "<leader>dl", vim.diagnostic.setloclist, { desc = "Open local diagnostics" })
         vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, { desc = "Open global diagnostics" })
+        vim.keymap.set("n", "<leader>F", vim.lsp.buf.format, { desc = "Format document" })
       end
     },
     {
       "ibhagwan/fzf-lua",
       keys = {
-        { "<leader>f", "<cmd>FzfLua files<cr>" },
-        { "<leader>b", "<cmd>FzfLua buffers<cr>" },
-        { "<leader>/", "<cmd>FzfLua live_grep<cr>" },
-        { "<leader>.", "<cmd>FzfLua resume<cr>" },
-        { "<leader>o", "<cmd>FzfLua lsp_document_symbols<cr>" },
-        { "<leader>O", "<cmd>FzfLua lsp_workspace_symbols<cr>" },
+        { "<leader>f",  "<cmd>FzfLua files<cr>" },
+        { "<leader>b",  "<cmd>FzfLua buffers<cr>" },
+        { "<leader>/",  "<cmd>FzfLua live_grep<cr>" },
+        { "<leader>.",  "<cmd>FzfLua resume<cr>" },
+        { "<leader>o",  "<cmd>FzfLua lsp_document_symbols<cr>" },
+        { "<leader>O",  "<cmd>FzfLua lsp_workspace_symbols<cr>" },
         { "<leader>dd", "<cmd>FzfLua lsp_document_diagnostics<cr>" },
         { "<leader>dD", "<cmd>FzfLua lsp_workspace_diagnostics<cr>" },
       },
@@ -272,7 +276,7 @@ require("lazy").setup({
     {
       "kristijanhusak/vim-dadbod-ui",
       dependencies = {
-        { "tpope/vim-dadbod", lazy = true },
+        { "tpope/vim-dadbod",                     lazy = true },
         { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
       },
       cmd = { "DBUI" },
