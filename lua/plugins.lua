@@ -211,6 +211,14 @@ require("lazy").setup({
             vim.api.nvim_set_hl(0, "FzfLuaBufFlagCur", { link = "Title" })
             vim.api.nvim_set_hl(0, "FzfLuaHeaderText", { link = "Title" })
             vim.api.nvim_set_hl(0, "FzfLuaPathLineNr", { link = "Title" })
+
+            -- transparent
+            -- vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = "NONE", bg = "NONE" }) -- squiggly ~
+            -- vim.api.nvim_set_hl(0, "Normal", { fg = "NONE", bg = "NONE" }) -- squiggly ~
+            -- vim.api.nvim_set_hl(0, "SignColumn", { fg = "NONE", bg = "NONE" }) -- squiggly ~
+            -- vim.api.nvim_set_hl(0, "FoldColumn", { fg = "NONE", bg = "NONE" }) -- squiggly ~
+            -- patch_group_pattern("GitGutter", { bg = "NONE" })
+            -- patch_group_pattern("Diagnostic", { bg = "NONE" })
           end,
           group = custom_highlight,
         })
