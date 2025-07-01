@@ -89,6 +89,7 @@ require("lazy").setup({
         { "<leader>f",  "<cmd>FzfLua files<cr>" },
         { "<leader>b",  "<cmd>FzfLua buffers<cr>" },
         { "<leader>/",  "<cmd>FzfLua live_grep<cr>" },
+        { "<leader>?",  "<cmd>FzfLua blines<cr>" },
         { "<leader>.",  "<cmd>FzfLua resume<cr>" },
         { "<leader>o",  "<cmd>FzfLua lsp_document_symbols<cr>" },
         { "<leader>O",  "<cmd>FzfLua lsp_workspace_symbols<cr>" },
