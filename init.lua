@@ -28,7 +28,7 @@ vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnew<cr>", { silent = true, desc =
 
 vim.cmd([[
   cabbrev <expr> gc getcmdtype() == ':' && getcmdline() =~# '^gc' ? '!git commit -m' : 'gc'
-  cabbrev <expr> gad getcmdtype() == ':' && getcmdline() =~# '^gad' ? '!git add .' : 'gad'
+  cabbrev <expr> gad getcmdtype() == ':' && getcmdline() =~# '^gad' ? '!git add %' : 'gad'
   cabbrev <expr> gst getcmdtype() == ':' && getcmdline() =~# '^gst' ? '!git status' : 'gst'
   cabbrev <expr> gco getcmdtype() == ':' && getcmdline() =~# '^gco' ? '!git checkout -b' : 'gco'
   cabbrev <expr> gcn getcmdtype() == ':' && getcmdline() =~# '^gcn' ? '!git commit --amend --no-edit' : 'gcn'
