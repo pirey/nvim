@@ -16,7 +16,6 @@ require("lazy").setup({
     { "tpope/vim-fugitive", cmd = { "Git", "G" } },
     { "tpope/vim-abolish", cmd = "S" },
     { "mason-org/mason.nvim", opts = {} },
-    { "folke/lazydev.nvim", ft = "lua", opts = {} },
     {
       "sindrets/diffview.nvim",
       cmd = { "DiffviewOpen" },
@@ -72,7 +71,6 @@ require("lazy").setup({
     {
       "neovim/nvim-lspconfig",
       config = function()
-        vim.lsp.enable("lua_ls")
         vim.lsp.enable("phpactor")
         vim.lsp.enable("vtsls")
         vim.lsp.enable("clangd")
