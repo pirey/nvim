@@ -258,6 +258,8 @@ require("lazy").setup({
           documentation = { auto_show = true },
         },
         keymap = {
+          preset = "enter",
+          ["<C-y>"] = { "select_and_accept" },
           -- same as ctrl+/
           ["<C-_>"] = { "show" },
         },
