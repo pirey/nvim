@@ -103,8 +103,6 @@ require("lazy").setup({
             border = "single"
           }
         },
-        files = { previewer = false },
-        buffers = { previewer = false },
         colorschemes = { winopts = { fullscreen = false } },
       }
     },
