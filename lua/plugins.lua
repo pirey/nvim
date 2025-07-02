@@ -18,7 +18,12 @@ require("lazy").setup({
       cmd = { "Git", "G", "Gw" },
       keys = {
         { "<leader>gg", "<cmd>tab Git<cr>", },
-      }
+      },
+      init = function ()
+        vim.cmd([[
+          cabbrev <expr> git getcmdtype() == ':' && getcmdline() =~# '^git' ? 'Git' : 'git'
+        ]])
+      end
     },
     { "tpope/vim-abolish",    cmd = "S" },
     { "mason-org/mason.nvim", opts = {} },
@@ -230,6 +235,16 @@ require("lazy").setup({
             -- patch_group_pattern("Diagnostic", { bg = "NONE" })
           end,
           group = custom_highlight,
+        })
+
+        vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "TextChanged", "TextChangedI" }, {
+          callback = function()
+            if vim.bo.modified then
+              vim.cmd("hi! link StatusLine StatusLineNC")
+            else
+              vim.cmd("hi! link StatusLine StatusLine")  -- or your preferred default
+            end
+          end,
         })
 
         -- fancy
