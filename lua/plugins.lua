@@ -27,6 +27,7 @@ require("lazy").setup({
     },
     { "tpope/vim-abolish",    cmd = "S" },
     { "mason-org/mason.nvim", opts = {} },
+    { "tiagovla/scope.nvim", config = true },
     { "folke/lazydev.nvim",   ft = "lua",                           opts = {} },
     {
       "sindrets/diffview.nvim",
