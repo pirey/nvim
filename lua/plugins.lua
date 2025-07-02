@@ -107,6 +107,7 @@ require("lazy").setup({
         { "<leader>O",  "<cmd>FzfLua lsp_workspace_symbols<cr>" },
         { "<leader>dd", "<cmd>FzfLua lsp_document_diagnostics<cr>" },
         { "<leader>dD", "<cmd>FzfLua lsp_workspace_diagnostics<cr>" },
+        { "<leader>r", "<cmd>FzfLua lsp_references<cr>" },
       },
       opts = {
         winopts = {
