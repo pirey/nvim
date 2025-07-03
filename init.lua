@@ -12,7 +12,7 @@ vim.opt.foldmethod = "indent"
 vim.opt.foldlevelstart = 99
 vim.opt.winborder = "single"
 vim.opt.fillchars:append { diff = " " }
-vim.opt.tabline = "%=Tabs: %{tabpagenr()}/%{tabpagenr('$')}%="
+vim.opt.tabline = "%#TabLineSel#%=Tabs: %{tabpagenr()}/%{tabpagenr('$')}%="
 
 -- ignore .git by default so we doesn't need to specify it when using --hidden
 vim.opt.grepprg = "rg --vimgrep --smart-case --glob '!.git'"
