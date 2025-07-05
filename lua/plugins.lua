@@ -303,5 +303,6 @@ require("lazy").setup({
       },
       cmd = { "DBUI" },
     },
-  },
+    { "nvzone/showkeys", cmd = "ShowkeysToggle", },
+  }, -- spec
 })
