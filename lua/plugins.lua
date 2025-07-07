@@ -26,9 +26,34 @@ require("lazy").setup({
       end
     },
     { "tpope/vim-abolish",    cmd = "S" },
-    { "mason-org/mason.nvim", opts = {} },
+    {
+      "mason-org/mason.nvim",
+      opts_extend = { "ensure_installed" },
+      opts = {
+        ensure_installed = {
+          "clangd",
+          "lua-language-server",
+          "tailwindcss-language-server",
+          "phpactor",
+          "vtsls",
+        }
+      },
+      config = function (_, opts)
+        -- stolen from folke's drawer
+        require("mason").setup(opts)
+        local mr = require("mason-registry")
+
+        mr.refresh(function()
+          for _, tool in ipairs(opts.ensure_installed) do
+            local p = mr.get_package(tool)
+            if not p:is_installed() then
+              p:install()
+            end
+          end
+        end)
+      end
+    },
     { "tiagovla/scope.nvim", config = true },
-    { "folke/lazydev.nvim",   ft = "lua",                           opts = {} },
     {
       "sindrets/diffview.nvim",
       cmd = { "DiffviewOpen" },
@@ -160,6 +185,7 @@ require("lazy").setup({
         }
       }
     },
+    { "folke/lazydev.nvim", ft = "lua", opts = {} },
     { "folke/tokyonight.nvim", opts = { style = "night" } },
     {
       "cocopon/iceberg.vim",
