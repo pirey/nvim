@@ -1,4 +1,4 @@
--- bootstrap
+-- plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -6,7 +6,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- spec
+-- plugin spec
 require("lazy").setup({
   install = { colorscheme = { "iceberg" } },
   ui = { size = { width = 1, height = 1 } },
@@ -116,7 +116,7 @@ require("lazy").setup({
         vim.lsp.enable("tailwindcss")
 
         vim.keymap.set("n", "<leader>dl", vim.diagnostic.setloclist, { desc = "Open local diagnostics" })
-        vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, { desc = "Open global diagnostics" })
+        vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, { desc = "Open global quickfix diagnostics" })
         vim.keymap.set("n", "<leader>F", vim.lsp.buf.format, { desc = "Format document" })
       end
     },
@@ -275,10 +275,6 @@ require("lazy").setup({
           end,
         })
 
-        -- fancy
-        vim.opt.signcolumn = "yes"
-        vim.opt.cmdheight = 0
-        vim.opt.laststatus = 3
         vim.cmd.colorscheme("iceberg")
       end,
     },

@@ -10,6 +10,9 @@ vim.opt.gdefault = true
 -- fancy
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevelstart = 99
+vim.opt.signcolumn = "yes"
+vim.opt.laststatus = 3
+vim.opt.cmdheight = 0
 vim.opt.winborder = "single"
 vim.opt.fillchars:append { diff = " " }
 vim.opt.tabline = "%#TabLineSel#%=Tabs: %{tabpagenr()}/%{tabpagenr('$')}%="
@@ -27,6 +30,5 @@ vim.keymap.set("n", "<leader><tab>l", "<cmd>tabs<cr>", { silent = true, desc = "
 vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnew<cr>", { silent = true, desc = "New tab" })
 
 vim.cmd("autocmd TermOpen * startinsert")
--- vim.cmd("colorscheme iceberg")
 
 require("plugins")
