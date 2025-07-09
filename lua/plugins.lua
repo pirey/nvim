@@ -133,6 +133,7 @@ require("lazy").setup({
         { "<leader>dd", "<cmd>FzfLua lsp_document_diagnostics<cr>" },
         { "<leader>dD", "<cmd>FzfLua lsp_workspace_diagnostics<cr>" },
         { "<leader>r", "<cmd>FzfLua lsp_references<cr>" },
+        { "<leader>R", "<cmd>FzfLua oldfiles<cr>" },
       },
       opts = {
         winopts = {
@@ -143,6 +144,10 @@ require("lazy").setup({
           }
         },
         colorschemes = { winopts = { fullscreen = false } },
+        oldfiles = {
+          include_current_session = true,
+          cwd_only = true
+        }
       }
     },
     {
