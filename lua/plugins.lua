@@ -326,5 +326,13 @@ require("lazy").setup({
       cmd = { "DBUI" },
     },
     { "nvzone/showkeys", cmd = "ShowkeysToggle", },
+    {
+      "oysandvik94/curl.nvim",
+      cmd = { "CurlOpen" },
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+      },
+      opts = {},
+    }
   }, -- spec
 })
