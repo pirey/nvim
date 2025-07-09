@@ -16,6 +16,9 @@ vim.opt.cmdheight = 0
 vim.opt.winborder = "single"
 vim.opt.fillchars:append { diff = " " }
 vim.opt.tabline = "%#TabLineSel#%=Tabs: %{tabpagenr()}/%{tabpagenr('$')}%="
+vim.opt.cursorlineopt = "number"
+vim.opt.cursorline = true
+vim.opt.number = true
 
 -- ignore .git by default so we doesn't need to specify it when using --hidden
 vim.opt.grepprg = "rg --vimgrep --smart-case --glob '!.git'"
