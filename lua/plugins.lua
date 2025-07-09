@@ -191,11 +191,9 @@ require("lazy").setup({
       }
     },
     { "folke/lazydev.nvim", ft = "lua", opts = {} },
-    { "folke/tokyonight.nvim", opts = { style = "night" } },
+    { "folke/tokyonight.nvim", lazy = true, opts = { style = "night" } },
     {
       "cocopon/iceberg.vim",
-      lazy = false,
-      priority = 1000,
       init = function()
         --- patch_hl adds highlight definition without replacing original highlight
         --- useful when we need to override highlight and retain existing definition
@@ -268,16 +266,6 @@ require("lazy").setup({
             -- patch_group_pattern("Diagnostic", { bg = "NONE" })
           end,
           group = custom_highlight,
-        })
-
-        vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "TextChanged", "TextChangedI" }, {
-          callback = function()
-            if vim.bo.modified then
-              vim.cmd("hi! link StatusLine StatusLineNC")
-            else
-              vim.cmd("hi! link StatusLine StatusLine")  -- or your preferred default
-            end
-          end,
         })
 
         vim.cmd.colorscheme("iceberg")
