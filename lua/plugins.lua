@@ -358,10 +358,24 @@ require("lazy").setup({
       opts = {
         formatters_by_ft = {
           lua = { "stylua" },
-          javascript = { "prettierd", "prettier", stop_after_first = true },
           php = { "php_cs_fixer" },
         },
       },
+      config = function(_, opts)
+        local prettier_ft = {
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+          "css",
+        }
+
+        for _, ft in ipairs(prettier_ft) do
+          opts.formatters_by_ft[ft] = { "prettierd", "prettier", stop_after_first = true }
+        end
+
+        require("conform").setup(opts)
+      end,
     },
   }, -- spec
 })
