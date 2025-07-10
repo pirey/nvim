@@ -12,33 +12,37 @@ require("lazy").setup({
   ui = { size = { width = 1, height = 1 } },
   spec = {
     { "wakatime/vim-wakatime" },
-    { "tpope/vim-surround",   dependencies = { "tpope/vim-repeat" } },
+    { "tpope/vim-surround", dependencies = { "tpope/vim-repeat" } },
     {
       "tpope/vim-fugitive",
       cmd = { "Git", "G", "Gw" },
       keys = {
-        { "<leader>gg", "<cmd>tab Git<cr>", },
+        { "<leader>gg", "<cmd>tab Git<cr>" },
       },
-      init = function ()
+      init = function()
         vim.cmd([[
           cabbrev <expr> git getcmdtype() == ':' && getcmdline() =~# '^git' ? 'Git' : 'git'
         ]])
-      end
+      end,
     },
-    { "tpope/vim-abolish",    cmd = "S" },
+    { "tpope/vim-abolish", cmd = "S" },
     {
       "mason-org/mason.nvim",
       opts_extend = { "ensure_installed" },
       opts = {
         ensure_installed = {
+          "stylua",
           "clangd",
           "lua-language-server",
+          "prettier",
           "tailwindcss-language-server",
-          "phpactor",
           "vtsls",
-        }
+          "phpactor",
+          "phpcs",
+          "php-cs-fixer",
+        },
       },
-      config = function (_, opts)
+      config = function(_, opts)
         -- stolen from folke's drawer
         require("mason").setup(opts)
         local mr = require("mason-registry")
@@ -51,7 +55,7 @@ require("lazy").setup({
             end
           end
         end)
-      end
+      end,
     },
     { "tiagovla/scope.nvim", config = true },
     {
@@ -71,15 +75,15 @@ require("lazy").setup({
       },
     },
     {
-      'stevearc/oil.nvim',
+      "stevearc/oil.nvim",
       -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
       lazy = false,
       ---@module 'oil'
       ---@type oil.SetupOpts
       opts = {},
       keys = {
-        { "-", "<cmd>Oil<cr>" }
-      }
+        { "-", "<cmd>Oil<cr>" },
+      },
     },
     {
       "Wansmer/treesj",
@@ -90,8 +94,13 @@ require("lazy").setup({
       "echasnovski/mini.bufremove",
       version = "*",
       keys = {
-        { "<leader>x", function() require("mini.bufremove").delete() end }
-      }
+        {
+          "<leader>x",
+          function()
+            require("mini.bufremove").delete()
+          end,
+        },
+      },
     },
     {
       "nvim-treesitter/nvim-treesitter",
@@ -104,7 +113,7 @@ require("lazy").setup({
       },
       config = function(_, opts)
         require("nvim-treesitter.configs").setup(opts)
-      end
+      end,
     },
     {
       "neovim/nvim-lspconfig",
@@ -117,19 +126,18 @@ require("lazy").setup({
 
         vim.keymap.set("n", "<leader>dl", vim.diagnostic.setloclist, { desc = "Open local diagnostics" })
         vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, { desc = "Open global quickfix diagnostics" })
-        vim.keymap.set("n", "<leader>F", vim.lsp.buf.format, { desc = "Format document" })
-      end
+      end,
     },
     {
       "ibhagwan/fzf-lua",
       keys = {
-        { "<leader>f",  "<cmd>FzfLua files<cr>" },
-        { "<leader>b",  "<cmd>FzfLua buffers<cr>" },
-        { "<leader>/",  "<cmd>FzfLua live_grep<cr>" },
-        { "<leader>?",  "<cmd>FzfLua blines<cr>" },
-        { "<leader>.",  "<cmd>FzfLua resume<cr>" },
-        { "<leader>o",  "<cmd>FzfLua lsp_document_symbols<cr>" },
-        { "<leader>O",  "<cmd>FzfLua lsp_workspace_symbols<cr>" },
+        { "<leader>f", "<cmd>FzfLua files<cr>" },
+        { "<leader>b", "<cmd>FzfLua buffers<cr>" },
+        { "<leader>/", "<cmd>FzfLua live_grep<cr>" },
+        { "<leader>?", "<cmd>FzfLua blines<cr>" },
+        { "<leader>.", "<cmd>FzfLua resume<cr>" },
+        { "<leader>o", "<cmd>FzfLua lsp_document_symbols<cr>" },
+        { "<leader>O", "<cmd>FzfLua lsp_workspace_symbols<cr>" },
         { "<leader>dd", "<cmd>FzfLua lsp_document_diagnostics<cr>" },
         { "<leader>dD", "<cmd>FzfLua lsp_workspace_diagnostics<cr>" },
         { "<leader>r", "<cmd>FzfLua lsp_references<cr>" },
@@ -140,15 +148,15 @@ require("lazy").setup({
           border = "solid",
           fullscreen = true,
           preview = {
-            border = "single"
-          }
+            border = "single",
+          },
         },
         colorschemes = { winopts = { fullscreen = false } },
         oldfiles = {
           include_current_session = true,
-          cwd_only = true
-        }
-      }
+          cwd_only = true,
+        },
+      },
     },
     {
       "lewis6991/gitsigns.nvim",
@@ -160,17 +168,25 @@ require("lazy").setup({
             vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
           end
 
-          map("n", "]c", function() gs.nav_hunk("next") end, "Next Hunk")
-          map("n", "[c", function() gs.nav_hunk("prev") end, "Prev Hunk")
+          map("n", "]c", function()
+            gs.nav_hunk("next")
+          end, "Next Hunk")
+          map("n", "[c", function()
+            gs.nav_hunk("prev")
+          end, "Prev Hunk")
           map({ "n", "v" }, "<leader>ghs", gs.stage_hunk, "Toggle Stage Hunk")
           map({ "n", "v" }, "<leader>ghr", gs.reset_hunk, "Reset Hunk")
           map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
           map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
           map("n", "<leader>ghP", gs.preview_hunk, "Preview Hunk")
           map("n", "<leader>ghp", gs.preview_hunk_inline, "Preview Hunk Inline")
-          map("n", "<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame Line")
+          map("n", "<leader>ghb", function()
+            gs.blame_line({ full = true })
+          end, "Blame Line")
           map("n", "<leader>ghd", gs.diffthis, "Diff This")
-          map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
+          map("n", "<leader>ghD", function()
+            gs.diffthis("~")
+          end, "Diff This ~")
           map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
         end,
       },
@@ -186,9 +202,9 @@ require("lazy").setup({
         engines = {
           ripgrep = {
             extraArgs = "--smart-case",
-          }
-        }
-      }
+          },
+        },
+      },
     },
     { "folke/lazydev.nvim", ft = "lua", opts = {} },
     { "folke/tokyonight.nvim", lazy = true, opts = { style = "night" } },
@@ -292,7 +308,7 @@ require("lazy").setup({
           },
           menu = {
             draw = {
-              columns = { { "label", "label_description", gap = 1 }, { "kind" } }
+              columns = { { "label", "label_description", gap = 1 }, { "kind" } },
             },
           },
           documentation = { auto_show = true },
@@ -315,12 +331,12 @@ require("lazy").setup({
     {
       "kristijanhusak/vim-dadbod-ui",
       dependencies = {
-        { "tpope/vim-dadbod",                     lazy = true },
+        { "tpope/vim-dadbod", lazy = true },
         { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
       },
       cmd = { "DBUI" },
     },
-    { "nvzone/showkeys", cmd = "ShowkeysToggle", },
+    { "nvzone/showkeys", cmd = "ShowkeysToggle" },
     {
       "oysandvik94/curl.nvim",
       cmd = { "CurlOpen" },
@@ -328,6 +344,24 @@ require("lazy").setup({
         "nvim-lua/plenary.nvim",
       },
       opts = {},
-    }
+    },
+    {
+      "stevearc/conform.nvim",
+      keys = {
+        {
+          "<leader>F",
+          function()
+            require("conform").format({ async = true })
+          end,
+        },
+      },
+      opts = {
+        formatters_by_ft = {
+          lua = { "stylua" },
+          javascript = { "prettierd", "prettier", stop_after_first = true },
+          php = { "php_cs_fixer" },
+        },
+      },
+    },
   }, -- spec
 })
