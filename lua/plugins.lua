@@ -45,11 +45,11 @@ require("lazy").setup({
       config = function(_, opts)
         -- stolen from folke's drawer
         require("mason").setup(opts)
-        local mr = require("mason-registry")
+        local registry = require("mason-registry")
 
-        mr.refresh(function()
+        registry.refresh(function()
           for _, tool in ipairs(opts.ensure_installed) do
-            local p = mr.get_package(tool)
+            local p = registry.get_package(tool)
             if not p:is_installed() then
               p:install()
             end
