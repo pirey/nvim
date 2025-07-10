@@ -347,6 +347,7 @@ require("lazy").setup({
     },
     {
       "stevearc/conform.nvim",
+      dependencies = { "mason-org/mason.nvim" },
       keys = {
         {
           "<leader>F",
