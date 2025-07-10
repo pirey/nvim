@@ -231,6 +231,8 @@ require("lazy").setup({
             vim.api.nvim_set_hl(0, "WinSeparator", { fg = fg_dark, bold = true })
             vim.api.nvim_set_hl(0, "SignColumn", { bg = bg })
             vim.api.nvim_set_hl(0, "FoldColumn", { bg = bg, fg = fg_dark })
+            vim.api.nvim_set_hl(0, "StatusLine", { fg = fg, bg = bg_dark })
+            vim.api.nvim_set_hl(0, "TabLineFill", { fg = fg, bg = bg_dark })
 
             -- line number
             vim.api.nvim_set_hl(0, "CursorLineNr", { bg = bg, bold = true })
