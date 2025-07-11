@@ -11,8 +11,6 @@ vim.opt.gdefault = true
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevelstart = 99
 vim.opt.signcolumn = "yes"
-vim.opt.laststatus = 3
-vim.opt.cmdheight = 0
 vim.opt.winborder = "single"
 vim.opt.fillchars:append { diff = " " }
 vim.opt.tabline = "%=Tabs: %{tabpagenr()}/%{tabpagenr('$')}%="
