@@ -233,6 +233,9 @@ require("lazy").setup({
         vim.api.nvim_create_autocmd("ColorScheme", {
           pattern = "iceberg",
           callback = function()
+            if vim.o.background ~= "dark" then
+              return
+            end
             local bg = "#161821"
             local fg_dark = "#3e445e" -- from StatusLineNC
             local bg_dark = "#0f1117" -- from StatusLineNC
