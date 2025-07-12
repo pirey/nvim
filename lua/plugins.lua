@@ -221,39 +221,58 @@ require("lazy").setup({
         vim.api.nvim_create_autocmd("ColorScheme", {
           pattern = "iceberg",
           callback = function()
-            if vim.o.background ~= "dark" then
-              return
-            end
+            local fg = "#c6c8d1"
             local bg = "#161821"
             local fg_dark = "#3e445e" -- from StatusLineNC
             local bg_dark = "#0f1117" -- from StatusLineNC
-            local fg = "#c6c8d1"
+            local statusline_fg = fg
+            local statusline_bg = bg_dark
             local comment_fg = "#6b7089"
-            local linenr_bg = "#1e2132"
+            local float_bg = "#1e2132"
             local linenr_fg = "#444b71"
             local visual = "#272c42"
+            local diff_add =  "#45493e"
+            local diff_change =  visual
+            local diff_delete =  "#53343b"
+            local diff_text =  "#384851"
+
+            if vim.o.background == "light" then
+              bg = "#e8e9ec"
+              fg = "#33374c"
+              fg_dark = fg
+              bg_dark = bg
+              statusline_fg = "#e8e9ec"
+              statusline_bg = "#757ca3"
+              float_bg = "#cad0de"
+              linenr_fg = "#9fa7bd"
+              diff_add = "#d4dbd1"
+              diff_change = "#ced9e1"
+              diff_delete = "#e3d2da"
+              diff_text = "#acc5d3"
+            end
+
 
             vim.api.nvim_set_hl(0, "NonText", { link = "Comment" })
             vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = bg, bg = bg }) -- squiggly ~
             vim.api.nvim_set_hl(0, "WinSeparator", { fg = fg_dark, bold = true })
             vim.api.nvim_set_hl(0, "SignColumn", { bg = bg })
             vim.api.nvim_set_hl(0, "FoldColumn", { bg = bg, fg = fg_dark })
-            vim.api.nvim_set_hl(0, "StatusLine", { fg = fg, bg = bg_dark })
-            vim.api.nvim_set_hl(0, "TabLineFill", { fg = fg, bg = bg_dark })
+            vim.api.nvim_set_hl(0, "StatusLine", { fg = statusline_fg, bg = statusline_bg })
+            vim.api.nvim_set_hl(0, "TabLineFill", { fg = statusline_fg, bg = statusline_bg })
 
             -- line number
             vim.api.nvim_set_hl(0, "CursorLineNr", { bg = bg, bold = true })
             vim.api.nvim_set_hl(0, "LineNr", { bg = bg, fg = linenr_fg })
 
             -- colored text in diff
-            vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#45493e", fg = "NONE" })
-            vim.api.nvim_set_hl(0, "DiffChange", { bg = visual, fg = "NONE" })
-            vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#53343b", fg = "NONE" })
-            vim.api.nvim_set_hl(0, "DiffText", { bg = "#384851", fg = "NONE" })
+            vim.api.nvim_set_hl(0, "DiffAdd", { bg = diff_add, fg = "NONE" })
+            vim.api.nvim_set_hl(0, "DiffChange", { bg = diff_change, fg = "NONE" })
+            vim.api.nvim_set_hl(0, "DiffDelete", { bg = diff_delete, fg = "NONE" })
+            vim.api.nvim_set_hl(0, "DiffText", { bg = diff_text, fg = "NONE" })
 
             -- float
-            vim.api.nvim_set_hl(0, "Pmenu", { bg = linenr_bg, fg = fg })
-            vim.api.nvim_set_hl(0, "NormalFloat", { bg = linenr_bg, fg = fg })
+            vim.api.nvim_set_hl(0, "Pmenu", { bg = float_bg, fg = fg })
+            vim.api.nvim_set_hl(0, "NormalFloat", { bg = float_bg, fg = fg })
 
             -- Italic jsx/html tag attribute @tag.attribute.tsx htmlArg
             vim.api.nvim_set_hl(0, "Constant", { fg = "#a093c7", italic = true })
@@ -279,7 +298,8 @@ require("lazy").setup({
           group = custom_highlight,
         })
 
-        -- vim.cmd.colorscheme("iceberg")
+        vim.opt.background = "light"
+        vim.cmd.colorscheme("iceberg")
       end,
     },
     {

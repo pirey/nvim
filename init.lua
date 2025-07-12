@@ -30,7 +30,4 @@ vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnew<cr>", { silent = true, desc =
 
 vim.cmd("autocmd TermOpen * startinsert")
 
-vim.opt.background = "light"
-vim.cmd.colorscheme("default")
-
 require("plugins")
