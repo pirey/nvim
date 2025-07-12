@@ -401,6 +401,7 @@ require("lazy").setup({
         })
         vim.opt.background = "light"
         vim.opt.cursorline = true
+        vim.opt.cursorlineopt = "number"
         vim.opt.number = true
         vim.cmd.colorscheme("github_light")
       end,
