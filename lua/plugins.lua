@@ -57,7 +57,6 @@ require("lazy").setup({
         end)
       end,
     },
-    { "tiagovla/scope.nvim", config = true },
     {
       "sindrets/diffview.nvim",
       cmd = { "DiffviewOpen" },
@@ -142,6 +141,7 @@ require("lazy").setup({
         { "<leader>dD", "<cmd>FzfLua lsp_workspace_diagnostics<cr>" },
         { "<leader>r", "<cmd>FzfLua lsp_references<cr>" },
         { "<leader>R", "<cmd>FzfLua oldfiles<cr>" },
+        { "<leader>t", "<cmd>FzfLua tabs<cr>" },
       },
       opts = {
         winopts = {
