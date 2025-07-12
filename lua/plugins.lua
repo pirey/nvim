@@ -230,11 +230,12 @@ require("lazy").setup({
             local comment_fg = "#6b7089"
             local float_bg = "#1e2132"
             local linenr_fg = "#444b71"
+            local linenr_bg = bg
             local visual = "#272c42"
-            local diff_add =  "#45493e"
-            local diff_change =  visual
-            local diff_delete =  "#53343b"
-            local diff_text =  "#384851"
+            local diff_add = "#45493e"
+            local diff_change = visual
+            local diff_delete = "#53343b"
+            local diff_text = "#384851"
 
             if vim.o.background == "light" then
               bg = "#e8e9ec"
@@ -245,24 +246,24 @@ require("lazy").setup({
               statusline_bg = "#757ca3"
               float_bg = "#cad0de"
               linenr_fg = "#9fa7bd"
+              linenr_bg = "#dcdfe7"
               diff_add = "#d4dbd1"
               diff_change = "#ced9e1"
               diff_delete = "#e3d2da"
               diff_text = "#acc5d3"
             end
 
-
             vim.api.nvim_set_hl(0, "NonText", { link = "Comment" })
             vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = bg, bg = bg }) -- squiggly ~
             vim.api.nvim_set_hl(0, "WinSeparator", { fg = fg_dark, bold = true })
-            vim.api.nvim_set_hl(0, "SignColumn", { bg = bg })
+            vim.api.nvim_set_hl(0, "SignColumn", { bg = linenr_bg })
             vim.api.nvim_set_hl(0, "FoldColumn", { bg = bg, fg = fg_dark })
             vim.api.nvim_set_hl(0, "StatusLine", { fg = statusline_fg, bg = statusline_bg })
             vim.api.nvim_set_hl(0, "TabLineFill", { fg = statusline_fg, bg = statusline_bg })
 
             -- line number
             vim.api.nvim_set_hl(0, "CursorLineNr", { bg = bg, bold = true })
-            vim.api.nvim_set_hl(0, "LineNr", { bg = bg, fg = linenr_fg })
+            vim.api.nvim_set_hl(0, "LineNr", { bg = linenr_bg, fg = linenr_fg })
 
             -- colored text in diff
             vim.api.nvim_set_hl(0, "DiffAdd", { bg = diff_add, fg = "NONE" })
@@ -277,8 +278,8 @@ require("lazy").setup({
             -- Italic jsx/html tag attribute @tag.attribute.tsx htmlArg
             vim.api.nvim_set_hl(0, "Constant", { fg = "#a093c7", italic = true })
 
-            patch_group_pattern("GitGutter", { bg = bg })
-            patch_group_pattern("Diagnostic", { bg = bg })
+            patch_group_pattern("GitGutter", { bg = linenr_bg })
+            patch_group_pattern("Diagnostic", { bg = linenr_bg })
 
             -- etc
             vim.api.nvim_set_hl(0, "FzfLuaBufFlagCur", { link = "Title" })
@@ -299,6 +300,7 @@ require("lazy").setup({
         })
 
         vim.opt.background = "light"
+        vim.opt.number = true
         vim.cmd.colorscheme("iceberg")
       end,
     },
