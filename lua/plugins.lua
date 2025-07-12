@@ -275,6 +275,8 @@ require("lazy").setup({
             vim.api.nvim_set_hl(0, "FzfLuaHeaderText", { link = "Title" })
             vim.api.nvim_set_hl(0, "FzfLuaPathLineNr", { link = "Title" })
 
+            patch_group_pattern("DiagnosticUnderline", { undercurl = true })
+
             -- transparent
             -- vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = "NONE", bg = "NONE" }) -- squiggly ~
             -- vim.api.nvim_set_hl(0, "Normal", { fg = "NONE", bg = "NONE" }) -- squiggly ~
@@ -286,7 +288,7 @@ require("lazy").setup({
           group = custom_highlight,
         })
 
-        -- vim.cmd.colorscheme("iceberg")
+        vim.cmd.colorscheme("iceberg")
       end,
     },
     {
@@ -376,34 +378,6 @@ require("lazy").setup({
         end
 
         require("conform").setup(opts)
-      end,
-    },
-    {
-      "lifepillar/vim-solarized8",
-      init = function ()
-        -- vim.opt.background = "light"
-        -- vim.opt.cursorline = true
-        -- vim.opt.number = true
-        -- vim.cmd.colorscheme("solarized8")
-      end
-    },
-    {
-      'projekt0n/github-nvim-theme',
-      name = 'github-theme',
-      config = function ()
-        require("github-theme").setup({
-          groups = {
-            all = {
-              StatusLine = { link = "TabLine" },
-              StatusLineNC = { link = "TabLineFill" }
-            }
-          }
-        })
-        vim.opt.background = "light"
-        vim.opt.cursorline = true
-        vim.opt.cursorlineopt = "number"
-        vim.opt.number = true
-        vim.cmd.colorscheme("github_light")
       end,
     },
   }, -- spec
