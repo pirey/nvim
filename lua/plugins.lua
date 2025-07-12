@@ -286,7 +286,7 @@ require("lazy").setup({
           group = custom_highlight,
         })
 
-        vim.cmd.colorscheme("iceberg")
+        -- vim.cmd.colorscheme("iceberg")
       end,
     },
     {
@@ -377,6 +377,13 @@ require("lazy").setup({
 
         require("conform").setup(opts)
       end,
+    },
+    {
+      "lifepillar/vim-solarized8",
+      init = function ()
+        vim.opt.background = "light"
+        vim.cmd.colorscheme("solarized8_flat")
+      end
     },
   }, -- spec
 })
