@@ -90,18 +90,6 @@ require("lazy").setup({
       opts = { use_default_keymaps = false },
     },
     {
-      "echasnovski/mini.bufremove",
-      version = "*",
-      keys = {
-        {
-          "<leader>x",
-          function()
-            require("mini.bufremove").delete()
-          end,
-        },
-      },
-    },
-    {
       "nvim-treesitter/nvim-treesitter",
       branch = "master",
       lazy = false,
