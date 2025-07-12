@@ -13,7 +13,7 @@ vim.opt.foldmethod = "indent"
 vim.opt.foldlevelstart = 99
 vim.opt.signcolumn = "yes"
 vim.opt.winborder = "single"
-vim.opt.fillchars:append { diff = " " }
+vim.opt.fillchars:append { diff = "╱" }
 vim.opt.tabline = "%=Tabs: %{tabpagenr()}/%{tabpagenr('$')}%="
 
 -- ignore .git by default so we doesn't need to specify it when using --hidden
@@ -29,5 +29,8 @@ vim.keymap.set("n", "<leader><tab>l", "<cmd>tabs<cr>", { silent = true, desc = "
 vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnew<cr>", { silent = true, desc = "New tab" })
 
 vim.cmd("autocmd TermOpen * startinsert")
+
+vim.opt.background = "light"
+vim.cmd.colorscheme("default")
 
 require("plugins")

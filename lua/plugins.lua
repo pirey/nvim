@@ -8,7 +8,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- plugin spec
 require("lazy").setup({
-  install = { colorscheme = { "iceberg" } },
+  install = { colorscheme = { "default" } },
   ui = { size = { width = 1, height = 1 } },
   spec = {
     { "wakatime/vim-wakatime" },
@@ -291,7 +291,7 @@ require("lazy").setup({
           group = custom_highlight,
         })
 
-        vim.cmd.colorscheme("iceberg")
+        -- vim.cmd.colorscheme("iceberg")
       end,
     },
     {
