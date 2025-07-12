@@ -336,7 +336,13 @@ require("lazy").setup({
         { "tpope/vim-dadbod", lazy = true },
         { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
       },
+      keys = {
+        { "<leader>db", "<cmd>tab DBUI<cr>" },
+      },
       cmd = { "DBUI" },
+      init = function ()
+        vim.g.db_ui_execute_on_save = 0
+      end
     },
     { "nvzone/showkeys", cmd = "ShowkeysToggle" },
     {
