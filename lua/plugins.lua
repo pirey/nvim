@@ -343,9 +343,9 @@ require("lazy").setup({
         { "<leader>db", "<cmd>tab DBUI<cr>" },
       },
       cmd = { "DBUI" },
-      init = function ()
+      init = function()
         vim.g.db_ui_execute_on_save = 0
-      end
+      end,
     },
     { "nvzone/showkeys", cmd = "ShowkeysToggle" },
     {

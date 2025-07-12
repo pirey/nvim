@@ -5,7 +5,6 @@
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
   "fzf-lua": { "branch": "main", "commit": "bee05a6600ca5fe259d74c418ac9e016a6050cec" },
-  "github-theme": { "branch": "main", "commit": "c106c9472154d6b2c74b74565616b877ae8ed31d" },
   "gitsigns.nvim": { "branch": "main", "commit": "4666d040b60d1dc0e474ccd9a3fd3c4d67b4767c" },
   "grug-far.nvim": { "branch": "main", "commit": "b3f9412b1ed76f14cfc68e1ee899873544330c80" },
   "iceberg.vim": { "branch": "master", "commit": "23835d5ed696436f716cbfdb56a93a7850fe3b18" },
@@ -26,7 +25,6 @@
   "vim-dadbod-ui": { "branch": "master", "commit": "2900a1617b3df1a48683d872eadbe1101146a49a" },
   "vim-fugitive": { "branch": "master", "commit": "d3e2b58dec75fc6012fecc82ce0d33a45ed0560e" },
   "vim-repeat": { "branch": "master", "commit": "65846025c15494983dafe5e3b46c8f88ab2e9635" },
-  "vim-solarized8": { "branch": "master", "commit": "2f31fc2239c965d7dd9754ba8160582c99211e12" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
   "vim-wakatime": { "branch": "master", "commit": "f39c4a201ae350aaba713b59d4a4fdd88e0811aa" }
 }
