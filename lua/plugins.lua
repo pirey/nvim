@@ -274,7 +274,7 @@ require("lazy").setup({
             -- colored text in diff
             vim.api.nvim_set_hl(0, "DiffAdd", { bg = diff_add, fg = "NONE" })
             vim.api.nvim_set_hl(0, "DiffChange", { bg = diff_change, fg = "NONE" })
-            vim.api.nvim_set_hl(0, "DiffDelete", { bg = diff_delete, fg = "NONE" })
+            vim.api.nvim_set_hl(0, "DiffDelete", { bg = diff_delete, fg = diff_delete })
             vim.api.nvim_set_hl(0, "DiffText", { bg = diff_text, fg = "NONE" })
 
             -- float
@@ -306,8 +306,8 @@ require("lazy").setup({
           group = custom_highlight,
         })
 
-        vim.opt.background = "light"
-        vim.opt.number = true
+        vim.opt.background = "dark"
+        vim.opt.number = false
         vim.cmd.colorscheme("iceberg")
       end,
     },
