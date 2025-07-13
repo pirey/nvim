@@ -156,10 +156,10 @@ require("lazy").setup({
             vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
           end
 
-          map("n", "]c", function()
+          map("n", "]g", function()
             gs.nav_hunk("next")
           end, "Next Hunk")
-          map("n", "[c", function()
+          map("n", "[g", function()
             gs.nav_hunk("prev")
           end, "Prev Hunk")
           map({ "n", "v" }, "<leader>ghs", gs.stage_hunk, "Toggle Stage Hunk")
