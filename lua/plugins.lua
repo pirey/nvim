@@ -292,6 +292,8 @@ require("lazy").setup({
             vim.api.nvim_set_hl(0, "FzfLuaHeaderText", { link = "Title" })
             vim.api.nvim_set_hl(0, "FzfLuaPathLineNr", { link = "Title" })
             vim.api.nvim_set_hl(0, "FzfLuaBorder", { fg = border_fg })
+            vim.api.nvim_set_hl(0, "FzfLuaHeaderBind", { link = "Title" })
+            vim.api.nvim_set_hl(0, "FzfLuaTabMarker", { link = "Title" })
 
             patch_group_pattern("DiagnosticUnderline", { undercurl = true })
 
