@@ -197,6 +197,21 @@ require("lazy").setup({
     { "folke/lazydev.nvim", ft = "lua", opts = {} },
     { "folke/tokyonight.nvim", lazy = true, opts = { style = "night" } },
     {
+      'projekt0n/github-nvim-theme',
+      name = 'github-theme',
+      lazy = true,
+      config = function ()
+        require("github-theme").setup({
+          groups = {
+            all = {
+              StatusLine = { link = "TabLine" },
+              StatusLineNC = { link = "TabLineFill" }
+            }
+          }
+        })
+      end,
+    },
+    {
       "cocopon/iceberg.vim",
       init = function()
         --- patch_hl adds highlight definition without replacing original highlight
