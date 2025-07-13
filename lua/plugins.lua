@@ -129,7 +129,7 @@ require("lazy").setup({
         { "<leader>dD", "<cmd>FzfLua lsp_workspace_diagnostics<cr>" },
         { "<leader>r", "<cmd>FzfLua lsp_references<cr>" },
         { "<leader>R", "<cmd>FzfLua oldfiles<cr>" },
-        { "<leader>t", "<cmd>FzfLua tabs<cr>" },
+        { "<leader>t", "<cmd>FzfLua tabs show_unlisted=true<cr>" },
       },
       opts = {
         winopts = {
