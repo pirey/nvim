@@ -244,9 +244,9 @@ require("lazy").setup({
             local statusline_bg = bg_dark
             local comment_fg = "#6b7089"
             local border_fg = fg_dark
-            local float_bg = "#1e2132"
+            local float_bg = bg
             local float_fg = fg
-            local float_border = fg
+            local float_border = border_fg
             local linenr_fg = "#444b71"
             local linenr_bg = bg
             local visual = "#272c42"
