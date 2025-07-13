@@ -260,17 +260,17 @@ require("lazy").setup({
               fg = "#33374c"
               fg_dark = "#cad0de"
               bg_dark = "#8b98b6"
-              statusline_fg = "#e8e9ec"
-              statusline_bg = "#757ca3"
               float_bg = "#cad0de"
               linenr_fg = "#9fa7bd"
-              linenr_bg = "#dcdfe7"
+              linenr_bg = bg
               diff_add = "#d4dbd1"
               diff_change = "#ced9e1"
               diff_delete = "#e3d2da"
               diff_text = "#acc5d3"
               tabline_fg = "#8b98b6"
               tabline_bg = "#cad0de"
+              statusline_fg = fg
+              statusline_bg = tabline_bg
               border_fg = fg_dark
             end
 
@@ -324,7 +324,6 @@ require("lazy").setup({
         })
 
         vim.opt.background = "light"
-        vim.opt.number = true
         vim.cmd.colorscheme("iceberg")
       end,
     },
