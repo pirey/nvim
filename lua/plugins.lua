@@ -243,7 +243,10 @@ require("lazy").setup({
             local statusline_fg = fg
             local statusline_bg = bg_dark
             local comment_fg = "#6b7089"
+            local border_fg = fg_dark
             local float_bg = "#1e2132"
+            local float_fg = fg
+            local float_border = fg
             local linenr_fg = "#444b71"
             local linenr_bg = bg
             local visual = "#272c42"
@@ -253,14 +256,16 @@ require("lazy").setup({
             local tabline_fg = statusline_fg
             local tabline_bg = statusline_bg
             local diff_text = "#384851"
-            local border_fg = fg_dark
 
             if vim.o.background == "light" then
               bg = "#e8e9ec"
               fg = "#33374c"
               fg_dark = "#cad0de"
               bg_dark = "#8b98b6"
-              float_bg = "#cad0de"
+              border_fg = fg_dark
+              float_bg = bg
+              float_fg = fg
+              float_border = fg
               linenr_fg = "#9fa7bd"
               linenr_bg = bg
               diff_add = "#d4dbd1"
@@ -271,7 +276,6 @@ require("lazy").setup({
               tabline_bg = "#cad0de"
               statusline_fg = fg
               statusline_bg = tabline_bg
-              border_fg = fg_dark
             end
 
             vim.api.nvim_set_hl(0, "NonText", { link = "Comment" })
@@ -293,8 +297,16 @@ require("lazy").setup({
             vim.api.nvim_set_hl(0, "DiffText", { bg = diff_text, fg = "NONE" })
 
             -- float
-            vim.api.nvim_set_hl(0, "Pmenu", { bg = float_bg, fg = fg })
-            vim.api.nvim_set_hl(0, "NormalFloat", { bg = float_bg, fg = fg })
+            vim.api.nvim_set_hl(0, "Pmenu", { bg = float_bg, fg = float_fg })
+            vim.api.nvim_set_hl(0, "NormalFloat", { bg = float_bg, fg = float_fg })
+
+            -- float border
+            vim.api.nvim_set_hl(0, "FloatBorder", { bg = float_bg, fg = float_border })
+            vim.api.nvim_set_hl(0, "BlinkCmpDocSeparator", { bg = float_bg, fg = float_border })
+            vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { bg = float_bg, fg = float_border })
+            vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { bg = float_bg, fg = float_border })
+            vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelpBorder", { bg = float_bg, fg = float_border })
+
 
             -- Italic jsx/html tag attribute @tag.attribute.tsx htmlArg
             vim.api.nvim_set_hl(0, "Constant", { fg = "#a093c7", italic = true })
@@ -306,9 +318,9 @@ require("lazy").setup({
             vim.api.nvim_set_hl(0, "FzfLuaBufFlagCur", { link = "Title" })
             vim.api.nvim_set_hl(0, "FzfLuaHeaderText", { link = "Title" })
             vim.api.nvim_set_hl(0, "FzfLuaPathLineNr", { link = "Title" })
-            vim.api.nvim_set_hl(0, "FzfLuaBorder", { fg = border_fg })
             vim.api.nvim_set_hl(0, "FzfLuaHeaderBind", { link = "Title" })
             vim.api.nvim_set_hl(0, "FzfLuaTabMarker", { link = "Title" })
+            vim.api.nvim_set_hl(0, "FzfLuaBorder", { fg = border_fg })
 
             patch_group_pattern("DiagnosticUnderline", { undercurl = true })
 
