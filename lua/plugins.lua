@@ -306,8 +306,8 @@ require("lazy").setup({
           group = custom_highlight,
         })
 
-        vim.opt.background = "dark"
-        vim.opt.number = false
+        vim.opt.background = "light"
+        vim.opt.number = true
         vim.cmd.colorscheme("iceberg")
       end,
     },
