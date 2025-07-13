@@ -254,8 +254,8 @@ require("lazy").setup({
               diff_change = "#ced9e1"
               diff_delete = "#e3d2da"
               diff_text = "#acc5d3"
-              tabline_fg= "#8b98b6"
-              tabline_bg= "#cad0de"
+              tabline_fg = "#8b98b6"
+              tabline_bg = "#cad0de"
               border_fg = fg_dark
             end
 
