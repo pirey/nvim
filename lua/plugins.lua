@@ -220,8 +220,9 @@ require("lazy").setup({
         })
       end,
     },
+    { "nordtheme/vim", lazy = true }, -- like iceberg, but lower contrast
     {
-      "cocopon/iceberg.vim",
+      "cocopon/iceberg.vim", -- like nord, but higher contrast
       init = function()
         --- patch_hl adds highlight definition without replacing original highlight
         --- useful when we need to override highlight and retain existing definition
