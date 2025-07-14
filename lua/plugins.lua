@@ -58,6 +58,15 @@ require("lazy").setup({
       end,
     },
     {
+      "sindrets/winshift.nvim",
+      keys = {
+        { "<c-w><c-m>", "<cmd>WinShift<cr>" },
+        { "<c-w>m", "<cmd>WinShift<cr>" },
+        { "<c-w>X", "<cmd>WinShift swap<cr>", desc = "Swap window" },
+      },
+      opts = {},
+    },
+    {
       "sindrets/diffview.nvim",
       cmd = { "DiffviewOpen" },
       keys = {
@@ -197,17 +206,17 @@ require("lazy").setup({
     { "folke/lazydev.nvim", ft = "lua", opts = {} },
     { "folke/tokyonight.nvim", lazy = true, opts = { style = "night" } },
     {
-      'projekt0n/github-nvim-theme',
-      name = 'github-theme',
+      "projekt0n/github-nvim-theme",
+      name = "github-theme",
       lazy = true,
-      config = function ()
+      config = function()
         require("github-theme").setup({
           groups = {
             all = {
               StatusLine = { link = "TabLine" },
-              StatusLineNC = { link = "TabLineFill" }
-            }
-          }
+              StatusLineNC = { link = "TabLineFill" },
+            },
+          },
         })
       end,
     },
@@ -306,7 +315,6 @@ require("lazy").setup({
             vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { bg = float_bg, fg = float_border })
             vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { bg = float_bg, fg = float_border })
             vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelpBorder", { bg = float_bg, fg = float_border })
-
 
             -- Italic jsx/html tag attribute @tag.attribute.tsx htmlArg
             vim.api.nvim_set_hl(0, "Constant", { fg = "#a093c7", italic = true })
