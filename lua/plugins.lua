@@ -89,7 +89,10 @@ require("lazy").setup({
       ---@module 'oil'
       ---@type oil.SetupOpts
       opts = {
-        view_options = { show_hidden = true }
+        view_options = { show_hidden = true },
+        keymaps = {
+          ["<localleader>t"] = { "actions.open_terminal", mode = "n" },
+        },
       },
       keys = {
         { "-", "<cmd>Oil<cr>" },
