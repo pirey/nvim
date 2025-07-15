@@ -225,15 +225,28 @@ require("lazy").setup({
         })
       end,
     },
-    { "nordtheme/vim", lazy = true }, -- like iceberg, but lower contrast
+    {
+      "nordtheme/vim",
+      lazy = true,
+      init = function ()
+        local custom_highlight = vim.api.nvim_create_augroup("CustomNord", { clear = true })
+        vim.api.nvim_create_autocmd("ColorScheme", {
+          group = custom_highlight,
+          pattern = "nord",
+          callback = function()
+            local fg = "#d8dee9"
+            local bg= "#0d121c"
+
+            vim.api.nvim_set_hl(0, "Normal", { fg = fg, bg = bg })
+            vim.api.nvim_set_hl(0, "SignColumn", { bg = bg })
+            vim.api.nvim_set_hl(0, "FoldColumn", { bg = bg })
+          end
+        })
+      end
+    }, -- like iceberg, but lower contrast
     {
       "cocopon/iceberg.vim", -- like nord, but higher contrast
       init = function()
-        --- patch_hl adds highlight definition without replacing original highlight
-        --- useful when we need to override highlight and retain existing definition
-        ---
-        --- @param hlg string Highlight group name
-        --- @param patch table Override highlight
         local function patch_hl(hlg, patch)
           local hl = vim.api.nvim_get_hl(0, {
             name = hlg,
@@ -249,6 +262,7 @@ require("lazy").setup({
 
         local custom_highlight = vim.api.nvim_create_augroup("CustomIceberg", { clear = true })
         vim.api.nvim_create_autocmd("ColorScheme", {
+          group = custom_highlight,
           pattern = "iceberg",
           callback = function()
             local fg = "#c6c8d1"
@@ -346,7 +360,6 @@ require("lazy").setup({
             -- patch_group_pattern("GitGutter", { bg = "NONE" })
             -- patch_group_pattern("Diagnostic", { bg = "NONE" })
           end,
-          group = custom_highlight,
         })
 
         vim.opt.background = "dark"
