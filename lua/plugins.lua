@@ -88,7 +88,9 @@ require("lazy").setup({
       lazy = false,
       ---@module 'oil'
       ---@type oil.SetupOpts
-      opts = {},
+      opts = {
+        view_options = { show_hidden = true }
+      },
       keys = {
         { "-", "<cmd>Oil<cr>" },
       },
