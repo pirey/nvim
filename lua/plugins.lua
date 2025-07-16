@@ -111,6 +111,12 @@ require("lazy").setup({
       opts = {
         highlight = { enable = true },
         indent = { enable = true },
+        ensure_installed = {
+          "javascript",
+          "typescript",
+          "tsx",
+          "lua",
+        },
       },
       config = function(_, opts)
         require("nvim-treesitter.configs").setup(opts)
@@ -228,21 +234,21 @@ require("lazy").setup({
     {
       "nordtheme/vim",
       lazy = true,
-      init = function ()
+      init = function()
         local custom_highlight = vim.api.nvim_create_augroup("CustomNord", { clear = true })
         vim.api.nvim_create_autocmd("ColorScheme", {
           group = custom_highlight,
           pattern = "nord",
           callback = function()
             local fg = "#d8dee9"
-            local bg= "#0d121c"
+            local bg = "#0d121c"
 
             vim.api.nvim_set_hl(0, "Normal", { fg = fg, bg = bg })
             vim.api.nvim_set_hl(0, "SignColumn", { bg = bg })
             vim.api.nvim_set_hl(0, "FoldColumn", { bg = bg })
-          end
+          end,
         })
-      end
+      end,
     }, -- like iceberg, but lower contrast
     {
       "cocopon/iceberg.vim", -- like nord, but higher contrast
