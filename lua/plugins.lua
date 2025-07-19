@@ -96,6 +96,7 @@ require("lazy").setup({
       },
       keys = {
         { "-", "<cmd>Oil<cr>" },
+        { "=-", "<cmd>Oil .<cr>" },
       },
     },
     {
