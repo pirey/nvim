@@ -137,6 +137,7 @@ require("lazy").setup({
     },
     {
       "ibhagwan/fzf-lua",
+      cmd = { "FzfLua" },
       keys = {
         { "<leader>f", "<cmd>FzfLua files<cr>" },
         { "<leader>b", "<cmd>FzfLua buffers<cr>" },
