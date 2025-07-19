@@ -469,5 +469,20 @@ require("lazy").setup({
         require("conform").setup(opts)
       end,
     },
+    {
+      "nvim-orgmode/orgmode",
+      ft = { "org" },
+      config = function()
+        require("orgmode").setup({
+          org_agenda_files = "~/org/**/*",
+          org_default_notes_file = "~/org/refile.org",
+          org_use_property_inheritance = false,
+          org_todo_keywords = { "TODO", "WAITING", "IN_PROGRESS", "|", "DONE", "INVALID" },
+          hyperlinks = {
+            sources = {}
+          }
+        })
+      end,
+    },
   }, -- spec
 })
