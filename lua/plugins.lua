@@ -143,8 +143,7 @@ require("lazy").setup({
         { "<leader>/", "<cmd>FzfLua live_grep<cr>" },
         { "<leader>?", "<cmd>FzfLua blines<cr>" },
         { "<leader>.", "<cmd>FzfLua resume<cr>" },
-        { "<leader>o", "<cmd>FzfLua lsp_document_symbols<cr>" },
-        { "<leader>O", "<cmd>FzfLua lsp_workspace_symbols<cr>" },
+        { "<leader>O", "<cmd>FzfLua lsp_document_symbols<cr>" },
         { "<leader>dd", "<cmd>FzfLua lsp_document_diagnostics<cr>" },
         { "<leader>dD", "<cmd>FzfLua lsp_workspace_diagnostics<cr>" },
         { "<leader>r", "<cmd>FzfLua lsp_references<cr>" },
@@ -472,17 +471,16 @@ require("lazy").setup({
     {
       "nvim-orgmode/orgmode",
       ft = { "org" },
-      config = function()
-        require("orgmode").setup({
-          org_agenda_files = "~/org/**/*",
-          org_default_notes_file = "~/org/refile.org",
-          org_use_property_inheritance = false,
-          org_todo_keywords = { "TODO", "WAITING", "IN_PROGRESS", "|", "DONE", "INVALID" },
-          hyperlinks = {
-            sources = {}
-          }
-        })
-      end,
+      cmd = { "Org" },
+      keys = {
+        { "<leader>oc", "<cmd>Org capture<cr>" },
+        { "<leader>oa", "<cmd>Org agenda<cr>" },
+      },
+      opts = {
+        org_agenda_files = "~/org/**/*",
+        org_default_notes_file = "~/org/refile.org",
+        org_todo_keywords = { "TODO", "WAITING", "IN_PROGRESS", "|", "DONE", "INVALID" },
+      },
     },
   }, -- spec
 })
