@@ -483,8 +483,9 @@ require("lazy").setup({
       opts = {
         org_agenda_files = "~/org/**/*",
         org_default_notes_file = "~/org/tasks.org",
-        org_todo_keywords = { "TODO", "WAITING", "IN_PROGRESS", "|", "DONE", "INVALID" },
+        org_todo_keywords = { "TODO", "STARTED", "|", "DONE" },
         org_adapt_indentation = false,
+        org_deadline_warning_days = 3,
         org_capture_templates = {
           n = {
             description = "Note",
