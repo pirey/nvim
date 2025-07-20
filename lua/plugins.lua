@@ -484,6 +484,7 @@ require("lazy").setup({
         org_agenda_files = "~/org/**/*",
         org_default_notes_file = "~/org/refile.org",
         org_todo_keywords = { "TODO", "WAITING", "IN_PROGRESS", "|", "DONE", "INVALID" },
+        org_adapt_indentation = false,
         win_split_mode = "tabnew",
       },
     },
