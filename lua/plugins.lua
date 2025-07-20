@@ -406,6 +406,7 @@ require("lazy").setup({
         cmdline = { enabled = false },
         sources = {
           per_filetype = {
+            org = { "omni", "path", "snippets", "buffer" },
             sql = { "dadbod", "snippets", "buffer" },
           },
           providers = {
