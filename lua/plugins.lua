@@ -406,11 +406,12 @@ require("lazy").setup({
         cmdline = { enabled = false },
         sources = {
           per_filetype = {
-            org = { "omni", "path", "snippets", "buffer" },
+            org = { "orgmode" },
             sql = { "dadbod", "snippets", "buffer" },
           },
           providers = {
             dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+            orgmode = { name = "Orgmode", module = "orgmode.org.autocompletion.blink", fallbacks = { "buffer" } },
           },
         },
       },
@@ -483,7 +484,7 @@ require("lazy").setup({
         org_agenda_files = "~/org/**/*",
         org_default_notes_file = "~/org/refile.org",
         org_todo_keywords = { "TODO", "WAITING", "IN_PROGRESS", "|", "DONE", "INVALID" },
-        win_split_mode = "tabnew"
+        win_split_mode = "tabnew",
       },
     },
   }, -- spec
