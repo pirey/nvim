@@ -80,6 +80,15 @@ require("lazy").setup({
         default_args = {
           DiffviewFileHistory = { "--max-count=25" },
         },
+        keymaps = {
+          file_panel = {
+            {
+              "n", "cc",
+              "<Cmd>Git commit <bar> wincmd K<CR>",
+              { desc = "Commit staged changes" },
+            },
+          },
+        }
       },
     },
     {
