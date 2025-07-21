@@ -218,6 +218,10 @@ require("lazy").setup({
     { "folke/lazydev.nvim", ft = "lua", opts = {} },
     { "folke/tokyonight.nvim", lazy = true, opts = { style = "night" } },
     { "navarasu/onedark.nvim", lazy = true, opts = {} },
+    { "miikanissi/modus-themes.nvim", lazy = true, opts = {
+      style = "dark",
+      variant = "tinted",
+    } },
     {
       "projekt0n/github-nvim-theme",
       name = "github-theme",
