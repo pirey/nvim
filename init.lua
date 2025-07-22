@@ -7,6 +7,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.gdefault = true
 vim.opt.switchbuf = { "uselast", "useopen", "usetab" }
+vim.opt.tabclose = "left"
 
 -- fancy
 vim.opt.foldmethod = "indent"
