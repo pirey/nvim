@@ -83,12 +83,13 @@ require("lazy").setup({
         keymaps = {
           file_panel = {
             {
-              "n", "cc",
+              "n",
+              "cc",
               "<Cmd>Git commit <bar> wincmd K<CR>",
               { desc = "Commit staged changes" },
             },
           },
-        }
+        },
       },
     },
     {
@@ -483,6 +484,27 @@ require("lazy").setup({
         end
 
         require("conform").setup(opts)
+      end,
+    },
+    {
+      "mfussenegger/nvim-lint",
+      keys = {
+        {
+          "<leader>L",
+          function()
+            require("lint").try_lint()
+          end,
+        },
+      },
+      config = function()
+        local lint = require("lint")
+        lint.linters_by_ft = vim.tbl_extend("force", lint.linters_by_ft, {
+          typescriptreact = { "eslint" },
+          typescript = { "eslint" },
+          javascript = { "eslint" },
+          javascriptreact = { "eslint" },
+          php = { "phpcs" },
+        })
       end,
     },
     {
