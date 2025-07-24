@@ -185,6 +185,15 @@ require("lazy").setup({
           cwd_only = true,
         },
       },
+      config = function(_, opts)
+        require("fzf-lua").setup(opts)
+        require("fzf-lua").register_ui_select({
+          winopts = {
+            split = "belowright new",
+            fullscreen = false,
+          },
+        })
+      end,
     },
     {
       "lewis6991/gitsigns.nvim",
