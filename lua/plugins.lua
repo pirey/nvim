@@ -160,7 +160,16 @@ require("lazy").setup({
         { "<leader>dD", "<cmd>FzfLua lsp_workspace_diagnostics<cr>" },
         { "<leader>r", "<cmd>FzfLua lsp_references<cr>" },
         { "<leader>R", "<cmd>FzfLua oldfiles<cr>" },
-        { "<leader>t", "<cmd>FzfLua tabs show_unlisted=true<cr>" },
+        { "<leader>T", "<cmd>FzfLua tabs show_unlisted=true<cr>" },
+        {
+          "<leader>D",
+          function()
+            local fzf = require("fzf-lua")
+            fzf.fzf_exec("fd --type d", {
+              actions = fzf.defaults.actions.files,
+            })
+          end,
+        },
       },
       opts = {
         winopts = {
