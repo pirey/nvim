@@ -27,9 +27,7 @@ vim.keymap.set("n", "<leader><tab>d", "<cmd>tabclose<cr>", { silent = true, desc
 vim.keymap.set("n", "<leader><tab>o", "<cmd>tabonly<cr>", { silent = true, desc = "Close other tabs" })
 vim.keymap.set("n", "<leader><tab>l", "<cmd>tabs<cr>", { silent = true, desc = "List tabs" })
 vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnew<cr>", { silent = true, desc = "New tab" })
-vim.keymap.set("n", "<leader>tj", "<cmd>bot term<cr>", { silent = true })
-vim.keymap.set("n", "<leader>tl", "<cmd>belowright vert term<cr>", { silent = true })
-vim.keymap.set("n", "<leader>tt", "<cmd>tab term<cr>", { silent = true })
+vim.keymap.set("n", "<leader><tab>t", "<cmd>tab term<cr>", { silent = true })
 
 vim.cmd("autocmd TermOpen * startinsert")
 

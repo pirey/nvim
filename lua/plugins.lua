@@ -142,8 +142,8 @@ require("lazy").setup({
         vim.lsp.enable("clangd")
         vim.lsp.enable("tailwindcss")
 
-        vim.keymap.set("n", "<leader>dl", vim.diagnostic.setloclist, { desc = "Open local diagnostics" })
-        vim.keymap.set("n", "<leader>dq", vim.diagnostic.setqflist, { desc = "Open global quickfix diagnostics" })
+        vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open local diagnostics" })
+        vim.keymap.set("n", "<leader>Q", vim.diagnostic.setqflist, { desc = "Open global quickfix diagnostics" })
       end,
     },
     {
@@ -155,14 +155,14 @@ require("lazy").setup({
         { "<leader>/", "<cmd>FzfLua live_grep<cr>" },
         { "<leader>?", "<cmd>FzfLua blines<cr>" },
         { "<leader>.", "<cmd>FzfLua resume<cr>" },
-        { "<leader>O", "<cmd>FzfLua lsp_document_symbols<cr>" },
-        { "<leader>dd", "<cmd>FzfLua lsp_document_diagnostics<cr>" },
-        { "<leader>dD", "<cmd>FzfLua lsp_workspace_diagnostics<cr>" },
+        { "<leader>s", "<cmd>FzfLua lsp_document_symbols<cr>" },
+        { "<leader>e", "<cmd>FzfLua lsp_document_diagnostics<cr>" },
+        { "<leader>E", "<cmd>FzfLua lsp_workspace_diagnostics<cr>" },
         { "<leader>r", "<cmd>FzfLua lsp_references<cr>" },
         { "<leader>R", "<cmd>FzfLua oldfiles<cr>" },
-        { "<leader>T", "<cmd>FzfLua tabs show_unlisted=true<cr>" },
+        { "<leader>t", "<cmd>FzfLua tabs show_unlisted=true<cr>" },
         {
-          "<leader>D",
+          "<leader>d",
           function()
             local fzf = require("fzf-lua")
             fzf.fzf_exec("fd --type d", {
@@ -222,7 +222,7 @@ require("lazy").setup({
     {
       "MagicDuck/grug-far.nvim",
       cmd = "GrugFar",
-      keys = { { "<leader>sr", "<cmd>GrugFar<cr>" } },
+      keys = { { "<leader>S", "<cmd>GrugFar<cr>" } },
       opts = {
         icons = { enabled = false },
         transient = true,
@@ -446,7 +446,7 @@ require("lazy").setup({
         { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
       },
       keys = {
-        { "<leader>db", "<cmd>tab DBUI<cr>" },
+        { "<leader>D", "<cmd>tab DBUI<cr>" },
       },
       cmd = { "DBUI" },
       init = function()
