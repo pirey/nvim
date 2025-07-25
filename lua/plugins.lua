@@ -159,7 +159,7 @@ require("lazy").setup({
         { "<leader>e", "<cmd>FzfLua lsp_document_diagnostics<cr>" },
         { "<leader>E", "<cmd>FzfLua lsp_workspace_diagnostics<cr>" },
         { "<leader>r", "<cmd>FzfLua lsp_references<cr>" },
-        { "<leader>R", "<cmd>FzfLua oldfiles<cr>" },
+        { "<leader>'", "<cmd>FzfLua oldfiles<cr>" },
         { "<leader>t", "<cmd>FzfLua tabs show_unlisted=true<cr>" },
         {
           "<leader>d",
@@ -172,14 +172,7 @@ require("lazy").setup({
         },
       },
       opts = {
-        winopts = {
-          border = "solid",
-          fullscreen = true,
-          preview = {
-            border = "single",
-          },
-        },
-        colorschemes = { winopts = { fullscreen = false } },
+        winopts = { split = "belowright new | wincmd J" },
         oldfiles = {
           include_current_session = true,
           cwd_only = true,
@@ -187,12 +180,7 @@ require("lazy").setup({
       },
       config = function(_, opts)
         require("fzf-lua").setup(opts)
-        require("fzf-lua").register_ui_select({
-          winopts = {
-            split = "belowright new",
-            fullscreen = false,
-          },
-        })
+        require("fzf-lua").register_ui_select()
       end,
     },
     {
@@ -490,6 +478,7 @@ require("lazy").setup({
       },
       config = function(_, opts)
         local prettier_ft = {
+          "json",
           "javascript",
           "javascriptreact",
           "typescript",
