@@ -1,0 +1,14 @@
+{
+  "children prop": {
+    "prefix": "children",
+    "body": [
+      "{ children }: { children: ReactNode }"
+    ]
+  },
+  "className prop": {
+    "prefix": "className",
+    "body": [
+      "{ className }: { className?: string }"
+    ]
+  }
+}
