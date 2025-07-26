@@ -139,7 +139,7 @@ require("lazy").setup({
         vim.lsp.enable("lua_ls")
         vim.lsp.enable("phpactor")
         vim.lsp.enable("clangd")
-        -- vim.lsp.enable("tailwindcss")
+        vim.lsp.enable("tailwindcss")
         vim.lsp.config("vtsls",  {
           settings = {
             typescript = {
