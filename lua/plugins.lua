@@ -136,11 +136,7 @@ require("lazy").setup({
     {
       "neovim/nvim-lspconfig",
       config = function()
-        vim.lsp.enable("lua_ls")
-        vim.lsp.enable("phpactor")
-        vim.lsp.enable("clangd")
-        vim.lsp.enable("tailwindcss")
-        vim.lsp.config("vtsls",  {
+        vim.lsp.config("vtsls", {
           settings = {
             typescript = {
               preferences = {
@@ -149,7 +145,14 @@ require("lazy").setup({
             },
           },
         })
-        vim.lsp.enable("vtsls")
+
+        vim.lsp.enable({
+          "lua_ls",
+          "phpactor",
+          "clangd",
+          "tailwindcss",
+          "vtsls",
+        })
 
         vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open local diagnostics" })
         vim.keymap.set("n", "<leader>Q", vim.diagnostic.setqflist, { desc = "Open global quickfix diagnostics" })
