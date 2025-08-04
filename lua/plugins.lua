@@ -136,6 +136,15 @@ require("lazy").setup({
     {
       "neovim/nvim-lspconfig",
       config = function()
+        vim.lsp.config("lua_ls", {
+          settings = {
+            Lua = {
+              workspace = {
+                library = vim.api.nvim_get_runtime_file("", true),
+              },
+            },
+          },
+        })
         vim.lsp.config("vtsls", {
           settings = {
             typescript = {
@@ -171,7 +180,7 @@ require("lazy").setup({
         { "<leader>e", "<cmd>FzfLua lsp_document_diagnostics<cr>" },
         { "<leader>E", "<cmd>FzfLua lsp_workspace_diagnostics<cr>" },
         { "<leader>r", "<cmd>FzfLua lsp_references<cr>" },
-        { "<leader>'", "<cmd>FzfLua oldfiles<cr>" },
+        { "<leader>O", "<cmd>FzfLua oldfiles<cr>" },
         { "<leader>t", "<cmd>FzfLua tabs show_unlisted=true<cr>" },
         {
           "<leader>d",
@@ -243,7 +252,6 @@ require("lazy").setup({
         },
       },
     },
-    { "folke/lazydev.nvim", ft = "lua", opts = {} },
     { "folke/tokyonight.nvim", lazy = true, opts = { style = "night" } },
     { "navarasu/onedark.nvim", lazy = true, opts = {} },
     { "miikanissi/modus-themes.nvim", lazy = true, opts = {
