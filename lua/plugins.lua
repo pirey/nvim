@@ -167,8 +167,66 @@ require("lazy").setup({
         vim.keymap.set("n", "<leader>Q", vim.diagnostic.setqflist, { desc = "Open global quickfix diagnostics" })
       end,
     },
+        {
+      "echasnovski/mini.pick",
+      version = "*",
+      cmd = { "Pick" },
+      keys = {
+        { "<leader>f", "<cmd>Pick files<cr>" },
+        { "<leader>h", "<cmd>Pick help<cr>" },
+        { "<leader>b", "<cmd>Pick buffers<cr>" },
+        { "<leader>/", "<cmd>Pick grep_live<cr>" },
+        -- { "<leader>?", "<cmd>Pick blines<cr>" },
+        -- { "<leader>.", "<cmd>Pick resume<cr>" },
+        -- { "<leader>s", "<cmd>Pick lsp_document_symbols<cr>" },
+        { "<leader>e", vim.diagnostic.setloclist },
+        { "<leader>E", vim.diagnostic.setqflist },
+        -- { "<leader>r", "<cmd>Pick lsp_references<cr>" },
+        -- TODO: oldfiles source
+        { "<leader>'", "<cmd>Pick oldfiles<cr>" },
+        {
+          "<leader>t",
+          function()
+            require("mini.pick").start({
+              source = {
+                -- TODO: tabs sources
+                items = vim.cmd.tabs,
+              },
+            })
+          end,
+        },
+        {
+          "<leader>d",
+          function()
+            require("mini.pick").start({
+              source = {
+                items = vim.fn.systemlist("fd --type d"),
+              },
+            })
+          end,
+        },
+      },
+      config = function()
+        local pick = require("mini.pick")
+        pick.setup({
+          source = { show = pick.default_show },
+          -- window = {
+          --   config = {
+          --     relative = "cursor",
+          --     anchor = "NW",
+          --     row = 0,
+          --     col = 0,
+          --     width = 40,
+          --     height = 20,
+          --   },
+          -- },
+        })
+        vim.ui.select = pick.ui_select
+      end,
+    },
     {
       "ibhagwan/fzf-lua",
+      enabled = false,
       cmd = { "FzfLua" },
       keys = {
         { "<leader>f", "<cmd>FzfLua files<cr>" },
