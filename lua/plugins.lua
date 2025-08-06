@@ -254,6 +254,7 @@ require("lazy").setup({
     },
     { "folke/tokyonight.nvim", lazy = true, opts = { style = "night" } },
     { "navarasu/onedark.nvim", lazy = true, opts = {} },
+    { "vague2k/vague.nvim", lazy = true },
     { "miikanissi/modus-themes.nvim", lazy = true, opts = {
       style = "dark",
       variant = "tinted",
@@ -274,7 +275,7 @@ require("lazy").setup({
       end,
     },
     {
-      "nordtheme/vim",
+      "nordtheme/vim", -- like iceberg, but lower contrast
       lazy = true,
       init = function()
         local custom_highlight = vim.api.nvim_create_augroup("CustomNord", { clear = true })
@@ -291,7 +292,7 @@ require("lazy").setup({
           end,
         })
       end,
-    }, -- like iceberg, but lower contrast
+    },
     {
       "cocopon/iceberg.vim", -- like nord, but higher contrast
       init = function()
