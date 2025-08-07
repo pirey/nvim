@@ -31,6 +31,7 @@ require("lazy").setup({
       opts_extend = { "ensure_installed" },
       opts = {
         ensure_installed = {
+          "mmdc",
           "stylua",
           "clangd",
           "lua-language-server",
@@ -123,6 +124,7 @@ require("lazy").setup({
         highlight = { enable = true },
         indent = { enable = true },
         ensure_installed = {
+          "mermaid",
           "javascript",
           "typescript",
           "tsx",
@@ -456,6 +458,10 @@ require("lazy").setup({
           },
         },
       },
+    },
+    {
+      "terrastruct/d2-vim",
+      ft = "d2",
     },
     {
       "kristijanhusak/vim-dadbod-ui",
