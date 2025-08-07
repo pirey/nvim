@@ -175,7 +175,13 @@ require("lazy").setup({
       -- or if you are using nixos
       -- build = "nix run .#release",
       opts = {
-        -- pass here all the options
+        keymaps = {
+          close = { "<esc>", "<c-c>" },
+          move_up = { "<c-p>", "<c-k>" },
+          move_down = { "<c-n>", "<c-j>" },
+          preview_scroll_up = "<c-b>",
+          preview_scroll_down = "<c-f>",
+        },
       },
       keys = {
         {
@@ -272,7 +278,7 @@ require("lazy").setup({
         },
       },
     },
-    { "folke/tokyonight.nvim", lazy = true, opts = { style = "night" } },
+    { "folke/tokyonight.nvim", lazy = true, optsjkljkl = { style = "night" } },
     { "navarasu/onedark.nvim", lazy = true, opts = {} },
     { "vague2k/vague.nvim", lazy = true },
     { "miikanissi/modus-themes.nvim", lazy = true, opts = { style = "dark", variant = "tinted" } },
