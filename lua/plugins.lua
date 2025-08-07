@@ -257,10 +257,7 @@ require("lazy").setup({
     { "folke/tokyonight.nvim", lazy = true, opts = { style = "night" } },
     { "navarasu/onedark.nvim", lazy = true, opts = {} },
     { "vague2k/vague.nvim", lazy = true },
-    { "miikanissi/modus-themes.nvim", lazy = true, opts = {
-      style = "dark",
-      variant = "tinted",
-    } },
+    { "miikanissi/modus-themes.nvim", lazy = true, opts = { style = "dark", variant = "tinted" } },
     {
       "projekt0n/github-nvim-theme",
       name = "github-theme",
@@ -567,3 +564,5 @@ require("lazy").setup({
     },
   }, -- spec
 })
+
+-- vim: foldlevel=2 foldopen-=search
