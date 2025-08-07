@@ -1,3 +1,4 @@
+-- I'll use this until uncle tpope add async support in vim-fugitive
 vim.api.nvim_create_user_command("GitPushAsync", function()
   vim.notify("Pushing to git...", vim.log.levels.INFO)
 
@@ -40,3 +41,5 @@ vim.api.nvim_create_user_command("GitPushAsync", function()
 end, {
   desc = "Run git push asynchronously",
 })
+
+vim.keymap.set("n", "<leader>gp", "<cmd>GitPushAsync<cr>", { desc = "Gith push async" })
