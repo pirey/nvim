@@ -107,7 +107,7 @@ require("lazy").setup({
       },
       keys = {
         { "-", "<cmd>Oil<cr>" },
-        { "=-", "<cmd>Oil .<cr>" },
+        { "<leader>-", "<cmd>Oil .<cr>" },
       },
     },
     {
@@ -185,7 +185,7 @@ require("lazy").setup({
       },
       keys = {
         {
-          "<leader>f", -- try it if you didn't it is a banger keybinding for a picker
+          "ff", -- try it if you didn't it is a banger keybinding for a picker
           function()
             require("fff").find_files() -- or find_in_git_root() if you only want git files
           end,
@@ -197,7 +197,7 @@ require("lazy").setup({
       "ibhagwan/fzf-lua",
       cmd = { "FzfLua" },
       keys = {
-        { "<leader><leader>f", "<cmd>FzfLua files<cr>" },
+        { "<leader>f", "<cmd>FzfLua files<cr>" },
         { "<leader>b", "<cmd>FzfLua buffers<cr>" },
         { "<leader>/", "<cmd>FzfLua live_grep<cr>" },
         { "<leader>?", "<cmd>FzfLua blines<cr>" },
