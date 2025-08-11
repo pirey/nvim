@@ -147,6 +147,11 @@ require("lazy").setup({
             },
           },
         })
+        vim.lsp.config("phpactor", {
+          init_options = {
+            ["language_server.diagnostic_ignore_codes"] = {"worse.docblock_missing_return_type"}
+          }
+        })
         vim.lsp.config("vtsls", {
           settings = {
             typescript = {
