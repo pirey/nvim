@@ -8,7 +8,7 @@
   "hasMany relation": {
     "prefix": "hasMany",
     "body": [
-      "public function ${1:methodName}()",
+      "public function ${1:methodName}(): HasMany",
       "{",
       "    return \\$this->hasMany(${2:model}::class);",
       "}"
@@ -17,7 +17,7 @@
   "belongsTo relation": {
     "prefix": "belongsTo",
     "body": [
-      "public function ${1:methodName}()",
+      "public function ${1:methodName}(): BelongsTo",
       "{",
       "    return \\$this->belongsTo(${2:model}::class);",
       "}"

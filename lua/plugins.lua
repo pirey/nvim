@@ -187,6 +187,12 @@ require("lazy").setup({
           preview_scroll_up = "<c-b>",
           preview_scroll_down = "<c-f>",
         },
+        layout = {
+          prompt_position = "top",
+          width = 1,
+          height = 0.5,
+        },
+        icons = { enabled = false },
       },
       keys = {
         {
