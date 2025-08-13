@@ -582,7 +582,7 @@ require("lazy").setup({
         { "<leader>oa", "<cmd>Org agenda<cr>" },
       },
       opts = {
-        win_split_mode = "e",
+        win_split_mode = "vertical",
         org_agenda_files = "~/org/**/*",
         org_default_notes_file = "~/org/tasks.org",
         org_todo_keywords = { "TODO", "STARTED", "|", "DONE" },
