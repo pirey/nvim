@@ -454,42 +454,42 @@ require("lazy").setup({
       "saghen/blink.cmp",
       dependencies = { "rafamadriz/friendly-snippets" },
       version = "1.*",
-      ---@module "blink.cmp"
-      ---@type blink.cmp.Config
-      opts = {
-        signature = {
-          enabled = true,
-          window = { show_documentation = true },
-        },
-        completion = {
-          accept = {
-            auto_brackets = {
-              enabled = false,
+      config = function()
+        require("blink.cmp").setup({
+          signature = {
+            enabled = true,
+            window = { show_documentation = true },
+          },
+          completion = {
+            accept = {
+              auto_brackets = {
+                enabled = false,
+              },
+            },
+            menu = {
+              draw = {
+                columns = { { "label", "label_description", gap = 1 }, { "kind" } },
+              },
+            },
+            documentation = { auto_show = true },
+          },
+          keymap = {
+            -- same as ctrl+/
+            ["<C-_>"] = { "show" },
+          },
+          cmdline = { enabled = false },
+          sources = {
+            per_filetype = {
+              org = { "orgmode", "snippets" },
+              sql = { "dadbod", "snippets" },
+            },
+            providers = {
+              dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+              orgmode = { name = "Orgmode", module = "orgmode.org.autocompletion.blink", fallbacks = { "buffer" } },
             },
           },
-          menu = {
-            draw = {
-              columns = { { "label", "label_description", gap = 1 }, { "kind" } },
-            },
-          },
-          documentation = { auto_show = true },
-        },
-        keymap = {
-          -- same as ctrl+/
-          ["<C-_>"] = { "show" },
-        },
-        cmdline = { enabled = false },
-        sources = {
-          per_filetype = {
-            org = { "orgmode", "snippets" },
-            sql = { "dadbod", "snippets" },
-          },
-          providers = {
-            dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
-            orgmode = { name = "Orgmode", module = "orgmode.org.autocompletion.blink", fallbacks = { "buffer" } },
-          },
-        },
-      },
+        })
+      end,
     },
     {
       "terrastruct/d2-vim",
@@ -600,19 +600,19 @@ require("lazy").setup({
             description = "Projects Agenda",
             types = {
               {
-                type = 'agenda',
-                org_agenda_overriding_header = 'Projects Agenda',
-                org_agenda_files = {'~/org/projects/**/*'}, -- Can define files outside of the default org_agenda_files
+                type = "agenda",
+                org_agenda_overriding_header = "Projects Agenda",
+                org_agenda_files = { "~/org/projects/**/*" }, -- Can define files outside of the default org_agenda_files
               },
               {
-                type = 'tags_todo',
-                org_agenda_overriding_header = 'Project TODO',
-                org_agenda_files = {'~/org/projects/**/*'},
+                type = "tags_todo",
+                org_agenda_overriding_header = "Project TODO",
+                org_agenda_files = { "~/org/projects/**/*" },
                 -- org_agenda_tag_filter_preset = 'NOTES-REFACTOR' -- Show only headlines with NOTES tag that does not have a REFACTOR tag. Same value providad as when pressing `/` in the Agenda view
               },
-            }
-          }
-        }
+            },
+          },
+        },
       },
     },
   }, -- spec
