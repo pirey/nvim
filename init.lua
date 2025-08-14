@@ -21,7 +21,7 @@ vim.opt.tabline = "%=Tabs: %{tabpagenr()}/%{tabpagenr('$')}%="
 vim.opt.fillchars:append { diff = " " }
 
 -- ignore .git by default so we doesn't need to specify it when using --hidden
-vim.opt.grepprg = "rg --vimgrep --smart-case --glob '!.git'"
+vim.opt.grepprg = "rg --hidden --vimgrep --smart-case --glob '!.git'"
 
 vim.keymap.set({ "n", "v" }, ";", ":", { desc = "Swap ; with :" })
 vim.keymap.set({ "n", "v" }, ":", ";", { desc = "Swap : with ;" })
