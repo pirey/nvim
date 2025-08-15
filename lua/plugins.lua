@@ -582,6 +582,11 @@ require("lazy").setup({
         { "<leader>oa", "<cmd>Org agenda<cr>" },
       },
       opts = {
+        mappings = {
+          org = {
+            org_toggle_checkbox = "<leader>o<tab>" -- <c-space> is reserved for tmux prefix
+          }
+        },
         win_split_mode = "vertical",
         org_agenda_files = "~/org/**/*",
         org_default_notes_file = "~/org/tasks.org",
