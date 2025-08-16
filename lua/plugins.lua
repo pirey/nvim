@@ -290,7 +290,13 @@ require("lazy").setup({
       },
     },
     { "folke/tokyonight.nvim", lazy = true, optsjkljkl = { style = "night" } },
-    { "navarasu/onedark.nvim", lazy = true, opts = {} },
+    {
+      "navarasu/onedark.nvim",
+      opts = {},
+      init = function()
+        vim.cmd.colorscheme("onedark")
+      end
+    },
     { "vague2k/vague.nvim", lazy = true },
     { "miikanissi/modus-themes.nvim", lazy = true, opts = { style = "dark", variant = "tinted" } },
     {
@@ -446,8 +452,8 @@ require("lazy").setup({
           end,
         })
 
-        vim.opt.background = "dark"
-        vim.cmd.colorscheme("iceberg")
+        -- vim.opt.background = "dark"
+        -- vim.cmd.colorscheme("iceberg")
       end,
     },
     {
