@@ -180,6 +180,14 @@ require("lazy").setup({
       -- or if you are using nixos
       -- build = "nix run .#release",
       opts = {
+        layout = {
+          prompt_position = "top",
+          width = 0.5,
+          height = 0.5,
+        },
+        preview = {
+          enabled = false,
+        },
         keymaps = {
           close = { "<esc>", "<c-c>" },
           move_up = { "<c-p>", "<c-k>" },
@@ -187,16 +195,11 @@ require("lazy").setup({
           preview_scroll_up = "<c-b>",
           preview_scroll_down = "<c-f>",
         },
-        layout = {
-          prompt_position = "top",
-          width = 1,
-          height = 0.5,
-        },
         icons = { enabled = false },
       },
       keys = {
         {
-          "<leader><leader>f",
+          "<leader>f",
           function()
             require("fff").find_files() -- or find_in_git_root() if you only want git files
           end,
@@ -208,7 +211,7 @@ require("lazy").setup({
       "ibhagwan/fzf-lua",
       cmd = { "FzfLua" },
       keys = {
-        { "<leader>f", "<cmd>FzfLua files<cr>" },
+        { "<leader><leader>f", "<cmd>FzfLua files<cr>" },
         { "<leader>b", "<cmd>FzfLua buffers<cr>" },
         { "<leader>/", "<cmd>FzfLua live_grep<cr>" },
         { "<leader>?", "<cmd>FzfLua blines<cr>" },
