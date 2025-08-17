@@ -323,6 +323,7 @@ require("lazy").setup({
             vim.api.nvim_set_hl(0, "@tag.delimiter", colors.Fg)
             vim.api.nvim_set_hl(0, "@type", colors.Cyan)
             vim.api.nvim_set_hl(0, "@variable.parameter", colors.Fg)
+            vim.api.nvim_set_hl(0, "@lsp.type.parameter", colors.Fg)
           end,
         })
 
