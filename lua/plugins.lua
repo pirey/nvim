@@ -294,8 +294,40 @@ require("lazy").setup({
       "navarasu/onedark.nvim",
       opts = {},
       init = function()
+        local custom_highlight = vim.api.nvim_create_augroup("CustomOnedark", { clear = true })
+        vim.api.nvim_create_autocmd("ColorScheme", {
+          group = custom_highlight,
+          pattern = "onedark",
+          callback = function()
+            local c = require("onedark.colors")
+            local colors = {
+              Fg = { fg = c.fg },
+              LightGrey = { fg = c.light_grey },
+              Grey = { fg = c.grey },
+              Red = { fg = c.red },
+              Cyan = { fg = c.cyan },
+              Yellow = { fg = c.yellow },
+              Orange = { fg = c.orange },
+              Green = { fg = c.green },
+              Blue = { fg = c.blue },
+              Purple = { fg = c.purple },
+            }
+
+            -- Italic jsx/html tag attribute @tag.attribute.tsx htmlArg
+            vim.api.nvim_set_hl(0, "Special", colors.Cyan)
+            vim.api.nvim_set_hl(0, "Constant", { fg = c.yellow, italic = true })
+            vim.api.nvim_set_hl(0, "@constructor", colors.Fg)
+            vim.api.nvim_set_hl(0, "@module", colors.Cyan)
+            vim.api.nvim_set_hl(0, "@tag", colors.Cyan)
+            vim.api.nvim_set_hl(0, "@tag.attribute", { fg = c.blue, italic = true })
+            vim.api.nvim_set_hl(0, "@tag.delimiter", colors.Fg)
+            vim.api.nvim_set_hl(0, "@type", colors.Cyan)
+            vim.api.nvim_set_hl(0, "@variable.parameter", colors.Fg)
+          end,
+        })
+
         vim.cmd.colorscheme("onedark")
-      end
+      end,
     },
     { "vague2k/vague.nvim", lazy = true },
     { "miikanissi/modus-themes.nvim", lazy = true, opts = { style = "dark", variant = "tinted" } },
@@ -590,8 +622,8 @@ require("lazy").setup({
       opts = {
         mappings = {
           org = {
-            org_toggle_checkbox = "<leader>o<tab>" -- <c-space> is reserved for tmux prefix
-          }
+            org_toggle_checkbox = "<leader>o<tab>", -- <c-space> is reserved for tmux prefix
+          },
         },
         win_split_mode = "vertical",
         org_agenda_files = "~/org/**/*",

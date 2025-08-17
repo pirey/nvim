@@ -10,7 +10,7 @@ vim.opt.switchbuf = { "uselast", "useopen", "usetab" }
 vim.opt.tabclose = "left"
 vim.opt.splitright = true
 vim.opt.number = true
-vim.opt.cursorline = true
+vim.opt.scrolloff = 3
 
 -- fancy
 vim.opt.foldmethod = "indent"
