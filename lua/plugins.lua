@@ -18,6 +18,7 @@ require("lazy").setup({
       cmd = { "Git", "G", "Gw" },
       keys = {
         { "<leader>gg", "<cmd>tab Git<cr>" },
+        { "<leader>wg", "<cmd>vert Git<cr>" },
       },
       init = function()
         vim.cmd([[
@@ -268,7 +269,7 @@ require("lazy").setup({
         },
       },
     },
-    { "folke/tokyonight.nvim", lazy = true, optsjkljkl = { style = "night" } },
+    { "folke/tokyonight.nvim", lazy = true, opts = { style = "night" } },
     {
       "navarasu/onedark.nvim",
       opts = {},
