@@ -178,7 +178,9 @@ require("lazy").setup({
       "echasnovski/mini.pick",
       version = "*",
       dependencies = { "echasnovski/mini.extra", version = "*" },
+      cmd = { "Pick" },
       keys = {
+        { "<leader><leader>f", "<cmd>Pick files tool='git'<cr>" },
         { "<leader>f", "<cmd>Pick files<cr>" },
         { "<leader>b", "<cmd>Pick buffers<cr>" },
         { "<leader>/", "<cmd>Pick grep_live<cr>" },
