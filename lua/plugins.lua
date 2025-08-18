@@ -301,6 +301,7 @@ require("lazy").setup({
           end,
         })
 
+        vim.opt.winborder = "solid"
         vim.cmd.colorscheme("onedark")
       end,
     },
