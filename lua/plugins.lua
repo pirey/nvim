@@ -172,6 +172,16 @@ require("lazy").setup({
 
         vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open local diagnostics" })
         vim.keymap.set("n", "<leader>Q", vim.diagnostic.setqflist, { desc = "Open global quickfix diagnostics" })
+
+        -- disable semantic highlight
+        vim.api.nvim_create_autocmd("LspAttach", {
+          callback = function(args)
+            local client = vim.lsp.get_client_by_id(args.data.client_id)
+            if client and client.server_capabilities.semanticTokensProvider then
+              client.server_capabilities.semanticTokensProvider = nil
+            end
+          end,
+        })
       end,
     },
     {
@@ -278,7 +288,6 @@ require("lazy").setup({
             vim.api.nvim_set_hl(0, "@tag.delimiter", { fg = c.fg })
             vim.api.nvim_set_hl(0, "@type", { fg = c.cyan })
             vim.api.nvim_set_hl(0, "@variable.parameter", { fg = c.fg })
-            vim.api.nvim_set_hl(0, "@lsp.type.parameter", { fg = c.fg })
           end,
         })
 
