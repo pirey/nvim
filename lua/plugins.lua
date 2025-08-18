@@ -97,18 +97,18 @@ require("lazy").setup({
       "stevearc/oil.nvim",
       -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
       lazy = false,
-      ---@module 'oil'
-      ---@type oil.SetupOpts
-      opts = {
-        view_options = { show_hidden = true },
-        keymaps = {
-          ["<localleader>t"] = { "actions.open_terminal", mode = "n" },
-        },
-      },
       keys = {
         { "-", "<cmd>Oil<cr>" },
         { "<leader>-", "<cmd>Oil .<cr>" },
       },
+      config = function()
+        require("oil").setup({
+          view_options = { show_hidden = true },
+          keymaps = {
+            ["<localleader>t"] = { "actions.open_terminal", mode = "n" },
+          },
+        })
+      end,
     },
     {
       "Wansmer/treesj",
@@ -175,73 +175,36 @@ require("lazy").setup({
       end,
     },
     {
-      "dmtrKovalenko/fff.nvim",
-      build = "cargo build --release",
-      -- or if you are using nixos
-      -- build = "nix run .#release",
-      opts = {
-        layout = {
-          prompt_position = "top",
-          width = 0.5,
-          height = 0.5,
-        },
-        preview = {
-          enabled = false,
-        },
-        keymaps = {
-          close = { "<esc>", "<c-c>" },
-          move_up = { "<c-p>", "<c-k>" },
-          move_down = { "<c-n>", "<c-j>" },
-          preview_scroll_up = "<c-b>",
-          preview_scroll_down = "<c-f>",
-        },
-        icons = { enabled = false },
-      },
+      "echasnovski/mini.pick",
+      version = "*",
+      dependencies = { "echasnovski/mini.extra", version = "*" },
       keys = {
-        {
-          "<leader>f",
-          function()
-            require("fff").find_files() -- or find_in_git_root() if you only want git files
-          end,
-          desc = "Open file picker",
-        },
-      },
-    },
-    {
-      "ibhagwan/fzf-lua",
-      cmd = { "FzfLua" },
-      keys = {
-        { "<leader><leader>f", "<cmd>FzfLua files<cr>" },
-        { "<leader>b", "<cmd>FzfLua buffers<cr>" },
-        { "<leader>/", "<cmd>FzfLua live_grep<cr>" },
-        { "<leader>?", "<cmd>FzfLua blines<cr>" },
-        { "<leader>.", "<cmd>FzfLua resume<cr>" },
-        { "<leader>s", "<cmd>FzfLua lsp_document_symbols<cr>" },
-        { "<leader>e", "<cmd>FzfLua lsp_document_diagnostics<cr>" },
-        { "<leader>E", "<cmd>FzfLua lsp_workspace_diagnostics<cr>" },
-        { "<leader>r", "<cmd>FzfLua lsp_references<cr>" },
-        { "<leader>O", "<cmd>FzfLua oldfiles<cr>" },
-        { "<leader>t", "<cmd>FzfLua tabs show_unlisted=true<cr>" },
+        { "<leader>f", "<cmd>Pick files<cr>" },
+        { "<leader>b", "<cmd>Pick buffers<cr>" },
+        { "<leader>/", "<cmd>Pick grep_live<cr>" },
+        { "<leader>?", "<cmd>Pick buf_lines<cr>" },
+        { "<leader>.", "<cmd>Pick resume<cr>" },
+        { "<leader>e", "<cmd>Pick diagnostic<cr>" },
+        { "<leader>s", "<cmd>Pick lsp scope='document_symbol'<cr>" },
+        { "<leader>r", "<cmd>Pick lsp scope='references'<cr>" },
+        { "<leader>O", "<cmd>Pick oldfiles current_dir=true<cr>" },
         {
           "<leader>d",
           function()
-            local fzf = require("fzf-lua")
-            fzf.fzf_exec("fd --type d", {
-              actions = fzf.defaults.actions.files,
+            require("mini.pick").start({
+              source = {
+                name = "Directories",
+                items = vim.fn.systemlist("fd --type d"),
+              },
             })
           end,
         },
       },
-      opts = {
-        winopts = { split = "belowright new | wincmd J" },
-        oldfiles = {
-          include_current_session = true,
-          cwd_only = true,
-        },
-      },
-      config = function(_, opts)
-        require("fzf-lua").setup(opts)
-        require("fzf-lua").register_ui_select()
+      config = function()
+        local pick = require("mini.pick")
+        pick.setup({ source = { show = pick.default_show } })
+
+        require("mini.extra").setup()
       end,
     },
     {
@@ -303,30 +266,17 @@ require("lazy").setup({
           pattern = "onedark",
           callback = function()
             local c = require("onedark.colors")
-            local colors = {
-              Fg = { fg = c.fg },
-              LightGrey = { fg = c.light_grey },
-              Grey = { fg = c.grey },
-              Red = { fg = c.red },
-              Cyan = { fg = c.cyan },
-              Yellow = { fg = c.yellow },
-              Orange = { fg = c.orange },
-              Green = { fg = c.green },
-              Blue = { fg = c.blue },
-              Purple = { fg = c.purple },
-            }
 
-            -- Italic jsx/html tag attribute @tag.attribute.tsx htmlArg
-            vim.api.nvim_set_hl(0, "Special", colors.Cyan)
+            vim.api.nvim_set_hl(0, "Special", { fg = c.cyan })
             vim.api.nvim_set_hl(0, "Constant", { fg = c.yellow, italic = true })
-            vim.api.nvim_set_hl(0, "@constructor", colors.Fg)
-            vim.api.nvim_set_hl(0, "@module", colors.Cyan)
-            vim.api.nvim_set_hl(0, "@tag", colors.Cyan)
+            vim.api.nvim_set_hl(0, "@constructor", { fg = c.fg })
+            vim.api.nvim_set_hl(0, "@module", { fg = c.cyan })
+            vim.api.nvim_set_hl(0, "@tag", { fg = c.cyan })
             vim.api.nvim_set_hl(0, "@tag.attribute", { fg = c.blue, italic = true })
-            vim.api.nvim_set_hl(0, "@tag.delimiter", colors.Fg)
-            vim.api.nvim_set_hl(0, "@type", colors.Cyan)
-            vim.api.nvim_set_hl(0, "@variable.parameter", colors.Fg)
-            vim.api.nvim_set_hl(0, "@lsp.type.parameter", colors.Fg)
+            vim.api.nvim_set_hl(0, "@tag.delimiter", { fg = c.fg })
+            vim.api.nvim_set_hl(0, "@type", { fg = c.cyan })
+            vim.api.nvim_set_hl(0, "@variable.parameter", { fg = c.fg })
+            vim.api.nvim_set_hl(0, "@lsp.type.parameter", { fg = c.fg })
           end,
         })
 
@@ -665,4 +615,4 @@ require("lazy").setup({
   }, -- spec
 })
 
--- vim: foldlevel=2 foldopen-=search
+-- vim: foldlevel=2
