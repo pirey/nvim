@@ -79,7 +79,7 @@ require("lazy").setup({
       opts = {
         use_icons = false,
         default_args = {
-          DiffviewFileHistory = { "--max-count=25" },
+          DiffviewFileHistory = { "--max-count=100" },
         },
         keymaps = {
           file_panel = {
