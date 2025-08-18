@@ -216,7 +216,13 @@ require("lazy").setup({
       },
       config = function()
         local pick = require("mini.pick")
-        pick.setup({ source = { show = pick.default_show } })
+        pick.setup({
+          source = { show = pick.default_show },
+          mappings = {
+            scroll_left = "<BS>",
+            delete_char = "<c-h>",
+          },
+        })
 
         require("mini.extra").setup()
       end,
