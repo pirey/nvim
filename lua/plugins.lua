@@ -42,6 +42,7 @@ require("lazy").setup({
           "phpactor",
           "phpcs",
           "php-cs-fixer",
+          "blade-formatter",
         },
       },
       config = function(_, opts)
@@ -551,6 +552,7 @@ require("lazy").setup({
         formatters_by_ft = {
           lua = { "stylua" },
           php = { "php_cs_fixer" },
+          blade = { "blade-formatter" },
         },
       },
       config = function(_, opts)
@@ -640,5 +642,3 @@ require("lazy").setup({
     },
   }, -- spec
 })
-
--- vim: foldlevel=2
