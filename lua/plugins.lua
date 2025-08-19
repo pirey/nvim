@@ -219,7 +219,6 @@ require("lazy").setup({
         pick.setup({
           source = { show = pick.default_show },
           mappings = {
-            scroll_left = "<BS>",
             delete_char = "<c-h>",
           },
         })
@@ -288,8 +287,8 @@ require("lazy").setup({
             local c = require("onedark.colors")
 
             vim.api.nvim_set_hl(0, "Special", { fg = c.cyan })
-            vim.api.nvim_set_hl(0, "Constant", { fg = c.orange, italic = true })
-            vim.api.nvim_set_hl(0, "@constant", { fg = c.orange, italic = true })
+            vim.api.nvim_set_hl(0, "Constant", { fg = c.fg, italic = true })
+            vim.api.nvim_set_hl(0, "@constant", { fg = c.fg, italic = true })
             vim.api.nvim_set_hl(0, "@constructor", { fg = c.fg })
             vim.api.nvim_set_hl(0, "@module", { fg = c.cyan })
             vim.api.nvim_set_hl(0, "@tag", { fg = c.cyan })
@@ -302,7 +301,6 @@ require("lazy").setup({
           end,
         })
 
-        vim.opt.winborder = "solid"
         vim.cmd.colorscheme("onedark")
       end,
     },
