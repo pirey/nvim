@@ -130,6 +130,9 @@ require("lazy").setup({
           "typescript",
           "tsx",
           "lua",
+          "html",
+          "blade",
+          "php",
         },
       },
       config = function(_, opts)
