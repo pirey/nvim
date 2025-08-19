@@ -219,6 +219,7 @@ require("lazy").setup({
         pick.setup({
           source = { show = pick.default_show },
           mappings = {
+            scroll_left = "<BS>",
             delete_char = "<c-h>",
           },
         })
@@ -301,7 +302,8 @@ require("lazy").setup({
           end,
         })
 
-        vim.cmd.colorscheme("onedark")
+        -- vim.opt.background = "dark"
+        -- vim.cmd.colorscheme("onedark")
       end,
     },
     { "vague2k/vague.nvim", lazy = true },
@@ -459,8 +461,8 @@ require("lazy").setup({
           end,
         })
 
-        -- vim.opt.background = "dark"
-        -- vim.cmd.colorscheme("iceberg")
+        vim.opt.background = "dark"
+        vim.cmd.colorscheme("iceberg")
       end,
     },
     {
