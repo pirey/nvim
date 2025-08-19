@@ -280,6 +280,7 @@ require("lazy").setup({
       },
     },
     { "folke/tokyonight.nvim", lazy = true, opts = { style = "night" } },
+    { "miikanissi/modus-themes.nvim", lazy = true, opts = { style = "dark", variant = "tinted" } },
     {
       "navarasu/onedark.nvim",
       opts = {},
@@ -290,6 +291,8 @@ require("lazy").setup({
           pattern = "onedark",
           callback = function()
             local c = require("onedark.colors")
+
+            -- reduce red, yellow and orange to make it more blue-ish
 
             vim.api.nvim_set_hl(0, "Special", { fg = c.cyan })
             vim.api.nvim_set_hl(0, "Constant", { fg = c.fg, italic = true })
@@ -306,44 +309,8 @@ require("lazy").setup({
           end,
         })
 
-        -- vim.opt.background = "dark"
-        -- vim.cmd.colorscheme("onedark")
-      end,
-    },
-    { "vague2k/vague.nvim", lazy = true },
-    { "miikanissi/modus-themes.nvim", lazy = true, opts = { style = "dark", variant = "tinted" } },
-    {
-      "projekt0n/github-nvim-theme",
-      name = "github-theme",
-      lazy = true,
-      config = function()
-        require("github-theme").setup({
-          groups = {
-            all = {
-              StatusLine = { link = "TabLine" },
-              StatusLineNC = { link = "TabLineFill" },
-            },
-          },
-        })
-      end,
-    },
-    {
-      "nordtheme/vim", -- like iceberg, but lower contrast
-      lazy = true,
-      init = function()
-        local custom_highlight = vim.api.nvim_create_augroup("CustomNord", { clear = true })
-        vim.api.nvim_create_autocmd("ColorScheme", {
-          group = custom_highlight,
-          pattern = "nord",
-          callback = function()
-            local fg = "#d8dee9"
-            local bg = "#0d121c"
-
-            vim.api.nvim_set_hl(0, "Normal", { fg = fg, bg = bg })
-            vim.api.nvim_set_hl(0, "SignColumn", { bg = bg })
-            vim.api.nvim_set_hl(0, "FoldColumn", { bg = bg })
-          end,
-        })
+        vim.opt.background = "dark"
+        vim.cmd.colorscheme("onedark")
       end,
     },
     {
@@ -465,8 +432,8 @@ require("lazy").setup({
           end,
         })
 
-        vim.opt.background = "dark"
-        vim.cmd.colorscheme("iceberg")
+        -- vim.opt.background = "dark"
+        -- vim.cmd.colorscheme("iceberg")
       end,
     },
     {
