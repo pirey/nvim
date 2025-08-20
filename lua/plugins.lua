@@ -205,6 +205,7 @@ require("lazy").setup({
         { "<leader>s", "<cmd>Pick lsp scope='document_symbol'<cr>" },
         { "<leader>r", "<cmd>Pick lsp scope='references'<cr>" },
         { "<leader>O", "<cmd>Pick oldfiles current_dir=true<cr>" },
+        { "<leader>h", "<cmd>Pick help<cr>" },
         {
           "<leader>f",
           function()
@@ -231,6 +232,12 @@ require("lazy").setup({
           mappings = {
             scroll_left = "<BS>",
             delete_char = "<c-h>",
+          },
+          window = {
+            prompt_prefix = " ",
+            config = {
+              width = math.min(75, vim.o.columns)
+            }
           },
         })
 
@@ -331,6 +338,27 @@ require("lazy").setup({
             vim.api.nvim_set_hl(0, "@variable.parameter", { fg = c.fg })
             vim.api.nvim_set_hl(0, "@type.builtin", { fg = c.blue })
             vim.api.nvim_set_hl(0, "@variable.builtin", { fg = c.blue })
+
+            local float_bg = c.bg
+            local float_fg = c.fg
+            local float_border = c.fg
+
+            -- float
+            vim.api.nvim_set_hl(0, "Pmenu", { bg = float_bg, fg = float_fg })
+            vim.api.nvim_set_hl(0, "NormalFloat", { bg = float_bg, fg = float_fg })
+
+            -- float border
+            vim.api.nvim_set_hl(0, "FloatBorder", { bg = float_bg, fg = float_border })
+            vim.api.nvim_set_hl(0, "BlinkCmpDocSeparator", { bg = float_bg, fg = float_border })
+            vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { bg = float_bg, fg = float_border })
+            vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { bg = float_bg, fg = float_border })
+            vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelpBorder", { bg = float_bg, fg = float_border })
+
+            -- mini.pick
+            vim.api.nvim_set_hl(0, "MiniPickBorder", { bg = float_bg, fg = float_border })
+            vim.api.nvim_set_hl(0, "MiniPickBorderBusy", { bg = float_bg, fg = float_border })
+            vim.api.nvim_set_hl(0, "MiniPickBorderText", { bg = float_bg, fg = float_border })
+            vim.api.nvim_set_hl(0, "MiniPickNormal", { bg = float_bg })
           end,
         })
 
