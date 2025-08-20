@@ -116,7 +116,7 @@ require("lazy").setup({
     },
     {
       "Wansmer/treesj",
-      keys = { { "<leader>j", "<cmd>TSJToggle<cr>" } },
+      keys = { { "<leader>j", "<cmd>TSJToggle<cr>", desc = "Join/split line" } },
       opts = { use_default_keymaps = false },
     },
     {
@@ -177,8 +177,8 @@ require("lazy").setup({
           "vtsls",
         })
 
-        vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open local diagnostics" })
-        vim.keymap.set("n", "<leader>Q", vim.diagnostic.setqflist, { desc = "Open global quickfix diagnostics" })
+        vim.keymap.set("n", "<leader>ql", vim.diagnostic.setloclist, { desc = "Open local diagnostics" })
+        vim.keymap.set("n", "<leader>qq", vim.diagnostic.setqflist, { desc = "Open global quickfix diagnostics" })
 
         -- disable semantic highlight
         vim.api.nvim_create_autocmd("LspAttach", {
@@ -197,7 +197,9 @@ require("lazy").setup({
       dependencies = { "echasnovski/mini.extra", version = "*" },
       cmd = { "Pick" },
       keys = {
-        { "<leader><leader>f", "<cmd>Pick files<cr>" },
+        { "<leader>f", "<cmd>Pick files<cr>" },
+        { "<leader>k", "<cmd>Pick keymaps<cr>" },
+        { "<D-p>", "<cmd>Pick files<cr>" },
         { "<leader>b", "<cmd>Pick buffers<cr>" },
         { "<leader>/", "<cmd>Pick grep_live<cr>" },
         { "<leader>?", "<cmd>Pick buf_lines<cr>" },
@@ -209,7 +211,7 @@ require("lazy").setup({
         { "<leader>'", "<cmd>Pick oldfiles current_dir=true<cr>" },
         { "<leader>h", "<cmd>Pick help<cr>" },
         {
-          "<leader>f",
+          "<leader>a",
           function()
             require("mini.pick").builtin.cli({
               command = { "fd", "--hidden", "--type", "d", "--type", "f", "-E", ".git" },
@@ -421,9 +423,6 @@ require("lazy").setup({
       dependencies = {
         { "tpope/vim-dadbod", lazy = true },
         { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
-      },
-      keys = {
-        { "<leader>D", "<cmd>tab DBUI<cr>" },
       },
       cmd = { "DBUI" },
       init = function()
