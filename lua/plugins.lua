@@ -195,8 +195,7 @@ require("lazy").setup({
       dependencies = { "echasnovski/mini.extra", version = "*" },
       cmd = { "Pick" },
       keys = {
-        { "<leader><leader>f", "<cmd>Pick files tool='git'<cr>" },
-        { "<leader>f", "<cmd>Pick files<cr>" },
+        { "<leader><leader>f", "<cmd>Pick files<cr>" },
         { "<leader>b", "<cmd>Pick buffers<cr>" },
         { "<leader>/", "<cmd>Pick grep_live<cr>" },
         { "<leader>?", "<cmd>Pick buf_lines<cr>" },
@@ -207,15 +206,22 @@ require("lazy").setup({
         { "<leader>r", "<cmd>Pick lsp scope='references'<cr>" },
         { "<leader>O", "<cmd>Pick oldfiles current_dir=true<cr>" },
         {
-          "<leader>d",
+          "<leader>f",
           function()
-            require("mini.pick").start({
-              source = {
-                name = "Directories",
-                items = vim.fn.systemlist("fd --type d"),
-              },
+            require("mini.pick").builtin.cli({
+              command = { "fd", "--hidden", "--type", "d", "--type", "f", "-E", ".git" },
             })
           end,
+          desc = "Find files and dirs",
+        },
+        {
+          "<leader>d",
+          function()
+            require("mini.pick").builtin.cli({
+              command = { "fd", "--hidden", "--type", "d", "-E", ".git" },
+            })
+          end,
+          desc = "Find dirs",
         },
       },
       config = function()
@@ -229,6 +235,24 @@ require("lazy").setup({
         })
 
         require("mini.extra").setup()
+
+        ---@diagnostic disable-next-line: duplicate-set-field
+        vim.ui.select = function(items, opts, on_choice)
+          local cursor_anchor = vim.fn.screenrow() < 0.5 * vim.o.lines and "NW" or "SW"
+          return pick.ui_select(items, opts, on_choice, {
+            options = { content_from_bottom = cursor_anchor == "SW" },
+            window = {
+              config = {
+                relative = "cursor",
+                anchor = cursor_anchor,
+                row = cursor_anchor == "NW" and 1 or 0,
+                col = 0,
+                width = math.min(60, math.floor(0.618 * vim.o.columns)),
+                height = math.min(math.max(#items, 1), math.floor(0.45 * vim.o.columns)),
+              },
+            },
+          })
+        end
       end,
     },
     {
