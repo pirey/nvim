@@ -339,7 +339,6 @@ require("lazy").setup({
             vim.api.nvim_set_hl(0, "@type", { fg = c.cyan })
             vim.api.nvim_set_hl(0, "@variable.parameter", { fg = c.fg })
             vim.api.nvim_set_hl(0, "@type.builtin", { fg = c.blue })
-            vim.api.nvim_set_hl(0, "@variable.builtin", { fg = c.blue })
 
             local float_bg = c.bg
             local float_fg = c.fg
@@ -364,8 +363,8 @@ require("lazy").setup({
           end,
         })
 
-        vim.opt.background = "dark"
-        vim.cmd.colorscheme("onedark")
+        -- vim.opt.background = "dark"
+        -- vim.cmd.colorscheme("onedark")
       end,
     },
     {
