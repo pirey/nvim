@@ -108,6 +108,8 @@ require("lazy").setup({
           view_options = { show_hidden = true },
           keymaps = {
             ["<localleader>t"] = { "actions.open_terminal", mode = "n" },
+            [">"] = { "actions.select", mode = "n" },
+            ["<"] = { "actions.parent", mode = "n" },
           },
         })
       end,
@@ -236,8 +238,8 @@ require("lazy").setup({
           window = {
             prompt_prefix = " ",
             config = {
-              width = math.min(75, vim.o.columns)
-            }
+              width = math.min(75, vim.o.columns),
+            },
           },
         })
 
