@@ -326,6 +326,7 @@ require("lazy").setup({
             vim.api.nvim_set_hl(0, "@tag", { fg = c.cyan })
             vim.api.nvim_set_hl(0, "@tag.attribute", { fg = c.blue, italic = true })
             vim.api.nvim_set_hl(0, "@tag.delimiter", { fg = c.fg })
+            vim.api.nvim_set_hl(0, "Type", { fg = c.cyan })
             vim.api.nvim_set_hl(0, "@type", { fg = c.cyan })
             vim.api.nvim_set_hl(0, "@variable.parameter", { fg = c.fg })
             vim.api.nvim_set_hl(0, "@type.builtin", { fg = c.blue })
