@@ -312,6 +312,183 @@ require("lazy").setup({
         },
       },
     },
+    {
+      "saghen/blink.cmp",
+      dependencies = { "rafamadriz/friendly-snippets" },
+      version = "1.*",
+      config = function()
+        require("blink.cmp").setup({
+          signature = {
+            enabled = true,
+            window = { show_documentation = true },
+          },
+          completion = {
+            accept = {
+              auto_brackets = {
+                enabled = false,
+              },
+            },
+            menu = {
+              draw = {
+                columns = { { "label", "label_description", gap = 1 }, { "kind" } },
+              },
+            },
+            documentation = { auto_show = true },
+          },
+          keymap = {
+            -- same as ctrl+/
+            ["<C-_>"] = { "show" },
+          },
+          cmdline = { enabled = false },
+          sources = {
+            per_filetype = {
+              org = { "orgmode", "snippets" },
+              sql = { "dadbod", "snippets" },
+            },
+            providers = {
+              dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+              orgmode = { name = "Orgmode", module = "orgmode.org.autocompletion.blink", fallbacks = { "buffer" } },
+            },
+          },
+        })
+      end,
+    },
+    {
+      "stevearc/conform.nvim",
+      dependencies = { "mason-org/mason.nvim" },
+      keys = {
+        {
+          "<leader>F",
+          function()
+            require("conform").format({ async = true })
+          end,
+        },
+      },
+      opts = {
+        formatters_by_ft = {
+          lua = { "stylua" },
+          php = { "php_cs_fixer" },
+          blade = { "blade-formatter" },
+        },
+      },
+      config = function(_, opts)
+        local prettier_ft = {
+          "json",
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+          "css",
+        }
+
+        for _, ft in ipairs(prettier_ft) do
+          opts.formatters_by_ft[ft] = { "prettierd", "prettier", stop_after_first = true }
+        end
+
+        require("conform").setup(opts)
+      end,
+    },
+    {
+      "mfussenegger/nvim-lint",
+      keys = {
+        {
+          "<leader>L",
+          function()
+            require("lint").try_lint()
+          end,
+        },
+      },
+      config = function()
+        local lint = require("lint")
+        lint.linters_by_ft = vim.tbl_extend("force", lint.linters_by_ft, {
+          typescriptreact = { "eslint" },
+          typescript = { "eslint" },
+          javascript = { "eslint" },
+          javascriptreact = { "eslint" },
+          php = { "phpcs" },
+        })
+      end,
+    },
+
+    -- ETC
+
+    {
+      "terrastruct/d2-vim",
+      ft = "d2",
+    },
+    {
+      "kristijanhusak/vim-dadbod-ui",
+      dependencies = {
+        { "tpope/vim-dadbod", lazy = true },
+        { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
+      },
+      keys = {
+        { "<leader>D", "<cmd>tab DBUI<cr>" },
+      },
+      cmd = { "DBUI" },
+      init = function()
+        vim.g.db_ui_execute_on_save = 0
+      end,
+    },
+    { "nvzone/showkeys", cmd = "ShowkeysToggle" },
+    {
+      "oysandvik94/curl.nvim",
+      cmd = { "CurlOpen" },
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+      },
+      opts = {},
+    },
+    {
+      "nvim-orgmode/orgmode",
+      ft = { "org" },
+      cmd = { "Org" },
+      keys = {
+        { "<leader>oc", "<cmd>Org capture<cr>" },
+        { "<leader>oa", "<cmd>Org agenda<cr>" },
+      },
+      opts = {
+        mappings = {
+          org = {
+            org_toggle_checkbox = "<leader>o<tab>", -- <c-space> is reserved for tmux prefix
+          },
+        },
+        win_split_mode = "vertical",
+        org_agenda_files = "~/org/**/*",
+        org_default_notes_file = "~/org/tasks.org",
+        org_todo_keywords = { "TODO", "STARTED", "|", "DONE" },
+        org_adapt_indentation = false,
+        org_deadline_warning_days = 3,
+        org_capture_templates = {
+          n = {
+            description = "Note",
+            template = "* %?\n  %u",
+            target = "~/org/dropnotes.org",
+          },
+        },
+        org_agenda_custom_commands = {
+          p = {
+            description = "Projects Agenda",
+            types = {
+              {
+                type = "agenda",
+                org_agenda_overriding_header = "Projects Agenda",
+                org_agenda_files = { "~/org/projects/**/*" }, -- Can define files outside of the default org_agenda_files
+              },
+              {
+                type = "tags_todo",
+                org_agenda_overriding_header = "Project TODO",
+                org_agenda_files = { "~/org/projects/**/*" },
+                -- org_agenda_tag_filter_preset = 'NOTES-REFACTOR' -- Show only headlines with NOTES tag that does not have a REFACTOR tag. Same value providad as when pressing `/` in the Agenda view
+              },
+            },
+          },
+        },
+      },
+    },
+
+    -- THEMES
+
     { "folke/tokyonight.nvim", lazy = true, opts = { style = "night" } },
     { "miikanissi/modus-themes.nvim", lazy = true, opts = { style = "dark", variant = "tinted" } },
     {
@@ -489,177 +666,6 @@ require("lazy").setup({
         -- vim.opt.background = "dark"
         -- vim.cmd.colorscheme("iceberg")
       end,
-    },
-    {
-      "saghen/blink.cmp",
-      dependencies = { "rafamadriz/friendly-snippets" },
-      version = "1.*",
-      config = function()
-        require("blink.cmp").setup({
-          signature = {
-            enabled = true,
-            window = { show_documentation = true },
-          },
-          completion = {
-            accept = {
-              auto_brackets = {
-                enabled = false,
-              },
-            },
-            menu = {
-              draw = {
-                columns = { { "label", "label_description", gap = 1 }, { "kind" } },
-              },
-            },
-            documentation = { auto_show = true },
-          },
-          keymap = {
-            -- same as ctrl+/
-            ["<C-_>"] = { "show" },
-          },
-          cmdline = { enabled = false },
-          sources = {
-            per_filetype = {
-              org = { "orgmode", "snippets" },
-              sql = { "dadbod", "snippets" },
-            },
-            providers = {
-              dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
-              orgmode = { name = "Orgmode", module = "orgmode.org.autocompletion.blink", fallbacks = { "buffer" } },
-            },
-          },
-        })
-      end,
-    },
-    {
-      "terrastruct/d2-vim",
-      ft = "d2",
-    },
-    {
-      "kristijanhusak/vim-dadbod-ui",
-      dependencies = {
-        { "tpope/vim-dadbod", lazy = true },
-        { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
-      },
-      keys = {
-        { "<leader>D", "<cmd>tab DBUI<cr>" },
-      },
-      cmd = { "DBUI" },
-      init = function()
-        vim.g.db_ui_execute_on_save = 0
-      end,
-    },
-    { "nvzone/showkeys", cmd = "ShowkeysToggle" },
-    {
-      "oysandvik94/curl.nvim",
-      cmd = { "CurlOpen" },
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-      },
-      opts = {},
-    },
-    {
-      "stevearc/conform.nvim",
-      dependencies = { "mason-org/mason.nvim" },
-      keys = {
-        {
-          "<leader>F",
-          function()
-            require("conform").format({ async = true })
-          end,
-        },
-      },
-      opts = {
-        formatters_by_ft = {
-          lua = { "stylua" },
-          php = { "php_cs_fixer" },
-          blade = { "blade-formatter" },
-        },
-      },
-      config = function(_, opts)
-        local prettier_ft = {
-          "json",
-          "javascript",
-          "javascriptreact",
-          "typescript",
-          "typescriptreact",
-          "css",
-        }
-
-        for _, ft in ipairs(prettier_ft) do
-          opts.formatters_by_ft[ft] = { "prettierd", "prettier", stop_after_first = true }
-        end
-
-        require("conform").setup(opts)
-      end,
-    },
-    {
-      "mfussenegger/nvim-lint",
-      keys = {
-        {
-          "<leader>L",
-          function()
-            require("lint").try_lint()
-          end,
-        },
-      },
-      config = function()
-        local lint = require("lint")
-        lint.linters_by_ft = vim.tbl_extend("force", lint.linters_by_ft, {
-          typescriptreact = { "eslint" },
-          typescript = { "eslint" },
-          javascript = { "eslint" },
-          javascriptreact = { "eslint" },
-          php = { "phpcs" },
-        })
-      end,
-    },
-    {
-      "nvim-orgmode/orgmode",
-      ft = { "org" },
-      cmd = { "Org" },
-      keys = {
-        { "<leader>oc", "<cmd>Org capture<cr>" },
-        { "<leader>oa", "<cmd>Org agenda<cr>" },
-      },
-      opts = {
-        mappings = {
-          org = {
-            org_toggle_checkbox = "<leader>o<tab>", -- <c-space> is reserved for tmux prefix
-          },
-        },
-        win_split_mode = "vertical",
-        org_agenda_files = "~/org/**/*",
-        org_default_notes_file = "~/org/tasks.org",
-        org_todo_keywords = { "TODO", "STARTED", "|", "DONE" },
-        org_adapt_indentation = false,
-        org_deadline_warning_days = 3,
-        org_capture_templates = {
-          n = {
-            description = "Note",
-            template = "* %?\n  %u",
-            target = "~/org/dropnotes.org",
-          },
-        },
-        org_agenda_custom_commands = {
-          p = {
-            description = "Projects Agenda",
-            types = {
-              {
-                type = "agenda",
-                org_agenda_overriding_header = "Projects Agenda",
-                org_agenda_files = { "~/org/projects/**/*" }, -- Can define files outside of the default org_agenda_files
-              },
-              {
-                type = "tags_todo",
-                org_agenda_overriding_header = "Project TODO",
-                org_agenda_files = { "~/org/projects/**/*" },
-                -- org_agenda_tag_filter_preset = 'NOTES-REFACTOR' -- Show only headlines with NOTES tag that does not have a REFACTOR tag. Same value providad as when pressing `/` in the Agenda view
-              },
-            },
-          },
-        },
-      },
     },
   }, -- spec
 })
