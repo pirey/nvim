@@ -16,7 +16,7 @@ vim.opt.scrolloff = 3
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevelstart = 99
 vim.opt.signcolumn = "yes"
-vim.opt.winborder = "single"
+vim.opt.winborder = "rounded"
 vim.opt.tabline = "%=Tabs: %{tabpagenr()}/%{tabpagenr('$')}%="
 vim.opt.fillchars:append({ diff = " " })
 
