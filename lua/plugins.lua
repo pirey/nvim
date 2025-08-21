@@ -320,15 +320,6 @@ require("lazy").setup({
       dependencies = { "rafamadriz/friendly-snippets" },
       version = "1.*",
       config = function()
-        local blink_border = ({
-          single = "single",
-          double = "double",
-          rounded = "rounded",
-          solid = "solid",
-          shadow = "shadow",
-          none = "none",
-        })[vim.o.winborder] or "single"
-
         require("blink.cmp").setup({
           signature = {
             enabled = true,
@@ -341,13 +332,11 @@ require("lazy").setup({
               },
             },
             menu = {
-              border = blink_border,
               draw = {
                 columns = { { "label", "label_description", gap = 1 }, { "kind" } },
               },
             },
             documentation = {
-              border = blink_border,
               auto_show = true,
             },
           },
