@@ -417,6 +417,8 @@ require("lazy").setup({
 
     -- ETC
 
+    { "kevinhwang91/nvim-bqf", ft = "qf" },
+
     {
       "terrastruct/d2-vim",
       ft = "d2",
