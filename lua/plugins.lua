@@ -490,7 +490,6 @@ require("lazy").setup({
     -- THEMES
 
     { "folke/tokyonight.nvim", lazy = true, opts = { style = "night" } },
-    { "miikanissi/modus-themes.nvim", lazy = true, opts = { style = "dark", variant = "tinted" } },
     {
       "navarasu/onedark.nvim",
       opts = {},
