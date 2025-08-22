@@ -524,7 +524,7 @@ require("lazy").setup({
 
             local float_bg = c.bg
             local float_fg = c.fg
-            local float_border = c.fg
+            local float_border = c.bg3
 
             -- float
             vim.api.nvim_set_hl(0, "Pmenu", { bg = float_bg, fg = float_fg })
