@@ -156,7 +156,10 @@ require("lazy").setup({
         })
         vim.lsp.config("phpactor", {
           init_options = {
-            ["language_server.diagnostic_ignore_codes"] = { "worse.docblock_missing_return_type" },
+            ["language_server.diagnostic_ignore_codes"] = {
+              "worse.docblock_missing_return_type",
+              "worse.missing_return_type",
+            },
           },
         })
         vim.lsp.config("vtsls", {
@@ -201,9 +204,6 @@ require("lazy").setup({
         { "<leader>k", "<cmd>Pick keymaps<cr>" },
         { "<D-p>", "<cmd>Pick files<cr>" },
         { "<leader>b", "<cmd>Pick buffers<cr>" },
-        { "<leader>/", "<cmd>Pick grep_live<cr>" },
-        { "<leader>?", "<cmd>Pick grep<cr>" },
-        { "<leader>,", "<cmd>Pick buf_lines<cr>" },
         { "<leader>.", "<cmd>Pick resume<cr>" },
         { "<leader>e", "<cmd>Pick diagnostic scope='current'<cr>" },
         { "<leader>E", "<cmd>Pick diagnostic<cr>" },
@@ -303,14 +303,14 @@ require("lazy").setup({
     {
       "MagicDuck/grug-far.nvim",
       cmd = "GrugFar",
-      keys = { { "<leader>S", "<cmd>GrugFar<cr>" } },
+      keys = { { "<leader>/", "<cmd>GrugFar<cr>" } },
       opts = {
         icons = { enabled = false },
         transient = true,
         windowCreationCommand = "tab split",
         engines = {
           ripgrep = {
-            extraArgs = "--smart-case",
+            extraArgs = "--smart-case --hidden --glob=!.git",
           },
         },
       },

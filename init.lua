@@ -21,21 +21,20 @@ vim.opt.tabline = "%=Tabs: %{tabpagenr()}/%{tabpagenr('$')}%="
 vim.opt.fillchars:append({ diff = " " })
 
 -- ignore .git by default so we doesn't need to specify it when using --hidden
-vim.opt.grepprg = "rg --hidden --vimgrep --smart-case --glob '!.git'"
+vim.opt.grepprg = "rg --hidden --vimgrep --smart-case --glob=!.git"
 
 vim.keymap.set({ "n", "v" }, ";", ":", { desc = "Swap ; with :" })
 vim.keymap.set({ "n", "v" }, ":", ";", { desc = "Swap : with ;" })
 vim.keymap.set("v", "<c-c>", '"+y', { silent = true, desc = "Copy to clipboard" })
 vim.keymap.set("n", "gp", "`[v`]", { desc = "Select last pasted text" })
-vim.keymap.set("n", "<leader>z", "<cmd>confirm qall<cr>", { silent = true, desc = "Confirm quit" })
 vim.keymap.set("n", "<leader>x", "<cmd>confirm bd<cr>", { silent = true, desc = "Confirm delete buffer" })
 vim.keymap.set("n", "<leader><tab>d", "<cmd>tabclose<cr>", { silent = true, desc = "Close tab" })
 vim.keymap.set("n", "<leader><tab>o", "<cmd>tabonly<cr>", { silent = true, desc = "Close other tabs" })
 vim.keymap.set("n", "<leader><tab>l", "<cmd>tabs<cr>", { silent = true, desc = "List tabs" })
 vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnew<cr>", { silent = true, desc = "New tab" })
 vim.keymap.set("n", "<leader><tab>t", "<cmd>tab term<cr>", { silent = true })
-vim.keymap.set('c', '<C-j>', '<Down>', { noremap = true })
-vim.keymap.set('c', '<C-k>', '<Up>', { noremap = true })
+vim.keymap.set("c", "<C-j>", "<Down>", { noremap = true })
+vim.keymap.set("c", "<C-k>", "<Up>", { noremap = true })
 
 vim.cmd("autocmd TermOpen * startinsert")
 vim.cmd("autocmd QuickFixCmdPost grep,grep! copen")
