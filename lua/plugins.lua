@@ -195,14 +195,47 @@ require("lazy").setup({
       end,
     },
     {
+      "dmtrKovalenko/fff.nvim",
+      build = "cargo build --release",
+      opts = {
+        layout = {
+          prompt_position = "top",
+          preview_position = "bottom",
+          preview_size = 0.4,
+          width = math.min(100 / vim.o.columns, 0.95),
+          height = math.min(50 / vim.o.lines, 0.9),
+        },
+        preview = {
+          enabled = vim.o.lines >= 50,
+        },
+        keymaps = {
+          close = { "<esc>", "<c-c>" },
+          move_up = { "<c-p>", "<c-k>" },
+          move_down = { "<c-n>", "<c-j>" },
+          preview_scroll_up = "<c-b>",
+          preview_scroll_down = "<c-f>",
+        },
+        icons = { enabled = false },
+      },
+      keys = {
+        {
+          "<leader>f",
+          function()
+            require("fff").find_files() -- or find_in_git_root() if you only want git files
+          end,
+          desc = "Open file picker",
+        },
+      },
+    },
+    {
       "echasnovski/mini.pick",
+      enabled = false,
       version = "*",
       dependencies = { "echasnovski/mini.extra", version = "*" },
       cmd = { "Pick" },
       keys = {
         { "<leader>f", "<cmd>Pick files<cr>" },
         { "<leader>k", "<cmd>Pick keymaps<cr>" },
-        { "<D-p>", "<cmd>Pick files<cr>" },
         { "<leader>b", "<cmd>Pick buffers<cr>" },
         { "<leader>.", "<cmd>Pick resume<cr>" },
         { "<leader>e", "<cmd>Pick diagnostic scope='current'<cr>" },
