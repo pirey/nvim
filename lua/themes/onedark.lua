@@ -1,0 +1,55 @@
+return {
+  "navarasu/onedark.nvim",
+  opts = {},
+  init = function()
+    local custom_highlight = vim.api.nvim_create_augroup("CustomOnedark", { clear = true })
+    vim.api.nvim_create_autocmd("ColorScheme", {
+      group = custom_highlight,
+      pattern = "onedark",
+      callback = function()
+        local c = require("onedark.colors")
+
+        -- reduce red, yellow and orange to make it more blue-ish
+
+        vim.api.nvim_set_hl(0, "Special", { fg = c.cyan })
+        vim.api.nvim_set_hl(0, "Constant", { fg = c.fg, italic = true })
+        vim.api.nvim_set_hl(0, "@constant", { fg = c.fg, italic = true })
+        vim.api.nvim_set_hl(0, "@constructor", { fg = c.fg })
+        vim.api.nvim_set_hl(0, "@module", { fg = c.cyan })
+        vim.api.nvim_set_hl(0, "@tag", { fg = c.cyan })
+        vim.api.nvim_set_hl(0, "@tag.attribute", { fg = c.blue, italic = true })
+        vim.api.nvim_set_hl(0, "@tag.delimiter", { fg = c.fg })
+        vim.api.nvim_set_hl(0, "Type", { fg = c.cyan })
+        vim.api.nvim_set_hl(0, "@type", { fg = c.cyan })
+        vim.api.nvim_set_hl(0, "@variable.builtin", { fg = c.cyan })
+        vim.api.nvim_set_hl(0, "@variable.parameter", { fg = c.fg })
+        vim.api.nvim_set_hl(0, "@type.builtin", { fg = c.blue })
+        vim.api.nvim_set_hl(0, "@markup.heading", { fg = c.fg })
+
+        local float_bg = c.bg
+        local float_fg = c.fg
+        local float_border = c.bg3
+
+        -- float
+        vim.api.nvim_set_hl(0, "Pmenu", { bg = float_bg, fg = float_fg })
+        vim.api.nvim_set_hl(0, "NormalFloat", { bg = float_bg, fg = float_fg })
+
+        -- float border
+        vim.api.nvim_set_hl(0, "FloatBorder", { bg = float_bg, fg = float_border })
+        vim.api.nvim_set_hl(0, "BlinkCmpDocSeparator", { bg = float_bg, fg = float_border })
+        vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { bg = float_bg, fg = float_border })
+        vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", { bg = float_bg, fg = float_border })
+        vim.api.nvim_set_hl(0, "BlinkCmpSignatureHelpBorder", { bg = float_bg, fg = float_border })
+
+        -- mini.pick
+        vim.api.nvim_set_hl(0, "MiniPickBorder", { bg = float_bg, fg = float_border })
+        vim.api.nvim_set_hl(0, "MiniPickBorderBusy", { bg = float_bg, fg = float_border })
+        vim.api.nvim_set_hl(0, "MiniPickBorderText", { bold = false })
+        vim.api.nvim_set_hl(0, "MiniPickNormal", { bg = float_bg })
+      end,
+    })
+
+    vim.opt.background = "dark"
+    vim.cmd.colorscheme("onedark")
+  end,
+}
