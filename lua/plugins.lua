@@ -201,7 +201,7 @@ require("lazy").setup({
         layout = {
           prompt_position = "top",
           preview_position = "bottom",
-          preview_size = 0.4,
+          preview_size = 0.6,
           width = math.min(100 / vim.o.columns, 0.95),
           height = math.min(55 / vim.o.lines, 0.95),
         },
