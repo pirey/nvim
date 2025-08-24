@@ -198,6 +198,8 @@ require("lazy").setup({
       "dmtrKovalenko/fff.nvim",
       build = "cargo build --release",
       opts = {
+        prompt = " ",
+        title = "Files",
         layout = {
           prompt_position = "top",
           preview_position = "bottom",
@@ -217,6 +219,7 @@ require("lazy").setup({
         },
         icons = { enabled = false },
       },
+      cmd = { "FFFFind" },
       keys = {
         {
           "<leader>f",
@@ -229,12 +232,11 @@ require("lazy").setup({
     },
     {
       "echasnovski/mini.pick",
-      enabled = false,
       version = "*",
       dependencies = { "echasnovski/mini.extra", version = "*" },
       cmd = { "Pick" },
       keys = {
-        { "<leader>f", "<cmd>Pick files<cr>" },
+        -- { "<leader>f", "<cmd>Pick files<cr>" },
         { "<leader>k", "<cmd>Pick keymaps<cr>" },
         { "<leader>b", "<cmd>Pick buffers<cr>" },
         { "<leader>.", "<cmd>Pick resume<cr>" },
@@ -244,6 +246,7 @@ require("lazy").setup({
         { "<leader>r", "<cmd>Pick lsp scope='references'<cr>" },
         { "<leader>'", "<cmd>Pick oldfiles current_dir=true<cr>" },
         { "<leader>h", "<cmd>Pick help<cr>" },
+        { "<leader>;", "<cmd>Pick commands<cr>" },
         {
           "<leader>a",
           function()
@@ -265,18 +268,36 @@ require("lazy").setup({
       },
       config = function()
         local pick = require("mini.pick")
+
+        local win_config = function()
+          local cols, lines = vim.o.columns, vim.o.lines - vim.o.cmdheight
+          if vim.o.laststatus > 0 then
+            lines = lines - 1
+          end
+          if vim.o.showtabline == 2 or (vim.o.showtabline == 1 and vim.fn.tabpagenr("$") > 1) then
+            lines = lines - 1
+          end
+
+          local w = math.min(100, math.floor(cols * 0.95))
+          local h = math.min(30, math.floor(lines * 0.95))
+
+          return {
+            width = w,
+            height = h,
+            row = 3,
+            col = math.floor((cols - w) / 2),
+            anchor = "NW",
+            border = "rounded",
+          }
+        end
+
         pick.setup({
           source = { show = pick.default_show },
           mappings = {
             scroll_left = "<BS>",
             delete_char = "<c-h>",
           },
-          window = {
-            prompt_prefix = " ",
-            config = {
-              width = math.min(75, vim.o.columns),
-            },
-          },
+          window = { config = win_config },
         })
 
         require("mini.extra").setup()
@@ -451,7 +472,6 @@ require("lazy").setup({
     -- ETC
 
     { "kevinhwang91/nvim-bqf", ft = "qf" },
-
     {
       "terrastruct/d2-vim",
       ft = "d2",
@@ -573,7 +593,7 @@ require("lazy").setup({
             -- mini.pick
             vim.api.nvim_set_hl(0, "MiniPickBorder", { bg = float_bg, fg = float_border })
             vim.api.nvim_set_hl(0, "MiniPickBorderBusy", { bg = float_bg, fg = float_border })
-            vim.api.nvim_set_hl(0, "MiniPickBorderText", { bg = float_bg, fg = float_border })
+            vim.api.nvim_set_hl(0, "MiniPickBorderText", { bold = false })
             vim.api.nvim_set_hl(0, "MiniPickNormal", { bg = float_bg })
           end,
         })
