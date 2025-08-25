@@ -247,7 +247,8 @@ require("lazy").setup({
         { "<leader>'", "<cmd>Pick oldfiles current_dir=true<cr>" },
         { "<leader>h", "<cmd>Pick help<cr>" },
         { "<leader>,", "<cmd>Pick grep_live<cr>" },
-        { "<leader>/", "<cmd>Pick buf_lines<cr>" },
+        { "<leader>/", "<cmd>Pick buf_lines scope='current'<cr>" },
+        { "<leader>?", "<cmd>Pick buf_lines<cr>" },
         {
           "<leader>a",
           function()
@@ -358,7 +359,7 @@ require("lazy").setup({
     {
       "MagicDuck/grug-far.nvim",
       cmd = "GrugFar",
-      keys = { { "<leader>?", "<cmd>GrugFar<cr>" } },
+      keys = { { "<leader>S", "<cmd>GrugFar<cr>" } },
       opts = {
         icons = { enabled = false },
         transient = true,
