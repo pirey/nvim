@@ -4,7 +4,7 @@
   "curl.nvim": { "branch": "main", "commit": "3ee14fbafc8169fc803e80562ce7ac5b4474bdff" },
   "d2-vim": { "branch": "master", "commit": "cb3eb7fcb1a2d45c4304bf2e91077d787b724a39" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
-  "fff.nvim": { "branch": "main", "commit": "84a8ebc230d7c6e1f055b59accbd6ecd222a3353" },
+  "fff.nvim": { "branch": "main", "commit": "25dfbd2ffdef5296bc9b7f0a13edc14239bf62d0" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
   "gitsigns.nvim": { "branch": "main", "commit": "6e3c66548035e50db7bd8e360a29aec6620c3641" },
   "grug-far.nvim": { "branch": "main", "commit": "385d1949dc21d0c39e7a74b4f4a25da18817bc86" },
