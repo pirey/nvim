@@ -11,6 +11,7 @@ vim.opt.tabclose = "left"
 vim.opt.splitright = true
 vim.opt.number = true
 vim.opt.scrolloff = 3
+vim.opt.cursorline = true
 
 -- fancy
 vim.opt.foldmethod = "indent"
