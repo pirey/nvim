@@ -9,6 +9,8 @@ return {
       callback = function()
         local c = require("onedark.colors")
 
+        vim.api.nvim_set_hl(0, "CursorLineNr", { bold = true })
+
         -- reduce red, yellow and orange to make it more blue-ish
 
         vim.api.nvim_set_hl(0, "Special", { fg = c.cyan })

@@ -12,6 +12,7 @@ vim.opt.splitright = true
 vim.opt.number = true
 vim.opt.scrolloff = 3
 vim.opt.cursorline = true
+vim.opt.cursorlineopt = "number"
 
 -- fancy
 vim.opt.foldmethod = "indent"
