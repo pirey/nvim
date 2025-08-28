@@ -60,7 +60,7 @@ return {
       end,
     })
 
-    -- vim.opt.background = "dark"
-    -- vim.cmd.colorscheme("onedark")
+    vim.opt.background = "dark"
+    vim.cmd.colorscheme("onedark")
   end,
 }

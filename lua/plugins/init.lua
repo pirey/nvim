@@ -324,6 +324,51 @@ require("lazy").setup({
       end,
     },
     {
+      "ibhagwan/fzf-lua",
+      enabled = false,
+      cmd = { "FzfLua" },
+      keys = {
+        { "<leader>f", "<cmd>FzfLua files<cr>" },
+        { "<leader>b", "<cmd>FzfLua buffers<cr>" },
+        { "<leader>/", "<cmd>FzfLua live_grep<cr>" },
+        { "<leader>?", "<cmd>FzfLua blines<cr>" },
+        { "<leader>.", "<cmd>FzfLua resume<cr>" },
+        { "<leader>s", "<cmd>FzfLua lsp_document_symbols<cr>" },
+        { "<leader>e", "<cmd>FzfLua lsp_document_diagnostics<cr>" },
+        { "<leader>E", "<cmd>FzfLua lsp_workspace_diagnostics<cr>" },
+        { "<leader>r", "<cmd>FzfLua lsp_references<cr>" },
+        { "<leader>O", "<cmd>FzfLua oldfiles<cr>" },
+        { "<leader>t", "<cmd>FzfLua tabs show_unlisted=true<cr>" },
+        {
+          "<leader>d",
+          function()
+            local fzf = require("fzf-lua")
+            fzf.fzf_exec("fd --type d", {
+              actions = fzf.defaults.actions.files,
+            })
+          end,
+        },
+      },
+      opts = {
+        winopts = {
+          -- split = "belowright new | wincmd J",
+          width = math.min(100 / vim.o.columns, 0.95),
+          preview = {
+            layout = "vertical",
+            vertical = "down:60%",
+          }
+        },
+        oldfiles = {
+          include_current_session = true,
+          cwd_only = true,
+        },
+      },
+      config = function(_, opts)
+        require("fzf-lua").setup(opts)
+        require("fzf-lua").register_ui_select()
+      end,
+    },
+    {
       "lewis6991/gitsigns.nvim",
       opts = {
         on_attach = function(buffer)
