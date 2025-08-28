@@ -28,8 +28,6 @@ vim.opt.grepprg = "rg --hidden --vimgrep --smart-case --glob=!.git"
 
 vim.keymap.set({ "n", "v" }, ";", ":", { desc = "Swap ; with :" })
 vim.keymap.set({ "n", "v" }, ":", ";", { desc = "Swap : with ;" })
-vim.keymap.set({ "n", "v" }, "j", "gj")
-vim.keymap.set({ "n", "v" }, "k", "gk")
 vim.keymap.set("v", "<c-c>", '"+y', { silent = true, desc = "Copy to clipboard" })
 vim.keymap.set("n", "gp", "`[v`]", { desc = "Select last pasted text" })
 vim.keymap.set("n", "<leader>x", "<cmd>confirm bd<cr>", { silent = true, desc = "Confirm delete buffer" })

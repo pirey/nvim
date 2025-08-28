@@ -356,7 +356,7 @@ require("lazy").setup({
           preview = {
             layout = "vertical",
             vertical = "down:60%",
-          }
+          },
         },
         oldfiles = {
           include_current_session = true,
@@ -530,6 +530,9 @@ require("lazy").setup({
         { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
       },
       cmd = { "DBUI" },
+      keys = {
+        { "<leader>s", "<Plug>(DBUI_ExecuteQuery)", ft = { "sql", "mysql", "plsql" } },
+      },
       init = function()
         vim.g.db_ui_execute_on_save = 0
       end,
