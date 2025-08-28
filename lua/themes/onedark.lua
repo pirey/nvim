@@ -10,6 +10,7 @@ return {
         local c = require("onedark.colors")
 
         vim.api.nvim_set_hl(0, "CursorLineNr", { bold = true })
+        vim.api.nvim_set_hl(0, "QuickFixLine", { bg = c.bg1, underdashed = true })
 
         -- reduce red, yellow and orange to make it more blue-ish
 
