@@ -48,10 +48,19 @@ return {
         vim.api.nvim_set_hl(0, "MiniPickBorderBusy", { bg = float_bg, fg = float_border })
         vim.api.nvim_set_hl(0, "MiniPickBorderText", { bold = false })
         vim.api.nvim_set_hl(0, "MiniPickNormal", { bg = float_bg })
+
+        vim.api.nvim_set_hl(0, "FzfLuaBufFlagCur", { link = "Title" })
+        vim.api.nvim_set_hl(0, "FzfLuaHeaderText", { link = "Title" })
+        vim.api.nvim_set_hl(0, "FzfLuaPathLineNr", { link = "Title" })
+        vim.api.nvim_set_hl(0, "FzfLuaHeaderBind", { link = "Title" })
+        vim.api.nvim_set_hl(0, "FzfLuaTabMarker", { link = "Title" })
+        vim.api.nvim_set_hl(0, "FzfLuaBorder", { fg = float_border })
+        vim.api.nvim_set_hl(0, "FzfLuaFzfBorder", { fg = float_border })
+        vim.api.nvim_set_hl(0, "FzfLuaFzfSeparator", { fg = "#444444" })
       end,
     })
 
-    vim.opt.background = "dark"
-    vim.cmd.colorscheme("onedark")
+    -- vim.opt.background = "dark"
+    -- vim.cmd.colorscheme("onedark")
   end,
 }
