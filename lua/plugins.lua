@@ -26,7 +26,7 @@ require("lazy").setup({
         ]])
       end,
     },
-    { "tpope/vim-abolish", cmd = "S" },
+    { "tpope/vim-abolish" },
     {
       "mason-org/mason.nvim",
       opts_extend = { "ensure_installed" },
