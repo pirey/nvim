@@ -36,6 +36,8 @@ vim.keymap.set("n", "<leader><tab>o", "<cmd>tabonly<cr>", { silent = true, desc 
 vim.keymap.set("n", "<leader><tab>l", "<cmd>tabs<cr>", { silent = true, desc = "List tabs" })
 vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnew<cr>", { silent = true, desc = "New tab" })
 vim.keymap.set("n", "<leader><tab>t", "<cmd>tab term<cr>", { silent = true })
+vim.keymap.set("n", "]<tab>", "gt", { silent = true })
+vim.keymap.set("n", "[<tab>", "gT", { silent = true })
 vim.keymap.set("c", "<C-j>", "<Down>", { noremap = true })
 vim.keymap.set("c", "<C-k>", "<Up>", { noremap = true })
 
