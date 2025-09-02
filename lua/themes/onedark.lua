@@ -2,9 +2,9 @@ return {
   "navarasu/onedark.nvim",
   opts = {},
   init = function()
-    local custom_highlight = vim.api.nvim_create_augroup("CustomOnedark", { clear = true })
+    local onedark_group = vim.api.nvim_create_augroup("CustomOnedark", { clear = true })
     vim.api.nvim_create_autocmd("ColorScheme", {
-      group = custom_highlight,
+      group = onedark_group,
       pattern = "onedark",
       callback = function()
         local c = require("onedark.colors")
@@ -59,6 +59,15 @@ return {
         vim.api.nvim_set_hl(0, "FzfLuaFzfBorder", { fg = float_border })
         vim.api.nvim_set_hl(0, "FzfLuaFzfSeparator", { fg = "#444444" })
       end,
+    })
+
+    vim.api.nvim_create_autocmd("FileType", {
+      group = onedark_group,
+      pattern = "qf",
+      callback = function()
+        vim.opt.cursorlineopt = "both"
+        vim.api.nvim_set_hl(0, "CursorLine", { underdotted = true })
+      end
     })
 
     vim.opt.background = "dark"
