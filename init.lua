@@ -6,6 +6,8 @@ vim.opt.swapfile = false
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.gdefault = true
+
+-- fancy
 vim.opt.switchbuf = { "uselast", "useopen", "usetab" }
 vim.opt.tabclose = "left"
 vim.opt.splitright = true
@@ -13,8 +15,6 @@ vim.opt.number = true
 vim.opt.scrolloff = 3
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = "number"
-
--- fancy
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevelstart = 99
 vim.opt.signcolumn = "yes"
