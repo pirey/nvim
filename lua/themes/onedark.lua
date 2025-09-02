@@ -65,8 +65,13 @@ return {
       group = onedark_group,
       pattern = "qf",
       callback = function()
-        vim.opt.cursorlineopt = "both"
-        vim.api.nvim_set_hl(0, "CursorLine", { underdotted = true })
+        local winnr = vim.api.nvim_get_current_win()
+        local ns_id = vim.api.nvim_create_namespace("qf_hl")
+
+        vim.wo[winnr].cursorlineopt = "both"
+
+        vim.api.nvim_win_set_hl_ns(winnr, ns_id)
+        vim.api.nvim_set_hl(ns_id, "CursorLine", { underdotted = true })
       end
     })
 
