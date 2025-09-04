@@ -507,10 +507,10 @@ require("lazy").setup({
       config = function()
         local lint = require("lint")
         lint.linters_by_ft = vim.tbl_extend("force", lint.linters_by_ft, {
-          typescriptreact = { "eslint" },
-          typescript = { "eslint" },
-          javascript = { "eslint" },
-          javascriptreact = { "eslint" },
+          typescriptreact = { "eslint_d" },
+          typescript = { "eslint_d" },
+          javascript = { "eslint_d" },
+          javascriptreact = { "eslint_d" },
           php = { "phpcs" },
         })
       end,
