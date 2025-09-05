@@ -15,7 +15,7 @@ return {
         -- reduce red, yellow and orange to make it more blue-ish
 
         vim.api.nvim_set_hl(0, "Special", { fg = c.cyan })
-        vim.api.nvim_set_hl(0, "Constant", { fg = c.fg, italic = true })
+        -- vim.api.nvim_set_hl(0, "Constant", { fg = c.fg, italic = true })
         vim.api.nvim_set_hl(0, "@constant", { fg = c.fg, italic = true })
         vim.api.nvim_set_hl(0, "@constructor", { fg = c.fg })
         vim.api.nvim_set_hl(0, "@module", { fg = c.cyan })

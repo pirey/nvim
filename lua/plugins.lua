@@ -171,6 +171,13 @@ require("lazy").setup({
             },
           },
         })
+        vim.lsp.config("tailwindcss", {
+          settings = {
+            tailwindCSS = {
+              classFunctions = { "tw", "clsx", "tw\\.[a-z-]+", "twMerge" },
+            }
+          },
+        })
 
         vim.lsp.enable({
           "lua_ls",
