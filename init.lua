@@ -40,6 +40,7 @@ vim.keymap.set("n", "]<tab>", "gt", { silent = true })
 vim.keymap.set("n", "[<tab>", "gT", { silent = true })
 vim.keymap.set("c", "<C-j>", "<Down>", { noremap = true })
 vim.keymap.set("c", "<C-k>", "<Up>", { noremap = true })
+vim.keymap.set("n", "<leader>qc", "<cmd>cclose<cr>", { noremap = true })
 
 vim.cmd("autocmd TermOpen * startinsert")
 vim.cmd("autocmd QuickFixCmdPost grep,grep! copen")
