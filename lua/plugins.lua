@@ -538,7 +538,7 @@ require("lazy").setup({
       },
       cmd = { "DBUI" },
       keys = {
-        { "<leader>s", "<Plug>(DBUI_ExecuteQuery)", ft = { "sql", "mysql", "plsql" } },
+        { "<leader>s", "<Plug>(DBUI_ExecuteQuery)<Cmd>write<CR>", ft = { "sql", "mysql", "plsql" } },
       },
       init = function()
         vim.g.db_ui_execute_on_save = 0
