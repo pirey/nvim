@@ -28,6 +28,8 @@ return {
         vim.api.nvim_set_hl(0, "@variable.parameter", { fg = c.fg })
         vim.api.nvim_set_hl(0, "@type.builtin", { fg = c.blue })
         vim.api.nvim_set_hl(0, "@markup.heading", { fg = c.fg })
+        vim.api.nvim_set_hl(0, "@org.checkbox", { link = "Comment" })
+        vim.api.nvim_set_hl(0, "@org.checkbox.checked", { link = "String" })
 
         local float_bg = c.bg
         local float_fg = c.fg
