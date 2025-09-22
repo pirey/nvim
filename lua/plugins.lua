@@ -175,7 +175,7 @@ require("lazy").setup({
           settings = {
             tailwindCSS = {
               classFunctions = { "tw", "clsx", "tw\\.[a-z-]+", "twMerge" },
-            }
+            },
           },
         })
 
@@ -229,7 +229,7 @@ require("lazy").setup({
       cmd = { "FFFFind" },
       keys = {
         {
-          "<leader>f",
+          "<leader><leader>f",
           function()
             require("fff").find_files() -- or find_in_git_root() if you only want git files
           end,
@@ -257,7 +257,7 @@ require("lazy").setup({
         { "<leader>/", "<cmd>Pick buf_lines scope='current'<cr>" },
         { "<leader>?", "<cmd>Pick buf_lines<cr>" },
         {
-          "<leader>a",
+          "<leader>f",
           function()
             require("mini.pick").builtin.cli({
               command = { "fd" },
@@ -610,6 +610,28 @@ require("lazy").setup({
           -- Your configuration here
         })
       end,
+    },
+    {
+      "hat0uma/csvview.nvim",
+      ---@module "csvview"
+      ---@type CsvView.Options
+      opts = {
+        parser = { comments = { "#", "//" } },
+        keymaps = {
+          -- Text objects for selecting fields
+          textobject_field_inner = { "if", mode = { "o", "x" } },
+          textobject_field_outer = { "af", mode = { "o", "x" } },
+          -- Excel-like navigation:
+          -- Use <Tab> and <S-Tab> to move horizontally between fields.
+          -- Use <Enter> and <S-Enter> to move vertically between rows and place the cursor at the end of the field.
+          -- Note: In terminals, you may need to enable CSI-u mode to use <S-Tab> and <S-Enter>.
+          jump_next_field_end = { "<Tab>", mode = { "n", "v" } },
+          jump_prev_field_end = { "<S-Tab>", mode = { "n", "v" } },
+          jump_next_row = { "<Enter>", mode = { "n", "v" } },
+          jump_prev_row = { "<S-Enter>", mode = { "n", "v" } },
+        },
+      },
+      cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
     },
 
     -- THEMES
