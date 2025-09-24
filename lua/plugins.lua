@@ -613,8 +613,6 @@ require("lazy").setup({
     },
     {
       "hat0uma/csvview.nvim",
-      ---@module "csvview"
-      ---@type CsvView.Options
       opts = {
         parser = { comments = { "#", "//" } },
         keymaps = {
@@ -632,6 +630,35 @@ require("lazy").setup({
         },
       },
       cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
+    },
+    {
+      "github/copilot.vim",
+      enabled = false,
+    },
+    {
+      "olimorris/codecompanion.nvim",
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+      },
+      keys = {
+        { "<leader>aa", "<cmd>CodeCompanionActions<cr>" },
+        { "<leader>ac", "<cmd>CodeCompanionChat<cr>" },
+        { "<leader>a;", ":CodeCompanion" },
+      },
+      opts = {
+        strategies = {
+          chat = {
+            adapter = "copilot",
+          },
+          inline = {
+            adapter = "copilot",
+          },
+          agent = {
+            adapter = "copilot",
+          },
+        },
+      },
     },
 
     -- THEMES

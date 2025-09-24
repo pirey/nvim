@@ -6,6 +6,10 @@ function! StartScrollH()
   nnoremap <buffer> H zH
   nnoremap <buffer> q :call EndScrollH()<CR>
   nnoremap <buffer> <Esc> :call EndScrollH()<CR>
+  augroup ScrollHWinLeave
+    autocmd! * <buffer>
+    autocmd WinLeave <buffer> call EndScrollH()
+  augroup END
   echo "-- SCROLL --"
 endfunction
 
@@ -16,6 +20,9 @@ function! EndScrollH()
   nunmap <buffer> H
   nunmap <buffer> q
   nunmap <buffer> <Esc>
+  augroup ScrollHWinLeave
+    autocmd! * <buffer>
+  augroup END
   echo ""
 endfunction
 
