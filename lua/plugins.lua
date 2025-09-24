@@ -647,7 +647,7 @@ require("lazy").setup({
       },
       keys = {
         { "<leader>aa", "<cmd>CodeCompanionActions<cr>" },
-        { "<leader>ac", "<cmd>CodeCompanionChat<cr>" },
+        { "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>" },
         { "<leader>a;", ":CodeCompanion" },
       },
       opts = {
