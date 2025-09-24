@@ -633,13 +633,17 @@ require("lazy").setup({
     },
     {
       "github/copilot.vim",
-      enabled = false,
     },
     {
       "olimorris/codecompanion.nvim",
       dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
+      },
+      cmd = {
+        "CodeCompanion",
+        "CodeCompanionActions",
+        "CodeCompanionChat",
       },
       keys = {
         { "<leader>aa", "<cmd>CodeCompanionActions<cr>" },
