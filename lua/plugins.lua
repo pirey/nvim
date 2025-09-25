@@ -18,7 +18,7 @@ require("lazy").setup({
       cmd = { "Git", "G", "Gw" },
       keys = {
         { "<leader>gg", "<cmd>tab Git<cr>" },
-        { "<leader>wg", "<cmd>vert Git<cr>" },
+        { "<leader>gv", "<cmd>vert Git<cr>" },
       },
       init = function()
         vim.cmd([[
