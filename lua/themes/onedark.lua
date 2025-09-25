@@ -51,6 +51,8 @@ return {
         vim.api.nvim_set_hl(0, "MiniPickBorderBusy", { bg = float_bg, fg = float_border })
         vim.api.nvim_set_hl(0, "MiniPickBorderText", { bold = false })
         vim.api.nvim_set_hl(0, "MiniPickNormal", { bg = float_bg })
+        vim.api.nvim_set_hl(0, "MiniFilesNormal", { bg = float_bg })
+        vim.api.nvim_set_hl(0, "MiniFilesBorder", { bg = float_bg, fg = float_border })
 
         vim.api.nvim_set_hl(0, "FzfLuaBufFlagCur", { link = "Title" })
         vim.api.nvim_set_hl(0, "FzfLuaHeaderText", { link = "Title" })

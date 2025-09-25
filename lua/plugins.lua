@@ -238,6 +238,13 @@ require("lazy").setup({
       },
     },
     {
+      'nvim-mini/mini.files',
+      version = '*',
+      keys = {
+        { "<leader>B", "<cmd>lua require('mini.files').open(vim.fn.getcwd())<cr>", desc = "Open file browser" },
+      }
+    },
+    {
       "echasnovski/mini.pick",
       version = "*",
       dependencies = { "echasnovski/mini.extra", version = "*" },
