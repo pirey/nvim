@@ -241,7 +241,7 @@ require("lazy").setup({
       'nvim-mini/mini.files',
       version = '*',
       keys = {
-        { "<leader>B", "<cmd>lua require('mini.files').open(vim.fn.getcwd())<cr>", desc = "Open file browser" },
+        { "<leader>e", "<cmd>lua require('mini.files').open(vim.fn.getcwd())<cr>", desc = "Open file browser" },
       }
     },
     {
@@ -254,7 +254,7 @@ require("lazy").setup({
         { "<leader>k", "<cmd>Pick keymaps<cr>" },
         { "<leader>b", "<cmd>Pick buffers<cr>" },
         { "<leader>.", "<cmd>Pick resume<cr>" },
-        { "<leader>e", "<cmd>Pick diagnostic scope='current'<cr>" },
+        { "<leader>qe", "<cmd>Pick diagnostic scope='current'<cr>" },
         { "<leader>E", "<cmd>Pick diagnostic<cr>" },
         { "<leader>s", "<cmd>Pick lsp scope='document_symbol'<cr>" },
         { "<leader>r", "<cmd>Pick lsp scope='references'<cr>" },
