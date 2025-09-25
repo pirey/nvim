@@ -650,19 +650,7 @@ require("lazy").setup({
         { "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>" },
         { "<leader>a;", ":CodeCompanion" },
       },
-      opts = {
-        strategies = {
-          chat = {
-            adapter = "copilot",
-          },
-          inline = {
-            adapter = "copilot",
-          },
-          agent = {
-            adapter = "copilot",
-          },
-        },
-      },
+      opts = {},
     },
 
     -- THEMES
