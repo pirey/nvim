@@ -267,7 +267,7 @@ require("lazy").setup({
           "<leader>f",
           function()
             require("mini.pick").builtin.cli({
-              command = { "fd" },
+              command = { "fd", "--hidden", "-E", ".git" },
             })
           end,
           desc = "Find files and dirs",
