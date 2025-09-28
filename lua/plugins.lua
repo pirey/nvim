@@ -203,7 +203,6 @@ require("lazy").setup({
     },
     {
       "dmtrKovalenko/fff.nvim",
-      build = "cargo build --release",
       opts = {
         prompt = " ",
         title = "Files",
@@ -238,11 +237,11 @@ require("lazy").setup({
       },
     },
     {
-      'nvim-mini/mini.files',
-      version = '*',
+      "nvim-mini/mini.files",
+      version = "*",
       keys = {
         { "<leader>e", "<cmd>lua require('mini.files').open(vim.fn.getcwd())<cr>", desc = "Open file browser" },
-      }
+      },
     },
     {
       "echasnovski/mini.pick",
@@ -639,10 +638,15 @@ require("lazy").setup({
       cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
     },
     {
-      "github/copilot.vim",
+      "supermaven-inc/supermaven-nvim",
+      config = function()
+        require("supermaven-nvim").setup({})
+      end,
     },
+    { "github/copilot.vim", enabled = false },
     {
       "olimorris/codecompanion.nvim",
+      enabled = false,
       dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
