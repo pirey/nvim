@@ -253,7 +253,7 @@ require("lazy").setup({
         { "<leader>k", "<cmd>Pick keymaps<cr>" },
         { "<leader>b", "<cmd>Pick buffers<cr>" },
         { "<leader>.", "<cmd>Pick resume<cr>" },
-        { "<leader>qe", "<cmd>Pick diagnostic scope='current'<cr>" },
+        { "<leader><leader>e", "<cmd>Pick diagnostic scope='current'<cr>" },
         { "<leader>E", "<cmd>Pick diagnostic<cr>" },
         { "<leader>s", "<cmd>Pick lsp scope='document_symbol'<cr>" },
         { "<leader>r", "<cmd>Pick lsp scope='references'<cr>" },
