@@ -244,9 +244,9 @@ require("lazy").setup({
       },
     },
     {
-      "echasnovski/mini.pick",
+      "nvim_mini/mini.pick",
       version = "*",
-      dependencies = { "echasnovski/mini.extra", version = "*" },
+      dependencies = { "nvim_mini/mini.extra", version = "*" },
       cmd = { "Pick" },
       keys = {
         -- { "<leader>f", "<cmd>Pick files<cr>" },
@@ -636,6 +636,28 @@ require("lazy").setup({
         },
       },
       cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
+    },
+    {
+      "sudo-tee/opencode.nvim",
+      lazy = false,
+      config = function()
+        require('opencode').setup({
+          keymap_prefix = '<leader>a',
+        })
+      end,
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        {
+          "MeanderingProgrammer/render-markdown.nvim",
+          opts = {
+            anti_conceal = { enabled = false },
+            file_types = { "markdown", "opencode_output" },
+          },
+          ft = { "markdown", "Avante", "copilot-chat", "opencode_output" },
+        },
+        "saghen/blink.cmp",
+        'nvim_mini/mini.pick',
+      },
     },
     {
       "supermaven-inc/supermaven-nvim",
