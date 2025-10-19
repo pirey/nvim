@@ -244,9 +244,9 @@ require("lazy").setup({
       },
     },
     {
-      "nvim_mini/mini.pick",
+      "nvim-mini/mini.pick",
       version = "*",
-      dependencies = { "nvim_mini/mini.extra", version = "*" },
+      dependencies = { "nvim-mini/mini.extra", version = "*" },
       cmd = { "Pick" },
       keys = {
         -- { "<leader>f", "<cmd>Pick files<cr>" },
@@ -652,7 +652,7 @@ require("lazy").setup({
           ft = { "markdown", "Avante", "copilot-chat", "opencode_output" },
         },
         "saghen/blink.cmp",
-        'nvim_mini/mini.pick',
+        'nvim-mini/mini.pick',
       },
     },
     {
