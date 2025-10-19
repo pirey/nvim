@@ -533,10 +533,6 @@ require("lazy").setup({
 
     { "kevinhwang91/nvim-bqf", ft = "qf" },
     {
-      "terrastruct/d2-vim",
-      ft = "d2",
-    },
-    {
       "kristijanhusak/vim-dadbod-ui",
       dependencies = {
         { "tpope/vim-dadbod", lazy = true },
