@@ -635,6 +635,7 @@ require("lazy").setup({
     },
     {
       "sudo-tee/opencode.nvim",
+      -- enabled = false,
       lazy = false,
       config = function()
         require('opencode').setup({
