@@ -639,6 +639,7 @@ require("lazy").setup({
       config = function()
         require('opencode').setup({
           keymap_prefix = '<leader>a',
+          model = "opencode/grok-code",
         })
       end,
       dependencies = {
