@@ -29,4 +29,4 @@ local function open_opencode_direct()
   end
 end
 
-vim.keymap.set('n', '<leader>a', open_opencode_direct, { desc = 'Toggle OpenCode terminal window' })
+vim.keymap.set('n', '<leader><leader>a', open_opencode_direct, { desc = 'Toggle OpenCode terminal window' })
