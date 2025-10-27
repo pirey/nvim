@@ -1,5 +1,5 @@
 -- OpenCode integration
-if true then return nil end
+-- if true then return nil end
 
 vim.g.opencode_bufnr = vim.g.opencode_bufnr or nil
 
@@ -20,13 +20,15 @@ local function open_opencode_direct()
     else
       -- Window does not exist, open it
       vim.cmd('vert sbuffer ' .. vim.g.opencode_direct_bufnr)
-    end
-  else
-    -- Buffer does not exist, create it
-    vim.cmd('vert term opencode')
-    vim.g.opencode_direct_bufnr = vim.api.nvim_get_current_buf()
-    vim.bo.buflisted = false
+      vim.cmd('startinsert')
   end
+else
+  -- Buffer does not exist, create it
+  vim.cmd('vert term opencode')
+  vim.cmd('startinsert')
+  vim.g.opencode_direct_bufnr = vim.api.nvim_get_current_buf()
+  vim.bo.buflisted = false
+end
 end
 
-vim.keymap.set('n', '<leader><leader>a', open_opencode_direct, { desc = 'Toggle OpenCode terminal window' })
+vim.keymap.set('n', '<leader>aa', open_opencode_direct, { desc = 'Toggle OpenCode terminal window' })
