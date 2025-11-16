@@ -638,9 +638,8 @@ require("lazy").setup({
       -- enabled = false,
       lazy = false,
       config = function()
-        require('opencode').setup({
-          keymap_prefix = '<leader>a',
-          model = "opencode/grok-code",
+        require("opencode").setup({
+          keymap_prefix = "<leader>a",
         })
       end,
       dependencies = {
@@ -654,7 +653,7 @@ require("lazy").setup({
           ft = { "markdown", "Avante", "copilot-chat", "opencode_output" },
         },
         "saghen/blink.cmp",
-        'nvim-mini/mini.pick',
+        "nvim-mini/mini.pick",
       },
     },
     {
