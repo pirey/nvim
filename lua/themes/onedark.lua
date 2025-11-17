@@ -67,6 +67,11 @@ return {
         vim.api.nvim_set_hl(0, "FzfLuaBorder", { fg = float_border })
         vim.api.nvim_set_hl(0, "FzfLuaFzfBorder", { fg = float_border })
         vim.api.nvim_set_hl(0, "FzfLuaFzfSeparator", { fg = "#444444" })
+
+        -- colorfix
+        vim.api.nvim_set_hl(0, "@spell", {})
+        vim.api.nvim_set_hl(0, "@nospell", {})
+        vim.api.nvim_set_hl(0, "@org.agenda.scheduled", { fg = c.green })
       end,
     })
 
@@ -81,10 +86,10 @@ return {
 
         vim.api.nvim_win_set_hl_ns(winnr, ns_id)
         vim.api.nvim_set_hl(ns_id, "CursorLine", { underdotted = true })
-      end
+      end,
     })
 
     vim.opt.background = "dark"
-    -- vim.cmd.colorscheme("onedark")
+    vim.cmd.colorscheme("onedark")
   end,
 }
