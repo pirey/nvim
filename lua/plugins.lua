@@ -685,14 +685,7 @@ require("lazy").setup({
 
     -- THEMES
 
-    {
-      "folke/tokyonight.nvim",
-      lazy = true,
-      opts = { style = "night" },
-      init = function()
-        vim.cmd.colorscheme("tokyonight-night")
-      end,
-    },
+    { "folke/tokyonight.nvim", lazy = true, opts = { style = "night" } },
     require("themes.onedark"),
     require("themes.iceberg"),
     require("themes.vscode"),
