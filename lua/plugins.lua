@@ -531,6 +531,7 @@ require("lazy").setup({
 
     -- ETC
 
+    { "norcalli/nvim-colorizer.lua" },
     { "kevinhwang91/nvim-bqf", ft = "qf" },
     {
       "kristijanhusak/vim-dadbod-ui",
