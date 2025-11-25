@@ -387,28 +387,30 @@ require("lazy").setup({
         on_attach = function(buffer)
           local gs = require("gitsigns")
 
-          vim.keymap.set("n", "]g", function()
+          local function map(mode, l, r, desc)
+            vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+          end
+
+          map("n", "]g", function()
             gs.nav_hunk("next")
-          end, { buffer = buffer, desc = "Next Hunk" })
-          vim.keymap.set("n", "[g", function()
+          end, "Next Hunk")
+          map("n", "[g", function()
             gs.nav_hunk("prev")
-          end, { buffer = buffer, desc = "Prev Hunk" })
-          vim.keymap.set({ "n", "v" }, "<leader>ghs", gs.stage_hunk, { buffer = buffer, desc = "Toggle Stage Hunk" })
-          vim.keymap.set({ "n", "v" }, "<leader>ghr", gs.reset_hunk, { buffer = buffer, desc = "Reset Hunk" })
-          vim.keymap.set("n", "<leader>ghS", gs.stage_buffer, { buffer = buffer, desc = "Stage Buffer" })
-          vim.keymap.set("n", "<leader>ghR", gs.reset_buffer, { buffer = buffer, desc = "Reset Buffer" })
-          vim.keymap.set("n", "<leader>ghP", gs.preview_hunk, { buffer = buffer, desc = "Preview Hunk" })
-          vim.keymap.set("n", "<leader>ghp", gs.preview_hunk_inline, { buffer = buffer, desc = "Preview Hunk Inline" })
-          vim.keymap.set("n", "<leader>ghd", gs.diffthis, { buffer = buffer, desc = "Diff This" })
-          vim.keymap.set("n", "<leader>ghD", function()
+          end, "Prev Hunk")
+          map({ "n", "v" }, "<leader>ghs", gs.stage_hunk, "Toggle Stage Hunk")
+          map({ "n", "v" }, "<leader>ghr", gs.reset_hunk, "Reset Hunk")
+          map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
+          map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
+          map("n", "<leader>ghP", gs.preview_hunk, "Preview Hunk")
+          map("n", "<leader>ghp", gs.preview_hunk_inline, "Preview Hunk Inline")
+          map("n", "<leader>ghb", function()
+            gs.blame_line({ full = true })
+          end, "Blame Line")
+          map("n", "<leader>ghd", gs.diffthis, "Diff This")
+          map("n", "<leader>ghD", function()
             gs.diffthis("~")
-          end, { buffer = buffer, desc = "Diff This ~" })
-          vim.keymap.set(
-            { "o", "x" },
-            "ih",
-            ":<C-U>Gitsigns select_hunk<CR>",
-            { buffer = buffer, desc = "GitSigns Select Hunk" }
-          )
+          end, "Diff This ~")
+          map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
         end,
       },
     },
