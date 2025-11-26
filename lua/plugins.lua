@@ -650,6 +650,16 @@ require("lazy").setup({
       config = function()
         require("opencode").setup({
           keymap_prefix = "<leader>a",
+          keymap = {
+            session_picker = {
+              new_session = { '<C-s>' }, -- Create and switch to a new session in the session picker
+            },
+          },
+          ui = {
+            icons = {
+              preset = "text"
+            }
+          }
         })
       end,
       dependencies = {
@@ -687,10 +697,22 @@ require("lazy").setup({
       },
       keys = {
         { "<leader>aa", "<cmd>CodeCompanionActions<cr>" },
-        { "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>" },
-        { "<leader>a;", ":CodeCompanion" },
+        { "<leader>ai", "<cmd>CodeCompanionChat Toggle<cr>" },
+        { "<leader>a;", ":CodeCompanion", mode = { "n", "x" } },
       },
-      opts = {},
+      opts = {
+        strategies = {
+          chat = {
+            adapter = "opencode",
+          },
+          -- inline = {
+          --   adapter = "opencode",
+          -- },
+          -- cmd = {
+          --   adapter = "opencode",
+          -- },
+        }
+      },
     },
 
     -- THEMES
