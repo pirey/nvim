@@ -67,6 +67,11 @@ return {
         vim.api.nvim_set_hl(0, "FzfLuaBorder", { fg = float_border })
         vim.api.nvim_set_hl(0, "FzfLuaFzfBorder", { fg = float_border })
         vim.api.nvim_set_hl(0, "FzfLuaFzfSeparator", { fg = "#444444" })
+
+        -- colorfix
+        vim.api.nvim_set_hl(0, "@spell", {})
+        vim.api.nvim_set_hl(0, "@nospell", {})
+        vim.api.nvim_set_hl(0, "@org.agenda.scheduled", { fg = c.green })
       end,
     })
 
