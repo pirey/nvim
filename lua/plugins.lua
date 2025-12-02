@@ -228,7 +228,7 @@ require("lazy").setup({
       cmd = { "FFFFind" },
       keys = {
         {
-          "<leader><leader>f",
+          "<leader>p",
           function()
             require("fff").find_files() -- or find_in_git_root() if you only want git files
           end,
@@ -419,6 +419,7 @@ require("lazy").setup({
       cmd = "GrugFar",
       keys = {
         { "<leader>S", "<cmd>GrugFar<cr>", mode = { "n" } },
+        { "<leader><c-f>", "<cmd>GrugFar<cr>", mode = { "n" } },
         {
           "<leader>S",
           function()
