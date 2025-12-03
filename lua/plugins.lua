@@ -427,6 +427,13 @@ require("lazy").setup({
           end,
           mode = { "x" },
         },
+        {
+          "<leader><c-f>",
+          function()
+            require("grug-far").with_visual_selection()
+          end,
+          mode = { "x" },
+        },
       },
       opts = {
         icons = { enabled = false },
