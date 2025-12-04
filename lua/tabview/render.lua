@@ -12,7 +12,14 @@ function M.render()
   local tabline = ""
 
   for i, tab in ipairs(tabs) do
-    local name = storage.get_name(tab) or ("Tab " .. i)
+    local wins = vim.api.nvim_tabpage_list_wins(tab)
+    local normal_win_count = 0
+    for _, win in ipairs(wins) do
+      if vim.api.nvim_win_get_config(win).relative == "" then
+        normal_win_count = normal_win_count + 1
+      end
+    end
+    local name = storage.get_name(tab) or string.rep("•", normal_win_count)
     local is_current = tab == current_tab
 
     -- Highlight group
