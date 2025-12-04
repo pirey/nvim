@@ -228,7 +228,7 @@ require("lazy").setup({
       cmd = { "FFFFind" },
       keys = {
         {
-          "<leader>p",
+          "<leader>f",
           function()
             require("fff").find_files() -- or find_in_git_root() if you only want git files
           end,
@@ -263,7 +263,7 @@ require("lazy").setup({
         { "<leader>/", "<cmd>Pick buf_lines scope='current'<cr>" },
         { "<leader>?", "<cmd>Pick buf_lines<cr>" },
         {
-          "<leader>f",
+          "<leader>p",
           function()
             require("mini.pick").builtin.cli({
               command = { "fd", "--hidden", "-E", ".git" },
