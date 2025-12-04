@@ -212,6 +212,7 @@ require("lazy").setup({
           preview_size = 0.6,
           width = math.min(100 / vim.o.columns, 0.95),
           height = math.min(55 / vim.o.lines, 0.95),
+          row = 3 / vim.o.lines,
         },
         preview = {
           enabled = vim.o.lines >= 50,
@@ -299,7 +300,7 @@ require("lazy").setup({
           return {
             width = w,
             height = h,
-            row = 3,
+            row = 4,
             col = math.floor((cols - w) / 2),
             anchor = "NW",
             border = "rounded",
