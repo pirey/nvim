@@ -549,7 +549,10 @@ require("lazy").setup({
 
     -- ETC
 
-    { "norcalli/nvim-colorizer.lua" },
+    {
+      "norcalli/nvim-colorizer.lua",
+      cmd = { "ColorizerToggle", "ColorizerAttachToBuffer", "ColorizerDetachFromBuffer" },
+    },
     { "kevinhwang91/nvim-bqf", ft = "qf" },
     {
       "kristijanhusak/vim-dadbod-ui",
@@ -626,6 +629,10 @@ require("lazy").setup({
       dependencies = {
         "nvim-lua/plenary.nvim", -- Required
       },
+      keys = {
+        { "<leader>ma" },
+        { "<leader>mv" },
+      },
       config = function()
         require("marker-groups").setup({
           -- Your configuration here
@@ -661,26 +668,18 @@ require("lazy").setup({
           keymap_prefix = "<leader>a",
           keymap = {
             session_picker = {
-              new_session = { '<C-s>' }, -- Create and switch to a new session in the session picker
+              new_session = { "<C-s>" }, -- Create and switch to a new session in the session picker
             },
           },
           ui = {
             icons = {
-              preset = "text"
-            }
-          }
+              preset = "text",
+            },
+          },
         })
       end,
       dependencies = {
         "nvim-lua/plenary.nvim",
-        {
-          "MeanderingProgrammer/render-markdown.nvim",
-          opts = {
-            anti_conceal = { enabled = false },
-            file_types = { "markdown", "opencode_output" },
-          },
-          ft = { "markdown", "Avante", "copilot-chat", "opencode_output" },
-        },
         "saghen/blink.cmp",
         "nvim-mini/mini.pick",
       },
@@ -720,15 +719,15 @@ require("lazy").setup({
           -- cmd = {
           --   adapter = "opencode",
           -- },
-        }
+        },
       },
     },
 
     -- THEMES
 
-    { "folke/tokyonight.nvim", lazy = true, opts = { style = "night" } },
     require("themes.onedark"),
-    require("themes.iceberg"),
-    require("themes.vscode"),
+    -- require("themes.iceberg"),
+    -- require("themes.vscode"),
+    -- { "folke/tokyonight.nvim", lazy = true, opts = { style = "night" } },
   }, -- spec
 })
