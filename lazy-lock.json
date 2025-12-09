@@ -19,6 +19,7 @@
   "mini.files": { "branch": "main", "commit": "49c855977e9f4821d1ed8179ed44fe098b93ea2a" },
   "mini.pick": { "branch": "main", "commit": "fa1e449e1080bf7aa9b2890ee186d23b1b4e1287" },
   "nvim-bqf": { "branch": "main", "commit": "ba2b365969d7c2c6301d48e13aeee59568765529" },
+  "nvim-colorizer.lua": { "branch": "master", "commit": "a065833f35a3a7cc3ef137ac88b5381da2ba302e" },
   "nvim-lint": { "branch": "master", "commit": "ebe535956106c60405b02220246e135910f6853d" },
   "nvim-lspconfig": { "branch": "master", "commit": "a2bd1cf7b0446a7414aaf373cea5e4ca804c9c69" },
   "nvim-treesitter": { "branch": "master", "commit": "42fc28ba918343ebfd5565147a42a26580579482" },
