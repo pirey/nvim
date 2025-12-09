@@ -202,6 +202,37 @@ require("lazy").setup({
       end,
     },
     {
+      "comfysage/artio.nvim",
+      lazy = false,
+      keys = {
+        {
+          "<leader><leader>f",
+          function()
+            require("artio.builtins").smart({ findprg = "fd" })
+          end,
+        },
+        { "<leader><leader>s", "<Plug>(artio-grep)" },
+      },
+      config = function()
+        require("artio").setup({
+          opts = {
+            use_icons = false,
+          },
+          mappings = {
+            ["<c-n>"] = "down",
+            ["<c-p>"] = "up",
+            ["<cr>"] = "accept",
+            ["<esc>"] = "cancel",
+            ["<tab>"] = "mark",
+            ["<c-l>"] = "togglepreview",
+            ["<c-q>"] = "setqflist",
+            ["<m-q>"] = "setqflistmark",
+          },
+        })
+        vim.ui.select = require("artio").select
+      end,
+    },
+    {
       "dmtrKovalenko/fff.nvim",
       opts = {
         prompt = " ",

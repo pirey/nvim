@@ -52,4 +52,13 @@ vim.keymap.set("n", "<leader>qc", "<cmd>cclose<cr><cmd>lclose<cr>", { noremap = 
 vim.cmd("autocmd TermOpen * startinsert")
 vim.cmd("autocmd QuickFixCmdPost grep,grep! copen")
 
+-- experimental
+if vim.fn.has("nvim-0.12") == 1 then
+  vim.opt.pumborder = "rounded"
+  vim.opt.cmdheight = 0
+  require("vim._extui").enable({
+    enable = true,
+  })
+end
+
 require("plugins")
