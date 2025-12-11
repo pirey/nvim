@@ -206,9 +206,9 @@ require("lazy").setup({
       lazy = false,
       keys = {
         {
-          "<leader><leader>f",
+          "<leader>f",
           function()
-            require("artio.builtins").smart({ findprg = "fd" })
+            require("artio.builtins").smart({ findprg = "fd --hidden -E .git" })
           end,
         },
         { "<leader><leader>s", "<Plug>(artio-grep)" },
@@ -229,7 +229,7 @@ require("lazy").setup({
             ["<m-q>"] = "setqflistmark",
           },
         })
-        vim.ui.select = require("artio").select
+        -- vim.ui.select = require("artio").select
       end,
     },
     {
@@ -260,7 +260,7 @@ require("lazy").setup({
       cmd = { "FFFFind" },
       keys = {
         {
-          "<leader>f",
+          "ff",
           function()
             require("fff").find_files() -- or find_in_git_root() if you only want git files
           end,
