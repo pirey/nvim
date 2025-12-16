@@ -9,14 +9,15 @@ return {
       callback = function()
         local c = require("onedark.colors")
 
+        -- NOTE: MY PERSONAL PATCH FOR ONEDARK THEME
+        -- REDUCE RED, YELLOW AND ORANGE TO MAKE IT MORE BLUE-ISH
+
         vim.api.nvim_set_hl(0, "CursorLineNr", { bold = true })
         vim.api.nvim_set_hl(0, "QuickFixLine", { bg = c.bg1, underdashed = true })
 
-        -- reduce red, yellow and orange to make it more blue-ish
-
         vim.api.nvim_set_hl(0, "Special", { fg = c.cyan })
-        -- vim.api.nvim_set_hl(0, "Constant", { fg = c.fg, italic = true })
         vim.api.nvim_set_hl(0, "@constant", { fg = c.fg, italic = true })
+        vim.api.nvim_set_hl(0, "@constant.macro", { fg = c.fg, italic = true })
         vim.api.nvim_set_hl(0, "@constructor", { fg = c.fg })
         vim.api.nvim_set_hl(0, "@module", { fg = c.cyan })
         vim.api.nvim_set_hl(0, "@tag", { fg = c.cyan })
