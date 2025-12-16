@@ -591,7 +591,15 @@ require("lazy").setup({
       "norcalli/nvim-colorizer.lua",
       cmd = { "ColorizerToggle", "ColorizerAttachToBuffer", "ColorizerDetachFromBuffer" },
     },
-    { "kevinhwang91/nvim-bqf", ft = "qf" },
+    {
+      "kevinhwang91/nvim-bqf",
+      ft = "qf",
+      opts = {
+        preview = {
+          winblend = 0,
+        }
+      }
+    },
     {
       "kristijanhusak/vim-dadbod-ui",
       dependencies = {
