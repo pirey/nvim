@@ -206,12 +206,11 @@ require("lazy").setup({
       lazy = false,
       keys = {
         {
-          "<leader>f",
+          "<leader><leader>f",
           function()
-            require("artio.builtins").smart({ findprg = "fd --hidden -E .git" })
+            require("artio.builtins").files({ findprg = "fd --hidden -E .git" })
           end,
         },
-        { "<leader><leader>s", "<Plug>(artio-grep)" },
       },
       config = function()
         require("artio").setup({
@@ -268,7 +267,7 @@ require("lazy").setup({
       cmd = { "FFFFind" },
       keys = {
         {
-          "ff",
+          "<leader>f",
           function()
             require("fff").find_files() -- or find_in_git_root() if you only want git files
           end,
