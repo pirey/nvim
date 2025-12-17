@@ -314,7 +314,7 @@ require("lazy").setup({
           "<leader>f",
           function()
             require("mini.pick").builtin.cli({
-              command = { "fd", "--hidden", "-E", ".git" },
+              command = { "fd", "--hidden", "-E", ".git", "--type", "f" },
             }, {
               source = { name = "Find" },
             })
