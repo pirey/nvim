@@ -267,7 +267,7 @@ require("lazy").setup({
       cmd = { "FFFFind" },
       keys = {
         {
-          "<leader>f",
+          "ff",
           function()
             require("fff").find_files() -- or find_in_git_root() if you only want git files
           end,
@@ -279,7 +279,7 @@ require("lazy").setup({
       "nvim-mini/mini.files",
       version = "*",
       keys = {
-        { "<leader>e", "<cmd>lua require('mini.files').open(vim.fn.getcwd())<cr>", desc = "Open file browser" },
+        { "<leader>f", "<cmd>lua require('mini.files').open(vim.fn.getcwd())<cr>", desc = "Open file browser" },
       },
     },
     {
@@ -288,16 +288,15 @@ require("lazy").setup({
       dependencies = { "nvim-mini/mini.extra", version = "*" },
       cmd = { "Pick" },
       keys = {
-        -- { "<leader>f", "<cmd>Pick files<cr>" },
         { "<leader>k", "<cmd>Pick keymaps<cr>" },
         { "<leader>b", "<cmd>Pick buffers<cr>" },
         { "<leader>.", "<cmd>Pick resume<cr>" },
-        { "<leader><leader>e", "<cmd>Pick diagnostic scope='current'<cr>" },
-        { "<leader>E", "<cmd>Pick diagnostic<cr>" },
+        { "<leader>d", "<cmd>Pick diagnostic scope='current'<cr>" },
         { "<leader>s", "<cmd>Pick lsp scope='document_symbol'<cr>" },
         { "<leader>r", "<cmd>Pick lsp scope='references'<cr>" },
         { "<leader>'", "<cmd>Pick oldfiles current_dir=true<cr>" },
         { "<leader>h", "<cmd>Pick help<cr>" },
+        { "<leader>l", "<cmd>Pick hl_groups<cr>" },
         { "<leader>,", "<cmd>Pick grep_live<cr>" },
         { "<leader>/", "<cmd>Pick buf_lines scope='current'<cr>" },
         { "<leader>?", "<cmd>Pick buf_lines<cr>" },
@@ -310,51 +309,19 @@ require("lazy").setup({
           end,
           desc = "Find files and dirs",
         },
-        {
-          "<leader>d",
-          function()
-            require("mini.pick").builtin.cli({
-              command = { "fd", "--hidden", "--type", "d", "-E", ".git" },
-            })
-          end,
-          desc = "Find dirs",
-        },
       },
       config = function()
         local pick = require("mini.pick")
-
-        local win_config = function()
-          local cols, lines = vim.o.columns, vim.o.lines - vim.o.cmdheight
-          if vim.o.laststatus > 0 then
-            lines = lines - 1
-          end
-          if vim.o.showtabline == 2 or (vim.o.showtabline == 1 and vim.fn.tabpagenr("$") > 1) then
-            lines = lines - 1
-          end
-
-          local w = math.min(100, math.floor(cols * 0.95))
-          local h = math.min(30, math.floor(lines * 0.95))
-
-          return {
-            width = w,
-            height = h,
-            row = 4,
-            col = math.floor((cols - w) / 2),
-            anchor = "NW",
-            border = "rounded",
-          }
-        end
+        local extra = require("mini.extra")
 
         pick.setup({
-          source = { show = pick.default_show },
           mappings = {
             scroll_left = "<BS>",
             delete_char = "<c-h>",
           },
-          window = { config = win_config },
         })
 
-        require("mini.extra").setup()
+        extra.setup()
 
         ---@diagnostic disable-next-line: duplicate-set-field
         vim.ui.select = function(items, opts, on_choice)
