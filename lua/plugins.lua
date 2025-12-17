@@ -202,6 +202,15 @@ require("lazy").setup({
       end,
     },
     {
+      "hedyhli/outline.nvim",
+      keys = {
+        { "<leader>O", "<cmd>Outline<CR>", desc = "Toggle Outline" },
+      },
+      config = function()
+        require("outline").setup()
+      end,
+    },
+    {
       "comfysage/artio.nvim",
       lazy = false,
       keys = {
