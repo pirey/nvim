@@ -212,6 +212,7 @@ require("lazy").setup({
     },
     {
       "comfysage/artio.nvim",
+      enabled = false,
       lazy = false,
       keys = {
         {
@@ -316,10 +317,21 @@ require("lazy").setup({
             require("mini.pick").builtin.cli({
               command = { "fd", "--hidden", "-E", ".git", "--type", "f" },
             }, {
-              source = { name = "Find" },
+              source = { name = "Files" },
             })
           end,
-          desc = "Find files and dirs",
+          desc = "Find fiels",
+        },
+        {
+          "<leader><leader>f",
+          function()
+            require("mini.pick").builtin.cli({
+              command = { "fd", "--hidden", "-E", ".git", "--type", "d" },
+            }, {
+              source = { name = "Dir" },
+            })
+          end,
+          desc = "Find dir",
         },
       },
       config = function()
