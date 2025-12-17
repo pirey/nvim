@@ -279,7 +279,7 @@ require("lazy").setup({
       "nvim-mini/mini.files",
       version = "*",
       keys = {
-        { "<leader>f", "<cmd>lua require('mini.files').open(vim.fn.getcwd())<cr>", desc = "Open file browser" },
+        { "<leader>e", "<cmd>lua require('mini.files').open(vim.fn.getcwd())<cr>", desc = "Open file browser" },
       },
     },
     {
@@ -300,11 +300,14 @@ require("lazy").setup({
         { "<leader>,", "<cmd>Pick grep_live<cr>" },
         { "<leader>/", "<cmd>Pick buf_lines scope='current'<cr>" },
         { "<leader>?", "<cmd>Pick buf_lines<cr>" },
+        { "<leader>gc", "<cmd>Pick git_commits<cr>" },
         {
-          "<leader>p",
+          "<leader>f",
           function()
             require("mini.pick").builtin.cli({
               command = { "fd", "--hidden", "-E", ".git" },
+            }, {
+              source = { name = "Find" },
             })
           end,
           desc = "Find files and dirs",
@@ -315,6 +318,7 @@ require("lazy").setup({
         local extra = require("mini.extra")
 
         pick.setup({
+          source = { show = pick.default_show },
           mappings = {
             scroll_left = "<BS>",
             delete_char = "<c-h>",
@@ -564,8 +568,8 @@ require("lazy").setup({
       opts = {
         preview = {
           winblend = 0,
-        }
-      }
+        },
+      },
     },
     {
       "kristijanhusak/vim-dadbod-ui",
