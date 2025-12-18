@@ -6,9 +6,9 @@
     ],
     "description": "Insert ISO datetime (YYYY-MM-DDTHH:MM)"
   },
-  "lorem-short": {
+  "lorem": {
     "prefix": "lorem",
-    "body": ["Lorem ipsum dolor sit amet."],
+    "body": ["Lorem ipsum dolor sit amet, consectetur adipiscing elit."],
     "description": "Short lorem text"
   },
   "lorem-long": {
