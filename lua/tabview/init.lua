@@ -8,7 +8,8 @@ local render = require("tabview.render")
 function M.setup(opts)
   opts = opts or {}
   storage.setup(opts)
-  render.setup()
+  render.setup(opts)
+  vim.opt.tabline = '%!v:lua.require("tabview").render()'
 end
 
 -- Render the tabline

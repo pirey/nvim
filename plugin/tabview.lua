@@ -1,3 +1,11 @@
 -- tabview: Custom tabline plugin
--- Set up the tabline
-vim.opt.tabline = '%!v:lua.require("tabview").render()'
+require("tabview").setup({
+  ft_titles = {
+    checkhealth = "Health",
+    git = "Git",
+    fugitive = "Fugitive",
+    dbui = "DBUI",
+    DiffviewFiles = "Diffview",
+    DiffviewFileHistory = "Git Log",
+  }
+})
