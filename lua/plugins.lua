@@ -475,6 +475,9 @@ require("lazy").setup({
             extraArgs = "--smart-case --hidden --glob=!.git",
           },
         },
+        openTargetWindow = {
+          preferredLocation = vim.opt.splitright and "right" or "left",
+        }
       },
     },
     {
