@@ -7,5 +7,10 @@ require("tabview").setup({
     dbui = "DBUI",
     DiffviewFiles = "Diffview",
     DiffviewFileHistory = "Git Log",
-  }
+    opencode = "OpenCode",
+    ["grug-far"] = "Search",
+  },
+  buftype_titles = {
+    terminal = "Term",
+  },
 })
