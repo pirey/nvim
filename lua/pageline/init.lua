@@ -1,15 +1,15 @@
 local M = {}
 
 -- Load submodules
-local storage = require("tabview.storage")
-local render = require("tabview.render")
+local storage = require("pageline.storage")
+local render = require("pageline.render")
 
 -- Setup function
 function M.setup(opts)
   opts = opts or {}
   storage.setup(opts)
   render.setup(opts)
-  vim.opt.tabline = '%!v:lua.require("tabview").render()'
+  vim.opt.tabline = '%!v:lua.require("pageline").render()'
 end
 
 -- Render the tabline
@@ -30,7 +30,7 @@ end, {})
 
 vim.api.nvim_create_user_command("TabToggle", function()
   if vim.o.tabline == "" then
-    vim.opt.tabline = '%!v:lua.require("tabview").render()'
+    vim.opt.tabline = '%!v:lua.require("pageline").render()'
   else
     vim.opt.tabline = ""
   end

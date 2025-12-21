@@ -1,5 +1,5 @@
--- tabview: Custom tabline plugin
-require("tabview").setup({
+-- pageline: Custom tabline plugin
+require("pageline").setup({
   ft_titles = {
     checkhealth = "Health",
     git = "Git",

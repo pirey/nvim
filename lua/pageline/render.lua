@@ -1,6 +1,6 @@
 local M = {}
 
-local storage = require("tabview.storage")
+local storage = require("pageline.storage")
 
 function M.setup(opts)
   M.options = vim.tbl_extend("force", {

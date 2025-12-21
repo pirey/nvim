@@ -1,7 +1,7 @@
 local M = {}
 
 local tab_names = {}
-local storage_file = vim.fn.stdpath("data") .. "/tabview/names.json"
+local storage_file = vim.fn.stdpath("data") .. "/pageline/names.json"
 
 function M.setup(opts)
   opts = opts or {}
