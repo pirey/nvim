@@ -6,7 +6,7 @@ require("pageline").setup({
     fugitive = "Fugitive",
     dbui = "DBUI",
     DiffviewFiles = "Diffview",
-    DiffviewFileHistory = "Git Log",
+    DiffviewFileHistory = "Diffview History",
     opencode = "OpenCode",
     ["grug-far"] = "Search",
   },
