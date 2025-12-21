@@ -70,6 +70,8 @@ return {
         vim.api.nvim_set_hl(0, "FzfLuaFzfBorder", { fg = float_border })
         vim.api.nvim_set_hl(0, "FzfLuaFzfSeparator", { fg = "#444444" })
 
+        vim.api.nvim_set_hl(0, "FoldColumn", { link = "Comment" })
+
         -- colorfix
         vim.api.nvim_set_hl(0, "@spell", {})
         vim.api.nvim_set_hl(0, "@nospell", {})
