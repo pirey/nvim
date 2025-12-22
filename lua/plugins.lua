@@ -320,10 +320,10 @@ require("lazy").setup({
               source = { name = "Files" },
             })
           end,
-          desc = "Find fiels",
+          desc = "Find files",
         },
         {
-          "<leader><leader>f",
+          "<leader><leader>d",
           function()
             require("mini.pick").builtin.cli({
               command = { "fd", "--hidden", "-E", ".git", "--type", "d" },
