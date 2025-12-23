@@ -657,6 +657,7 @@ require("lazy").setup({
     },
     {
       "jameswolensky/marker-groups.nvim",
+      enabled = false,
       dependencies = {
         "nvim-lua/plenary.nvim", -- Required
       },
@@ -672,6 +673,7 @@ require("lazy").setup({
     },
     {
       "hat0uma/csvview.nvim",
+      enabled = false,
       opts = {
         parser = { comments = { "#", "//" } },
         keymaps = {
