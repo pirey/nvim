@@ -759,8 +759,8 @@ require("lazy").setup({
     -- THEMES
 
     require("themes.onedark"),
-    -- require("themes.iceberg"),
-    -- require("themes.vscode"),
-    -- { "folke/tokyonight.nvim", lazy = true, opts = { style = "night" } },
+    require("themes.iceberg"),
+    require("themes.vscode"),
+    { "folke/tokyonight.nvim", opts = { style = "night" } },
   }, -- spec
 })
