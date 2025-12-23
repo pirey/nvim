@@ -203,9 +203,7 @@ require("lazy").setup({
     },
     {
       "hedyhli/outline.nvim",
-      keys = {
-        { "<leader>O", "<cmd>Outline<CR>", desc = "Toggle Outline" },
-      },
+      keys = { { "<leader>O", "<cmd>Outline<CR>", desc = "Toggle Outline" } },
       config = function()
         require("outline").setup()
       end,
@@ -449,15 +447,7 @@ require("lazy").setup({
       "MagicDuck/grug-far.nvim",
       cmd = "GrugFar",
       keys = {
-        { "<leader>S", "<cmd>GrugFar<cr>", mode = { "n" } },
         { "<leader><c-f>", "<cmd>GrugFar<cr>", mode = { "n" } },
-        {
-          "<leader>S",
-          function()
-            require("grug-far").with_visual_selection()
-          end,
-          mode = { "x" },
-        },
         {
           "<leader><c-f>",
           function()
@@ -477,7 +467,7 @@ require("lazy").setup({
         },
         openTargetWindow = {
           preferredLocation = vim.opt.splitright and "right" or "left",
-        }
+        },
       },
     },
     {
