@@ -289,6 +289,11 @@ require("lazy").setup({
       keys = {
         { "<leader>e", "<cmd>lua require('mini.files').open(vim.fn.getcwd())<cr>", desc = "Open file browser" },
       },
+      opts = {
+        mappings = {
+          close = "<esc>",
+        }
+      }
     },
     {
       "nvim-mini/mini.pick",
