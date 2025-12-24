@@ -257,7 +257,7 @@ require("lazy").setup({
           preview_position = "bottom",
           preview_size = 0.6,
           width = math.min(100 / vim.o.columns, 0.95),
-          height = math.min(55 / vim.o.lines, 0.95),
+          height = math.min(45 / vim.o.lines, 0.95),
           row = 3 / vim.o.lines,
         },
         preview = {
