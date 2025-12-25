@@ -453,15 +453,7 @@ local colorizer = {
   "norcalli/nvim-colorizer.lua",
   cmd = { "ColorizerToggle", "ColorizerAttachToBuffer", "ColorizerDetachFromBuffer" },
 }
-local bqf = {
-  "kevinhwang91/nvim-bqf",
-  ft = "qf",
-  opts = {
-    preview = {
-      winblend = 0,
-    },
-  },
-}
+local bqf = { "kevinhwang91/nvim-bqf", ft = "qf", opts = { preview = { winblend = 0 } } }
 local dadbod_ui = {
   "kristijanhusak/vim-dadbod-ui",
   dependencies = {
