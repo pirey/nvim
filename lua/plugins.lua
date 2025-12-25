@@ -555,7 +555,6 @@ local csvview = {
 }
 local opencode = {
   "sudo-tee/opencode.nvim",
-  -- enabled = false,
   lazy = false,
   config = function()
     require("opencode").setup({
@@ -584,7 +583,6 @@ local supermaven = {
     require("supermaven-nvim").setup({})
   end,
 }
-local github_copilot = { "github/copilot.vim", enabled = false }
 local codecompanion = {
   "olimorris/codecompanion.nvim",
   enabled = false,
@@ -660,7 +658,6 @@ require("lazy").setup({
     csvview,
     opencode,
     supermaven,
-    github_copilot,
     codecompanion,
 
     -- THEMES
