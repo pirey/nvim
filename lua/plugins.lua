@@ -562,37 +562,6 @@ local supermaven = {
     require("supermaven-nvim").setup({})
   end,
 }
-local codecompanion = {
-  "olimorris/codecompanion.nvim",
-  enabled = false,
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-treesitter/nvim-treesitter",
-  },
-  cmd = {
-    "CodeCompanion",
-    "CodeCompanionActions",
-    "CodeCompanionChat",
-  },
-  keys = {
-    { "<leader>aa", "<cmd>CodeCompanionActions<cr>" },
-    { "<leader>ai", "<cmd>CodeCompanionChat Toggle<cr>" },
-    { "<leader>a;", ":CodeCompanion", mode = { "n", "x" } },
-  },
-  opts = {
-    strategies = {
-      chat = {
-        adapter = "opencode",
-      },
-      -- inline = {
-      --   adapter = "opencode",
-      -- },
-      -- cmd = {
-      --   adapter = "opencode",
-      -- },
-    },
-  },
-}
 local theme_onedark = require("themes.onedark")
 local theme_iceberg = require("themes.iceberg")
 local themes_vscode = require("themes.vscode")
@@ -636,7 +605,6 @@ require("lazy").setup({
     orgmode,
     opencode,
     supermaven,
-    codecompanion,
 
     -- THEMES
 
