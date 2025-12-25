@@ -555,52 +555,56 @@ local supermaven = {
 }
 local theme_onedark = require("themes.onedark")
 local theme_iceberg = require("themes.iceberg")
-local themes_vscode = require("themes.vscode")
+local theme_vscode = require("themes.vscode")
 local theme_tokyonight = {
   "folke/tokyonight.nvim",
   opts = { style = "night" },
 }
 
--- plugin spec
 require("lazy").setup({
   install = { colorscheme = { "default" } },
   ui = { size = { width = 1, height = 1 } },
   spec = {
-    wakatime,
+    -- EDITING
     surround,
     fugitive,
     abolish,
-    mason,
+    treesj,
+    conform,
+    nvim_lint,
+    blink_cmp,
+
+    -- EXTENSIONS
     winshift,
     diffview,
     oil,
-    treesj,
-    treesitter,
-    lspconfig,
     outline,
     mini_files,
     mini_pick,
     gitsigns,
     grug_far,
-    blink_cmp,
-    conform,
-    nvim_lint,
 
-    -- ETC
-
-    colorizer,
-    dadbod_ui,
-    showkeys,
-    curl,
+    -- TOOLS
+    mason,
+    treesitter,
+    lspconfig,
     orgmode,
+    dadbod_ui,
+    curl,
+
+    -- AI
     opencode,
     supermaven,
 
-    -- THEMES
+    -- ETC
+    wakatime,
+    colorizer,
+    showkeys,
 
+    -- THEMES
     theme_onedark,
     theme_iceberg,
-    themes_vscode,
+    theme_vscode,
     theme_tokyonight,
-  }, -- spec
+  },
 })
