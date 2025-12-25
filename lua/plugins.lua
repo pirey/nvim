@@ -203,48 +203,6 @@ local outline = {
     require("outline").setup()
   end,
 }
-local fff = {
-  "dmtrKovalenko/fff.nvim",
-  enabled = false,
-  build = function()
-    -- this will download prebuild binary or try to use existing rustup toolchain to build from source
-    -- (if you are using lazy you can use gb for rebuilding a plugin if needed)
-    require("fff.download").download_or_build_binary()
-  end,
-  opts = {
-    prompt = " ",
-    title = "Files",
-    layout = {
-      prompt_position = "top",
-      preview_position = "bottom",
-      preview_size = 0.6,
-      width = math.min(100 / vim.o.columns, 0.95),
-      height = math.min(45 / vim.o.lines, 0.95),
-      row = 3 / vim.o.lines,
-    },
-    preview = {
-      enabled = vim.o.lines >= 50,
-    },
-    keymaps = {
-      close = { "<esc>", "<c-c>" },
-      move_up = { "<c-p>", "<c-k>" },
-      move_down = { "<c-n>", "<c-j>" },
-      preview_scroll_up = "<c-b>",
-      preview_scroll_down = "<c-f>",
-    },
-    icons = { enabled = false },
-  },
-  cmd = { "FFFFind" },
-  keys = {
-    {
-      "ff",
-      function()
-        require("fff").find_files() -- or find_in_git_root() if you only want git files
-      end,
-      desc = "Open file picker",
-    },
-  },
-}
 local mini_files = {
   "nvim-mini/mini.files",
   version = "*",
@@ -744,7 +702,6 @@ require("lazy").setup({
     treesitter,
     lspconfig,
     outline,
-    fff,
     mini_files,
     mini_pick,
     fzf_lua,
