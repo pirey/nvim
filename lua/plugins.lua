@@ -532,22 +532,6 @@ local orgmode = {
     },
   },
 }
-local marker_groups = {
-  "jameswolensky/marker-groups.nvim",
-  enabled = false,
-  dependencies = {
-    "nvim-lua/plenary.nvim", -- Required
-  },
-  keys = {
-    { "<leader>ma" },
-    { "<leader>mv" },
-  },
-  config = function()
-    require("marker-groups").setup({
-      -- Your configuration here
-    })
-  end,
-}
 local csvview = {
   "hat0uma/csvview.nvim",
   enabled = false,
@@ -673,7 +657,6 @@ require("lazy").setup({
     showkeys,
     curl,
     orgmode,
-    marker_groups,
     csvview,
     opencode,
     supermaven,
