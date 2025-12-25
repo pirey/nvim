@@ -203,40 +203,6 @@ local outline = {
     require("outline").setup()
   end,
 }
-local artio = {
-  "comfysage/artio.nvim",
-  enabled = false,
-  lazy = false,
-  keys = {
-    {
-      "<leader><leader>f",
-      function()
-        require("artio.builtins").files({ findprg = "fd --hidden -E .git" })
-      end,
-    },
-  },
-  config = function()
-    require("artio").setup({
-      opts = {
-        use_icons = false,
-      },
-      mappings = {
-        ["<c-n>"] = "down",
-        ["<c-p>"] = "up",
-        ["<cr>"] = "accept",
-        ["<esc>"] = "cancel",
-        ["<tab>"] = "mark",
-        ["<c-l>"] = "togglepreview",
-        ["<c-q>"] = "setqflist",
-        ["<m-q>"] = "setqflistmark",
-        ["<c-s>"] = "split",
-        ["<c-v>"] = "vsplit",
-        ["<c-t>"] = "tabnew",
-      },
-    })
-    -- vim.ui.select = require("artio").select
-  end,
-}
 local fff = {
   "dmtrKovalenko/fff.nvim",
   enabled = false,
@@ -778,7 +744,6 @@ require("lazy").setup({
     treesitter,
     lspconfig,
     outline,
-    artio,
     fff,
     mini_files,
     mini_pick,
