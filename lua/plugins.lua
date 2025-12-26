@@ -218,7 +218,10 @@ local mini_files = {
 local mini_pick = {
   "nvim-mini/mini.pick",
   version = "*",
-  dependencies = { "nvim-mini/mini.extra", version = "*" },
+  dependencies = {
+    { "nvim-mini/mini.extra", version = "*" },
+    { "nvim-mini/mini.visits", version = "*" },
+  },
   cmd = { "Pick" },
   keys = {
     { "<leader>k", "<cmd>Pick keymaps<cr>" },
@@ -233,7 +236,7 @@ local mini_pick = {
     { "<leader>,", "<cmd>Pick grep_live<cr>" },
     { "<leader>/", "<cmd>Pick buf_lines scope='current'<cr>" },
     { "<leader>?", "<cmd>Pick buf_lines<cr>" },
-    { "<leader>gc", "<cmd>Pick git_commits<cr>" },
+    { "<leader>\"", "<cmd>Pick visit_paths<cr>" },
     {
       "<leader>f",
       function()
@@ -260,6 +263,7 @@ local mini_pick = {
   config = function()
     local pick = require("mini.pick")
     local extra = require("mini.extra")
+    local visits = require("mini.visits")
 
     pick.setup({
       source = { show = pick.default_show },
@@ -269,6 +273,7 @@ local mini_pick = {
       },
     })
 
+    visits.setup()
     extra.setup()
 
     ---@diagnostic disable-next-line: duplicate-set-field
