@@ -404,13 +404,10 @@ local blink_indent = {
   --- @type blink.indent.Config
   opts = {
     static = {
-      -- enabled = false,
       char = '┊',
     },
     scope = {
-      -- char = '▎',
-      -- char = '┊',
-      -- char = '╎',
+      char = '│',
       highlights = {
         "BlinkIndentScope",
       }
