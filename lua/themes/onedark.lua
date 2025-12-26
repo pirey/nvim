@@ -76,6 +76,9 @@ return {
         vim.api.nvim_set_hl(0, "@spell", {})
         vim.api.nvim_set_hl(0, "@nospell", {})
         vim.api.nvim_set_hl(0, "@org.agenda.scheduled", { fg = c.green })
+
+        vim.api.nvim_set_hl(0, "BlinkIndent", { fg = "#383c44" })
+        vim.api.nvim_set_hl(0, "BlinkIndentScope", { fg = "#454a56" })
       end,
     })
 

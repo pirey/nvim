@@ -398,6 +398,25 @@ local blink_cmp = {
     })
   end,
 }
+local blink_indent = {
+  'saghen/blink.indent',
+  --- @module 'blink.indent'
+  --- @type blink.indent.Config
+  opts = {
+    static = {
+      -- enabled = false,
+      char = '┊',
+    },
+    scope = {
+      -- char = '▎',
+      -- char = '┊',
+      -- char = '╎',
+      highlights = {
+        "BlinkIndentScope",
+      }
+    }
+  },
+}
 local conform = {
   "stevearc/conform.nvim",
   dependencies = { "mason-org/mason.nvim" },
@@ -578,6 +597,7 @@ require("lazy").setup({
     conform,
     nvim_lint,
     blink_cmp,
+    blink_indent,
 
     -- EXTENSIONS
     winshift,
