@@ -137,18 +137,10 @@ local treesitter = {
     require("nvim-treesitter.configs").setup(opts)
   end,
 }
+local lazydev = { "folke/lazydev.nvim", ft = "lua", opts = {} }
 local lspconfig = {
   "neovim/nvim-lspconfig",
   config = function()
-    vim.lsp.config("lua_ls", {
-      settings = {
-        Lua = {
-          workspace = {
-            library = vim.api.nvim_get_runtime_file("", true),
-          },
-        },
-      },
-    })
     vim.lsp.config("phpactor", {
       init_options = {
         ["language_server.diagnostic_ignore_codes"] = {
@@ -209,11 +201,6 @@ local mini_files = {
   keys = {
     { "<leader>e", "<cmd>lua require('mini.files').open(vim.fn.getcwd())<cr>", desc = "Open file browser" },
   },
-  opts = {
-    mappings = {
-      close = "<esc>",
-    },
-  },
 }
 local mini_pick = {
   "nvim-mini/mini.pick",
@@ -236,7 +223,7 @@ local mini_pick = {
     { "<leader>,", "<cmd>Pick grep_live<cr>" },
     { "<leader>/", "<cmd>Pick buf_lines scope='current'<cr>" },
     { "<leader>?", "<cmd>Pick buf_lines<cr>" },
-    { "<leader>\"", "<cmd>Pick visit_paths<cr>" },
+    { '<leader>"', "<cmd>Pick visit_paths<cr>" },
     {
       "<leader>f",
       function()
@@ -306,9 +293,11 @@ local gitsigns = {
       end
 
       map("n", "]g", function()
+        ---@diagnostic disable-next-line: param-type-mismatch
         gs.nav_hunk("next")
       end, "Next Hunk")
       map("n", "[g", function()
+        ---@diagnostic disable-next-line: param-type-mismatch
         gs.nav_hunk("prev")
       end, "Prev Hunk")
       map({ "n", "v" }, "<leader>ghs", gs.stage_hunk, "Toggle Stage Hunk")
@@ -322,9 +311,11 @@ local gitsigns = {
       end, "Blame Line")
       map("n", "<leader>ghd", gs.diffthis, "Diff This")
       map("n", "<leader>ghD", function()
+        ---@diagnostic disable-next-line: param-type-mismatch
         gs.diffthis("~")
       end, "Diff This ~")
       map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
+      map({ "n" }, "<leader>gb", "<cmd>GitSigns blame<cr>", "GitSigns Blame")
     end,
   },
 }
@@ -399,19 +390,19 @@ local blink_cmp = {
   end,
 }
 local blink_indent = {
-  'saghen/blink.indent',
+  "saghen/blink.indent",
   --- @module 'blink.indent'
   --- @type blink.indent.Config
   opts = {
     static = {
-      char = '┊',
+      char = "┊",
     },
     scope = {
-      char = '│',
+      char = "│",
       highlights = {
         "BlinkIndentScope",
-      }
-    }
+      },
+    },
   },
 }
 local conform = {
@@ -609,6 +600,7 @@ require("lazy").setup({
     -- TOOLS
     mason,
     treesitter,
+    lazydev,
     lspconfig,
     orgmode,
     dadbod_ui,
