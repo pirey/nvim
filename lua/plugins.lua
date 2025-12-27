@@ -587,7 +587,7 @@ require("lazy").setup({
     blink_cmp,
     blink_indent,
 
-    -- EXTENSIONS
+    -- UI
     winshift,
     diffview,
     oil,
@@ -602,9 +602,6 @@ require("lazy").setup({
     treesitter,
     lazydev,
     lspconfig,
-    orgmode,
-    dadbod_ui,
-    curl,
 
     -- AI
     opencode,
@@ -614,6 +611,9 @@ require("lazy").setup({
     wakatime,
     colorizer,
     showkeys,
+    orgmode,
+    dadbod_ui,
+    curl,
 
     -- THEMES
     theme_onedark,
