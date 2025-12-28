@@ -222,8 +222,8 @@ local mini_pick = {
     { "<leader>,", "<cmd>Pick grep_live<cr>" },
     { "<leader>/", "<cmd>Pick buf_lines scope='current'<cr>" },
     { "<leader>?", "<cmd>Pick buf_lines<cr>" },
-    { "<leader>'", "<cmd>Pick visit_paths<cr>" },
-    { '<leader>"', "<cmd>Pick oldfiles current_dir=true<cr>" },
+    { '<leader>"', "<cmd>Pick visit_paths<cr>" },
+    { "<leader>'", "<cmd>Pick oldfiles current_dir=true<cr>" },
     {
       "<leader>p",
       function()
