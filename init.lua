@@ -39,6 +39,7 @@ vim.keymap.set("n", "<leader><tab>l", "<cmd>tabs<cr>", { silent = true, desc = "
 vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnew<cr>", { silent = true, desc = "New tab" })
 vim.keymap.set("n", "<leader>tt", "<cmd>bot term<cr>", { silent = true })
 vim.keymap.set("n", "<leader>tv", "<cmd>vert term<cr>", { silent = true })
+vim.keymap.set("n", "<leader>ts", "<cmd>belowright term<cr>", { silent = true })
 vim.keymap.set("n", "<leader>t<tab>", "<cmd>tab term<cr>", { silent = true })
 vim.keymap.set('t', '<c-[>', [[<C-\><C-n>]], { noremap = true })
 vim.keymap.set("n", "]<tab>", "gt", { silent = true })
