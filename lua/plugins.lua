@@ -374,7 +374,18 @@ local gitsigns = {
         gs.diffthis("~")
       end, "Diff This ~")
       map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
-      map({ "n" }, "<leader>gb", "<cmd>Gitsigns blame<cr>", "GitSigns Blame")
+      map({ "n" }, "<leader>gb", function()
+        local tabpage = vim.api.nvim_get_current_tabpage()
+        local wins = vim.api.nvim_tabpage_list_wins(tabpage)
+        for _, win in ipairs(wins) do
+          local buf = vim.api.nvim_win_get_buf(win)
+          if vim.bo[buf].filetype == "gitsigns-blame" then
+            vim.api.nvim_set_current_win(win)
+            return
+          end
+        end
+        gs.blame()
+      end, "GitSigns Blame")
     end,
   },
 }
