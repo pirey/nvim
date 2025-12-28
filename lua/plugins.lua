@@ -315,7 +315,7 @@ local gitsigns = {
         gs.diffthis("~")
       end, "Diff This ~")
       map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
-      map({ "n" }, "<leader>gb", "<cmd>GitSigns blame<cr>", "GitSigns Blame")
+      map({ "n" }, "<leader>gb", "<cmd>Gitsigns blame<cr>", "GitSigns Blame")
     end,
   },
 }
