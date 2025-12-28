@@ -225,7 +225,7 @@ local mini_pick = {
     { "<leader>'", "<cmd>Pick visit_paths<cr>" },
     { '<leader>"', "<cmd>Pick oldfiles current_dir=true<cr>" },
     {
-      "<leader>f",
+      "<leader>p",
       function()
         require("mini.pick").builtin.cli({
           command = { "fd", "--hidden", "-E", ".git", "--type", "f" },
@@ -245,6 +245,65 @@ local mini_pick = {
         })
       end,
       desc = "Find dir",
+    },
+    {
+      "<leader>f",
+      function()
+        -- https://www.reddit.com/r/neovim/comments/1d9d4uo/my_combined_files_directories_and_recents_picker/
+        -- remove cwd prefix from visited paths
+        local short_path = function(path)
+          local cwd = vim.fn.getcwd()
+          if path == cwd then
+            return path
+          end
+          if not vim.startswith(path, cwd) then
+            return vim.fn.fnamemodify(path, ":~")
+          end
+          local res = path:sub(cwd:len() + 1):gsub("^/+", "")
+          return res
+        end
+
+        -- merge arrays but only add items from the right if not contained in left
+        local merge = function(left, right)
+          local result = {}
+          for _, item in ipairs(left) do
+            table.insert(result, item)
+          end
+          for _, item in ipairs(right) do
+            if vim.tbl_contains(result, item) then
+              goto continue
+            end
+            table.insert(result, item)
+            ::continue::
+          end
+          return result
+        end
+
+        local recents = MiniVisits.list_paths(vim.fn.getcwd())
+
+        -- these are usually filtered out by gitignore but I want them in the results
+        local env = vim.fs.find({ ".env", ".envrc" }, { path = vim.fn.getcwd() })
+
+        MiniPick.builtin.cli({
+          -- find files and directories with fd
+          command = { "fd", "--hidden", "--type", "f", "--type", "d", "--exclude", ".git" },
+          -- probably not intended for it but I use the postprocess callback to
+          -- combine fd results with recents from mini.visits
+          postprocess = function(items)
+            local items_with_env = merge(items, env)
+            local shortened_recents = vim.tbl_map(short_path, recents)
+            return merge(shortened_recents, items_with_env)
+          end,
+        }, {
+          source = {
+            name = "Files & Dirs",
+            show = function(buf_id, items, query)
+              MiniPick.default_show(buf_id, items, query)
+            end,
+            choose = vim.schedule_wrap(MiniPick.default_choose),
+          },
+        })
+      end,
     },
   },
   config = function()
