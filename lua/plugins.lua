@@ -217,13 +217,13 @@ local mini_pick = {
     { "<leader>d", "<cmd>Pick diagnostic scope='current'<cr>" },
     { "<leader>s", "<cmd>Pick lsp scope='document_symbol'<cr>" },
     { "<leader>r", "<cmd>Pick lsp scope='references'<cr>" },
-    { "<leader>'", "<cmd>Pick oldfiles current_dir=true<cr>" },
     { "<leader>h", "<cmd>Pick help<cr>" },
     { "<leader>l", "<cmd>Pick hl_groups<cr>" },
     { "<leader>,", "<cmd>Pick grep_live<cr>" },
     { "<leader>/", "<cmd>Pick buf_lines scope='current'<cr>" },
     { "<leader>?", "<cmd>Pick buf_lines<cr>" },
-    { '<leader>"', "<cmd>Pick visit_paths<cr>" },
+    { "<leader>'", "<cmd>Pick visit_paths<cr>" },
+    { '<leader>"', "<cmd>Pick oldfiles current_dir=true<cr>" },
     {
       "<leader>f",
       function()
