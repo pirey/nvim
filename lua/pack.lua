@@ -336,10 +336,13 @@ local mini_pick = {
           -- probably not intended for it but I use the postprocess callback to
           -- combine fd results with recents from mini.visits
           postprocess = function(items)
-            local items_with_env = merge(items, additional_items)
+            local shortened_additional = vim.tbl_map(short_path, additional_items)
             local shortened_recents = vim.tbl_map(short_path, recents)
             local shortened_buffers = vim.tbl_map(short_path, buffers)
-            return merge(git_changes, merge(shortened_buffers, merge(shortened_recents, items_with_env)))
+            return merge(
+              git_changes,
+              merge(shortened_buffers, merge(shortened_recents, merge(items, shortened_additional)))
+            )
           end,
         }, {
           source = {
@@ -349,22 +352,22 @@ local mini_pick = {
               -- clear previous git status highlights
               vim.api.nvim_buf_clear_namespace(buf_id, ns_id, 0, -1)
               -- add status highlights for git changes
-               for i, item in ipairs(items) do
-                 local status = git_status_map[item]
-                 if status then
-                   local hl_group
-                   if status:match("A") or status:match("?") then
-                     hl_group = "OkMsg"
-                   elseif status:match("[MR]") then
-                     hl_group = "WarningMsg"
-                   end
-                   if hl_group then
-                      local last_slash = item:find("/[^/]*$")
-                      local start_col = last_slash and (last_slash + 1) or 1
-                     vim.hl.range(buf_id, ns_id, hl_group, { i - 1, start_col - 1 }, { i - 1, -1 }, { priority = 300 })
-                   end
-                 end
-               end
+              for i, item in ipairs(items) do
+                local status = git_status_map[item]
+                if status then
+                  local hl_group
+                  if status:match("A") or status:match("?") then
+                    hl_group = "OkMsg"
+                  elseif status:match("[MR]") then
+                    hl_group = "WarningMsg"
+                  end
+                  if hl_group then
+                    local last_slash = item:find("/[^/]*$")
+                    local start_col = last_slash and (last_slash + 1) or 1
+                    vim.hl.range(buf_id, ns_id, hl_group, { i - 1, start_col - 1 }, { i - 1, -1 }, { priority = 300 })
+                  end
+                end
+              end
             end,
             choose = vim.schedule_wrap(MiniPick.default_choose),
           },
