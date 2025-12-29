@@ -255,14 +255,12 @@ local mini_pick = {
         -- remove cwd prefix from visited paths
         local short_path = function(path)
           local cwd = vim.fn.getcwd()
-          if path == cwd then
-            return path
+          local abs_path = vim.fn.fnamemodify(path, ":p")
+          if vim.startswith(abs_path, cwd) then
+            return abs_path:sub(cwd:len() + 1):gsub("^/+", "")
+          else
+            return vim.fn.fnamemodify(abs_path, ":~")
           end
-          if not vim.startswith(path, cwd) then
-            return vim.fn.fnamemodify(path, ":~")
-          end
-          local res = path:sub(cwd:len() + 1):gsub("^/+", "")
-          return res
         end
 
         -- merge arrays but only add items from the right if not contained in left
@@ -301,11 +299,28 @@ local mini_pick = {
         -- these are usually filtered out by gitignore but I want them in the results
         local additional_items = vim.fs.find({ ".env", ".envrc" }, { path = vim.fn.getcwd() })
 
-        -- opened buffers
+        -- git changes (added, modified, renamed files, excluding deleted)
+        local git_changes = {}
+        local git_output = vim.fn.systemlist("git status --porcelain 2>/dev/null")
+        for _, line in ipairs(git_output) do
+          local status = line:sub(1, 2)
+          local file = line:sub(4)
+          if status:match("R") then
+            local _, new = file:match("(.+) -> (.+)")
+            if new then
+              file = new
+            end
+          end
+          if status:match("[AMR]") and not status:match("D") then
+            table.insert(git_changes, file)
+          end
+        end
+
+        -- opened buffers (only within cwd)
         local buffers = {}
         for _, buf in ipairs(vim.api.nvim_list_bufs()) do
           local bufname = vim.api.nvim_buf_get_name(buf)
-          if vim.api.nvim_buf_is_loaded(buf) and bufname ~= "" then
+          if vim.api.nvim_buf_is_loaded(buf) and bufname ~= "" and vim.startswith(bufname, vim.fn.getcwd()) then
             table.insert(buffers, bufname)
           end
         end
@@ -315,12 +330,13 @@ local mini_pick = {
           command = { "fd", "--hidden", "--type", "f", "--type", "d", "--exclude", ".git" },
           -- probably not intended for it but I use the postprocess callback to
           -- combine fd results with recents from mini.visits
-          postprocess = function(items)
-            local items_with_env = merge(items, additional_items)
-            local shortened_recents = vim.tbl_map(short_path, recents)
-            local shortened_buffers = vim.tbl_map(short_path, buffers)
-            return merge(shortened_buffers, merge(shortened_recents, items_with_env))
-          end,
+           postprocess = function(items)
+             local items_with_env = merge(items, additional_items)
+             local shortened_recents = vim.tbl_map(short_path, recents)
+             local shortened_buffers = vim.tbl_map(short_path, buffers)
+             local shortened_git_changes = vim.tbl_map(short_path, git_changes)
+             return merge(shortened_git_changes, merge(shortened_buffers, merge(shortened_recents, items_with_env)))
+           end,
         }, {
           source = {
             name = "Files & Dirs",
