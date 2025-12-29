@@ -284,6 +284,15 @@ local mini_pick = {
         -- these are usually filtered out by gitignore but I want them in the results
         local env = vim.fs.find({ ".env", ".envrc" }, { path = vim.fn.getcwd() })
 
+        -- opened buffers
+        local buffers = {}
+        for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+          local bufname = vim.api.nvim_buf_get_name(buf)
+          if vim.api.nvim_buf_is_loaded(buf) and bufname ~= "" then
+            table.insert(buffers, bufname)
+          end
+        end
+
         MiniPick.builtin.cli({
           -- find files and directories with fd
           command = { "fd", "--hidden", "--type", "f", "--type", "d", "--exclude", ".git" },
@@ -292,7 +301,8 @@ local mini_pick = {
           postprocess = function(items)
             local items_with_env = merge(items, env)
             local shortened_recents = vim.tbl_map(short_path, recents)
-            return merge(shortened_recents, items_with_env)
+            local shortened_buffers = vim.tbl_map(short_path, buffers)
+            return merge(shortened_buffers, merge(shortened_recents, items_with_env))
           end,
         }, {
           source = {
