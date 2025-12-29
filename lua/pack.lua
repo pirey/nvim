@@ -252,6 +252,8 @@ local mini_pick = {
         -- code from https://www.reddit.com/r/neovim/comments/1d9d4uo/my_combined_files_directories_and_recents_picker/
         -- modified for personal use
 
+        local ns_id = vim.api.nvim_create_namespace("mini_pick_git_status")
+
         -- remove cwd prefix from visited paths
         local short_path = function(path)
           local cwd = vim.fn.getcwd()
@@ -301,6 +303,7 @@ local mini_pick = {
 
         -- git changes (added, modified, renamed files, excluding deleted)
         local git_changes = {}
+        local git_status_map = {}
         local git_output = vim.fn.systemlist("git status --porcelain 2>/dev/null")
         for _, line in ipairs(git_output) do
           local status = line:sub(1, 2)
@@ -311,8 +314,10 @@ local mini_pick = {
               file = new
             end
           end
-          if status:match("[AMR]") and not status:match("D") then
-            table.insert(git_changes, file)
+          if (status:match("[AMR?]") or status == "??") and not status:match("D") then
+            local short = short_path(file)
+            git_status_map[short] = status
+            table.insert(git_changes, short)
           end
         end
 
@@ -330,18 +335,34 @@ local mini_pick = {
           command = { "fd", "--hidden", "--type", "f", "--type", "d", "--exclude", ".git" },
           -- probably not intended for it but I use the postprocess callback to
           -- combine fd results with recents from mini.visits
-           postprocess = function(items)
-             local items_with_env = merge(items, additional_items)
-             local shortened_recents = vim.tbl_map(short_path, recents)
-             local shortened_buffers = vim.tbl_map(short_path, buffers)
-             local shortened_git_changes = vim.tbl_map(short_path, git_changes)
-             return merge(shortened_git_changes, merge(shortened_buffers, merge(shortened_recents, items_with_env)))
-           end,
+          postprocess = function(items)
+            local items_with_env = merge(items, additional_items)
+            local shortened_recents = vim.tbl_map(short_path, recents)
+            local shortened_buffers = vim.tbl_map(short_path, buffers)
+            return merge(git_changes, merge(shortened_buffers, merge(shortened_recents, items_with_env)))
+          end,
         }, {
           source = {
-            name = "Files & Dirs",
+            name = "Find",
             show = function(buf_id, items, query)
               MiniPick.default_show(buf_id, items, query)
+              -- clear previous git status highlights
+              vim.api.nvim_buf_clear_namespace(buf_id, ns_id, 0, -1)
+              -- add status highlights for git changes
+              for i, item in ipairs(items) do
+                local status = git_status_map[item]
+                if status then
+                  local hl_group
+                  if status:match("A") or status:match("?") then
+                    hl_group = "OkMsg"
+                  elseif status:match("[MR]") then
+                    hl_group = "WarningMsg"
+                  end
+                  if hl_group then
+                    vim.hl.range(buf_id, ns_id, hl_group, { i - 1, 0 }, { i - 1, -1 }, { priority = 300 })
+                  end
+                end
+              end
             end,
             choose = vim.schedule_wrap(MiniPick.default_choose),
           },
