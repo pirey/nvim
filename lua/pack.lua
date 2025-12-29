@@ -249,7 +249,9 @@ local mini_pick = {
     {
       "<leader>f",
       function()
-        -- https://www.reddit.com/r/neovim/comments/1d9d4uo/my_combined_files_directories_and_recents_picker/
+        -- code from https://www.reddit.com/r/neovim/comments/1d9d4uo/my_combined_files_directories_and_recents_picker/
+        -- modified for personal use
+
         -- remove cwd prefix from visited paths
         local short_path = function(path)
           local cwd = vim.fn.getcwd()
@@ -279,10 +281,25 @@ local mini_pick = {
           return result
         end
 
-        local recents = MiniVisits.list_paths(vim.fn.getcwd())
+        local is_not_cwd = function(path_data)
+          local cwd = vim.fn.getcwd()
+          return path_data.path ~= cwd
+        end
+        local is_within_cwd = function(path_data)
+          local cwd = vim.fn.getcwd()
+          return path_data.path:sub(1, #cwd) == cwd
+        end
+        local is_not_git = function(path_data)
+          local cwd = vim.fn.getcwd()
+          return not vim.startswith(path_data.path, cwd .. "/.git")
+        end
+        local filter_recents = function(path_data)
+          return is_not_cwd(path_data) and is_within_cwd(path_data) and is_not_git(path_data)
+        end
+        local recents = MiniVisits.list_paths(vim.fn.getcwd(), { filter = filter_recents })
 
         -- these are usually filtered out by gitignore but I want them in the results
-        local env = vim.fs.find({ ".env", ".envrc" }, { path = vim.fn.getcwd() })
+        local additional_items = vim.fs.find({ ".env", ".envrc" }, { path = vim.fn.getcwd() })
 
         -- opened buffers
         local buffers = {}
@@ -299,7 +316,7 @@ local mini_pick = {
           -- probably not intended for it but I use the postprocess callback to
           -- combine fd results with recents from mini.visits
           postprocess = function(items)
-            local items_with_env = merge(items, env)
+            local items_with_env = merge(items, additional_items)
             local shortened_recents = vim.tbl_map(short_path, recents)
             local shortened_buffers = vim.tbl_map(short_path, buffers)
             return merge(shortened_buffers, merge(shortened_recents, items_with_env))
