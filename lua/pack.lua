@@ -14,7 +14,7 @@ local fugitive = {
   keys = {
     { "<leader>gg", "<cmd>tab Git<cr>" },
     { "<leader>gv", "<cmd>vert Git<cr>" },
-    { "<leader>gl", "<cmd>tab Git log<cr>" },
+    { "<leader>gl", "<cmd>tab Git log --no-merges<cr>" },
   },
   init = function()
     vim.cmd([[
