@@ -13,7 +13,7 @@
   "mason.nvim": { "branch": "main", "commit": "57e5a8addb8c71fb063ee4acda466c7cf6ad2800" },
   "mini.extra": { "branch": "main", "commit": "31f82562238a4fadd30997757ead6c7f1770e7ea" },
   "mini.files": { "branch": "main", "commit": "22c64f010eef047ed270e29e7cc266cd4740787e" },
-  "mini.omnipick": { "branch": "main", "commit": "c0ac21eee48e9f5b80a913f8a012782f6ea217e3" },
+  "mini.omnipick": { "branch": "main", "commit": "da286c6b88b20eeecfd2786a7e719bae861bb4c3" },
   "mini.pick": { "branch": "main", "commit": "6b7974543b17cf2e294993fc3d8545a342258232" },
   "mini.visits": { "branch": "main", "commit": "f6b86565acc690aa111627433906be3d38e2ba81" },
   "nvim-colorizer.lua": { "branch": "master", "commit": "a065833f35a3a7cc3ef137ac88b5381da2ba302e" },
