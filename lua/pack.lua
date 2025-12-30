@@ -268,15 +268,18 @@ local mini_pick = {
         -- merge arrays but only add items from the right if not contained in left
         local merge = function(left, right)
           local result = {}
+          local seen = {}
           for _, item in ipairs(left) do
-            table.insert(result, item)
+            if not seen[item] then
+              table.insert(result, item)
+              seen[item] = true
+            end
           end
           for _, item in ipairs(right) do
-            if vim.tbl_contains(result, item) then
-              goto continue
+            if not seen[item] then
+              table.insert(result, item)
+              seen[item] = true
             end
-            table.insert(result, item)
-            ::continue::
           end
           return result
         end
