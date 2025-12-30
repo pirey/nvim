@@ -14,6 +14,7 @@ local fugitive = {
   keys = {
     { "<leader>gg", "<cmd>tab Git<cr>" },
     { "<leader>gv", "<cmd>vert Git<cr>" },
+    { "<leader>gl", "<cmd>tab Git log<cr>" },
   },
   init = function()
     vim.cmd([[
@@ -69,7 +70,7 @@ local diffview = {
   cmd = { "DiffviewOpen" },
   keys = {
     { "<leader>gs", "<cmd>DiffviewOpen<cr>" },
-    { "<leader>gl", "<cmd>DiffviewFileHistory<cr>" },
+    { "<leader>gy", "<cmd>DiffviewFileHistory<cr>" },
     { "<leader>gf", "<cmd>DiffviewFileHistory %<cr>" },
     { "<leader>gt", "<cmd>DiffviewFileHistory -g --range=stash<cr>", desc = "Git latest stash" },
   },
