@@ -265,20 +265,16 @@ local mini_pick = {
           end
         end
 
-        -- merge arrays but only add items from the right if not contained in left
-        local merge = function(left, right)
+        -- merge multiple arrays, deduplicating across all
+        local merge = function(...)
           local result = {}
           local seen = {}
-          for _, item in ipairs(left) do
-            if not seen[item] then
-              table.insert(result, item)
-              seen[item] = true
-            end
-          end
-          for _, item in ipairs(right) do
-            if not seen[item] then
-              table.insert(result, item)
-              seen[item] = true
+          for _, arr in ipairs({ ... }) do
+            for _, item in ipairs(arr) do
+              if not seen[item] then
+                table.insert(result, item)
+                seen[item] = true
+              end
             end
           end
           return result
@@ -342,10 +338,7 @@ local mini_pick = {
             local shortened_additional = vim.tbl_map(short_path, additional_items)
             local shortened_recents = vim.tbl_map(short_path, recents)
             local shortened_buffers = vim.tbl_map(short_path, buffers)
-            return merge(
-              git_changes,
-              merge(shortened_buffers, merge(shortened_recents, merge(items, shortened_additional)))
-            )
+            return merge(git_changes, shortened_buffers, shortened_recents, items, shortened_additional)
           end,
         }, {
           source = {
