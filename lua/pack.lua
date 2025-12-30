@@ -320,11 +320,12 @@ local mini_pick = {
           end
         end
 
-        -- opened buffers (only within cwd)
+        -- opened buffers (only within cwd and listed in :ls)
         local buffers = {}
         for _, buf in ipairs(vim.api.nvim_list_bufs()) do
           local bufname = vim.api.nvim_buf_get_name(buf)
-          if vim.api.nvim_buf_is_loaded(buf) and bufname ~= "" and vim.startswith(bufname, vim.fn.getcwd()) then
+          local buflisted = vim.api.nvim_get_option_value('buflisted', { buf = buf })
+          if buflisted and vim.api.nvim_buf_is_loaded(buf) and bufname ~= "" and vim.startswith(bufname, vim.fn.getcwd()) then
             table.insert(buffers, bufname)
           end
         end
