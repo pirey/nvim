@@ -208,6 +208,7 @@ local mini_pick = {
   dependencies = {
     { "nvim-mini/mini.extra", version = "*" },
     { "nvim-mini/mini.visits", version = "*" },
+    { "pirey/mini.omnipick" },
   },
   cmd = { "Pick" },
   keys = {
