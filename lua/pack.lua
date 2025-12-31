@@ -79,12 +79,24 @@ local diffview = {
     default_args = {
       DiffviewFileHistory = { "--max-count=100" },
     },
+    file_panel = {
+      win_config = {
+        position = "top",
+        height = 16,
+      },
+    },
+    file_history_panel = {
+      win_config = {
+        position = "top",
+        height = 16,
+      },
+    },
     keymaps = {
       file_panel = {
         {
           "n",
           "cc",
-          "<Cmd>Git commit <bar> wincmd K<CR>",
+          "<Cmd>tab Git commit<CR>",
           { desc = "Commit staged changes" },
         },
       },
