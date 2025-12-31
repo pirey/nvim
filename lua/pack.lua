@@ -80,6 +80,7 @@ local diffview = {
       DiffviewFileHistory = { "--max-count=100" },
     },
     file_panel = {
+      listing_style = "list",
       win_config = {
         position = "top",
         height = 16,
