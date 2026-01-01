@@ -92,6 +92,11 @@ local diffview = {
         height = 16,
       },
     },
+    ui = {
+      output = {
+        auto_scroll = true,
+      },
+    },
     keymaps = {
       file_panel = {
         {
