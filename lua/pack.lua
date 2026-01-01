@@ -536,7 +536,7 @@ local orgmode = {
       },
     },
     win_split_mode = "vertical",
-    org_agenda_files = "~/org/**/*",
+    org_agenda_files = { "~/org/**/*", "~/vault-org/**/*" },
     org_default_notes_file = "~/org/tasks.org",
     org_todo_keywords = { "TODO", "STARTED", "|", "DONE" },
     org_adapt_indentation = false,
@@ -555,12 +555,12 @@ local orgmode = {
           {
             type = "agenda",
             org_agenda_overriding_header = "Projects Agenda",
-            org_agenda_files = { "~/org/projects/**/*" }, -- Can define files outside of the default org_agenda_files
+            org_agenda_files = { "~/vault-org/projects/**/*" }, -- Can define files outside of the default org_agenda_files
           },
           {
             type = "tags_todo",
             org_agenda_overriding_header = "Project TODO",
-            org_agenda_files = { "~/org/projects/**/*" },
+            org_agenda_files = { "~/vault-org/projects/**/*" },
             -- org_agenda_tag_filter_preset = 'NOTES-REFACTOR' -- Show only headlines with NOTES tag that does not have a REFACTOR tag. Same value providad as when pressing `/` in the Agenda view
           },
         },
