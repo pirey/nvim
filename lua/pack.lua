@@ -102,7 +102,7 @@ local diffview = {
         {
           "n",
           "cc",
-          "<Cmd>tab Git commit<CR>",
+          "<Cmd>Git commit <bar> wincmd K<CR>",
           { desc = "Commit staged changes" },
         },
       },

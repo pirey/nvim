@@ -19,7 +19,6 @@ vim.opt.foldmethod = "indent"
 vim.opt.foldlevelstart = 99
 vim.opt.signcolumn = "yes"
 vim.opt.winborder = "rounded"
--- vim.opt.tabline = "%=Tabs: %{tabpagenr()}/%{tabpagenr('$')}%="
 vim.opt.fillchars:append({ diff = " " })
 vim.opt.wildoptions:append({ "fuzzy" })
 
