@@ -574,21 +574,9 @@ local opencode = {
   config = function()
     require("opencode").setup({
       keymap_prefix = "<leader>a",
-      keymap = {
-        input_window = {
-          ["<esc>"] = {},
-        },
-        output_window = {
-          ["<esc>"] = {},
-        },
-        session_picker = {
-          new_session = { "<C-s>" }, -- Create and switch to a new session in the session picker
-        },
-      },
       ui = {
-        icons = {
-          preset = "text",
-        },
+        output = { auto_scroll = true },
+        icons = { preset = "text" },
       },
     })
   end,
