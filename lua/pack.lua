@@ -25,9 +25,12 @@ local fugitive = {
 local abolish = { "tpope/vim-abolish" }
 local mason = {
   "mason-org/mason.nvim",
-  opts_extend = { "ensure_installed" },
-  opts = {
-    ensure_installed = {
+  config = function()
+    -- stolen from folke's drawer
+    require("mason").setup()
+    local registry = require("mason-registry")
+
+    local ensure_installed = {
       "mmdc",
       "stylua",
       "clangd",
@@ -39,15 +42,10 @@ local mason = {
       "phpcs",
       "php-cs-fixer",
       "blade-formatter",
-    },
-  },
-  config = function(_, opts)
-    -- stolen from folke's drawer
-    require("mason").setup(opts)
-    local registry = require("mason-registry")
+    }
 
     registry.refresh(function()
-      for _, tool in ipairs(opts.ensure_installed) do
+      for _, tool in ipairs(ensure_installed) do
         local p = registry.get_package(tool)
         if not p:is_installed() then
           p:install()
@@ -191,6 +189,7 @@ local lspconfig = {
       "clangd",
       "tailwindcss",
       "vtsls",
+      "gopls",
     })
 
     vim.keymap.set("n", "<leader>ql", vim.diagnostic.setloclist, { desc = "Open local diagnostics" })
