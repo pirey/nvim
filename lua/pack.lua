@@ -92,18 +92,7 @@ local diffview = {
     },
     keymaps = {
       file_panel = {
-        {
-          "n",
-          "cc",
-          function()
-            vim.cmd("tabclose")
-            vim.schedule(function()
-              vim.cmd("tabnew")
-              vim.cmd("Git commit")
-            end)
-          end,
-          { desc = "Commit staged changes" },
-        },
+        { "n", "cc", "<cmd>Git commit<cr>", { desc = "Commit staged changes" } },
       },
     },
   },
