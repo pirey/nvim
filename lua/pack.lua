@@ -93,6 +93,10 @@ local diffview = {
     keymaps = {
       file_panel = {
         { "n", "cc", "<cmd>Git commit<cr>", { desc = "Commit staged changes" } },
+        { "n", "gq", "<cmd>tabclose<cr>", { desc = "Close tab" } },
+      },
+      file_history_panel = {
+        { "n", "gq", "<cmd>tabclose<cr>", { desc = "Close tab" } },
       },
     },
   },
