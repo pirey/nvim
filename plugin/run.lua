@@ -1,5 +1,5 @@
 -- Async Command Runner
-local function async_cmd(opts)
+local function async_run(opts)
   local args = vim.split(opts.args or '', ' ', { plain = true })
   local last_arg = args[#args]
   local mode = 'preview'  -- Default
@@ -84,7 +84,7 @@ local function async_cmd(opts)
 end
 
 -- Create Vim command
-vim.api.nvim_create_user_command('Run', async_cmd, {
+vim.api.nvim_create_user_command('Run', async_run, {
   desc = 'Run shell command asynchronously with output display',
   nargs = '+',
   complete = function(arg_lead, cmd_line, cursor_pos)
