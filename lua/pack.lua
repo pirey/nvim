@@ -20,6 +20,12 @@ local fugitive = {
     vim.cmd([[
           cabbrev <expr> git getcmdtype() == ':' && getcmdline() =~# '^git' ? 'Git' : 'git'
         ]])
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "git",
+      callback = function()
+        vim.keymap.set("n", "gq", "<Cmd>bd<CR>", { buffer = true })
+      end,
+    })
   end,
 }
 local abolish = { "tpope/vim-abolish" }
