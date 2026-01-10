@@ -164,6 +164,62 @@ local function run_preview(cmd_str)
   end)
 end
 
+local function run_tab(cmd_str)
+  local buf = get_current_buf()
+  vim.cmd("tabnew")
+  vim.api.nvim_win_set_buf(0, buf)
+
+  -- Clear current buffer for new command
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, { "Running " .. cmd_str .. "...", "" })
+
+  -- Start job for streaming
+  current_job_id = vim.fn.jobstart({ "sh", "-c", cmd_str }, {
+    stdout_buffered = false,
+    stderr_buffered = false,
+    on_stdout = function(job_id, data, event)
+      if data then
+        vim.schedule(function()
+          local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+          for _, line in ipairs(data) do
+            if line ~= "" then
+              table.insert(lines, line)
+            end
+          end
+          vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+        end)
+      end
+    end,
+    on_stderr = function(job_id, data, event)
+      if data then
+        vim.schedule(function()
+          local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+          for _, line in ipairs(data) do
+            if line ~= "" then
+              table.insert(lines, line)
+            end
+          end
+          vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+        end)
+      end
+    end,
+    on_exit = function(job_id, exit_code, event)
+      current_job_id = nil
+      vim.schedule(function()
+        -- Append to history
+        local current_lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+        local hist_buf = get_history_buf()
+        local hist_lines = vim.api.nvim_buf_get_lines(hist_buf, 0, -1, false)
+        local separator = { "", "--- " .. cmd_str .. " ---", "" }
+        hist_lines = vim.list_extend(hist_lines, separator)
+        hist_lines = vim.list_extend(hist_lines, current_lines)
+        vim.api.nvim_buf_set_lines(hist_buf, 0, -1, false, hist_lines)
+        vim.fn.writefile(hist_lines, output_file)
+        vim.notify("Command exited with code " .. exit_code, vim.log.levels.INFO)
+      end)
+    end,
+  })
+end
+
 local function run_floating(cmd_str)
   local buf = get_current_buf()
 
@@ -253,7 +309,7 @@ local function async_run(opts)
 
   if not cmd_str or cmd_str == "help" then
     vim.notify(
-      'Usage: Run <command>\nMode is set via vim.g.run_default_mode (default: split)\nExamples:\n  :Run git status\n  :Run "ls -la"\n  :Run "git push"',
+      'Usage: Run <command>\nMode is set via vim.g.run_default_mode (default: split)\nAvailable modes: split, floating, preview, tab, notify\nExamples:\n  :Run git status\n  :Run "ls -la"\n  :Run "git push"',
       vim.log.levels.INFO
     )
     return
@@ -267,15 +323,54 @@ local function async_run(opts)
     run_split(cmd_str)
   elseif mode == "preview" then
     run_preview(cmd_str)
+  elseif mode == "tab" then
+    run_tab(cmd_str)
   else -- 'floating'
     run_floating(cmd_str)
   end
 end
 
-local function show_output(opts)
+local function run_prompt(opts)
+  local input = opts.args or ""
+  local mode
+
+  -- Parse mode from mode=...
+  local mode_match = input:match("mode=(%w+)")
+  if mode_match then
+    mode = mode_match
+  else
+    vim.notify('Usage: :RunPrompt mode=<mode>\nModes: split, floating, preview, tab, notify\nExample: :RunPrompt mode=split', vim.log.levels.INFO)
+    return
+  end
+
+  -- Validate mode
+  if not (mode == "notify" or mode == "split" or mode == "preview" or mode == "tab" or mode == "floating") then
+    vim.notify('Invalid mode: ' .. mode, vim.log.levels.ERROR)
+    return
+  end
+
+  -- Prompt for command
+  vim.ui.input({ prompt = "Enter command: " }, function(cmd_str)
+    if cmd_str and cmd_str ~= "" then
+      if mode == "notify" then
+        run_notify(cmd_str)
+      elseif mode == "split" then
+        run_split(cmd_str)
+      elseif mode == "preview" then
+        run_preview(cmd_str)
+      elseif mode == "tab" then
+        run_tab(cmd_str)
+      elseif mode == "floating" then
+        run_floating(cmd_str)
+      end
+    end
+  end)
+end
+
+local function show_history(opts)
   local mode = opts.args or vim.g.run_output_mode
 
-  if not (mode == "split" or mode == "preview" or mode == "floating") then
+  if not (mode == "split" or mode == "preview" or mode == "floating" or mode == "tab") then
     mode = "split"
   end
 
@@ -291,6 +386,9 @@ local function show_output(opts)
     end
   elseif mode == "preview" then
     vim.cmd("pedit run://output")
+  elseif mode == "tab" then
+    vim.cmd("tabnew")
+    vim.api.nvim_win_set_buf(0, buf)
   else -- floating
     local win = vim.api.nvim_open_win(buf, false, {
       relative = "editor",
@@ -315,36 +413,26 @@ vim.api.nvim_create_user_command("Run", async_run, {
   end,
 })
 
-vim.api.nvim_create_user_command("RunSplit", function(opts)
-  run_split(opts.args)
-end, {
-  desc = "Run shell command asynchronously in split mode",
-  nargs = "+",
-})
-vim.api.nvim_create_user_command("RunFloating", function(opts)
-  run_floating(opts.args)
-end, {
-  desc = "Run shell command asynchronously in floating mode",
-  nargs = "+",
-})
-vim.api.nvim_create_user_command("RunPreview", function(opts)
-  run_preview(opts.args)
-end, {
-  desc = "Run shell command asynchronously in preview mode",
-  nargs = "+",
-})
-vim.api.nvim_create_user_command("RunNotify", function(opts)
-  run_notify(opts.args)
-end, {
-  desc = "Run shell command asynchronously with notify",
-  nargs = "+",
+vim.api.nvim_create_user_command("RunPrompt", run_prompt, {
+  desc = "Run shell command asynchronously with specified mode",
+  nargs = 1,
+  complete = function(arg_lead, cmd_line, cursor_pos)
+    if arg_lead:match("^mode=") then
+      local modes = { "mode=split", "mode=floating", "mode=preview", "mode=tab", "mode=notify" }
+      return vim.tbl_filter(function(m) return m:find(arg_lead, 1, true) end, modes)
+    else
+      return { "mode=" }
+    end
+  end,
 })
 
-vim.api.nvim_create_user_command("RunOutput", show_output, {
-  desc = "Show the run output buffer",
+
+
+vim.api.nvim_create_user_command("RunHistory", show_history, {
+  desc = "Show the run history buffer",
   nargs = "?",
   complete = function()
-    return { "floating", "preview", "split" }
+    return { "floating", "preview", "split", "tab" }
   end,
 })
 
@@ -374,7 +462,7 @@ end, {
   desc = "Toggle the current command output window",
 })
 
-vim.api.nvim_create_user_command("RunToggleOutput", function()
+vim.api.nvim_create_user_command("RunToggleHistory", function()
   local buf = get_history_buf()
   local win = vim.fn.bufwinid(buf)
   if win ~= -1 then
@@ -387,6 +475,9 @@ vim.api.nvim_create_user_command("RunToggleOutput", function()
       vim.api.nvim_win_set_buf(0, buf)
     elseif mode == "preview" then
       vim.cmd("pedit run://output")
+    elseif mode == "tab" then
+      vim.cmd("tabnew")
+      vim.api.nvim_win_set_buf(0, buf)
     else -- floating
       local win = vim.api.nvim_open_win(buf, false, {
         relative = "editor",
@@ -402,7 +493,7 @@ vim.api.nvim_create_user_command("RunToggleOutput", function()
     end
   end
 end, {
-  desc = "Toggle the output history window",
+  desc = "Toggle the history window",
 })
 
 -- Abbreviations
