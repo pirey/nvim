@@ -1,10 +1,32 @@
+-- Supported modes
+-- run.lua: Asynchronous shell command runner for Neovim
+-- Provides commands to run shell commands with various output display modes.
+-- Commands:
+--   :Run <command> - Run command in default mode (vim.g.run_default_mode)
+--   :RunPrompt mode=<mode> - Prompt for command after specifying mode
+--   :RunHistory [mode=<mode>] - Display command history buffer
+--   :RunStop - Stop the currently running job
+--   :RunToggleCurrent - Toggle live output window
+--   :RunToggleHistory - Toggle history window
+-- Modes: split, floating, preview, tab, notify
+-- History persists to ~/.cache/nvim/run_output.txt
+-- In history buffer, press Enter to rerun command.
+
+local supported_modes = { "split", "floating", "preview", "tab" }
+local supported_run_modes = vim.list_extend(vim.deepcopy(supported_modes), { "notify" })
+local supported_history_modes = supported_modes
+
 -- Globals
 local output_file = vim.fn.stdpath("cache") .. "/run_output.txt"
-vim.g.run_default_mode = vim.g.run_default_mode or "split"
-vim.g.run_output_mode = vim.g.run_output_mode or "split"
 local current_job_id = nil
 local history_buf = nil
 local current_buf = nil
+
+-- Options
+local opts = {
+  default_mode = vim.g.run_default_mode or "split",
+  output_mode = vim.g.run_output_mode or "split",
+}
 
 -- Helper to get or create history buffer
 local function get_history_buf()
@@ -147,6 +169,9 @@ local function run_preview(cmd_str)
       end,
       on_exit = function(job_id, exit_code, event)
         current_job_id = nil
+        if exit_code ~= 0 then
+          vim.notify("Command failed: " .. cmd_str, vim.log.levels.ERROR)
+        end
         vim.schedule(function()
           -- Append to history
           local current_lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
@@ -295,9 +320,9 @@ local function run_floating(cmd_str)
 end
 
 -- Main functions
-local function async_run(opts)
-  local input = opts.args or ""
-  local mode = vim.g.run_default_mode
+local function async_run(local_opts)
+  local input = local_opts.args or ""
+  local mode = opts.default_mode
   local cmd_str
 
   -- Check if input starts with quote, treat as single command
@@ -308,8 +333,11 @@ local function async_run(opts)
   end
 
   if not cmd_str or cmd_str == "help" then
+    local help_opts = opts
     vim.notify(
-      'Usage: Run <command>\nMode is set via vim.g.run_default_mode (default: split)\nAvailable modes: split, floating, preview, tab, notify\nExamples:\n  :Run git status\n  :Run "ls -la"\n  :Run "git push"',
+      "Usage: Run <command>\nMode is set via vim.g.run_default_mode (default: "
+        .. help_opts.default_mode
+        .. ')\nAvailable modes: split, floating, preview, tab, notify\nExamples:\n  :Run git status\n  :Run "ls -la"\n  :Run "git push"',
       vim.log.levels.INFO
     )
     return
@@ -330,8 +358,8 @@ local function async_run(opts)
   end
 end
 
-local function run_prompt(opts)
-  local input = opts.args or ""
+local function run_prompt(local_opts)
+  local input = local_opts.args or ""
   local mode
 
   -- Parse mode from mode=...
@@ -339,13 +367,16 @@ local function run_prompt(opts)
   if mode_match then
     mode = mode_match
   else
-    vim.notify('Usage: :RunPrompt mode=<mode>\nModes: split, floating, preview, tab, notify\nExample: :RunPrompt mode=split', vim.log.levels.INFO)
+    vim.notify(
+      "Usage: :RunPrompt mode=<mode>\nModes: split, floating, preview, tab, notify\nExample: :RunPrompt mode=split",
+      vim.log.levels.INFO
+    )
     return
   end
 
   -- Validate mode
-  if not (mode == "notify" or mode == "split" or mode == "preview" or mode == "tab" or mode == "floating") then
-    vim.notify('Invalid mode: ' .. mode, vim.log.levels.ERROR)
+  if not vim.tbl_contains(supported_run_modes, mode) then
+    vim.notify("Invalid mode: " .. mode, vim.log.levels.ERROR)
     return
   end
 
@@ -367,14 +398,35 @@ local function run_prompt(opts)
   end)
 end
 
-local function show_history(opts)
-  local mode = opts.args or vim.g.run_output_mode
+-- Helper to rerun command under cursor in history buffer
+local function rerun_command_under_cursor()
+  local line = vim.api.nvim_get_current_line()
+  local cmd = line:match("^--- (.+) ---$")
+  if cmd then
+    async_run({ args = cmd })
+  end
+end
 
-  if not (mode == "split" or mode == "preview" or mode == "floating" or mode == "tab") then
-    mode = "split"
+local function show_history(local_opts)
+  local input = local_opts.args or ""
+  local mode
+
+  -- Parse mode from mode=...
+  local mode_match = input:match("mode=(%w+)")
+  if mode_match then
+    mode = mode_match
+  else
+    mode = opts.output_mode
+  end
+
+  if not vim.tbl_contains(supported_history_modes, mode) then
+    mode = opts.output_mode
   end
 
   local buf = get_history_buf()
+
+  -- Set keymap to rerun command on Enter
+  vim.keymap.set("n", "<CR>", rerun_command_under_cursor, { buffer = buf })
 
   if mode == "split" then
     local win = vim.fn.bufwinid(buf)
@@ -408,8 +460,18 @@ end
 vim.api.nvim_create_user_command("Run", async_run, {
   desc = "Run shell command asynchronously with output display",
   nargs = "+",
-  complete = function()
-    return {}
+  complete = function(arg_lead, cmd_line, cursor_pos)
+    if arg_lead:match("^mode=") then
+      local modes = {}
+      for _, m in ipairs(supported_history_modes) do
+        table.insert(modes, "mode=" .. m)
+      end
+      return vim.tbl_filter(function(m)
+        return m:find(arg_lead, 1, true)
+      end, modes)
+    else
+      return { "mode=" }
+    end
   end,
 })
 
@@ -418,21 +480,31 @@ vim.api.nvim_create_user_command("RunPrompt", run_prompt, {
   nargs = 1,
   complete = function(arg_lead, cmd_line, cursor_pos)
     if arg_lead:match("^mode=") then
-      local modes = { "mode=split", "mode=floating", "mode=preview", "mode=tab", "mode=notify" }
-      return vim.tbl_filter(function(m) return m:find(arg_lead, 1, true) end, modes)
+      local modes = {}
+      for _, m in ipairs(supported_run_modes) do
+        table.insert(modes, "mode=" .. m)
+      end
+      return vim.tbl_filter(function(m)
+        return m:find(arg_lead, 1, true)
+      end, modes)
     else
       return { "mode=" }
     end
   end,
 })
 
-
-
 vim.api.nvim_create_user_command("RunHistory", show_history, {
   desc = "Show the run history buffer",
   nargs = "?",
-  complete = function()
-    return { "floating", "preview", "split", "tab" }
+  complete = function(arg_lead, cmd_line, cursor_pos)
+    if arg_lead:match("^mode=") then
+      local modes = { "mode=split", "mode=floating", "mode=preview", "mode=tab" }
+      return vim.tbl_filter(function(m)
+        return m:find(arg_lead, 1, true)
+      end, modes)
+    else
+      return { "mode=" }
+    end
   end,
 })
 
@@ -469,7 +541,7 @@ vim.api.nvim_create_user_command("RunToggleHistory", function()
     vim.api.nvim_win_close(win, true)
   else
     -- Open in run_output_mode
-    local mode = vim.g.run_output_mode
+    local mode = opts.output_mode
     if mode == "split" then
       vim.cmd("botright split")
       vim.api.nvim_win_set_buf(0, buf)
