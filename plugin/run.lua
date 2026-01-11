@@ -1,4 +1,3 @@
--- Supported modes
 -- run.lua: Asynchronous shell command runner for Neovim
 -- Provides commands to run shell commands with various output display modes.
 -- Commands:
@@ -8,27 +7,33 @@
 --   :RunStop - Stop the currently running job
 --   :RunToggleCurrent - Toggle live output window
 --   :RunToggleHistory - Toggle history window
+--   :RunClearHistory - Clear command history after confirmation
 -- Modes: split, floating, preview, tab, notify
 -- History persists to ~/.cache/nvim/run_output.txt
 -- In history buffer, press Enter to rerun command.
+
+-- =============================================================================
+-- Constants and Configuration
+-- =============================================================================
 
 local supported_modes = { "split", "floating", "preview", "tab" }
 local supported_run_modes = vim.list_extend(vim.deepcopy(supported_modes), { "notify" })
 local supported_history_modes = supported_modes
 
--- Globals
 local output_file = vim.fn.stdpath("cache") .. "/run_output.txt"
 local current_job_id = nil
 local history_buf = nil
 local current_buf = nil
 
--- Options
 local opts = {
   default_mode = vim.g.run_default_mode or "split",
   output_mode = vim.g.run_output_mode or "split",
 }
 
--- Helper to get or create history buffer
+-- =============================================================================
+-- Buffer Management
+-- =============================================================================
+
 local function get_history_buf()
   if not history_buf or not vim.api.nvim_buf_is_valid(history_buf) then
     history_buf = vim.api.nvim_create_buf(false, true)
@@ -44,7 +49,6 @@ local function get_history_buf()
   return history_buf
 end
 
--- Helper to get or create current buffer
 local function get_current_buf()
   if not current_buf or not vim.api.nvim_buf_is_valid(current_buf) then
     current_buf = vim.api.nvim_create_buf(false, true)
@@ -55,8 +59,122 @@ local function get_current_buf()
   return current_buf
 end
 
--- Mode functions
+-- =============================================================================
+-- Output Formatting and Handling
+-- =============================================================================
+
+local function deserialize_metadata(line)
+  local meta = {}
+  for key, val in line:gmatch("(%w+)=([^;]+);?") do
+    meta[key] = val
+  end
+  return meta
+end
+
+local function serialize_metadata(meta)
+  local key_order = { "start", "end", "code" }
+  local parts = vim.deepcopy(meta)
+  local ordered = {}
+  for _, k in ipairs(key_order) do
+    if parts[k] then
+      table.insert(ordered, k .. "=" .. parts[k])
+      parts[k] = nil
+    end
+  end
+  for k, v in pairs(parts) do
+    table.insert(ordered, k .. "=" .. v)
+  end
+  return table.concat(ordered, "; ")
+end
+
+local function get_metadata(buf)
+  local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+  if lines[3] then
+    return deserialize_metadata(lines[3])
+  end
+  return {}
+end
+
+local function set_metadata(buf, meta)
+  local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+  lines[3] = serialize_metadata(meta)
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+end
+
+local function initialize_buffer(buf, cmd_str)
+  local start_time = os.time()
+  local meta = { start = os.date("%Y-%m-%d %H:%M:%S", start_time) }
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, { "---", cmd_str, serialize_metadata(meta), "---" })
+end
+
+local function append_output(buf, data)
+  if not data then
+    return
+  end
+  vim.schedule(function()
+    local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+    for _, line in ipairs(data) do
+      if line ~= "" then
+        table.insert(lines, line)
+      end
+    end
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+  end)
+end
+
+local function update_completion_time(buf, exit_code)
+  local meta = get_metadata(buf)
+  meta["end"] = os.date("%Y-%m-%d %H:%M:%S", os.time())
+  meta.code = tostring(exit_code)
+  set_metadata(buf, meta)
+end
+
+local function append_to_history(buf)
+  local current_lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+  local hist_buf = get_history_buf()
+  local hist_lines = vim.api.nvim_buf_get_lines(hist_buf, 0, -1, false)
+  hist_lines = vim.list_extend(hist_lines, { current_lines[1], current_lines[2], current_lines[3] })
+  for i = 4, #current_lines do
+    table.insert(hist_lines, current_lines[i])
+  end
+  table.insert(hist_lines, "")
+  vim.api.nvim_buf_set_lines(hist_buf, 0, -1, false, hist_lines)
+  vim.fn.writefile(hist_lines, output_file)
+end
+
+-- =============================================================================
+-- Job Execution
+-- =============================================================================
+
+local function start_job(buf, cmd_str)
+  current_job_id = vim.fn.jobstart({ "sh", "-c", cmd_str }, {
+    stdout_buffered = false,
+    stderr_buffered = false,
+    on_stdout = function(job_id, data, event)
+      append_output(buf, data)
+    end,
+    on_stderr = function(job_id, data, event)
+      append_output(buf, data)
+    end,
+    on_exit = function(job_id, exit_code, event)
+      current_job_id = nil
+      vim.schedule(function()
+        update_completion_time(buf, exit_code)
+        append_to_history(buf)
+        if exit_code ~= 0 then
+          vim.notify("Command failed: " .. cmd_str, vim.log.levels.ERROR)
+        end
+      end)
+    end,
+  })
+end
+
+-- =============================================================================
+-- Mode Implementations
+-- =============================================================================
+
 local function run_notify(cmd_str)
+  local start_time = os.time()
   vim.system({ "sh", "-c", cmd_str }, { text = true }, function(obj)
     vim.schedule(function()
       if obj.code == 0 then
@@ -64,6 +182,32 @@ local function run_notify(cmd_str)
       else
         vim.notify(cmd_str .. " failed: " .. (obj.stderr or "Unknown error"), vim.log.levels.ERROR)
       end
+
+      -- Add to history
+      local temp_buf = vim.api.nvim_create_buf(false, true)
+      local meta = {
+        start = os.date("%Y-%m-%d %H:%M:%S", start_time),
+        ["end"] = os.date("%Y-%m-%d %H:%M:%S", os.time()),
+        code = tostring(obj.code)
+      }
+      local lines = {
+        cmd_str,
+        serialize_metadata(meta),
+        "",
+      }
+      if obj.stdout and obj.stdout ~= "" then
+        for line in obj.stdout:gmatch("[^\r\n]+") do
+          table.insert(lines, line)
+        end
+      end
+      if obj.stderr and obj.stderr ~= "" then
+        for line in obj.stderr:gmatch("[^\r\n]+") do
+          table.insert(lines, line)
+        end
+      end
+      vim.api.nvim_buf_set_lines(temp_buf, 0, -1, false, lines)
+      append_to_history(temp_buf)
+      vim.api.nvim_buf_delete(temp_buf, { force = true })
     end)
   end)
 end
@@ -78,115 +222,16 @@ local function run_split(cmd_str)
     vim.api.nvim_set_current_win(win)
   end
 
-  -- Clear current buffer for new command
-  vim.api.nvim_buf_set_lines(buf, 0, -1, false, { "Running " .. cmd_str .. "...", "" })
-
-  -- Start job for streaming
-  current_job_id = vim.fn.jobstart({ "sh", "-c", cmd_str }, {
-    stdout_buffered = false,
-    stderr_buffered = false,
-    on_stdout = function(job_id, data, event)
-      if data then
-        vim.schedule(function()
-          local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
-          for _, line in ipairs(data) do
-            if line ~= "" then
-              table.insert(lines, line)
-            end
-          end
-          vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
-        end)
-      end
-    end,
-    on_stderr = function(job_id, data, event)
-      if data then
-        vim.schedule(function()
-          local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
-          for _, line in ipairs(data) do
-            if line ~= "" then
-              table.insert(lines, line)
-            end
-          end
-          vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
-        end)
-      end
-    end,
-    on_exit = function(job_id, exit_code, event)
-      current_job_id = nil
-      vim.schedule(function()
-        -- Append to history
-        local current_lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
-        local hist_buf = get_history_buf()
-        local hist_lines = vim.api.nvim_buf_get_lines(hist_buf, 0, -1, false)
-        local separator = { "", "--- " .. cmd_str .. " ---", "" }
-        hist_lines = vim.list_extend(hist_lines, separator)
-        hist_lines = vim.list_extend(hist_lines, current_lines)
-        vim.api.nvim_buf_set_lines(hist_buf, 0, -1, false, hist_lines)
-        vim.fn.writefile(hist_lines, output_file)
-        vim.notify("Command exited with code " .. exit_code, vim.log.levels.INFO)
-      end)
-    end,
-  })
+  initialize_buffer(buf, cmd_str)
+  start_job(buf, cmd_str)
 end
 
 local function run_preview(cmd_str)
   local buf = get_current_buf()
   vim.cmd("pedit run://current")
 
-  -- Clear current buffer for new command
-  vim.schedule(function()
-    vim.api.nvim_buf_set_lines(buf, 0, -1, false, { "Running " .. cmd_str .. "...", "" })
-
-    -- Start job for streaming
-    current_job_id = vim.fn.jobstart({ "sh", "-c", cmd_str }, {
-      stdout_buffered = false,
-      stderr_buffered = false,
-      on_stdout = function(job_id, data, event)
-        if data then
-          vim.schedule(function()
-            local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
-            for _, line in ipairs(data) do
-              if line ~= "" then
-                table.insert(lines, line)
-              end
-            end
-            vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
-          end)
-        end
-      end,
-      on_stderr = function(job_id, data, event)
-        if data then
-          vim.schedule(function()
-            local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
-            for _, line in ipairs(data) do
-              if line ~= "" then
-                table.insert(lines, line)
-              end
-            end
-            vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
-          end)
-        end
-      end,
-      on_exit = function(job_id, exit_code, event)
-        current_job_id = nil
-        if exit_code ~= 0 then
-          vim.notify("Command failed: " .. cmd_str, vim.log.levels.ERROR)
-        end
-        vim.schedule(function()
-          -- Append to history
-          local current_lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
-          local hist_buf = get_history_buf()
-          local hist_lines = vim.api.nvim_buf_get_lines(hist_buf, 0, -1, false)
-          local separator = { "", "--- " .. cmd_str .. " ---", "" }
-          hist_lines = vim.list_extend(hist_lines, separator)
-          hist_lines = vim.list_extend(hist_lines, current_lines)
-          vim.api.nvim_buf_set_lines(hist_buf, 0, -1, false, hist_lines)
-          vim.fn.writefile(hist_lines, output_file)
-          vim.notify("Command exited with code " .. exit_code, vim.log.levels.INFO)
-        end)
-      end,
-    })
-  end)
+  initialize_buffer(buf, cmd_str)
+  start_job(buf, cmd_str)
 end
 
 local function run_tab(cmd_str)
@@ -194,55 +239,8 @@ local function run_tab(cmd_str)
   vim.cmd("tabnew")
   vim.api.nvim_win_set_buf(0, buf)
 
-  -- Clear current buffer for new command
-  vim.api.nvim_buf_set_lines(buf, 0, -1, false, { "Running " .. cmd_str .. "...", "" })
-
-  -- Start job for streaming
-  current_job_id = vim.fn.jobstart({ "sh", "-c", cmd_str }, {
-    stdout_buffered = false,
-    stderr_buffered = false,
-    on_stdout = function(job_id, data, event)
-      if data then
-        vim.schedule(function()
-          local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
-          for _, line in ipairs(data) do
-            if line ~= "" then
-              table.insert(lines, line)
-            end
-          end
-          vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
-        end)
-      end
-    end,
-    on_stderr = function(job_id, data, event)
-      if data then
-        vim.schedule(function()
-          local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
-          for _, line in ipairs(data) do
-            if line ~= "" then
-              table.insert(lines, line)
-            end
-          end
-          vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
-        end)
-      end
-    end,
-    on_exit = function(job_id, exit_code, event)
-      current_job_id = nil
-      vim.schedule(function()
-        -- Append to history
-        local current_lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
-        local hist_buf = get_history_buf()
-        local hist_lines = vim.api.nvim_buf_get_lines(hist_buf, 0, -1, false)
-        local separator = { "", "--- " .. cmd_str .. " ---", "" }
-        hist_lines = vim.list_extend(hist_lines, separator)
-        hist_lines = vim.list_extend(hist_lines, current_lines)
-        vim.api.nvim_buf_set_lines(hist_buf, 0, -1, false, hist_lines)
-        vim.fn.writefile(hist_lines, output_file)
-        vim.notify("Command exited with code " .. exit_code, vim.log.levels.INFO)
-      end)
-    end,
-  })
+  initialize_buffer(buf, cmd_str)
+  start_job(buf, cmd_str)
 end
 
 local function run_floating(cmd_str)
@@ -261,55 +259,8 @@ local function run_floating(cmd_str)
   vim.api.nvim_buf_set_keymap(buf, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
   vim.api.nvim_buf_set_keymap(buf, "n", "<esc>", "<cmd>close<CR>", { noremap = true, silent = true })
 
-  -- Clear current buffer for new command
-  vim.api.nvim_buf_set_lines(buf, 0, -1, false, { "Running " .. cmd_str .. "...", "" })
-
-  -- Start job for streaming
-  current_job_id = vim.fn.jobstart({ "sh", "-c", cmd_str }, {
-    stdout_buffered = false,
-    stderr_buffered = false,
-    on_stdout = function(job_id, data, event)
-      if data then
-        vim.schedule(function()
-          local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
-          for _, line in ipairs(data) do
-            if line ~= "" then
-              table.insert(lines, line)
-            end
-          end
-          vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
-        end)
-      end
-    end,
-    on_stderr = function(job_id, data, event)
-      if data then
-        vim.schedule(function()
-          local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
-          for _, line in ipairs(data) do
-            if line ~= "" then
-              table.insert(lines, line)
-            end
-          end
-          vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
-        end)
-      end
-    end,
-    on_exit = function(job_id, exit_code, event)
-      current_job_id = nil
-      vim.schedule(function()
-        -- Append to history
-        local current_lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
-        local hist_buf = get_history_buf()
-        local hist_lines = vim.api.nvim_buf_get_lines(hist_buf, 0, -1, false)
-        local separator = { "", "--- " .. cmd_str .. " ---", "" }
-        hist_lines = vim.list_extend(hist_lines, separator)
-        hist_lines = vim.list_extend(hist_lines, current_lines)
-        vim.api.nvim_buf_set_lines(hist_buf, 0, -1, false, hist_lines)
-        vim.fn.writefile(hist_lines, output_file)
-        vim.notify("Command exited with code " .. exit_code, vim.log.levels.INFO)
-      end)
-    end,
-  })
+  initialize_buffer(buf, cmd_str)
+  start_job(buf, cmd_str)
 
   -- Close window after 10s
   vim.defer_fn(function()
@@ -319,7 +270,10 @@ local function run_floating(cmd_str)
   end, 10000)
 end
 
--- Main functions
+-- =============================================================================
+-- Main Command Handlers
+-- =============================================================================
+
 local function async_run(local_opts)
   local input = local_opts.args or ""
   local mode = opts.default_mode
@@ -398,12 +352,14 @@ local function run_prompt(local_opts)
   end)
 end
 
--- Helper to rerun command under cursor in history buffer
+-- =============================================================================
+-- History Management
+-- =============================================================================
+
 local function rerun_command_under_cursor()
   local line = vim.api.nvim_get_current_line()
-  local cmd = line:match("^--- (.+) ---$")
-  if cmd then
-    async_run({ args = cmd })
+  if line and line ~= "" and not line:match("=") then
+    async_run({ args = line })
   end
 end
 
@@ -456,7 +412,20 @@ local function show_history(local_opts)
   end
 end
 
--- Command creations
+local function clear_history()
+  local choice = vim.fn.confirm("Clear all command history? This cannot be undone.", "&Yes\n&No")
+  if choice == 1 then
+    local buf = get_history_buf()
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, {})
+    vim.fn.writefile({}, output_file)
+    vim.notify("History cleared", vim.log.levels.INFO)
+  end
+end
+
+-- =============================================================================
+-- Command Registration
+-- =============================================================================
+
 vim.api.nvim_create_user_command("Run", async_run, {
   desc = "Run shell command asynchronously with output display",
   nargs = "+",
@@ -568,7 +537,14 @@ end, {
   desc = "Toggle the history window",
 })
 
+vim.api.nvim_create_user_command("RunClearHistory", clear_history, {
+  desc = "Clear the command history after confirmation",
+})
+
+-- =============================================================================
 -- Abbreviations
+-- =============================================================================
+
 vim.cmd([[
   cabbrev <expr> run getcmdtype() == ':' && getcmdline() =~# '^run' ? 'Run' : 'run'
 ]])
