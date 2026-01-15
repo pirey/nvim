@@ -568,7 +568,6 @@ local orgmode = {
     },
   },
 }
----@diagnostic disable-next-line: unused-local
 local opencode = {
   "sudo-tee/opencode.nvim",
   lazy = false,
@@ -586,31 +585,6 @@ local opencode = {
     "saghen/blink.cmp",
     "nvim-mini/mini.pick",
   },
-}
-local opencode2 = {
-  "NickvanDyke/opencode.nvim",
-  name = "opencode2",
-  config = function()
-    ---@type opencode.Opts
-    vim.g.opencode_opts = {
-      provider = {
-        enabled = "terminal",
-      },
-    }
-
-    -- Required for `opts.events.reload`.
-    vim.o.autoread = true
-
-    vim.keymap.set({ "n", "x" }, "<leader>aa", function()
-      require("opencode").ask("@this: ", { submit = true })
-    end, { desc = "Ask opencode" })
-    vim.keymap.set({ "n", "x" }, "<leader>as", function()
-      require("opencode").select()
-    end, { desc = "Execute opencode action…" })
-    vim.keymap.set({ "n" }, "<leader>at", function()
-      require("opencode").toggle()
-    end, { desc = "Toggle opencode" })
-  end,
 }
 local supermaven = {
   "supermaven-inc/supermaven-nvim",
@@ -657,8 +631,7 @@ require("lazy").setup({
     lspconfig,
 
     -- AI
-    -- opencode,
-    opencode2,
+    opencode,
     supermaven,
 
     -- ETC
