@@ -31,22 +31,32 @@ vim.keymap.set({ "n", "v" }, "j", "gj")
 vim.keymap.set({ "n", "v" }, "k", "gk")
 vim.keymap.set("v", "<c-c>", '"+y', { silent = true, desc = "Copy to clipboard" })
 vim.keymap.set("n", "gp", "`[v`]", { desc = "Select last pasted text" })
-vim.keymap.set("n", "<leader>x", "<cmd>confirm bd<cr>", { silent = true, desc = "Confirm delete buffer" })
-vim.keymap.set("n", "<leader><tab>c", "<cmd>tabclose<cr>", { silent = true, desc = "Close tab" })
-vim.keymap.set("n", "<leader><tab>o", "<cmd>tabonly<cr>", { silent = true, desc = "Close other tabs" })
-vim.keymap.set("n", "<leader><tab>l", "<cmd>tabs<cr>", { silent = true, desc = "List tabs" })
-vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnew<cr>", { silent = true, desc = "New tab" })
+vim.keymap.set("n", "<leader>x", "<cmd>confirm bd<cr>", { silent = true })
+
+-- terminal
 vim.keymap.set("n", "<leader>tt", "<cmd>bot term<cr>", { silent = true })
 vim.keymap.set("n", "<leader>tv", "<cmd>vert term<cr>", { silent = true })
 vim.keymap.set("n", "<leader>ts", "<cmd>belowright term<cr>", { silent = true })
 vim.keymap.set("n", "<leader>t<tab>", "<cmd>tab term<cr>", { silent = true })
-vim.keymap.set('t', [[<C-\><C-\>]], [[<C-\><C-n>]], { noremap = true })
+
+-- tabpage
+vim.keymap.set("n", "<leader><tab>c", "<cmd>tabclose<cr>", { silent = true })
+vim.keymap.set("n", "<leader><tab>o", "<cmd>tabonly<cr>", { silent = true })
+vim.keymap.set("n", "<leader><tab>l", "<cmd>tabs<cr>", { silent = true })
+vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnew<cr>", { silent = true })
 vim.keymap.set("n", "]<tab>", "gt", { silent = true })
 vim.keymap.set("n", "[<tab>", "gT", { silent = true })
+
 vim.keymap.set("c", "<C-j>", "<Down>", { noremap = true })
 vim.keymap.set("c", "<C-k>", "<Up>", { noremap = true })
+vim.keymap.set({ "n", "i", "t" }, [[<C-\><C-\>]], [[<c-\><c-n><C-w><C-w>]], {
+  silent = true,
+  noremap = true,
+  desc = "Alternate window",
+})
 
 vim.cmd("autocmd TermOpen * startinsert")
+vim.cmd("autocmd WinEnter * if &buftype == 'terminal' | startinsert | endif")
 vim.cmd("autocmd QuickFixCmdPost grep,grep! copen")
 
 -- experimental
