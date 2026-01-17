@@ -66,6 +66,7 @@ if vim.fn.has("nvim-0.12") == 1 then
   -- require("vim._extui").enable({
   --   enable = true,
   -- })
+  require("pack")
+else
+  print("nvim-0.12 is required to use vim.pack")
 end
-
-require("pack")
