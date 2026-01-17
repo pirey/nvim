@@ -640,5 +640,3 @@ pack_setup({
   theme_vscode,
   theme_tokyonight,
 })
-
-vim.cmd.colorscheme("onedark")

@@ -94,8 +94,5 @@ return {
         vim.api.nvim_set_hl(ns_id, "CursorLine", { underdotted = true })
       end,
     })
-
-    vim.opt.background = "dark"
-    vim.cmd.colorscheme("onedark")
   end
 }
