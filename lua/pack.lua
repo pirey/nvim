@@ -5,7 +5,6 @@
 ---@param src string
 ---@return string
 local function normalize_src(src)
-  -- print("normalizing " .. src)
   if src:match("^https?://") or src:match("^//") then
     return src
   end
