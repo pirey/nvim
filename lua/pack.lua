@@ -147,8 +147,8 @@ local oil = {
         ["<"] = { "actions.parent", mode = "n" },
       },
     })
-    vim.keymap.set("n", "<leader>-", "<cmd>Oil<cr>", { silent = true })
-    vim.keymap.set("n", "<leader><leader>-", "<cmd>Oil .<cr>", { silent = true })
+    vim.keymap.set("n", "-", "<cmd>Oil<cr>", { silent = true })
+    vim.keymap.set("n", "<leader>-", "<cmd>Oil .<cr>", { silent = true })
   end,
 }
 local treesj = {
