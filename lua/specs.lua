@@ -228,7 +228,7 @@ local outline = {
 local mini_files = {
   src = "nvim-mini/mini.files",
   config = function()
-    require("mini.files").setup()
+    require("mini.files").setup({ content = { prefix = function() end } })
     vim.keymap.set(
       "n",
       "<leader>e",
