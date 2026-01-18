@@ -14,7 +14,7 @@ end
 local M = {}
 
 function M.list()
-  vim.pack.update(nil, { offline = true })
+  vim.pack.update()
 end
 
 function M.update()
@@ -31,7 +31,15 @@ function M.update()
 end
 
 function M.clean()
-  local specs = vim.iter(vim.pack.get()):filter(function(x) return not x.active end):map(function(x) return x.spec.name end):totable()
+  local specs = vim
+    .iter(vim.pack.get())
+    :filter(function(x)
+      return not x.active
+    end)
+    :map(function(x)
+      return x.spec.name
+    end)
+    :totable()
   vim.pack.del(specs, { force = true })
 end
 
@@ -40,6 +48,7 @@ function M.setup(specs_ext)
   local specs = {}
   local configs = {}
 
+  -- resolve specs and configs
   for _, spec in ipairs(specs_ext) do
     if spec.dependencies then
       for _, dep in ipairs(spec.dependencies) do
@@ -52,11 +61,18 @@ function M.setup(specs_ext)
     end
   end
 
+  -- install packages
   vim.pack.add(specs)
 
+  -- configure packages
   for _, config in ipairs(configs) do
     config()
   end
+
+  -- create user commands
+  vim.api.nvim_create_user_command("PackUpdate", M.update, { desc = "Update all packages" })
+  vim.api.nvim_create_user_command("PackClean", M.clean, { desc = "Clean all packages" })
+  vim.api.nvim_create_user_command("PackList", M.list, { desc = "List all packages" })
 end
 
 return M

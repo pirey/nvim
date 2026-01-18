@@ -66,7 +66,8 @@ if vim.fn.has("nvim-0.12") == 1 then
   -- require("vim._extui").enable({
   --   enable = true,
   -- })
-  require("specs")
+
+  require("pack").setup(require("specs"))
 
   vim.opt.background = "dark"
   vim.cmd.colorscheme("onedark")

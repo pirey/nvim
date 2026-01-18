@@ -559,7 +559,7 @@ local theme_iceberg = require("themes.iceberg")
 local theme_vscode = require("themes.vscode")
 local theme_tokyonight = { src = "folke/tokyonight.nvim" }
 
-require("pack").setup({
+return {
   -- EDITING
   surround,
   fugitive,
@@ -603,10 +603,4 @@ require("pack").setup({
   theme_iceberg,
   theme_vscode,
   theme_tokyonight,
-})
-vim.keymap.set("n", "<leader>pu", function()
-  require("pack").update()
-end, { silent = true, desc = "Update packages" })
-vim.keymap.set("n", "<leader>pl", function()
-  require("pack").list()
-end, { silent = true, desc = "List packages" })
+}
