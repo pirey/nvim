@@ -30,6 +30,11 @@ function M.update()
   vim.pack.update(specs, { force = true })
 end
 
+function M.clean()
+  local specs = vim.iter(vim.pack.get()):filter(function(x) return not x.active end):map(function(x) return x.spec.name end):totable()
+  vim.pack.del(specs, { force = true })
+end
+
 ---@param specs_ext SpecExt[]
 function M.setup(specs_ext)
   local specs = {}
