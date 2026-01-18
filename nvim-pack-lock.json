@@ -10,7 +10,7 @@
       "src": "https://github.com/saghen/blink.indent"
     },
     "conform.nvim": {
-      "rev": "238f542a118984a88124fc915d5b981680418707",
+      "rev": "5ac2bb57a9096f00ca50e1a3c46020d5930319b8",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "curl.nvim": {
@@ -58,7 +58,7 @@
       "src": "https://github.com/pirey/mini.omnipick"
     },
     "mini.pick": {
-      "rev": "66148e0e4e2d087c86326c6b58d663da4dde8fc5",
+      "rev": "7a781e00aba1af54bd53a1d66d3ca8168a4a0dbb",
       "src": "https://github.com/nvim-mini/mini.pick"
     },
     "mini.visits": {
@@ -83,7 +83,7 @@
       "version": "'master'"
     },
     "oil.nvim": {
-      "rev": "6b59a6cf623fa2245c7454ddb458df5bdb6615d3",
+      "rev": "f55b25e493a7df76371cfadd0ded5004cb9cd48a",
       "src": "https://github.com/stevearc/oil.nvim"
     },
     "onedark.nvim": {
