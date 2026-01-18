@@ -50,16 +50,19 @@ local mason = {
     end)
   end,
 }
+local sidescroll = {
+  src = "pirey/vim-sidescroll",
+}
 local winpick = {
   src = "pirey/winpick.nvim",
   config = function()
-    require('winpick').setup({
-      border = 'none',
+    require("winpick").setup({
+      border = "none",
       padding = { x = 3, y = 1 },
     })
-    vim.keymap.set('n', '<c-w>p', require('winpick').pick, { desc = 'Pick window' })
-    vim.keymap.set('n', '<c-w><c-p>', require('winpick').pick, { desc = 'Pick window' })
-  end
+    vim.keymap.set("n", "<c-w>p", require("winpick").pick, { desc = "Pick window" })
+    vim.keymap.set("n", "<c-w><c-p>", require("winpick").pick, { desc = "Pick window" })
+  end,
 }
 local winshift = {
   src = "sindrets/winshift.nvim",
@@ -573,6 +576,7 @@ local theme_tokyonight = { src = "folke/tokyonight.nvim" }
 
 return {
   -- EDITING
+  sidescroll,
   surround,
   fugitive,
   abolish,
