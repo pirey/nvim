@@ -50,6 +50,17 @@ local mason = {
     end)
   end,
 }
+local winpick = {
+  src = "pirey/winpick.nvim",
+  config = function()
+    require('winpick').setup({
+      border = 'none',
+      padding = { x = 3, y = 1 },
+    })
+    vim.keymap.set('n', '<c-w>p', require('winpick').pick, { desc = 'Pick window' })
+    vim.keymap.set('n', '<c-w><c-p>', require('winpick').pick, { desc = 'Pick window' })
+  end
+}
 local winshift = {
   src = "sindrets/winshift.nvim",
   config = function()
@@ -554,6 +565,7 @@ local supermaven = {
     require("supermaven-nvim").setup({})
   end,
 }
+
 local theme_onedark = require("themes.onedark")
 local theme_iceberg = require("themes.iceberg")
 local theme_vscode = require("themes.vscode")
@@ -571,6 +583,7 @@ return {
   blink_indent,
 
   -- UI
+  winpick,
   winshift,
   diffview,
   oil,
