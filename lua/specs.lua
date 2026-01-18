@@ -461,7 +461,7 @@ local dadbod_ui = {
     { src = "tpope/vim-dadbod" },
     { src = "kristijanhusak/vim-dadbod-completion" },
   },
-  init = function()
+  config = function()
     vim.g.db_ui_execute_on_save = 0
     vim.api.nvim_create_autocmd("FileType", {
       pattern = { "sql", "mysql", "plsql" },
