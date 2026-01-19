@@ -566,6 +566,12 @@ local supermaven = {
     require("supermaven-nvim").setup({})
   end,
 }
+local scratch = {
+  src = "pirey/scratch.nvim",
+  config = function()
+    require("scratch").setup()
+  end
+}
 
 local theme_onedark = require("themes.onedark")
 local theme_iceberg = require("themes.iceberg")
@@ -585,6 +591,7 @@ return {
   blink_indent,
 
   -- UI
+  scratch,
   winpick,
   winshift,
   diffview,
