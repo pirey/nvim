@@ -91,7 +91,7 @@
       "src": "https://github.com/navarasu/onedark.nvim"
     },
     "opencode.nvim": {
-      "rev": "4cc98c03395f8d0d910e3a70ccb1ad948ce16e09",
+      "rev": "9d84f273aad2c29a3a6dfbf2a0d5cf8362b1d6ee",
       "src": "https://github.com/sudo-tee/opencode.nvim"
     },
     "orgmode": {
@@ -107,8 +107,8 @@
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "scratch.nvim": {
-      "rev": "734ac03ea9cd3ecc2d61117ba14bd9ea97d6681c",
-      "src": "https://github.com/pirey/scratch.nvim"
+      "rev": "9f1c65fb5050d80a726ea1cd2ad89fc0ca976814",
+      "src": "file:///Users/yeri/code/github.com/pirey/scratch.nvim"
     },
     "showkeys": {
       "rev": "cb0a50296f11f1e585acffba8c253b9e8afc1f84",

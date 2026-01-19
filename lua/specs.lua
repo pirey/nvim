@@ -570,6 +570,7 @@ local scratch = {
   src = "pirey/scratch.nvim",
   config = function()
     require("scratch").setup()
+    vim.keymap.set("n", "<leader><leader>s", "<cmd>Scratch<cr>", { silent = true })
   end
 }
 
@@ -591,7 +592,6 @@ return {
   blink_indent,
 
   -- UI
-  scratch,
   winpick,
   winshift,
   diffview,
@@ -613,6 +613,7 @@ return {
   supermaven,
 
   -- ETC
+  scratch,
   wakatime,
   colorizer,
   showkeys,
