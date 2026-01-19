@@ -108,7 +108,7 @@
     },
     "scratch.nvim": {
       "rev": "9f1c65fb5050d80a726ea1cd2ad89fc0ca976814",
-      "src": "file:///Users/yeri/code/github.com/pirey/scratch.nvim"
+      "src": "https://github.com/pirey/scratch.nvim"
     },
     "showkeys": {
       "rev": "cb0a50296f11f1e585acffba8c253b9e8afc1f84",
