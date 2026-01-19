@@ -50,9 +50,7 @@ local mason = {
     end)
   end,
 }
-local sidescroll = {
-  src = "pirey/vim-sidescroll",
-}
+local sidescroll = { src = "pirey/vim-sidescroll" }
 local winpick = {
   src = "pirey/winpick.nvim",
   config = function()

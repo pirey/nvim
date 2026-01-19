@@ -7,7 +7,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.gdefault = true
 
--- fancy
+-- nice to have
 vim.opt.switchbuf = { "uselast", "useopen", "usetab" }
 vim.opt.tabclose = "left"
 vim.opt.splitright = true
@@ -34,9 +34,9 @@ vim.keymap.set("n", "gp", "`[v`]", { desc = "Select last pasted text" })
 vim.keymap.set("n", "<leader>x", "<cmd>confirm bd<cr>", { silent = true })
 
 -- terminal
-vim.keymap.set("n", "<leader>tt", "<cmd>bot term<cr>", { silent = true })
+vim.keymap.set("n", "<leader>tb", "<cmd>bot term<cr>", { silent = true })
 vim.keymap.set("n", "<leader>tv", "<cmd>vert term<cr>", { silent = true })
-vim.keymap.set("n", "<leader>ts", "<cmd>belowright term<cr>", { silent = true })
+vim.keymap.set("n", "<leader>ts", "<cmd>below term<cr>", { silent = true })
 vim.keymap.set("n", "<leader>t<tab>", "<cmd>tab term<cr>", { silent = true })
 
 -- tabpage
@@ -62,14 +62,9 @@ vim.cmd("autocmd QuickFixCmdPost grep,grep! copen")
 -- experimental
 if vim.fn.has("nvim-0.12") == 1 then
   vim.opt.pumborder = vim.o.winborder
-  -- vim.opt.cmdheight = 0
-  -- require("vim._extui").enable({
-  --   enable = true,
-  -- })
 
   require("pack").setup(require("specs"))
 
-  vim.opt.background = "dark"
   vim.cmd.colorscheme("onedark")
 else
   print("nvim-0.12 is required to use vim.pack")

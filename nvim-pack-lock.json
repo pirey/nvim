@@ -10,7 +10,7 @@
       "src": "https://github.com/saghen/blink.indent"
     },
     "conform.nvim": {
-      "rev": "5ac2bb57a9096f00ca50e1a3c46020d5930319b8",
+      "rev": "c2526f1cde528a66e086ab1668e996d162c75f4f",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "curl.nvim": {
@@ -95,7 +95,7 @@
       "src": "https://github.com/sudo-tee/opencode.nvim"
     },
     "orgmode": {
-      "rev": "89b684ebb164587812c40ba7df8443f146867589",
+      "rev": "eff6b77815036651a94564a04aac6d20cd86b6c9",
       "src": "https://github.com/nvim-orgmode/orgmode"
     },
     "outline.nvim": {
@@ -147,7 +147,7 @@
       "src": "https://github.com/tpope/vim-repeat"
     },
     "vim-sidescroll": {
-      "rev": "4a10eb52137feac11f8e1ce411e69d97b7002ee0",
+      "rev": "03231e4bab493afe72852b0c61c7a3a660a9c637",
       "src": "https://github.com/pirey/vim-sidescroll"
     },
     "vim-surround": {
@@ -163,7 +163,7 @@
       "src": "https://github.com/Mofiqul/vscode.nvim"
     },
     "winpick.nvim": {
-      "rev": "d01690bdc4880bb950fa8ebb7fb38a8a9c130c77",
+      "rev": "6b0d6c04beb27035b6fd06c2ba741857fe7407ec",
       "src": "https://github.com/pirey/winpick.nvim"
     },
     "winshift.nvim": {
