@@ -5,7 +5,7 @@
 ---@param src string
 ---@return string
 local function normalize_src(src)
-  if src:match("^https?://") or src:match("^//") then
+  if src:match("^[a-z]+://") then
     return src
   end
   return "https://github.com/" .. src:gsub("^/", "")
