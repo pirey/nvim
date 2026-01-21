@@ -78,19 +78,8 @@ local diffview = {
       default_args = {
         DiffviewFileHistory = { "--max-count=100" },
       },
-      file_panel = {
-        listing_style = "list",
-        win_config = {
-          position = "top",
-          height = 16,
-        },
-      },
-      file_history_panel = {
-        win_config = {
-          position = "top",
-          height = 16,
-        },
-      },
+      file_panel = { listing_style = "list", win_config = { position = "top", height = 16 } },
+      file_history_panel = { win_config = { position = "top", height = 16 } },
       keymaps = {
         file_panel = {
           { "n", "cc", "<cmd>Git commit<cr>", { desc = "Commit staged changes" } },
@@ -147,7 +136,7 @@ local treesitter = {
       highlight = { enable = true },
       indent = { enable = true },
       ensure_installed = {
-        "mermaid",
+        "haskell",
         "javascript",
         "typescript",
         "tsx",
@@ -576,7 +565,7 @@ local scratch = {
   config = function()
     require("scratch").setup()
     vim.keymap.set("n", "<leader><leader>s", "<cmd>Scratch<cr>", { silent = true })
-  end
+  end,
 }
 
 local theme_onedark = require("themes.onedark")
