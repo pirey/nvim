@@ -8,19 +8,19 @@ vim.opt.smartcase = true
 vim.opt.gdefault = true
 
 -- nice to have
-vim.opt.switchbuf = { "uselast", "useopen", "usetab" }
-vim.opt.tabclose = "left"
 vim.opt.splitright = true
 vim.opt.number = true
-vim.opt.scrolloff = 3
+vim.opt.signcolumn = "yes"
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = "number"
+vim.opt.scrolloff = 3
+vim.opt.tabclose = "left"
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevelstart = 99
-vim.opt.signcolumn = "yes"
 vim.opt.winborder = "rounded"
 vim.opt.fillchars:append({ diff = " " })
 vim.opt.wildoptions:append({ "fuzzy" })
+vim.opt.switchbuf = { "uselast", "useopen", "usetab" }
 
 -- ignore .git by default so we doesn't need to specify it when using --hidden
 vim.opt.grepprg = "rg --hidden --vimgrep --smart-case --glob=!.git"
