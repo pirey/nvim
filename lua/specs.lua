@@ -189,6 +189,7 @@ local lspconfig = {
       "tailwindcss",
       "vtsls",
       "gopls",
+      "hls",
     })
 
     vim.keymap.set("n", "<leader>ql", vim.diagnostic.setloclist, { desc = "Open local diagnostics" })
