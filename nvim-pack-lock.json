@@ -107,7 +107,7 @@
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "scratch.nvim": {
-      "rev": "9f1c65fb5050d80a726ea1cd2ad89fc0ca976814",
+      "rev": "499176d12df3deb40757542714949d2352164620",
       "src": "https://github.com/pirey/scratch.nvim"
     },
     "showkeys": {
