@@ -137,6 +137,7 @@ local treesitter = {
       indent = { enable = true },
       ensure_installed = {
         "haskell",
+        "nix",
         "javascript",
         "typescript",
         "tsx",
