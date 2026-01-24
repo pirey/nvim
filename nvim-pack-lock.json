@@ -22,7 +22,7 @@
       "src": "https://github.com/sindrets/diffview.nvim"
     },
     "friendly-snippets": {
-      "rev": "572f5660cf05f8cd8834e096d7b4c921ba18e175",
+      "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "gitsigns.nvim": {
@@ -91,7 +91,7 @@
       "src": "https://github.com/navarasu/onedark.nvim"
     },
     "opencode.nvim": {
-      "rev": "5e9142a1ac522c5de2640b3f8baa21746cd291f1",
+      "rev": "6940ea6361fc0ca59ee4e0aad66690f70d6e2c25",
       "src": "https://github.com/sudo-tee/opencode.nvim"
     },
     "orgmode": {
