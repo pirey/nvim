@@ -217,13 +217,17 @@ local outline = {
 local mini_files = {
   src = "nvim-mini/mini.files",
   config = function()
-    require("mini.files").setup({ content = { prefix = function() end } })
-    vim.keymap.set(
-      "n",
-      "<leader>e",
-      "<cmd>lua require('mini.files').open(vim.fn.getcwd())<cr>",
-      { silent = true, desc = "Open file browser" }
-    )
+    local mf = require("mini.files")
+    mf.setup({ content = { prefix = function() end } })
+
+    vim.keymap.set("n", "<leader>e", function()
+      mf.open(vim.fn.getcwd())
+    end, { silent = true, desc = "Open file browser" })
+
+    vim.keymap.set("n", "<leader>E", function()
+      mf.open(vim.fn.expand("%:p:h"))
+      mf.reveal_cwd()
+    end, { silent = true, desc = "Open file browser (buffer dir)" })
   end,
 }
 local mini_pick = {
