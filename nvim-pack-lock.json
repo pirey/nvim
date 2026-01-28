@@ -70,11 +70,11 @@
       "src": "https://github.com/norcalli/nvim-colorizer.lua"
     },
     "nvim-lint": {
-      "rev": "ca6ea12daf0a4d92dc24c5c9ae22a1f0418ade37",
+      "rev": "b3292aac30b935d4cccf0904053d1c7930df8a20",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "ff9c0af8f9b2097fdd2695058db7e04c193908aa",
+      "rev": "5fef3b4a5f1057553b78d048322782c3a9ae69c6",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
