@@ -4,6 +4,6 @@ end
 
 if vim.fn.executable("cabal-gild") == 1 then
   vim.api.nvim_create_user_command("CabalFormat", cabal_format, {})
-  vim.keymap.set("n", "<leader>F", ":CabalFormat<CR>")
+  vim.keymap.set("n", "<leader>F", ":CabalFormat<CR>", { buffer = true })
 end
 
