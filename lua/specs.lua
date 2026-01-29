@@ -149,15 +149,19 @@ local treesitter = {
     })
   end,
 }
-local lazydev = {
-  src = "folke/lazydev.nvim",
-  config = function()
-    require("lazydev").setup()
-  end,
-}
 local lspconfig = {
   src = "neovim/nvim-lspconfig",
   config = function()
+    vim.lsp.config("lua_ls", {
+      settings = {
+        Lua = {
+          workspace = {
+            library = vim.api.nvim_get_runtime_file("", true),
+          },
+        },
+      },
+    })
+
     vim.lsp.config("phpactor", {
       init_options = {
         ["language_server.diagnostic_ignore_codes"] = {
@@ -606,7 +610,6 @@ return {
   -- TOOLS
   mason,
   treesitter,
-  lazydev,
   lspconfig,
 
   -- AI
