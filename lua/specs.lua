@@ -190,11 +190,11 @@ local lspconfig = {
     vim.lsp.enable({
       "lua_ls",
       "phpactor",
-      "clangd",
+      -- "clangd",
       "tailwindcss",
       "vtsls",
       "gopls",
-      "hls",
+      -- "hls",
     })
 
     vim.keymap.set("n", "<leader>ql", vim.diagnostic.setloclist, { desc = "Open local diagnostics" })
