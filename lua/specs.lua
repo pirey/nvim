@@ -291,6 +291,13 @@ local mini_pick = {
     vim.keymap.set("n", '<leader>"', "<cmd>Pick visit_paths<cr>", { silent = true })
     vim.keymap.set("n", "<leader>'", "<cmd>Pick oldfiles current_dir=true<cr>", { silent = true })
     vim.keymap.set("n", "<leader>f", "<cmd>Pick omni<cr>", { silent = true })
+    vim.keymap.set("n", "<leader><leader>d", function()
+      require("mini.pick").builtin.cli({
+        command = { "fd", "--hidden", "-E", ".git", "--type", "d" },
+      }, {
+        source = { name = "Dir" },
+      })
+    end, { desc = "Find dir" })
   end,
 }
 local gitsigns = {
