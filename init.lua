@@ -49,6 +49,11 @@ vim.keymap.set("n", "[<tab>", "gT", { silent = true })
 
 vim.keymap.set("c", "<C-j>", "<Down>", { noremap = true })
 vim.keymap.set("c", "<C-k>", "<Up>", { noremap = true })
+vim.keymap.set({ "n" }, [[\\]], [[<c-\><c-n><C-w><C-w>]], {
+  silent = true,
+  noremap = true,
+  desc = "Alternate window",
+})
 vim.keymap.set({ "n", "i", "t" }, [[<C-\><C-\>]], [[<c-\><c-n><C-w><C-w>]], {
   silent = true,
   noremap = true,
