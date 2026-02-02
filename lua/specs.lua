@@ -582,7 +582,9 @@ local scratch = {
   src = "pirey/scratch.nvim",
   config = function()
     require("scratch").setup()
-    vim.keymap.set("n", "<leader><leader>s", "<cmd>Scratch<cr>", { silent = true })
+    vim.keymap.set("n", "<leader><leader>s", function()
+      require("scratch").toggle()
+    end, { silent = true })
   end,
 }
 
