@@ -37,10 +37,6 @@
       "rev": "23835d5ed696436f716cbfdb56a93a7850fe3b18",
       "src": "https://github.com/cocopon/iceberg.vim"
     },
-    "lazydev.nvim": {
-      "rev": "5231c62aa83c2f8dc8e7ba957aa77098cda1257d",
-      "src": "https://github.com/folke/lazydev.nvim"
-    },
     "mason.nvim": {
       "rev": "44d1e90e1f66e077268191e3ee9d2ac97cc18e65",
       "src": "https://github.com/mason-org/mason.nvim"
@@ -70,7 +66,7 @@
       "src": "https://github.com/norcalli/nvim-colorizer.lua"
     },
     "nvim-lint": {
-      "rev": "b3292aac30b935d4cccf0904053d1c7930df8a20",
+      "rev": "bcd1a44edbea8cd473af7e7582d3f7ffc60d8e81",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
