@@ -13,33 +13,38 @@ end
 
 local M = {}
 
-function M.list()
-  vim.pack.update()
-end
-
-function M.update()
-  local specs = vim
-    .iter(vim.pack.get())
-    :filter(function(x)
-      return x.active
+local function installed_specs(is_active)
+  local packspecs = vim.iter(vim.pack.get())
+  if is_active ~= nil then
+    packspecs = packspecs:filter(function(x)
+      return x.active == is_active
     end)
+  end
+  return packspecs
     :map(function(x)
       return x.spec.name
     end)
     :totable()
+end
+
+function M.list(opts)
+  local specs = installed_specs()
+
+  local update_opts = {}
+  if opts and opts.offline then
+    update_opts.offline = true
+  end
+
+  vim.pack.update(specs, update_opts)
+end
+
+function M.update()
+  local specs = installed_specs(true)
   vim.pack.update(specs, { force = true })
 end
 
 function M.clean()
-  local specs = vim
-    .iter(vim.pack.get())
-    :filter(function(x)
-      return not x.active
-    end)
-    :map(function(x)
-      return x.spec.name
-    end)
-    :totable()
+  local specs = installed_specs(false)
   vim.pack.del(specs, { force = true })
 end
 
@@ -72,7 +77,15 @@ function M.setup(specs_ext)
   -- create user commands
   vim.api.nvim_create_user_command("PackUpdate", M.update, { desc = "Update all packages" })
   vim.api.nvim_create_user_command("PackClean", M.clean, { desc = "Clean all packages" })
-  vim.api.nvim_create_user_command("PackList", M.list, { desc = "List all packages" })
+  vim.api.nvim_create_user_command("PackList", function(opts)
+    M.list({ offline = vim.tbl_contains(opts.fargs, "offline") })
+  end, {
+    desc = "List all packages",
+    nargs = "*",
+    complete = function()
+      return { "offline" }
+    end,
+  })
 end
 
 return M
