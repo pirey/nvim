@@ -30,7 +30,7 @@
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "grug-far.nvim": {
-      "rev": "14babc9b4520184d9696ef282eb7ac20687d4373",
+      "rev": "275dbedc96e61a6b8d1dfb28ba51586ddd233dcf",
       "src": "https://github.com/MagicDuck/grug-far.nvim"
     },
     "iceberg.vim": {
@@ -87,11 +87,11 @@
       "src": "https://github.com/navarasu/onedark.nvim"
     },
     "opencode.nvim": {
-      "rev": "4b950e091634b9f9469a7fa28066957c74645969",
+      "rev": "66686278f3cc4c1d0616fcfae3f0f3806d6092eb",
       "src": "https://github.com/sudo-tee/opencode.nvim"
     },
     "orgmode": {
-      "rev": "b681e551f1a70501a76e03f8c7215c473cb91324",
+      "rev": "c421c7677b7332f5fd543023283a2290cf8dd4ff",
       "src": "https://github.com/nvim-orgmode/orgmode"
     },
     "outline.nvim": {
