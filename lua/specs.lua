@@ -38,6 +38,7 @@ local mason = {
       "phpcs",
       "php-cs-fixer",
       "blade-formatter",
+      "rust-analyzer",
     }
 
     registry.refresh(function()
