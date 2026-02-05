@@ -34,10 +34,16 @@ vim.keymap.set("n", "gp", "`[v`]", { desc = "Select last pasted text" })
 vim.keymap.set("n", "<leader>x", "<cmd>confirm bd<cr>", { silent = true })
 
 -- terminal
+vim.keymap.set("n", "<leader>te", "<cmd>term<cr>", { silent = true })
 vim.keymap.set("n", "<leader>tb", "<cmd>bot term<cr>", { silent = true })
 vim.keymap.set("n", "<leader>tv", "<cmd>vert term<cr>", { silent = true })
 vim.keymap.set("n", "<leader>ts", "<cmd>below term<cr>", { silent = true })
 vim.keymap.set("n", "<leader>t<tab>", "<cmd>tab term<cr>", { silent = true })
+vim.keymap.set("n", "<localleader>te", "<cmd>lcd %:h | term<cr>", { silent = true })
+vim.keymap.set("n", "<localleader>tb", "<cmd>bot sp | lcd %:h | term<cr>", { silent = true })
+vim.keymap.set("n", "<localleader>tv", "<cmd>vert sp | lcd %:h | term<cr>", { silent = true })
+vim.keymap.set("n", "<localleader>ts", "<cmd>below sp | lcd %:h | term<cr>", { silent = true })
+vim.keymap.set("n", "<localleader>t<tab>", "<cmd>tab sp | lcd %:h | term<cr>", { silent = true })
 
 -- tabpage
 vim.keymap.set("n", "<leader><tab>c", "<cmd>tabclose<cr>", { silent = true })
