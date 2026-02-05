@@ -228,11 +228,11 @@ local mini_files = {
     local mf = require("mini.files")
     mf.setup({ content = { prefix = function() end } })
 
-    vim.keymap.set("n", "<leader>e", function()
+    vim.keymap.set("n", "<leader>E", function()
       mf.open(vim.fn.getcwd())
     end, { silent = true, desc = "Open file browser" })
 
-    vim.keymap.set("n", "<leader>E", function()
+    vim.keymap.set("n", "<leader>e", function()
       mf.open(vim.fn.expand("%:p:h"))
       mf.reveal_cwd()
     end, { silent = true, desc = "Open file browser (buffer dir)" })
