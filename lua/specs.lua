@@ -195,6 +195,7 @@ local lspconfig = {
       "tailwindcss",
       "vtsls",
       "gopls",
+      "rust_analyzer",
       -- "hls",
     })
 
