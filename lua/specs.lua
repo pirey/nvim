@@ -39,6 +39,7 @@ local mason = {
       "php-cs-fixer",
       "blade-formatter",
       "rust-analyzer",
+      "ols",
     }
 
     registry.refresh(function()
@@ -196,6 +197,7 @@ local lspconfig = {
       "vtsls",
       "gopls",
       "rust_analyzer",
+      "ols",
       -- "hls",
     })
 
