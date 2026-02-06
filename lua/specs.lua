@@ -604,6 +604,7 @@ local theme_rosepine = { src = "rose-pine/neovim" }
 local theme_modus = { src = "miikanissi/modus-themes.nvim" }
 local theme_nightfox = { src = "EdenEast/nightfox.nvim" }
 local theme_vague = { src = "vague-theme/vague.nvim" }
+local theme_catppuccin = { src = "catppuccin/nvim" }
 
 return {
   -- THEMES
@@ -615,6 +616,7 @@ return {
   theme_modus,
   theme_nightfox,
   theme_vague,
+  theme_catppuccin,
 
   -- EDITING
   sidescroll,
