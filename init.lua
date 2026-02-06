@@ -74,9 +74,11 @@ vim.cmd("autocmd QuickFixCmdPost grep,grep! copen")
 if vim.fn.has("nvim-0.12") == 1 then
   vim.opt.pumborder = vim.o.winborder
 
-  require("pack").setup(require("specs"))
+  if vim.env.PLUG ~= "0" then
+    require("pack").setup(require("specs"))
+  end
 
-  vim.cmd.colorscheme("onedark")
+  -- vim.cmd.colorscheme("onedark")
 else
   print("nvim-0.12 is required to use vim.pack")
 end
