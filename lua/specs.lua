@@ -600,8 +600,22 @@ local theme_onedark = require("themes.onedark")
 local theme_iceberg = require("themes.iceberg")
 local theme_vscode = require("themes.vscode")
 local theme_tokyonight = { src = "folke/tokyonight.nvim" }
+local theme_rosepine = { src = "rose-pine/neovim" }
+local theme_modus = { src = "miikanissi/modus-themes.nvim" }
+local theme_nightfox = { src = "EdenEast/nightfox.nvim" }
+local theme_vague = { src = "vague-theme/vague.nvim" }
 
 return {
+  -- THEMES
+  theme_onedark,
+  theme_iceberg,
+  theme_vscode,
+  theme_tokyonight,
+  theme_rosepine,
+  theme_modus,
+  theme_nightfox,
+  theme_vague,
+
   -- EDITING
   sidescroll,
   surround,
@@ -641,10 +655,4 @@ return {
   orgmode,
   dadbod_ui,
   curl,
-
-  -- THEMES
-  theme_onedark,
-  theme_iceberg,
-  theme_vscode,
-  theme_tokyonight,
 }
