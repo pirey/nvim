@@ -78,7 +78,7 @@ if vim.fn.has("nvim-0.12") == 1 then
     require("pack").setup(require("specs"))
   end
 
-  -- vim.cmd.colorscheme("onedark")
+  vim.cmd.colorscheme("nightfox")
 else
   print("nvim-0.12 is required to use vim.pack")
 end

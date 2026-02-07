@@ -167,7 +167,7 @@
       "src": "https://github.com/tpope/vim-repeat"
     },
     "vim-sidescroll": {
-      "rev": "03231e4bab493afe72852b0c61c7a3a660a9c637",
+      "rev": "8a1cffc226b3b8a5637060331fd3118aa0e55806",
       "src": "https://github.com/pirey/vim-sidescroll"
     },
     "vim-surround": {
